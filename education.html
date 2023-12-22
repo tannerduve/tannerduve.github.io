@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tanner Duve's Education</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -12,8 +14,12 @@
     <main>
         <div class="education-header">
             <h2>Education</h2>
-            <p>Masters of Science in Engineering: Computer Science</p>
-            <p>Bachelor of Arts: Double major in Mathematical Logic and Philosophy</p>
+            <div class="degree">
+                <img src="cap.png" alt="Cap" class="cap-icon">
+                <p>Masters of Science in Engineering: Computer Science <span class="university">University of Pennsylvania</span></p>
+                <img src="cap.png" alt="Cap" class="cap-icon">
+                <p>Bachelor of Arts: Double major in Mathematical Logic and Philosophy <span class="university">University of Pennsylvania</span></p>
+            </div>
         </div>
 
         <section class="course-category">
@@ -29,11 +35,13 @@
                 </ul>
             </div>
             <div class="course-list">
-                <li>Theory of Computation (MS)</li>
-                <li>Computational Complexity w/ Connections to Cryptography (PhD)</li>
-                <li>Model Theory (PhD)</li>
-                <li>Software Foundations (MS)</li>
-                <li>Formal Verification (PhD)</li>
+                <ul>
+                    <li>Theory of Computation (MS)</li>
+                    <li>Computational Complexity w/ Connections to Cryptography (PhD)</li>
+                    <li>Model Theory (PhD)</li>
+                    <li>Software Foundations (MS)</li>
+                    <li>Formal Verification (PhD)</li>
+                </ul>
             </div>
         </section>
 
@@ -48,68 +56,16 @@
                 </ul>
             </div>
             <div class="course-list">
-                <li>Philosophy and Foundations of Mathematics</li>
-                <li>Philosophy of Science - Bayesian Inference and Decision Theory</li>
+                <ul>
+                    <li>Philosophy and Foundations of Mathematics</li>
+                    <li>Philosophy of Science - Bayesian Inference and Decision Theory</li>
+                </ul>
             </div>
         </section>
     </main>
 
     <footer>
-        <!-- Footer -->
+        <!-- Footer content -->
     </footer>
-
-    <style>
-        .education-header h2 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-            text-align: center;
-            color: #e6e6e6;
-        }
-
-        .education-header p {
-            font-size: 1.2em;
-            margin-bottom: 1em;
-            text-align: center;
-            color: #cccccc;
-            border-bottom: 1px solid #666;
-            padding-bottom: 0.5em;
-        }
-
-        .course-category h3 {
-            margin-bottom: 0.5em;
-            color: #e6e6e6;
-        }
-
-        .course-list {
-            padding: 0 1em;
-        }
-
-        .course-category {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1em;
-        }
-
-        .course-list ul {
-            padding: 0;
-        }
-
-        .course-list li {
-            list-style-type: none;
-            margin-bottom: 0.3em;
-        }
-
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            .course-category {
-                flex-direction: column;
-            }
-
-            .course-list {
-                width: 100%;
-                padding: 0;
-            }
-        }
-    </style>
 </body>
 </html>
