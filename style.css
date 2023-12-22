@@ -121,4 +121,51 @@ footer {
         display: block;
         margin: 10px 0;
     }
+    /* Existing styles */
+
+/* Centered content styles */
+.centered-content {
+    text-align: center;
+    margin-top: 100px; /* Adjust as needed */
+}
+
+/* Education page content styles */
+.education-content {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Two-column layout for courses */
+.course-lists {
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-column {
+    width: 45%; /* Adjust the width as needed */
+}
+
+/* Responsive design for the education content */
+@media screen and (max-width: 768px) {
+    .course-lists {
+        flex-direction: column;
+    }
+
+    .course-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Re-add animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.centered-content, .education-content {
+    animation: fadeIn 1s ease-in-out;
+}
 }
