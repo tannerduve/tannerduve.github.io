@@ -67,5 +67,125 @@
     <footer>
         <!-- Footer content -->
     </footer>
+    <style>
+        /* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply a simple and clean font */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+/* Style the header */
+header {
+    background-color: #2f2f2f;
+    color: #fff;
+    padding: 1em 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ddd;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+nav ul li a:hover, nav ul li a:focus {
+    color: #4caf50;
+    transform: scale(1.1);
+}
+
+/* Content section styles */
+.education-header h2 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    color: #e6e6e6;
+}
+
+.degree {
+    text-align: center;
+}
+
+.degree .cap-icon {
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.degree p {
+    font-size: 1.2em;
+    color: #cccccc;
+    display: inline;
+    margin: 0 5px;
+}
+
+.university {
+    font-size: smaller;
+    vertical-align: sub;
+}
+
+.course-category {
+    margin: 2em auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-list ul {
+    list-style: inside disc;
+    padding-left: 20px;
+}
+
+.course-list li {
+    margin-bottom: 0.3em;
+    color: #ccc;
+}
+
+/* Footer styles */
+footer {
+    background-color: #1f1f1f;
+    color: #ccc;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .course-category {
+        flex-direction: column;
+    }
+
+    .course-list {
+        width: 100%;
+    }
+}
+
+    </style>
 </body>
 </html>
