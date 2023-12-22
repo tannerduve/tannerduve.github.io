@@ -1,0 +1,48 @@
+/* Basic reset for padding and margin */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #ccc;
+    line-height: 1.6;
+    text-align: center; /* Center align for the icons */
+    padding-top: 50px; /* Add some space at the top */
+}
+
+/* Style for the icons */
+.icon-link {
+    display: inline-block;
+    margin: 0 20px;
+    transition: color 0.3s ease;
+}
+
+/* The SVG or image icon */
+.icon-link img {
+    width: 50px; /* Set the size of your icons */
+    transition: filter 0.3s ease;
+}
+
+/* Hover effect for icons */
+.icon-link:hover img, .icon-link:focus img {
+    filter: brightness(0) saturate(100%) invert(39%) sepia(95%) saturate(5377%) hue-rotate(90deg) brightness(91%) contrast(88%);
+    /* This filter approximates a color change; adjust as needed */
+}
+
+/* Optional: Add some styles for the text if you need */
+.text-content {
+    color: #ccc;
+    padding: 20px;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .icon-link img {
+        width: 40px; /* Smaller icons for mobile */
+    }
+}
