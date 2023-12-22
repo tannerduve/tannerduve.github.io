@@ -1,29 +1,31 @@
-/* Reset some default styles */
+/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Apply a simple and clean font */
+/* Use a sans-serif font and a dark background for the body */
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #ccc;
     line-height: 1.6;
 }
 
-/* Style the header */
+/* Style the header to be fixed and add a subtle border */
 header {
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 1em 0;
-    position: sticky;
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #333;
+    padding: 1rem;
+    position: fixed;
     top: 0;
+    width: 100%;
     z-index: 1000;
 }
 
-/* Navigation styles */
+/* Style the navigation menu */
 nav ul {
     list-style: none;
     text-align: center;
@@ -31,49 +33,46 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin-right: 20px;
 }
 
 nav ul li a {
+    color: #bbb;
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    display: inline-block;
 }
 
-nav ul li a:hover {
-    color: #007bff;
+nav ul li a:hover, nav ul li a:focus {
+    color: #fff;
+    background-color: #333;
 }
 
-/* Content section styles */
+/* Content sections with padding and a max-width */
 section {
-    background-color: #fff;
-    margin: 20px auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px; /* Adjust max-width as needed */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 4rem; /* Offset for fixed header */
 }
 
-/* Footer styles */
+/* Footer with a subtle background and text color */
 footer {
-    background-color: #fff;
-    color: #333;
+    background-color: #1f1f1f;
+    color: #ccc;
     text-align: center;
-    padding: 20px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-/* Responsive design */
+/* Responsive layout for smaller screens */
 @media screen and (max-width: 768px) {
-    section {
-        width: 90%;
-    }
-
     nav ul li {
         display: block;
         margin: 10px 0;
+    }
+    
+    section {
+        padding: 1rem;
     }
 }
