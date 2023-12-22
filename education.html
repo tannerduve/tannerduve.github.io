@@ -6,21 +6,15 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">About</a></li>
-                <li><a href="resume.pdf" target="_blank">Resume</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="#miscellaneous">Miscellaneous</a></li>
-            </ul>
-        </nav>
+        <!-- Navigation header -->
     </header>
 
     <main>
-        <h2>Education</h2>
-        <p>Masters of Science in Engineering: Computer Science</p>
-        <p>Bachelor of Arts: Double major in Mathematical Logic and Philosophy</p>
+        <div class="education-header">
+            <h2>Education</h2>
+            <p>Masters of Science in Engineering: Computer Science</p>
+            <p>Bachelor of Arts: Double major in Mathematical Logic and Philosophy</p>
+        </div>
 
         <section class="course-category">
             <h3>Computer Science and Mathematics:</h3>
@@ -35,13 +29,11 @@
                 </ul>
             </div>
             <div class="course-list">
-                <ul>
-                    <li>Theory of Computation (MS)</li>
-                    <li>Computational Complexity w/ Connections to Cryptography (PhD)</li>
-                    <li>Model Theory (PhD)</li>
-                    <li>Software Foundations (MS)</li>
-                    <li>Formal Verification (PhD)</li>
-                </ul>
+                <li>Theory of Computation (MS)</li>
+                <li>Computational Complexity w/ Connections to Cryptography (PhD)</li>
+                <li>Model Theory (PhD)</li>
+                <li>Software Foundations (MS)</li>
+                <li>Formal Verification (PhD)</li>
             </div>
         </section>
 
@@ -50,11 +42,74 @@
             <div class="course-list">
                 <ul>
                     <li>Epistemology</li>
+                    <li>Metaphysics</li>
                     <li>Philosophy of Mind and Language</li>
-                    <li>Philosophy of Science - Bayesian Inference and Decision Theory</li>
                 </ul>
             </div>
             <div class="course-list">
-                <ul>
-                    <li>Metaphysics</li>
-            
+                <li>Philosophy and Foundations of Mathematics</li>
+                <li>Philosophy of Science - Computability and Randomness</li>
+                <li>Philosophy of Science - Bayesian Inference and Decision Theory</li>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer -->
+    </footer>
+
+    <style>
+        .education-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            text-align: center;
+            color: #e6e6e6;
+        }
+
+        .education-header p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+            text-align: center;
+            color: #cccccc;
+            border-bottom: 1px solid #666;
+            padding-bottom: 0.5em;
+        }
+
+        .course-category h3 {
+            margin-bottom: 0.5em;
+            color: #e6e6e6;
+        }
+
+        .course-list {
+            padding: 0 1em;
+        }
+
+        .course-category {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1em;
+        }
+
+        .course-list ul {
+            padding: 0;
+        }
+
+        .course-list li {
+            list-style-type: none;
+            margin-bottom: 0.3em;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .course-category {
+                flex-direction: column;
+            }
+
+            .course-list {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</body>
+</html>
