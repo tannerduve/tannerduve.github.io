@@ -137,3 +137,40 @@ footer {
 .course-list {
     width: 48%; /* Adjust the width as needed */
 }
+
+.course-list ul {
+    padding-left: 1em;
+}
+
+.course-list li {
+    list-style-type: disc;
+    color: #ccc;
+}
+
+/* Styles for degree header in education.html */
+.degree {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.degree h2 {
+    display: inline-block;
+    font-size: 1.8em;
+    margin: 0;
+    position: relative;
+    padding-left: 40px;
+}
+
+.degree .cap-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+}
+
+.university-name {
+    font-size: 0.8em;
+    display: block; /* Makes the text go to the next line */
+    color: #aaa;
+}

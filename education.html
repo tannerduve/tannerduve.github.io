@@ -13,62 +13,27 @@
 
     <main>
         <div class="education-header">
-            <h2>Education</h2>
             <div class="degree">
                 <img src="cap.png" alt="Cap" class="cap-icon">
-                <p>Masters of Science in Engineering: Computer Science <span class="university">University of Pennsylvania</span></p>
+                <h2>Master of Science in Engineering: Computer Science</h2>
+                <p class="university-name">University of Pennsylvania</p>
+            </div>
+            <div class="degree">
                 <img src="cap.png" alt="Cap" class="cap-icon">
-                <p>Bachelor of Arts: Double major in Mathematical Logic and Philosophy <span class="university">University of Pennsylvania</span></p>
+                <h2>Bachelor of Arts: Double major in Mathematical Logic and Philosophy</h2>
+                <p class="university-name">University of Pennsylvania</p>
             </div>
         </div>
 
-        <section class="course-category">
-            <h3>Computer Science and Mathematics:</h3>
-            <div class="course-list">
-                <ul>
-                    <li>Abstract Algebra</li>
-                    <li>Analysis of Algorithms (MS)</li>
-                    <li>Logic and Computability (MS)</li>
-                    <li>Category Theory and Homotopy Type Theory* (MS)</li>
-                    <li>Logic in Computer Science (Friendly Logics) (PhD)</li>
-                    <li>Haskell Programming</li>
-                </ul>
-            </div>
-            <div class="course-list">
-                <ul>
-                    <li>Theory of Computation (MS)</li>
-                    <li>Computational Complexity w/ Connections to Cryptography (PhD)</li>
-                    <li>Model Theory (PhD)</li>
-                    <li>Software Foundations (MS)</li>
-                    <li>Formal Verification (PhD)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="course-category">
-            <h3>Philosophy:</h3>
-            <div class="course-list">
-                <ul>
-                    <li>Epistemology</li>
-                    <li>Metaphysics</li>
-                    <li>Philosophy of Mind and Language</li>
-                    <li>Philosophy of Science - Computability and Randomness</li>
-                </ul>
-            </div>
-            <div class="course-list">
-                <ul>
-                    <li>Philosophy and Foundations of Mathematics</li>
-                    <li>Philosophy of Science - Bayesian Inference and Decision Theory</li>
-                </ul>
-            </div>
-        </section>
+        <!-- Courses sections go here -->
     </main>
 
     <footer>
-        <!-- Footer content -->
+        <!-- Footer -->
     </footer>
-    <style>
-        /* Reset default styles */
+</body>
+<style>
+    /* Reset default styles */
 * {
     margin: 0;
     padding: 0;
@@ -81,90 +46,63 @@ body {
     background-color: #121212;
     color: #ccc;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Style the header */
+/* Style the header with a sliding down animation and enhanced aesthetics */
 header {
-    background-color: #2f2f2f;
+    background-color: #2f2f2f; /* Darker shade for contrast */
     color: #fff;
     padding: 1em 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Adding some shadow for depth */
     position: sticky;
     top: 0;
     width: 100%;
+    animation: slideDown 0.5s ease-in-out;
 }
 
-/* Navigation styles */
+/* Navigation styles with fading in */
 nav ul {
     list-style: none;
     text-align: center;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
 }
 
 nav ul li {
+    display: inline;
     margin: 0 15px;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #ddd;
+    color: #ddd; /* Slightly lighter color for readability */
     font-weight: bold;
     padding: 5px 10px;
+    transition: color 0.3s, transform 0.3s;
 }
 
 nav ul li a:hover, nav ul li a:focus {
-    color: #4caf50;
-    transform: scale(1.1);
+    color: #4caf50; /* Adding a pop of color on hover */
+    transform: scale(1.1); /* Slight scale on hover for an interactive feel */
 }
 
-/* Content section styles */
-.education-header h2 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-    text-align: center;
-    color: #e6e6e6;
-}
-
-.degree {
-    text-align: center;
-}
-
-.degree .cap-icon {
-    width: 20px;
-    vertical-align: middle;
-    margin-right: 10px;
-}
-
-.degree p {
-    font-size: 1.2em;
-    color: #cccccc;
-    display: inline;
-    margin: 0 5px;
-}
-
-.university {
-    font-size: smaller;
-    vertical-align: sub;
-}
-
-.course-category {
+/* Content section styles with a subtle fade-in effect */
+section {
+    padding: 2em;
+    background-color: #1f1f1f;
     margin: 2em auto;
-    display: flex;
-    justify-content: space-between;
+    width: 80%;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-in-out forwards;
+    animation-delay: 1s;
 }
 
-.course-list ul {
-    list-style: inside disc;
-    padding-left: 20px;
-}
-
-.course-list li {
-    margin-bottom: 0.3em;
-    color: #ccc;
-}
-
-/* Footer styles */
+/* Footer styles with a slide-up animation */
 footer {
     background-color: #1f1f1f;
     color: #ccc;
@@ -173,19 +111,104 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    animation: slideUp 0.5s ease-in-out;
+}
+
+/* Keyframes for animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
-    .course-category {
-        flex-direction: column;
+    section {
+        width: 90%;
     }
 
-    .course-list {
-        width: 100%;
+    nav ul li {
+        display: block;
+        margin: 10px 0;
     }
 }
 
-    </style>
-</body>
+/* Additional styles for two-column course layout in education.html */
+.course-category {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.course-list {
+    width: 48%; /* Adjust the width as needed */
+}
+
+.course-list ul {
+    padding-left: 1em;
+}
+
+.course-list li {
+    list-style-type: disc;
+    color: #ccc;
+}
+
+/* Styles for degree header in education.html */
+.degree {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.degree h2 {
+    display: inline-block;
+    font-size: 1.8em;
+    margin: 0;
+    position: relative;
+    padding-left: 40px;
+}
+
+.degree .cap-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+}
+
+.university-name {
+    font-size: 0.8em;
+    display: block; /* Makes the text go to the next line */
+    color: #aaa;
+}
+
+</style>
 </html>
