@@ -3,76 +3,122 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Use a sans-serif font and a dark background for the body */
+/* Apply a simple and clean font */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: #121212;
     color: #ccc;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Style the header to be fixed and add a subtle border */
+/* Style the header with a sliding down animation */
 header {
     background-color: #1f1f1f;
-    border-bottom: 1px solid #333;
-    padding: 1rem;
-    position: fixed;
+    padding: 1em 0;
+    position: sticky;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    animation: slideDown 0.5s ease-in-out;
 }
 
-/* Style the navigation menu */
+/* Navigation styles with fading in */
 nav ul {
     list-style: none;
     text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 0.5s;
 }
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin: 0 10px;
 }
 
 nav ul li a {
-    color: #bbb;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    display: inline-block;
+    color: #ccc;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s;
 }
 
-nav ul li a:hover, nav ul li a:focus {
+nav ul li a:hover {
     color: #fff;
-    background-color: #333;
 }
 
-/* Content sections with padding and a max-width */
+/* Content section styles with a subtle fade-in effect */
 section {
-    padding: 2rem;
-    margin-top: 4rem; /* Offset for fixed header */
+    padding: 2em;
+    background-color: #1f1f1f;
+    margin: 2em auto;
+    width: 80%;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-in-out forwards;
+    animation-delay: 1s;
 }
 
-/* Footer with a subtle background and text color */
+/* Footer styles with a slide-up animation */
 footer {
     background-color: #1f1f1f;
     color: #ccc;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1em 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    animation: slideUp 0.5s ease-in-out;
 }
 
-/* Responsive layout for smaller screens */
+/* Keyframes for animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
 @media screen and (max-width: 768px) {
+    section {
+        width: 90%;
+    }
+
     nav ul li {
         display: block;
         margin: 10px 0;
-    }
-    
-    section {
-        padding: 1rem;
     }
 }
