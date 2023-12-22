@@ -3,12 +3,14 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
-    background-color: #eaeaea;
+    background-color: #fff;
     color: #333;
     padding: 1em 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 nav ul {
@@ -26,6 +28,12 @@ nav ul li a {
     color: #333;
     text-decoration: none;
     font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #007bff;
 }
 
 section {
@@ -34,14 +42,16 @@ section {
     margin: 1em auto;
     width: 80%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
 }
 
 footer {
-    background-color: #eaeaea;
+    background-color: #fff;
     color: #333;
     text-align: center;
     padding: 1em 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
 }
