@@ -6,7 +6,15 @@
 </head>
 <body>
     <header>
-        <!-- Reuse the navigation from index.html -->
+        <nav>
+            <ul>
+                <li><a href="index.html">About</a></li>
+                <li><a href="resume.pdf" target="_blank">Resume</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="#miscellaneous">Miscellaneous</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -14,54 +22,39 @@
         <p>Masters of Science in Engineering: Computer Science</p>
         <p>Bachelor of Arts: Double major in Mathematical Logic and Philosophy</p>
 
-        <section>
+        <section class="course-category">
             <h3>Computer Science and Mathematics:</h3>
-            <div class="courses-container">
-                <div class="course-column">
-                    <ul>
-                        <li>Abstract Algebra</li>
-                        <li>Analysis of Algorithms (MS)</li>
-                        <li>Logic and Computability (MS)</li>
-                        <li>Category Theory and Homotopy Type Theory* (MS)</li>
-                        <li>Logic in Computer Science (Friendly Logics) (PhD)</li>
-                        <li>Haskell Programming</li>
-                    </ul>
-                </div>
-                <div class="course-column">
-                    <ul>
-                        <li>Theory of Computation (MS)</li>
-                        <li>Computational Complexity w/ Connections to Cryptography (PhD)</li>
-                        <li>Model Theory (PhD)</li>
-                        <li>Software Foundations (MS)</li>
-                        <li>Formal Verification (PhD)</li>
-                    </ul>
-                </div>
+            <div class="course-list">
+                <ul>
+                    <li>Abstract Algebra</li>
+                    <li>Analysis of Algorithms (MS)</li>
+                    <li>Logic and Computability (MS)</li>
+                    <li>Category Theory and Homotopy Type Theory* (MS)</li>
+                    <li>Logic in Computer Science (Friendly Logics) (PhD)</li>
+                    <li>Haskell Programming</li>
+                </ul>
+            </div>
+            <div class="course-list">
+                <ul>
+                    <li>Theory of Computation (MS)</li>
+                    <li>Computational Complexity w/ Connections to Cryptography (PhD)</li>
+                    <li>Model Theory (PhD)</li>
+                    <li>Software Foundations (MS)</li>
+                    <li>Formal Verification (PhD)</li>
+                </ul>
             </div>
         </section>
 
-        <section>
+        <section class="course-category">
             <h3>Philosophy:</h3>
-            <div class="courses-container">
-                <div class="course-column">
-                    <ul>
-                        <li>Epistemology</li>
-                        <li>Philosophy of Mind and Language</li>
-                        <li>Philosophy of Science - Bayesian Inference and Decision Theory</li>
-                    </ul>
-                </div>
-                <div class="course-column">
-                    <ul>
-                        <li>Metaphysics</li>
-                        <li>Philosophy and Foundations of Mathematics</li>
-                        <li>Philosophy of Science - Computability & Randomness</li>
-                    </ul>
-                </div>
+            <div class="course-list">
+                <ul>
+                    <li>Epistemology</li>
+                    <li>Philosophy of Mind and Language</li>
+                    <li>Philosophy of Science - Bayesian Inference and Decision Theory</li>
+                </ul>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <!-- Reuse the footer from index.html -->
-    </footer>
-</body>
-</html>
+            <div class="course-list">
+                <ul>
+                    <li>Metaphysics</li>
+            
