@@ -58,54 +58,30 @@ nav ul li a:hover, nav ul li a:focus {
 .centered-content {
     text-align: center;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    transform: translate(-50%, -40%);
+    width: 80%;
     animation: popIn 2s ease-in-out;
 }
 
 .centered-content h1 {
-    font-size: 3em;
+    font-size: 4em;
     color: #4caf50;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
     margin-bottom: 0.5em;
 }
 
 .centered-content p {
-    font-size: 1.2em;
+    font-size: 1.4em;
     color: #ccc;
-    max-width: 600px;
+    max-width: 800px;
     margin: auto;
-    background: rgba(47, 47, 47, 0.8);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-@keyframes popIn {
-    0% {
-        transform: scale(0) translate(-50%, -50%);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.2) translate(-50%, -50%);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(1) translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
-/* Keyframes for other animations */
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-    }
-    to {
-        transform: translateY(0);
-    }
+    background: rgba(47, 47, 47, 0.85);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    text-align: justify;
 }
 
 /* Footer styles */
@@ -118,10 +94,36 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Keyframes for animations */
+@keyframes popIn {
+    0% {
+        transform: scale(0) translate(-50%, -40%);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) translate(-50%, -40%);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1) translate(-50%, -40%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
-    section {
-        width: 90%;
+    .centered-content {
+        width: 95%;
     }
 
     nav ul li {
