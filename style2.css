@@ -1,48 +1,182 @@
-/* Basic reset for padding and margin */
+/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Basic body styles */
+/* Apply a simple and clean font */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Dark background */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #121212;
     color: #ccc;
     line-height: 1.6;
-    text-align: center; /* Center align for the icons */
-    padding-top: 50px; /* Add some space at the top */
+    overflow-x: hidden;
 }
 
-/* Style for the icons */
-.icon-link {
-    display: inline-block;
-    margin: 0 20px;
-    transition: color 0.3s ease;
+/* Style the header with a sliding down animation and enhanced aesthetics */
+header {
+    background-color: #2f2f2f; /* Darker shade for contrast */
+    color: #fff;
+    padding: 1em 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Adding some shadow for depth */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    animation: slideDown 0.5s ease-in-out;
 }
 
-/* The SVG or image icon */
-.icon-link img {
-    width: 50px; /* Set the size of your icons */
-    transition: filter 0.3s ease;
+/* Navigation styles with fading in */
+nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
-/* Hover effect for icons */
-.icon-link:hover img, .icon-link:focus img {
-    filter: brightness(0) saturate(100%) invert(39%) sepia(95%) saturate(5377%) hue-rotate(90deg) brightness(91%) contrast(88%);
-    /* This filter approximates a color change; adjust as needed */
+nav ul li {
+    display: inline;
+    margin: 0 15px;
 }
 
-/* Optional: Add some styles for the text if you need */
-.text-content {
-    color: #ccc;
-    padding: 20px;
+nav ul li a {
+    text-decoration: none;
+    color: #ddd; /* Slightly lighter color for readability */
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s, transform 0.3s;
 }
 
-/* Responsive design */
-@media screen and (max-width: 768px) {
-    .icon-link img {
-        width: 40px; /* Smaller icons for mobile */
+nav ul li a:hover, nav ul li a:focus {
+    color: #4caf50; /* Adding a pop of color on hover */
+    transform: scale(1.1); /* Slight scale on hover for an interactive feel */
+}
+
+/* Content section styles with a subtle fade-in effect */
+section {
+    padding: 2em;
+    background-color: #1f1f1f;
+    margin: 2em auto;
+    width: 80%;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-in-out forwards;
+    animation-delay: 1s;
+}
+
+
+
+
+/* Keyframes for animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
     }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    section {
+        width: 90%;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+/* Styles for degree header in education.html */
+.education-header h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #fff;
+    margin: 0.5em 0;
+    padding: 0;
+}
+
+.degree {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.degree h2 {
+    font-size: 1.5em;
+    color: #ccc;
+    display: inline-block;
+    margin: 8px 0;
+}
+
+.cap-icon {
+    vertical-align: middle;
+    width: 25px; /* Adjust the size as needed */
+    margin-right: 10px;
+}
+
+.university-name {
+    font-size: 0.8em;
+    color: #999;
+    display: block; /* Makes the text go to the next line */
+}
+
+/* Additional styles for two-column course layout in education.html */
+.course-category {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.course-list {
+    width: 48%; /* Adjust the width as needed */
+}
+
+.course-list ul {
+    padding-left: 20px; /* Adjust padding to ensure bullets are inside the area */
+}
+
+.course-list li {
+    list-style-type: disc; /* Bullet point style */
+    margin-bottom: 0.3em;
+    color: #ccc;
+}
+
+/* Specific adjustment for Philosophy section */
+.course-category.philosophy {
+    margin-top: 20px; /* Additional space above the philosophy section */
+}
+
+.course-category.philosophy .course-list:first-child {
+    margin-left: 35px; /* Space added to the left of the first column to avoid overlap */
 }
