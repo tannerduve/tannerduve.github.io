@@ -153,9 +153,17 @@ footer {
     margin-bottom: 20px;
 }
 
-.degree h2 {
+.degree h1 {
     display: inline-block;
     font-size: 1.8em;
+    margin: 0;
+    position: relative;
+    padding-left: 40px;
+}
+
+.degree h2 {
+    display: inline-block;
+    font-size: 1.5em;
     margin: 0;
     position: relative;
     padding-left: 40px;
