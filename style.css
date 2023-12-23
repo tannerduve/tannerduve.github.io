@@ -68,7 +68,7 @@ section {
 }
 
 /* Footer styles with a slide-up animation */
-footer {
+/* footer {
     background-color: #1f1f1f;
     color: #ccc;
     text-align: center;
@@ -77,7 +77,7 @@ footer {
     bottom: 0;
     width: 100%;
     animation: slideUp 0.5s ease-in-out;
-}
+} */
 
 /* Keyframes for animations */
 @keyframes slideDown {
@@ -187,5 +187,5 @@ footer {
 }
 
 .course-category.philosophy .course-list:first-child {
-    margin-left: 25px; /* Space added to the left of the first column to avoid overlap */
+    margin-left: 35px; /* Space added to the left of the first column to avoid overlap */
 }
