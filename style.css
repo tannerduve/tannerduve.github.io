@@ -130,29 +130,3 @@ footer {
         margin: 10px 0;
     }
 }
-
-/* Styles for two-column course layout in education.html */
-.course-category {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.course-list {
-    width: 48%;
-}
-
-.course-list ul {
-    padding-left: 20px;
-}
-
-.course-list li {
-    list-style-type: disc;
-    margin-bottom: 0.3em;
-    color: #ccc;
-}
-
-/* Adjustment for the Philosophy section in education.html */
-.course-category.philosophy .course-list:first-child {
-    margin-left: 35px;
-}
