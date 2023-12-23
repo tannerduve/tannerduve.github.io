@@ -187,5 +187,5 @@ footer {
 }
 
 .course-category.philosophy .course-list:first-child {
-    margin-left: 20px; /* Space added to the left of the first column to avoid overlap */
+    margin-left: 25px; /* Space added to the left of the first column to avoid overlap */
 }
