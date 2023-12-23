@@ -151,6 +151,14 @@ section {
     display: block; /* Makes the text go to the next line */
 }
 
+.coursework-label {
+    text-align: center; /* Centers the text horizontally */
+    font-size: 2em; /* Adjust the font size as needed */
+    color: #fff; /* Sets the text color */
+    margin-top: 20px; /* Adds space above the label */
+    margin-bottom: 10px; /* Adds space below the label */
+}
+
 /* Additional styles for two-column course layout in education.html */
 .course-category {
     display: flex;
