@@ -174,7 +174,7 @@ section {
 
 /* Specific adjustment for Philosophy section */
 .course-category.philosophy {
-    margin-top: 20px; /* Additional space above the philosophy section */
+    margin-top: 30px; /* Additional space above the philosophy section */
 }
 
 .course-category.philosophy .course-list:first-child {
