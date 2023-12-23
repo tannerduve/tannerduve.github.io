@@ -127,7 +127,40 @@ footer {
     }
 }
 
-/* Additional styles for two-column course layout in education.html */
+/* Styles for degree header in education.html */
+.education-header h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #fff;
+    margin: 0.5em 0;
+    padding: 0;
+}
+
+.degree {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.degree h2 {
+    font-size: 1.5em;
+    color: #ccc;
+    display: inline-block;
+    margin: 8px 0;
+}
+
+.cap-icon {
+    vertical-align: middle;
+    width: 25px; /* Adjust the size as needed */
+    margin-right: 10px;
+}
+
+.university-name {
+    font-size: 0.8em;
+    color: #999;
+    display: block; /* Makes the text go to the next line */
+}
+
+/* Styles for two-column course layout in education.html */
 .course-category {
     display: flex;
     justify-content: space-between;
@@ -139,54 +172,16 @@ footer {
 }
 
 .course-list ul {
-    padding-left: 1em;
+    padding-left: 20px; /* Adjust padding to ensure bullets are inside the area */
 }
 
 .course-list li {
-    list-style-type: disc;
+    list-style-type: disc; /* Bullet point style */
+    margin-bottom: 0.3em;
     color: #ccc;
 }
 
-/* Styles for degree header in education.html */
-.degree {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.degree h1 {
-    display: inline-block;
-    font-size: 1.8em;
-    margin: 0;
-    position: relative;
-    padding-left: 40px;
-}
-
-.degree h2 {
-    display: inline-block;
-    font-size: 1.5em;
-    margin: 0;
-    position: relative;
-    padding-left: 40px;
-}
-
-.degree .cap-icon {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-}
-
-.degree .cap-icon {
-    position: absolute;
-    left: 0;
-    top: 90%;
-    transform: translateY(-50%);
-    width: 30px;
-}
-
-.university-name {
-    font-size: 0.8em;
-    display: block; /* Makes the text go to the next line */
-    color: #aaa;
+/* Adjustment for the Philosophy section to avoid overlap */
+.philosophy ul {
+    padding-left: 30px;
 }
