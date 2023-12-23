@@ -118,7 +118,6 @@ footer {
     bottom: 0;
     width: 100%;
 }
-
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
     section {
