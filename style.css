@@ -160,7 +160,7 @@ footer {
     display: block; /* Makes the text go to the next line */
 }
 
-/* Styles for two-column course layout in education.html */
+/* Additional styles for two-column course layout in education.html */
 .course-category {
     display: flex;
     justify-content: space-between;
@@ -181,7 +181,11 @@ footer {
     color: #ccc;
 }
 
-/* Adjustment for the Philosophy section to avoid overlap */
-.philosophy ul {
-    padding-left: 30px;
+/* Specific adjustment for Philosophy section */
+.course-category.philosophy {
+    margin-top: 20px; /* Additional space above the philosophy section */
+}
+
+.course-category.philosophy .course-list:first-child {
+    margin-left: 20px; /* Space added to the left of the first column to avoid overlap */
 }
