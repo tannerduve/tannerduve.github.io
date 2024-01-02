@@ -83,6 +83,17 @@ article h2, article h3 {
     color: #ccc;
 }
 
+a {
+    color: #fff; /* Sets hyperlink color to white */
+    text-decoration: none; /* Optional: removes the underline from links */
+}
+
+a:hover, a:focus {
+    color: #4caf50; /* Color for links when hovered or focused, can be adjusted */
+    text-decoration: underline; /* Optional: adds underline on hover for clarity */
+}
+
+
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
     main {
