@@ -1,0 +1,115 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply a simple and clean font */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #ccc;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Style the header with a sliding down animation and enhanced aesthetics */
+header {
+    background-color: #2f2f2f;
+    color: #fff;
+    padding: 1em 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    animation: slideDown 0.5s ease-in-out;
+}
+
+/* Navigation styles with fading in */
+nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ddd;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover, nav ul li a:focus {
+    color: #4caf50;
+    transform: scale(1.1);
+}
+
+/* Main content styles with fade-in effect */
+main {
+    padding: 2em;
+    background-color: #1f1f1f;
+    margin: 2em auto;
+    width: 80%;
+    max-width: 800px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Section header styles */
+main h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #fff;
+    margin: 0.5em 0;
+}
+
+/* Styles for each project/presentation/paper */
+article {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+article h2, article h3 {
+    font-size: 1.5em;
+    color: #ccc;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    main {
+        width: 90%;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+/* Keyframes for animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
