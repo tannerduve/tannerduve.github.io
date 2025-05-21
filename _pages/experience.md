@@ -9,7 +9,6 @@ redirect_from:
 
 {% include base_path %}
 
-======
 * Formal Verification Software Engineer, Nexus, 2025–Present  
   * First formal verification engineering hire
   * Building and verifying the Zero-Knowledge Virtual Machine
