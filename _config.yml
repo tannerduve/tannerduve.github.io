@@ -21,7 +21,7 @@ repository               : "tannerduve/tannerduve.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "https://raw.githubusercontent.com/tannerduve/tannerduve.github.io/master/images/pfp2.jpg"
+  avatar           : "https://raw.githubusercontent.com/tannerduve/tannerduve.github.io/master/images/pfp1_new.png"
   name             : "Tanner Duve"
   pronouns         : "he/him"
   bio              : "Proof engineer, logician"
