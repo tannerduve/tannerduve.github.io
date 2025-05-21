@@ -29,5 +29,6 @@ I like to typeset lecture notes when I give talks. Here are a few I've given
 
 - **Monads in Lean**  
   Introduction to monads in Lean and in category theory
+  
   Lean reading seminar
   [PDF](/files/monads.pdf)
