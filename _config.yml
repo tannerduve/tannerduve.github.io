@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Your Name / Site Title"
+title                    : "Tanner Duve"
 title_separator          : "-"
 name                     : &name "Your Name"
 description              : &description "personal description"
@@ -24,7 +24,7 @@ author:
   avatar           : "images/pfp.png"
   name             : "Tanner Duve"
   pronouns         : "he/him"
-  bio              : "Proof engineer, logician, theorist"
+  bio              : "Proof engineer, logician"
   location         : "CA"
   employer         : "Nexus"
   uri              : # URL
