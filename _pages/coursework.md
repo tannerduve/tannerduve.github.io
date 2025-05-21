@@ -39,7 +39,7 @@ Here are some of my favorite courses I took at Penn
 
 #### Mathematics
 
-- Abstract Algebra — MATH 5020–5030  
+- Abstract Algebra — Jianqi Liu (MATH 5020-5030)
 - Advanced Topics in Category Theory and Categorical Logic — Andre Scedrov (MATH 6710)  
 - Category Theory and Categorical Logic — Andre Scedrov (MATH 5710)  
 - Computability Theory Reading Seminar — Henry Towsner (MATH 8990)  
