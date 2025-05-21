@@ -1,3 +1,11 @@
+---
+layout: archive
+title: "Coursework"
+permalink: /coursework/
+author_profile: true
+redirect_from:
+  - /coursework
+---
 Education
 ======
 * MSE in Computer Science, University of Pennsylvania, 2023–2025  

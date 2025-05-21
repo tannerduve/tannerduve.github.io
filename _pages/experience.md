@@ -9,7 +9,6 @@ redirect_from:
 
 {% include base_path %}
 
-Experience
 ======
 * Formal Verification Software Engineer, Nexus, 2025–Present  
   * First formal verification engineering hire
