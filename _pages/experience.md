@@ -9,24 +9,43 @@ redirect_from:
 
 {% include base_path %}
 
-* Formal Verification Software Engineer, Nexus, 2025–Present  
-  * First formal verification engineering hire
-  * Building and verifying the Zero-Knowledge Virtual Machine
+---
 
-* Lean Formalization Contractor, Harmonic & Project Numina, 2024–Present  
-  * Formalizing algebra, number theory, and combinatorics in Lean for AI math research
+### Nexus (2025–Present)  
+**Formal Verification Software Engineer**  
+- First formal verification engineering hire  
+- Building and verifying the Zero-Knowledge Virtual Machine  
 
-* Applied Category Theory Researcher, Adjoint School, 2025  
-  * Working on categorical semantics of compositional reinforcement learning under Bakirtzis and Savvas
-  * Developing a theory of box products of MDPs for efficient concurrent learning, and comonads in the MDP category to model inductive biases and side information
-  * Presenting at ACT 2025
+---
 
-* Applied Science Intern, AWS Automated Reasoning Group, Summer 2024  
-  * SMT based analysis of authorization logic in Lean
-  * Developed a tool for comparing permissiveness of Cedar policies by compiling into SMT queries
+### Harmonic(2024–Present)  
+**Lean Formalization Contractor**  
+- Formalizing algebra, number theory, and combinatorics in Lean  
+- Building training data for a reinforcement learning model capable of advanced mathematical reasoning
 
-* Applied Science Intern, AWS Database Systems, Summer 2023  
-  * Automated database isolation level testing
+---
 
-* Data Science Intern, Meta, Summer 2022  
-  * Performed large-scale analysis on user data using Python and SQL
+### Adjoint School (2025)  
+**Applied Category Theory Researcher**  
+- Research in categorical semantics of compositional reinforcement learning under Bakirtzis and Savvas  
+- Developed a theory of box products of MDPs and comonadic structures modeling inductive bias  
+- Presenting at ACT 2025  
+
+---
+
+### AWS Automated Reasoning Group (Summer 2024)  
+**Applied Science Intern**  
+- SMT-based analysis of authorization logic  
+- Built a permissiveness checker for Cedar policies using Lean and SMT encoding  
+
+---
+
+### AWS Database Systems (Summer 2023)  
+**Applied Science Intern**  
+- Automated isolation level testing via model-based fuzzing and acyclicity detection  
+
+---
+
+### Meta (Summer 2022)  
+**Data Science Intern**  
+- Large-scale behavioral analysis using Python and SQL  
