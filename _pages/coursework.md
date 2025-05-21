@@ -19,12 +19,12 @@ redirect_from:
   Concentration: Software Foundations
 
 - **BA in Logic, Information, and Computation**, 2020–2024  
-  Focus: Mathematical Logic, Foundations of Mathematics and Computation
+  Mathematical Logic, Foundations of Mathematics and Computation
 
 ---
 
 ### Coursework
-
+Here are some of my favorite courses I took at Penn
 #### Computer Science
 
 - Advanced Programming in Haskell — Stephanie Weirich (CIS 5520)  
