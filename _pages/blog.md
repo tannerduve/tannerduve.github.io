@@ -27,7 +27,7 @@ author_profile: true
 ---
 
 ### [Verifying Memoization with Σ-types in Lean](/blog/memoization-sigma/)
-*Solving a competitive programming problem and proving it correct using memoized Σ-types*
+*Solving a competitive programming problem and proving it correct with a novel use of dependent types*
 
 ---
 
