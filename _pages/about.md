@@ -11,6 +11,6 @@ Hi! I'm Tanner. I am currently a formal verification software engineer at [Nexus
 
 I am an avid user of the Lean theorem prover and I have done contracting work formalizing mathematical proofs for [Harmonic](https://harmonic.fun/index) and [Project Numina](https://projectnumina.ai). Independently I have made contributions to [Mathlib](https://github.com/leanprover-community/mathlib4) in the area of mathematical logic.
 
-I have participated in the Adjoint School, doing research in categorical semantics of compositional reinforcement learning, under supervision of [Georgios Bakirtzis](https://bakirtzis.net) and [Michail Savvas](https://michailsavvas.github.io).
+I have participated in the [Adjoint School](https://adjointschool.com/index.html), doing research in categorical semantics of compositional reinforcement learning, under supervision of [Georgios Bakirtzis](https://bakirtzis.net) and [Michail Savvas](https://michailsavvas.github.io).
 
 Outside of work I enjoy reading philosophy, in particular analytic philosophy, philosophy of mind and consciousness, metaphysics, and Eastern philosophy and mysticism. I am also learning guitar (primarily 90s grunge) and am passionate about veganism and total liberation for all beings.
