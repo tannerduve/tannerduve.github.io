@@ -18,7 +18,7 @@ redirect_from:
 
 ---
 
-### Harmonic(2024–Present)  
+### Harmonic (2024–Present)  
 **Lean Formalization Contractor**  
 - Formalizing algebra, number theory, and combinatorics in Lean  
 - Building training data for a reinforcement learning model capable of advanced mathematical reasoning
