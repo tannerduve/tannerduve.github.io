@@ -20,5 +20,5 @@ The project takes a small polymorphic lambda calculus [`pi-forall version 2`](ht
 
 This post will focus on:
 - the structure of the type system and universes,
-- the type checker (aka proof checker ;),
+- the type checker (aka proof checker 😉),
 - and the design decisions involved in adapting CIC to a minimal core.

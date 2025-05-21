@@ -6,10 +6,10 @@ permalink: /blog/computability-lean-part-1/
 
 🚧 Under construction
 
-This post will cover **computability theory** in Lean.
+This post series will cover **computability theory** in Lean.
 
 It will include introductions to and formalizations of:
-- oracle-relative computation,
+- oracle-relative computation via partial recursive functions,
 - reducibility,
 - the jump operator,
 - and the arithmetic hierarchy

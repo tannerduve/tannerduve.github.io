@@ -21,7 +21,7 @@ repository               : "tannerduve/tannerduve.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "images/pfp1_new.png"
+  avatar           : "images/pfp2.jpg"
   name             : "Tanner Duve"
   pronouns         : "he/him"
   bio              : "Proof engineer, logician"
@@ -52,7 +52,7 @@ author:
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
-  goodreads        : # Username
+  goodreads        : tannerduve
   google_plus      : # Username
   keybase          : # Username
   instagram        : # Username
@@ -65,7 +65,7 @@ author:
   steam            : # Username
   telegram         : # URL
   tumblr           : # Username
-  twitter          : # jevonduve
+  twitter          : jevonduve
   vine             : # Username
   weibo            : # Username
   wikipedia        : # Username
