@@ -14,9 +14,12 @@ main:
   - title: "Talks"
     url: /talks/
 
-  - title: "CV"
-    url: /cv/
-    
+  - title: "Coursework"
+    url: /coursework/
+
+  - title: "Experience"
+    url: /experience/
+
   - title: "Misc"
     url: /misc/
 
