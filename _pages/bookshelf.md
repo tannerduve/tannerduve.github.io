@@ -7,8 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-Below is a growing collection of books that I have enjoyed and/or have shaped my thinking, spanning philosophy, mathematics, CS, mysticism, and ecology.
-
+Below is a growing collection of books that I have enjoyed, consistently revisit as references, and/or have thoroughly shaped my thinking. 
 ---
 
 ### 🧠 Philosophy of Mind, Language, and Logic
@@ -24,13 +23,12 @@ Below is a growing collection of books that I have enjoyed and/or have shaped my
 ### 📐 Mathematics and Theoretical CS
 
 - [*Computational Complexity: A Modern Approach*](https://www.goodreads.com/book/show/6535065-computational-complexity) — Sanjeev Arora & Boaz Barak  
+- [*Modern Mathematical Logic*](https://www.goodreads.com/book/show/75666288-modern-mathematical-logic) — Joseph Mileti  
+- [*Topoi: The Categorial Analysis of Logic*](https://www.goodreads.com/book/show/323609.Topoi) — Robert Goldblatt  
+- [*The Dao of Functional Programming*](https://tannerduve.github.io/files/DaoFP.pdf) - Bartosz Milewski
+- [*Types and Programming Languages*](https://www.goodreads.com/book/show/112252.Types_and_Programming_Languages) — Benjamin C. Pierce  
 - [*Homotopy Type Theory: Univalent Foundations of Mathematics*](https://www.goodreads.com/book/show/18106978-homotopy-type-theory)  
 - [*Lectures on the Philosophy of Mathematics*](https://www.goodreads.com/book/show/53730382-lectures-on-the-philosophy-of-mathematics) — Joel David Hamkins  
-- [*Modern Mathematical Logic*](https://www.goodreads.com/book/show/75666288-modern-mathematical-logic) — Joseph Mileti  
-- [*The Dao of Functional Programming*](https://tannerduve.github.io/files/DaoFP.pdf) - Bartosz Milewski
-- [*Topoi: The Categorial Analysis of Logic*](https://www.goodreads.com/book/show/323609.Topoi) — Robert Goldblatt  
-- [*Types and Programming Languages*](https://www.goodreads.com/book/show/112252.Types_and_Programming_Languages) — Benjamin C. Pierce  
-
 ---
 
 ### 🪷 Eastern Philosophy and Mysticism
