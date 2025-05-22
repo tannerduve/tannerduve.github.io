@@ -29,19 +29,19 @@ Here are some of my favorite courses I took at Penn
 
 - [Software Foundations](https://softwarefoundations.cis.upenn.edu) — Benjamin Pierce (CIS 5000)  
   *Graduate course on programming language theory and the Coq proof assistant*
-- Friendly Logics — Val Tannen (CIS 6820)  
-  *PhD course on applications of mathematical logic to computer science*  
 - Computational Complexity and Cryptography — Sampath Kannan (CIS 7000) 
 - [Computer-Aided Verification](https://www.cis.upenn.edu/~alur/cis673.html) — Rajeev Alur (CIS 6730) 
 - [Advanced Programming in Haskell](https://www.seas.upenn.edu/~cis5520/current/index.html) — Stephanie Weirich (CIS 5520)    
-- Graduate Analysis of Algorithms — Sampath Kannan (CIS 5020)  
+- Friendly Logics — Val Tannen (CIS 6820)  
+  *PhD course on applications of mathematical logic to computer science*   
+- Graduate Analysis of Algorithms — Sampath Kannan (CIS 5020) 
 - Graduate Theory of Computation — Anindya De (CIS 5110)  
 
 #### Mathematics
 
 - Abstract Algebra — Jianqi Liu (MATH 5020-5030)
-- [Topics in Category Theory and Categorical Logic](https://www.cis.upenn.edu/~scedrov/courses/Math6710F24.html) — Andre Scedrov (MATH 6710)  
 - [Category Theory and Type Theory](https://www.cis.upenn.edu/~scedrov/courses/Math5710S24.html) — Andre Scedrov (MATH 5710)  
+- [Topics in Category Theory and Categorical Logic](https://www.cis.upenn.edu/~scedrov/courses/Math6710F24.html) — Andre Scedrov (MATH 6710)  
 - Computability Theory Reading Seminar — Henry Towsner (MATH 8990)  
 - Logic and Computability — Henry Towsner (MATH 5700)  
 - Model Theory — Scott Weinstein (MATH 6770)  
