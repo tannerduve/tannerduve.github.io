@@ -7,7 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-🛠️ This page is under construction. Below is a growing collection of books that have shaped my thinking — spanning philosophy, logic, mysticism, mathematics, and ecology.
+Below is a growing collection of books that I have joined and/or have shaped my thinking, spanning philosophy, mathematics, CS, religion, and ecology.
 
 ---
 
@@ -27,6 +27,7 @@ author_profile: true
 - [*Homotopy Type Theory: Univalent Foundations of Mathematics*](https://www.goodreads.com/book/show/18106978-homotopy-type-theory)  
 - [*Lectures on the Philosophy of Mathematics*](https://www.goodreads.com/book/show/53730382-lectures-on-the-philosophy-of-mathematics) — Joel David Hamkins  
 - [*Modern Mathematical Logic*](https://www.goodreads.com/book/show/75666288-modern-mathematical-logic) — Joseph Mileti  
+- [*The Dao of Functional Programming*](files/DaoFP.pdf) - Bartosz Milewski
 - [*Topoi: The Categorial Analysis of Logic*](https://www.goodreads.com/book/show/323609.Topoi) — Robert Goldblatt  
 - [*Types and Programming Languages*](https://www.goodreads.com/book/show/112252.Types_and_Programming_Languages) — Benjamin C. Pierce  
 
@@ -51,6 +52,5 @@ author_profile: true
 ---
 
 ### 🧩 Pop-Math
-
 - [*Logicomix: An Epic Search for Truth*](https://www.goodreads.com/book/show/6493321-logicomix) — Apostolos Doxiadis & Christos Papadimitriou  
-- [*The Joy of Abstraction*](https://www.goodreads.com/book/show/60658614-the-joy-of-abstraction?ref=nav_sb_ss_1_22) — Eugenia Cheng  
+- [*The Joy of Abstraction: An Exploration of Math, Category Theory, and Life*](https://www.goodreads.com/book/show/60658614-the-joy-of-abstraction?ref=nav_sb_ss_1_22) — Eugenia Cheng  
