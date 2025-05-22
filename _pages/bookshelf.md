@@ -8,6 +8,7 @@ author_profile: true
 {% include base_path %}
 
 Below is a growing collection of books that I have enjoyed and/or have shaped my thinking, spanning philosophy, mathematics, CS, mysticism, and ecology. 
+
 ---
 
 ### 🧠 Philosophy of Mind, Language, and Logic
