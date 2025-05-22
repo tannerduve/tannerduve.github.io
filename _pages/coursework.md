@@ -49,9 +49,9 @@ Here are some of my favorite courses I took at Penn
 #### Philosophy
 
 - Epistemology & Metaphysics — Daniel Singer (PHIL 2310)  
-- Philosophy of Computability and Randomness — Scott Weinstein (PHIL 3800)  
-- Philosophy of Mathematics — Scott Weinstein (PHIL 4770)  
 - Philosophy of Science — Aydin Mohseni (PHIL 3800)  
+- Philosophy of Mathematics — Scott Weinstein (PHIL 4770) 
+- Philosophy of Computability and Randomness — Scott Weinstein (PHIL 3800)   
 - What is Taoism? — Ori Tavor (RELS 1520)
 
 ---
