@@ -29,6 +29,7 @@ Below is a growing collection of books that I have enjoyed and/or have shaped my
 - [*Types and Programming Languages*](https://www.goodreads.com/book/show/112252.Types_and_Programming_Languages) — Benjamin C. Pierce  
 - [*Homotopy Type Theory: Univalent Foundations of Mathematics*](https://www.goodreads.com/book/show/18106978-homotopy-type-theory)  
 - [*Lectures on the Philosophy of Mathematics*](https://www.goodreads.com/book/show/53730382-lectures-on-the-philosophy-of-mathematics) — Joel David Hamkins  
+
 ---
 
 ### 🪷 Eastern Philosophy and Mysticism
