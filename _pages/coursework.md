@@ -27,15 +27,15 @@ redirect_from:
 Here are some of my favorite courses I took at Penn
 #### Computer Science
 
-- Advanced Programming in Haskell — Stephanie Weirich (CIS 5520)  
-- Computational Complexity and Cryptography — Sampath Kannan (CIS 7000)  
-- Computer-Aided Verification — Rajeev Alur (CIS 6730)  
+- [Software Foundations](https://softwarefoundations.cis.upenn.edu) — Benjamin Pierce (CIS 5000)  
+  *Graduate course on programming language theory and the Coq proof assistant*
 - Friendly Logics — Val Tannen (CIS 6820)  
   *PhD course on applications of mathematical logic to computer science*  
+- Computational Complexity and Cryptography — Sampath Kannan (CIS 7000) 
+- [Computer-Aided Verification](https://www.cis.upenn.edu/~alur/cis673.html) — Rajeev Alur (CIS 6730) 
+- [Advanced Programming in Haskell](https://www.seas.upenn.edu/~cis5520/current/index.html) — Stephanie Weirich (CIS 5520)    
 - Graduate Analysis of Algorithms — Sampath Kannan (CIS 5020)  
 - Graduate Theory of Computation — Anindya De (CIS 5110)  
-- Software Foundations — Benjamin Pierce (CIS 5000)  
-  *Graduate course on programming language theory and the Coq proof assistant*
 
 #### Mathematics
 
@@ -61,5 +61,5 @@ Here are some of my favorite courses I took at Penn
 I served as a teaching assistant for:
 
 - Graduate Analysis of Algorithms — Anindya De (CIS 5020)  
-- Graduate Theory of Computation — Anindya De (CIS 5110)  
+- [Graduate Theory of Computation](https://www.cis.upenn.edu/~cis5110/) — Jean Gallier, Anindya De (CIS 5110)  
 - Undergraduate Theory of Computation — Anindya De, Rajeev Alur (CIS 2620)
