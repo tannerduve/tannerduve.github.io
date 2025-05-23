@@ -11,7 +11,7 @@ Below is a growing collection of books that I have enjoyed and/or have shaped my
 
 ---
 
-### 🧠 Philosophy of Mind, Language, and Logic
+### 🧠 Philosophy of Mind, Language, and Metaphysics
 
 - [*Analytic Idealism in a Nutshell*](https://www.goodreads.com/book/show/204478729-analytic-idealism-in-a-nutshell) — Bernardo Kastrup ⭐  
 - [*Tractatus Logico-Philosophicus*](https://www.goodreads.com/book/show/12075.Tractatus_Logico_Philosophicus) — Ludwig Wittgenstein ⭐
