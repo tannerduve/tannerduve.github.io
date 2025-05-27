@@ -6,7 +6,7 @@ permalink: /blog/freeer-monad/
 
 ## Intro
 
-This post will introduce the freer monad, aka the operational monad, in Lean — from categorical foundations to programming applications. We will cover what it means to be "free" in mathematics, what are free monads in categories and in code, and introduce freer monads as a solution to a certain type-theoretic obstacle to defining free monads in Lean. We will then use what we've learned to build a small interpreter which makes elegant use of freeness.
+This post will introduce the freer monad, aka the operational monad, in Lean — from categorical foundations to programming applications. We will cover what it means to be "free" in mathematics, what free monads are in categories and in code, and introduce freer monads as a solution to a certain type-theoretic obstacle to defining free monads in Lean. We will then use what we've learned to build a small interpreter which makes elegant use of freeness.
 
 This post assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes.
 
