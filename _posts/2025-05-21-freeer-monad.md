@@ -191,67 +191,46 @@ comp_map := by
     simp [Free.map, ih]
 ```
 
-Got it — let’s revise using only working LaTeX notation that compiles in Lean or Markdown with math mode, using `\gg=` for bind and `\texttt{<*>}` for applicative application:
+Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
----
+$$
+\text{pure}(a) \gg= f = f(a)
+$$
 
-Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monadic laws**:
+$$
+x \gg= \text{pure} = x
+$$
 
-* **Left identity**
+$$
+(x \gg= f) \gg= g = x \gg= (\lambda a.\, f(a) \gg= g)
+$$
 
-  $$
-  \text{pure}\ a \gg= f = f\ a
-  $$
+$$
+x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)
+$$
 
-* **Right identity**
+$$
+f \gg= (\lambda g.\, g(x)) = f \texttt{<*>} x
+$$
 
-  $$
-  m \gg= \text{pure} = m
-  $$
+Because `Applicative` is a superclass of `Monad`, we must also verify the **applicative functor laws**:
 
-* **Associativity**
+$$
+\text{pure}(\lambda x.\, x) \texttt{<*>} v = v
+$$
 
-  $$
-  (m \gg= f) \gg= g = m \gg= (\lambda x.\, f\ x \gg= g)
-  $$
+$$
+\text{pure}(f) \texttt{<*>} \text{pure}(x) = \text{pure}(f(x))
+$$
 
-* **Naturality (map then bind)**
+$$
+u \texttt{<*>} \text{pure}(y) = \text{pure}(\lambda f.\, f(y)) \texttt{<*>} u
+$$
 
-  $$
-  x \gg= (\lambda a.\, \text{pure}(f\ a)) = \text{map}\ f\ x
-  $$
+$$
+\text{pure}(\circ) \texttt{<*>} u \texttt{<*>} v \texttt{<*>} w = u \texttt{<*>} (v \texttt{<*>} w)
+$$
 
----
-
-Because `Applicative` is a superclass of `Monad`, we must also verify the **applicative laws**:
-
-### **Applicative Laws**
-
-* **Identity**
-
-  $$
-  \text{pure}(\lambda x.\, x)\ \texttt{<*>}\ v = v
-  $$
-
-* **Homomorphism**
-
-  $$
-  \text{pure}\ f\ \texttt{<*>}\ \text{pure}\ x = \text{pure}(f\ x)
-  $$
-
-* **Interchange**
-
-  $$
-  u\ \texttt{<*>}\ \text{pure}\ y = \text{pure}(\lambda f.\, f\ y)\ \texttt{<*>}\ u
-  $$
-
-* **Composition**
-
-  $$
-  \text{pure}(\circ)\ \texttt{<*>}\ u\ \texttt{<*>}\ v\ \texttt{<*>}\ w = u\ \texttt{<*>}\ (v\ \texttt{<*>}\ w)
-  $$
-
-  where $\circ$ is function composition: $(f \circ g)(x) = f(g(x))$
 
 ```lean
 instance : LawfulMonad (Free F) where
