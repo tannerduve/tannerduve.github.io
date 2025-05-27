@@ -29,7 +29,9 @@ The moral of the story here is that a free construction is the canonical way to 
 
 ## Free Monads
 
-We've all heard the joke, "a monad is just a monoid in the category of endofunctors, what's the problem?" Understanding monads as monoids may actually help us construct the free monad by analogy to the free monoid — aka the List type constructor. I know I promised this was an article on Lean but we will start with some Haskell first.
+> "A monad is just a monoid in the category of endofunctors, what's the problem?"
+
+You’ve probably heard this line before. Usually said as a joke because it's technically a correct definition, but it tells you nothing if you don't speak category theory. However, understanding monads as monoids may actually help us construct the free monad by analogy to the free monoid — aka the List type constructor. I know I promised this was an article on Lean but we will start with some Haskell first.
 
 ### In Haskell
 
@@ -51,7 +53,7 @@ $$
 F_a x = \mathbf{1} + (a \times x)
 $$
 
-(see: inductive types as initial algebras — [link to be filled]).
+(see: [inductive types as initial algebras](https://ncatlab.org/nlab/show/initial+algebra+of+an+endofunctor#more_examples)).
 
 Well, since the List functor maps a type to its free monoid, and we want our free monad functor to map an endofunctor to its free monad, we "lift" what we have done on lists in the category of types to free monads in the category of endofunctors. In this sense, lists are to types as free monads are to endofunctors. In programmer terms, we are defining a higher-order functor that is analogous to `List`, but acts on functors rather than types.
 
@@ -181,36 +183,200 @@ comp_map := by
     simp [Free.map, ih]
 ```
 
-Now we prove it is a lawful monad, i.e. it satisfies the monadic laws:
+Now we prove it is a lawful monad, i.e. it satisfies the **monadic laws**:
 
-- Left identity: $\text{pure}\ a \gg= f = f\ a$
-- Right identity: $m \gg= \text{pure} = m$
-- Associativity: $(m \gg= f) \gg= g = m \gg= (\lambda x. f\ x \gg= g)$
-- Naturality (map then bind): $x \gg= (\lambda a. \text{pure}(f\ a)) = \text{map}\ f\ x$
+- **Left identity**  
+  $$
+  \text{pure}\ a \gg= f = f\ a
+  $$
+- **Right identity**  
+  $$
+  m \gg= \text{pure} = m
+  $$
+- **Associativity**  
+  $$
+  (m \gg= f) \gg= g = m \gg= (\lambda x. f\ x \gg= g)
+  $$
+- **Naturality (map then bind)**  
+  $$
+  x \gg= (\lambda a. \text{pure}(f\ a)) = \text{map}\ f\ x
+  $$
+
+And since `Applicative` is a superclass of `Monad`, we must also verify the **applicative laws**:
+
+* **Identity**
+  $\text{pure}(\lambda x. x) <*> v = v$
+* **Homomorphism**
+  $\text{pure}\ f <*> \text{pure}\ x = \text{pure}(f\ x)$
+* **Interchange**
+  $u <*> \text{pure}\ y = \text{pure}(\lambda f. f\ y) <*> u$
+* **Composition**
+  $\text{pure}(\circ) <*> u <*> v <*> w = u <*> (v <*> w)$
+  where $\circ$ denotes function composition.
+
 
 ```lean
 instance : LawfulMonad (Free F) where
 bind_pure_comp := by
-  intro a b x f
-  simp [Functor.map, bindFree, Free.map]
-  sorry
-bind_map := by sorry 
+  intro α β x y; simp [Functor.map, bind, pure]; induction y
+  · case pure a => simp [bindFree, Free.map]
+  · case bind X Fx k ih => simp [bindFree, Free.map, ih]
+bind_map := by 
+  intro α β f x; simp [bind, Seq.seq]
 pure_bind := by
-  intro a x f
-  sorry
-bind_assoc := by sorry 
+  intro α x a f; simp [bind, pure, bindFree]
+bind_assoc := by 
+  intro α β γ x f g; simp [bind]; induction x 
+  case pure a => simp [bindFree, Free.map]
+  case bind X Fx k ih => simp [bindFree, Free.map, ih]
 seqLeft_eq := by
-  intro a b x f
-  simp [Functor.map, bindFree, Free.map]
-  sorry
+  intro α β x y; simp [Functor.map, SeqLeft.seqLeft, Seq.seq]; induction x
+  case pure a =>
+    simp [bindFree, Free.map]
+    induction y
+    case pure b => simp [bindFree, Free.map]
+    case bind X Fy k ih => simp [bindFree, Free.map, ih]
+  case bind X Fx k ih => simp [bindFree, Free.map, ih]
 seqRight_eq := by
-  intro a b x f
-  simp [Functor.map, bindFree, Free.map]
-  sorry
+  intro α β x y; simp [Functor.map, bindFree, Free.map]; induction x
+  case pure a =>
+    simp [bindFree, Free.map]
+    induction y
+    case pure b => simp [SeqRight.seqRight, Seq.seq, Functor.map, bindFree, Free.map]
+    case bind X Fy k ih =>
+      simp [SeqRight.seqRight, Seq.seq, Functor.map, bindFree, Free.map, ih] at ih ⊢ 
+      apply funext; intro x; exact ih x
+  case bind X Fx k ih =>
+    simp [Free.map, Seq.seq, bindFree, Functor.map, SeqRight.seqRight] at ih ⊢
+    apply funext; intro x; exact ih x 
 pure_seq := by
-  intro a x
-  simp [Functor.map, bindFree, Free.map]
-  sorry
+  intro α β f x; simp [Seq.seq, Functor.map, pure, bindFree]
+```
+I won't write out the informal details of the proof, but it is mostly straightforward, we unfold all the definitions using `simp`, and in some cases when we have a value of type `Free F a` we perform induction on it and simplify further.
+
+## An Interpreter with Side Effects
+
+In this final section we will do a mini tutorial to show the power of the free monad by building an interpreter for an expression language with side effects. The key idea here is that the freer monad lets us separate what we want to do (a syntactic description of effectful computation) from how we want to do it (interpreting and executing the effects semantically).
+
+### Language and Effects
+
+We begin by defining a tiny expression language, with integers, variables, addition, and division:
+
+```lean
+inductive Expr where
+  | val : Int → Expr
+  | var : String → Expr
+  | add : Expr → Expr → Expr
+  | div : Expr → Expr → Expr
 ```
 
-I will fill this proof in.
+We also define three effect types: mutable state (for the environment), errors (for failed variable lookups or division by zero), and a trace log (for inspection or debugging). These are each single-operation effect signatures:
+
+```lean
+inductive StateEff : Type → Type where
+  | Get : StateEff Env
+  | Put : Env → StateEff Unit
+
+inductive ErrorEff : Type → Type where
+  | Fail : String → ErrorEff Unit
+
+inductive TraceEff : Type → Type where
+  | Log : String → TraceEff Unit
+```
+
+We can then define a sum/coproduct of type constructors as follows:
+
+```lean
+inductive FSum (F G : Type → Type) (α : Type) where
+  | inl : F α → FSum F G α
+  | inr : G α → FSum F G α
+
+infixl:50 "⊕" => FSum
+```
+And we define our overall effect signature as the nested sum:
+
+```lean
+abbrev Eff := StateEff ⊕ (ErrorEff ⊕ TraceEff)
+```
+
+This type Eff is a pure description of the available commands in our language — not what they do, just what kinds of actions exist. Our computations will now live in the type Free Eff α, which means they are pure syntax trees of abstract effects that eventually return a value of type α.
+
+### Lifting Effects into the Syntax Tree
+
+To construct nodes in our effect AST, we define some helper functions that wrap each command in the Free monad:
+
+```lean
+def getEnv : Free Eff Env :=
+  Free.bind _ (FSum.inl StateEff.Get) Free.pure
+
+def putEnv (e : Env) : Free Eff Unit :=
+  Free.bind _ (FSum.inl (StateEff.Put e)) Free.pure
+
+def fail (msg : String) : Free Eff Unit :=
+  Free.bind _ (FSum.inr (FSum.inl (ErrorEff.Fail msg))) Free.pure
+
+def log (msg : String) : Free Eff Unit :=
+  Free.bind _ (FSum.inr (FSum.inr (TraceEff.Log msg))) Free.pure
+```
+
+### Writing a Program
+
+We can now write a little program. It logs a message, updates the environment, reads back a variable, and returns its increment:
+
+```lean
+def ex : Free Eff Int := do
+  log "Starting"
+  putEnv [("x", 10)]
+  let env ← getEnv
+  match env.find? (⋅.fst = "x") with
+  | some (_, x) => pure (x + 1)
+  | none => do fail "x not found"; pure 0
+```
+This "program" is constructing a tree of abstract effects, independent of any notion of execution or semantics. The calls to log, putEnv, getEnv, and fail are not doing anything yet — they are just nodes in a tree; entirely syntactic data.
+
+This separation between syntax and semantics is the core idea. We build up a value of type Free Eff Int that describes a program in terms of its desired behavior. This value is like an AST for an effectful computation. The tree is built using the constructors pure and bind, and the functorial action of the coproduct ⊕ lets us represent multiple kinds of effects simultaneously.
+
+### Running the Program
+
+To actually run the program, we define an interpreter — a recursive function that walks the syntax tree and gives meaning to each effect node. This function takes a `Free Eff α` value, along with an environment and a trace list, and evaluates the computation into an `Except String (α × Env × Trace)`:
+
+```lean
+def run {α : Type} : Free Eff α → Env → Trace → Except String (α × Env × Trace)
+  | .pure a, env, trace => .ok (a, env, trace)
+  | .bind _ fx k, env, trace =>
+    match fx with
+    | .inl sfx =>
+      match sfx with
+      | StateEff.Get => run (k env) env trace
+      | StateEff.Put newEnv => run (k ()) newEnv trace
+    | .inr sfx =>
+      match sfx with
+      | .inl efx =>
+        match efx with
+        | ErrorEff.Fail msg => .error msg
+      | .inr tfx =>
+        match tfx with
+        | TraceEff.Log msg => run (k ()) env (trace ++ [msg])
+```
+
+Each clause handles one kind of effect, interpreting it concretely by modifying the environment, returning an error, or extending the trace. The tree is recursively traversed, with each node interpreted according to the semantics we now choose to assign.
+
+This interpreter is just one possibility. Because the original program is purely syntactic, we can define many alternative interpreters:
+
+A testing interpreter that uses mock environments.
+
+A symbolic interpreter that produces constraints or logical formulas.
+
+An optimizer that folds logs and propagates constants.
+
+A stepper that visualizes evaluation step-by-step.
+
+This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then, when you’re ready, define a separate interpreter that gives meaning to those commands in a way tailored to your needs.
+
+By separating syntax from semantics, you gain clarity, reusability, and control — and the ability to write interpreters that don’t just execute your programs, but explain them, verify them, or manipulate them in powerful ways.
+
+## Conclusion
+
+The freer monad is a small trick with large implications. It carves out a crisp separation between syntax and semantics, between describing what we want and determining how it should happen. We started with a type-theoretic roadblock, and ended up with a pattern that gives us flexible, verifiable, extensible interpreters — and it works beautifully in Lean.
+
+If you’ve ever felt like the monad abstraction hides more than it reveals, or if you’ve wrestled with how to model side effects without smuggling in semantics too early, the freer monad offers a compelling way forward. And once you see effects as just syntax trees, and interpreters as just folds, you might never look at “effectful programming” the same way again.
