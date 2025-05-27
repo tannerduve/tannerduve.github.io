@@ -332,9 +332,9 @@ def ex : Free Eff Int := do
   | some (_, x) => pure (x + 1)
   | none => do fail "x not found"; pure 0
 ```
-This "program" is constructing a tree of abstract effects independently of any execution or semantics. The calls to log, putEnv, getEnv, and fail are not doing anything yet — they are just nodes in a tree; entirely syntactic data. Programs are represented merely as data structures. When programs are represented as data structures you can do much more with them than just their operational interpretation, and you gain immense leverage and control over how you'd like to interpret them.
+This "program" is constructing a tree of abstract effects independently of any execution or semantics. The calls to `log`, `putEnv`, `getEnv`, and fail are not doing anything yet — they are just nodes in a tree; entirely syntactic data. Programs are represented merely as data structures. When programs are represented as data structures you can do much more with them than just their operational interpretation, and you gain immense leverage and control over how you'd like to interpret them.
 
-This separation between syntax and semantics is the core idea. We build up a value of type Free Eff Int that describes a program in terms of its desired behavior. This value is like an AST of effects. The tree is built using the constructors pure and bind, and the functorial action of the coproduct ⊕ lets us represent multiple kinds of effects simultaneously.
+This separation between syntax and semantics is the core idea. We build up a value of type `Free Eff Int` that describes a program in terms of its desired behavior. This value is like an AST of effects. The tree is built using the constructors pure and bind, and the functorial action of the coproduct `⊕` lets us represent multiple kinds of effects simultaneously.
 
 ### Running the Program
 
