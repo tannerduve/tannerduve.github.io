@@ -1,4 +1,8 @@
-# The Free-er Monad in Lean
+---
+title: "The Free-er Monad"
+layout: single
+permalink: /blog/freeer-monad/
+---
 
 ## Intro
 
