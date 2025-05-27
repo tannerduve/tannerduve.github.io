@@ -332,9 +332,9 @@ def ex : Free Eff Int := do
   | some (_, x) => pure (x + 1)
   | none => do fail "x not found"; pure 0
 ```
-This "program" is constructing a tree of abstract effects, independent of any notion of execution or semantics. The calls to log, putEnv, getEnv, and fail are not doing anything yet — they are just nodes in a tree; entirely syntactic data.
+This "program" is constructing a tree of abstract effects independently of any execution or semantics. The calls to log, putEnv, getEnv, and fail are not doing anything yet — they are just nodes in a tree; entirely syntactic data. Programs are represented merely as data structures. When programs are represented as data structures you can do much more with them than just their operational interpretation, and you gain immense leverage and control over how you'd like to interpret them.
 
-This separation between syntax and semantics is the core idea. We build up a value of type Free Eff Int that describes a program in terms of its desired behavior. This value is like an AST for an effectful computation. The tree is built using the constructors pure and bind, and the functorial action of the coproduct ⊕ lets us represent multiple kinds of effects simultaneously.
+This separation between syntax and semantics is the core idea. We build up a value of type Free Eff Int that describes a program in terms of its desired behavior. This value is like an AST of effects. The tree is built using the constructors pure and bind, and the functorial action of the coproduct ⊕ lets us represent multiple kinds of effects simultaneously.
 
 ### Running the Program
 
@@ -359,24 +359,47 @@ def run {α : Type} : Free Eff α → Env → Trace → Except String (α × Env
         | TraceEff.Log msg => run (k ()) env (trace ++ [msg])
 ```
 
-Each clause handles one kind of effect, interpreting it concretely by modifying the environment, returning an error, or extending the trace. The tree is recursively traversed, with each node interpreted according to the semantics we now choose to assign.
+Each clause handles one kind of effect and interprets it by modifying the environment, returning an error, or extending the trace. The tree is recursively traversed, with each node interpreted according to the semantics we now choose to assign.
 
-This interpreter is just one possibility. Because the original program is purely syntactic, we can define many alternative interpreters:
+This interpreter is just one way to give meaning to the syntax tree. Because effects are described abstractly, we can define different interpreters for different purposes — all working on the same underlying program. For example:
 
-A testing interpreter that uses mock environments.
+- A sandbox evaluator that runs the program with a mock environment and collects logs.
+- A debugger that steps through effects interactively.
+- A static analyzer that checks for possible failures without running the program.
 
-A symbolic interpreter that produces constraints or logical formulas.
-
-An optimizer that folds logs and propagates constants.
-
-A stepper that visualizes evaluation step-by-step.
-
-This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then, when you’re ready, define a separate interpreter that gives meaning to those commands in a way tailored to your needs.
-
-By separating syntax from semantics, you gain clarity, reusability, and control — and the ability to write interpreters that don’t just execute your programs, but explain them, verify them, or manipulate them in powerful ways.
+This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then define an interpreter that evalutes your programs however you want.
 
 ## Conclusion
 
-The freer monad is a small trick with large implications. It carves out a crisp separation between syntax and semantics, between describing what we want and determining how it should happen. We started with a type-theoretic roadblock, and ended up with a pattern that gives us flexible, verifiable, extensible interpreters — and it works beautifully in Lean.
+Hopefully this article was informative and helpful in understanding free monads mathematically and gave you a glimpse of their usefulness in programming. This is the first blog post I've written so I'm hoping it was enjoyable. To review what we did:
 
-If you’ve ever felt like the monad abstraction hides more than it reveals, or if you’ve wrestled with how to model side effects without smuggling in semantics too early, the freer monad offers a compelling way forward. And once you see effects as just syntax trees, and interpreters as just folds, you might never look at “effectful programming” the same way again.
+- We introduced the concept of free objects in mathematics, starting with vector spaces, monoids, and groups.
+
+- We defined the free monad categorically as the lease fixed point of a particular functor, drawing analogy to the List type.
+
+- In Haskell, we implemented the standard `Free f a` type and gave it a Monad instance.
+
+- We learned about strict positivity in dependently typed proof assistants and why the classic `Free` monad fails in Lean
+
+- We introduced the Freer monad as a strictly positive solution, and showed it forms a monad for any `F : Type -> Type`
+
+- We defined a small expression language with three effects: state, errors, and tracing, showed how effects can be represented as data structures using the Free monad, and wrote an interpreter for it
+
+- We showed how this separation between syntax and semantics enables flexibility in evaluating and interpreting effectful languages.
+
+## Exercise
+Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` monads.
+
+## References
+
+* [nLab: Free Monad](https://ncatlab.org/nlab/show/free+monad)
+
+* [CIS 5520 Lecture Notes on Freer Monads](https://www.seas.upenn.edu/~cis5520/22fa/lectures/stub/11-transformers/Freer.html)
+
+* *The Dao of Functional Programming*, Bartosz Milewski (2025)
+
+* [Serokell: Introduction to Free Monads](https://serokell.io/blog/introduction-to-free-monads)
+
+* [Okmj : Free and Freer Monads: Putting Monads Back into Closet](https://okmij.org/ftp/Computation/free-monad.html)
+
+
