@@ -152,7 +152,7 @@ instance FreeMonad (F : Type → Type) : Monad (Free F) where
 
 Of course we all love Lean because you can actually prove things about the code you write. Lean provides not just a `Monad` typeclass, but a `LawfulMonad` typeclass, which additionally requires explicit proofs that the monad laws are satisfied. Let's do this for fun.
 
-We first prove it is a lawful functor, i.e. it is *functorial* in the following sense:
+We first prove it is a lawful functor, i.e. it is *functorial* in the categorical sense:
 
 - Identity law: \(\text{map}\ id = id\)
 - Composition law: \(\text{map}\ (g \circ f) = \text{map}\ g \circ \text{map}\ f\)

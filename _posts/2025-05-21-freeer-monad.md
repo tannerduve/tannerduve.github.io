@@ -127,10 +127,10 @@ inductive Free (f : Type -> Type) (a : Type) where
   | bind : forall x, f x -> (x -> Free f a) -> Free f a
 ```
 
-In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. In the next section, we define the Functor and Monad instances for this type and prove the laws that make them lawful.
+In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor G.
 
 
-We begin by providing a Functor instance, which is just defining a map function, lifting a function \)f : \alpha \to \beta\( to a function \)Ff : \text{Free } F \ \alpha \to \text{Free } F \ \beta\(:
+We begin by providing a Functor instance, which is just defining a map function, lifting a function \(f : \alpha \to \beta\) to a function \(Ff : \text{Free } F \ \alpha \to \text{Free } F \ \beta\):
 
 ```lean
 def Free.map {a b : Type} (F : Type → Type) (f : a → b) : Free F a → Free F b :=
@@ -158,10 +158,10 @@ instance FreeMonad (F : Type → Type) : Monad (Free F) where
 
 Of course we all love Lean because you can actually prove things about the code you write. Lean provides not just a `Monad` typeclass, but a `LawfulMonad` typeclass, which additionally requires explicit proofs that the monad laws are satisfied. Let's do this for fun.
 
-We first prove it is a lawful functor, i.e. it is *functorial* in the following sense:
+We first prove it is a lawful functor, i.e. it is *functorial* in the categorical sense:
 
-- Identity law: \)\text{map}\ id = id\(
-- Composition law: \)\text{map}\ (g \circ f) = \text{map}\ g \circ \text{map}\ f\(
+- Identity law: \(\text{map}\ id = id\)
+- Composition law: \(\text{map}\ (g \circ f) = \text{map}\ g \circ \text{map}\ f\)
 
 ```lean
 instance : LawfulFunctor (Free F) where
@@ -188,10 +188,10 @@ comp_map := by
 
 Now we prove it is a lawful monad, i.e. it satisfies the monadic laws:
 
-- Left identity: \)\text{pure}\ a \gg= f = f\ a\(
-- Right identity: \)m \gg= \text{pure} = m\(
-- Associativity: \)(m \gg= f) \gg= g = m \gg= (\lambda x. f\ x \gg= g)\(
-- Naturality (map then bind): \)x \gg= (\lambda a. \text{pure}(f\ a)) = \text{map}\ f\ x$
+- Left identity: \(\text{pure}\ a \gg= f = f\ a\)
+- Right identity: \(m \gg= \text{pure} = m\)
+- Associativity: \((m \gg= f) \gg= g = m \gg= (\lambda x. f\ x \gg= g)\)
+- Naturality (map then bind): \(x \gg= (\lambda a. \text{pure}(f\ a)) = \text{map}\ f\ x\)
 
 ```lean
 instance : LawfulMonad (Free F) where
