@@ -406,4 +406,4 @@ Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` mon
 
 * [Serokell: Introduction to Free Monads](https://serokell.io/blog/introduction-to-free-monads)
 
-* [Okmj : Free and Freer Monads: Putting Monads Back into Closet](https://okmij.org/ftp/Computation/free-monad.html)
+* [Okmij : Free and Freer Monads: Putting Monads Back into Closet](https://okmij.org/ftp/Computation/free-monad.html)
