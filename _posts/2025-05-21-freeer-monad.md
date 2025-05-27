@@ -191,32 +191,24 @@ comp_map := by
 Now we prove it is a lawful monad, i.e. it satisfies the **monadic laws**:
 
 - **Left identity**  
-  $$
-  \text{pure}\ a \gg= f = f\ a
-  $$
+  $$\text{pure}\ a \gg= f = f\ a$$
 - **Right identity**  
-  $$
-  m \gg= \text{pure} = m
-  $$
+  $$m \gg= \text{pure} = m$$
 - **Associativity**  
-  $$
-  (m \gg= f) \gg= g = m \gg= (\lambda x. f\ x \gg= g)
-  $$
+  $$(m \gg= f) \gg= g = m \gg= (\lambda x. f\ x \gg= g)$$
 - **Naturality (map then bind)**  
-  $$
-  x \gg= (\lambda a. \text{pure}(f\ a)) = \text{map}\ f\ x
-  $$
+  $$x \gg= (\lambda a. \text{pure}(f\ a)) = \text{map}\ f\ x$$
 
 And since `Applicative` is a superclass of `Monad`, we must also verify the **applicative laws**:
 
 * **Identity**
-  $\text{pure}(\lambda x. x) <*> v = v$
+  $$\text{pure}(\lambda x. x) \texttt{<*>} v = v$$
 * **Homomorphism**
-  $\text{pure}\ f <*> \text{pure}\ x = \text{pure}(f\ x)$
+  $$\text{pure}\ f \texttt{<*>} \text{pure}\ x = \text{pure}(f\ x)$$
 * **Interchange**
-  $u <*> \text{pure}\ y = \text{pure}(\lambda f. f\ y) <*> u$
+  $$u \texttt{<*>} \text{pure}\ y = \text{pure}(\lambda f. f\ y) \texttt{<*>} u$$
 * **Composition**
-  $\text{pure}(\circ) <*> u <*> v <*> w = u <*> (v <*> w)$
+  $$\text{pure}(\circ) \texttt{<*>} u \texttt{<*>} v \texttt{<*>} w = u \texttt{<*>} (v \texttt{<*>} w)$$
   where $\circ$ denotes function composition.
 
 
