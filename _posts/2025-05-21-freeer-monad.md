@@ -287,7 +287,7 @@ inductive Expr where
   | div : Expr → Expr → Expr
 ```
 
-We also define three effect types: mutable state (for the environment), errors (for failed variable lookups or division by zero), and a trace log (for inspection or debugging). These are each single-operation effect signatures:
+We also define three effect types: mutable state (for the environment), errors (for failed variable lookups or division by zero), and a trace log (for inspection or debugging):
 
 ```lean
 inductive StateEff : Type → Type where
