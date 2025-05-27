@@ -117,6 +117,8 @@ datatypes being declared
 
 What could this mean?
 
+#### Strict Positivity
+
 Recall that, in languages like Lean (or Coq, or Agda), in order for the proof system to be consistent, all functions must terminate. Proofs correspond to programs, and if we had programs that could loop forever, we could prove anything, and our logic would be useless.
 
 To enforce this, defining inductive types has a restriction, called **strict positivity**. Strict positivity disallows contravariant occurrences of self-reference in the constructors of an inductive type. In simpler terms, an inductive type definition cannot refer to itself on the left side of an arrow in the constructors. If Lean allowed this definition, we could inhabit the empty type (i.e. prove false) using a contravariant functor.
@@ -131,6 +133,7 @@ inductive Free (f : Type -> Type) (a : Type) where
 
 In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor G.
 
+#### Monad Instance of `Free f`
 
 We begin by providing a Functor instance, which is just defining a map function, lifting a function $f : \alpha \to \beta$ to a function $Ff : \text{Free } F \ \alpha \to \text{Free } F \ \beta$:
 
