@@ -203,44 +203,73 @@ comp_map := by
 
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
-$$
-\text{pure}(a) \gg= f = f(a)
-$$
+* **Left identity**:
 
-$$
-x \gg= \text{pure} = x
-$$
+  $$
+  \text{pure}(a) \gg= f = f(a)
+  $$
 
-$$
-(x \gg= f) \gg= g = x \gg= (\lambda a.\, f(a) \gg= g)
-$$
+* **Right identity**:
 
-$$
-x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)
-$$
+  $$
+  x \gg= \text{pure} = x
+  $$
 
-$$
-f \gg= (\lambda g.\, g(x)) = f \texttt{<*>} x
-$$
+* **Associativity**:
+
+  $$
+  (x \gg= f) \gg= g = x \gg= (\lambda a.\, f(a) \gg= g)
+  $$
+
+* **Bind-pure composition** (expresses `fmap` via `bind`):
+
+  $$
+  x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)
+  $$
+
+* **Applicative compatibility** (expresses `<*>` via `bind`):
+
+  $$
+  f \gg= (\lambda g.\, \text{map}(g, x)) = f \texttt{<*>} x
+  $$
 
 Because `Applicative` is a superclass of `Monad`, we must also verify the **applicative functor laws**:
 
-$$
-\text{pure}(\lambda x.\, x) \texttt{<*>} v = v
-$$
+* **Identity**:
 
-$$
-\text{pure}(f) \texttt{<*>} \text{pure}(x) = \text{pure}(f(x))
-$$
+  $$
+  \text{pure}(\lambda x.\, x) \texttt{<*>} v = v
+  $$
 
-$$
-u \texttt{<*>} \text{pure}(y) = \text{pure}(\lambda f.\, f(y)) \texttt{<*>} u
-$$
+* **Homomorphism**:
 
-$$
-\text{pure}(\circ) \texttt{<*>} u \texttt{<*>} v \texttt{<*>} w = u \texttt{<*>} (v \texttt{<*>} w)
-$$
+  $$
+  \text{pure}(f) \texttt{<*>} \text{pure}(x) = \text{pure}(f(x))
+  $$
 
+* **Interchange**:
+
+  $$
+  u \texttt{<*>} \text{pure}(y) = \text{pure}(\lambda f.\, f(y)) \texttt{<*>} u
+  $$
+
+* **Composition**:
+
+  $$
+  \text{pure}(\circ) \texttt{<*>} u \texttt{<*>} v \texttt{<*>} w = u \texttt{<*>} (v \texttt{<*>} w)
+  $$
+
+* **Seq left**:
+
+  $$
+  x \texttt{<*} y = \text{pure}(\lambda x.\, \lambda y.\, x) \texttt{<*>} x \texttt{<*>} y
+  $$
+
+* **Seq right**:
+
+  $$
+  x \texttt{*>} y = \text{pure}(\lambda x.\, \lambda y.\, y) \texttt{<*>} x \texttt{<*>} y
+  $$
 
 ```lean
 instance : LawfulMonad (Free F) where
