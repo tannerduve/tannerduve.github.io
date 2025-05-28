@@ -53,7 +53,7 @@ You’ve probably heard someone jokingly say monads are *just* monoids in the ca
 The List type is defined as follows:
 
 ```haskell
-data List a = Nil | Cons a (List a)
+data List a = Nil | Cons a (List a) 
 ```
 
 Categorically this looks like:
