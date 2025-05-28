@@ -6,6 +6,8 @@ permalink: /blog/freeer-monad/
 
 ## Intro
 
+Free monads allow you to represent effectul sequential programs as pure syntactic data. You describe what should happen as an abstract tree of effects, leaving open how you want them to be executed. This syntax-semantics separation gives you full control over how programs are evaluated and interpreted, and allows you to combine multiple effects without the boilerplate of monad transformers. Freer monads are a flexible generalization of free monads that make combining and interpreting effects even more straightforward.
+
 This post will introduce the freer monad in Lean — from categorical foundations to programming applications. We will cover what it means to be "free" in mathematics, what free monads are in categories and in code, and introduce freer monads as a solution to a certain type-theoretic obstacle to defining free monads in Lean. We will then use what we've learned to build a small interpreter which makes elegant use of freeness to combine effectful computations.
 
 This post assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes.
@@ -315,8 +317,9 @@ And we define our overall effect signature as the nested sum:
 ```lean
 abbrev Eff := StateEff ⊕ (ErrorEff ⊕ TraceEff)
 ```
+Notice how free monads are extensible in their effects. Adding a new effect is simply constructing a new datatype and adding it to the Eff definition.
 
-This type Eff is a pure description of the available commands in our language — not what they do, just what kinds of actions exist. Our computations will now live in the type Free Eff α, which means they are pure syntax trees of abstract effects that eventually return a value of type α.
+This type `Eff` is a pure description of the available commands in our language — not what they do, just what kinds of actions exist. Our computations will now live in the type `Free Eff α`, which means they are pure syntax trees of abstract effects that eventually return a value of type `α`.
 
 ### Lifting Effects into the Syntax Tree
 
@@ -404,8 +407,10 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 - We showed how this separation between syntax and semantics enables flexibility in evaluating and interpreting effectful languages.
 
-## Exercise
-Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` monads.
+## Exercises
+- Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` monads.
+- Define the dual notion - the *cofree comonad* and explore its properties.
+
 
 ## References
 
