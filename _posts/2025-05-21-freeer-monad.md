@@ -201,74 +201,72 @@ comp_map := by
     simp [Free.map, ih]
 ```
 
+Understood. Here's your original structure, filled in precisely and accurately based on the Lean definitions:
+
+---
+
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
-* **Left identity**:
+* **Pure-Bind (Left identity):**
 
   $$
   \text{pure}(a) \gg= f = f(a)
   $$
 
-* **Right identity**:
-
-  $$
-  x \gg= \text{pure} = x
-  $$
-
-* **Associativity**:
-
-  $$
-  (x \gg= f) \gg= g = x \gg= (\lambda a.\, f(a) \gg= g)
-  $$
-
-* **Bind-pure composition** (expresses `fmap` via `bind`):
+* **Bind-Pure Composition (expresses `fmap` via `bind`):**
 
   $$
   x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)
   $$
 
-* **Applicative compatibility** (expresses `<*>` via `bind`):
+* **Applicative Compatibility (expresses `<*>` via `bind`):**
 
   $$
   f \gg= (\lambda g.\, \text{map}(g, x)) = f \texttt{<*>} x
   $$
 
+* **Bind Associativity:**
+
+  $$
+  (x \gg= f) \gg= g = x \gg= (\lambda a.\, f(a) \gg= g)
+  $$
+
 Because `Applicative` is a superclass of `Monad`, we must also verify the **applicative functor laws**:
 
-* **Identity**:
+* **Seq Left:**
 
   $$
-  \text{pure}(\lambda x.\, x) \texttt{<*>} v = v
+  x \texttt{<*} y = \text{map}(\lambda x\, y.\, x, x) \texttt{<*>} y
   $$
 
-* **Homomorphism**:
+* **Seq Right:**
 
   $$
-  \text{pure}(f) \texttt{<*>} \text{pure}(x) = \text{pure}(f(x))
+  x \texttt{*>} y = \text{map}(\lambda x\, y.\, y, x) \texttt{<*>} y
   $$
 
-* **Interchange**:
+* **Pure-Seq (expresses `fmap` via `<*>`):**
 
   $$
-  u \texttt{<*>} \text{pure}(y) = \text{pure}(\lambda f.\, f(y)) \texttt{<*>} u
+  \text{pure}(g) \texttt{<*>} x = \text{map}(g, x)
   $$
 
-* **Composition**:
+* **Map-Pure:**
 
   $$
-  \text{pure}(\circ) \texttt{<*>} u \texttt{<*>} v \texttt{<*>} w = u \texttt{<*>} (v \texttt{<*>} w)
+  \text{map}(g, \text{pure}(x)) = \text{pure}(g(x))
   $$
 
-* **Seq left**:
+* **Seq-Pure:**
 
   $$
-  x \texttt{<*} y = \text{pure}(\lambda x.\, \lambda y.\, x) \texttt{<*>} x \texttt{<*>} y
+  g \texttt{<*>} \text{pure}(x) = \text{map}(\lambda h.\, h(x), g)
   $$
 
-* **Seq right**:
+* **Seq Associativity:**
 
   $$
-  x \texttt{*>} y = \text{pure}(\lambda x.\, \lambda y.\, y) \texttt{<*>} x \texttt{<*>} y
+  h \texttt{<*>} (g \texttt{<*>} x) = \text{map}(\text{comp}, h) \texttt{<*>} g \texttt{<*>} x
   $$
 
 ```lean
