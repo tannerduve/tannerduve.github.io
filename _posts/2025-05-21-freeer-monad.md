@@ -212,7 +212,7 @@ Now we prove that our structure is a **lawful monad**, meaning it satisfies the 
 * **Bind-Pure Composition (expresses `fmap` via `bind`):**  
 
   $$
-  x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)
+  x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)   
   $$
 
 * **Applicative Compatibility (expresses `<*>` via `bind`):**
