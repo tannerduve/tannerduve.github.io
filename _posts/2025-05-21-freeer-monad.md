@@ -204,19 +204,19 @@ comp_map := by
 
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
-- #### `pure_bind`
+- `pure_bind`
   `pure x >>= f = f x`  
   Pure followed by bind is equivalent to function application.
 
-- #### `bind_pure_comp`
+- `bind_pure_comp`
   `x >>= (λ a → pure (f a)) = f <$> x`  
   A bind followed by pure composed with a function is equivalent to a functorial map.
 
-- #### `bind_map`
+- `bind_map`
   `f >>= (λ g → g <$> x) = f <*> x`
   A bind followed by a functorial map is equivalent to Applicative sequencing.
 
-- #### `bind_assoc`
+- `bind_assoc`
   `(x >>= f) >>= g = x >>= (λ a → f a >>= g)`  
   Bind is associative.
 
