@@ -420,6 +420,214 @@ This interpreter is just one way to give meaning to the syntax tree. Because eff
 
 This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then define an interpreter that evalutes your programs however you want.
 
+## Verification
+
+Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
+
+In order to check that our interpreter is correct, we need some kind of semantics for our language — a definition of what it *means* for an expression to evaluate. In programming language theory, this is typically given by a **judgment** — a formal relation that specifies when evaluation succeeds and what result it produces.
+
+We’ll define a *big-step operational semantics* as an inductive relation, and then prove that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
+
+### What does it mean to evaluate an expression?
+
+We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace.
+
+<details>
+<summary><code>inductive EvalRel</code></summary>
+
+```lean
+inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trace) → Prop where
+| val :
+    ∀ n env trace,
+    EvalRel (.val n) env trace (.ok (n, env, trace))
+| var_found :
+    ∀ x env trace v,
+    env.find? (·.fst = x) = some (x, v) →
+    EvalRel (.var x) env trace (.ok (v, env, trace))
+| var_missing :
+    ∀ x env trace,
+    env.find? (·.fst = x) = none →
+    EvalRel (.var x) env trace (.error s!"unbound variable {x}")
+| add :
+    ∀ e1 e2 env trace₁ trace₂ trace₃ v1 v2 env₂ env₃,
+    EvalRel e1 env trace₁ (.ok (v1, env₂, trace₂)) →
+    EvalRel e2 env₂ trace₂ (.ok (v2, env₃, trace₃)) →
+    EvalRel (.add e1 e2) env trace₁ (.ok (v1 + v2, env₃, trace₃))
+| div_ok :
+    ∀ e1 e2 env trace₁ trace₂ trace₃ v1 v2 env₂ env₃,
+    v2 ≠ 0 →
+    EvalRel e1 env trace₁ (.ok (v1, env₂, trace₂)) →
+    EvalRel e2 env₂ trace₂ (.ok (v2, env₃, trace₃)) →
+    EvalRel (.div e1 e2) env trace₁ (.ok (v1 / v2, env₃, trace₃))
+| div_zero :
+    ∀ e1 e2 env trace₁ trace₂ trace₃ v1 v2 env₂ env₃,
+    v2 = 0 →
+    EvalRel e1 env trace₁ (.ok (v1, env₂, trace₂)) →
+    EvalRel e2 env₂ trace₂ (.ok (v2, env₃, trace₃)) →
+    EvalRel (.div e1 e2) env trace₁ (.error "divide by zero")
+```
+
+</details>
+
+### What is `eval`?
+
+We now define a function `eval : Expr → Free Eff Int` that maps an expression into our effectful AST. It uses the `getEnv`, `fail`, etc. helpers we wrote earlier.
+
+<details>
+<summary><code>def eval</code></summary>
+
+```lean
+def eval : Expr → Free Eff Int
+  | .val n => pure n
+  | .var x => do
+      let env ← getEnv
+      match env.find? (·.fst = x) with
+      | some (_, v) => pure v
+      | none => do
+          fail s!"unbound variable {x}"
+          pure 0
+  | .add e1 e2 => do
+      let v1 ← eval e1
+      let v2 ← eval e2
+      pure (v1 + v2)
+  | .div e1 e2 => do
+      let v1 ← eval e1
+      let v2 ← eval e2
+      if v2 = 0 then
+        fail "divide by zero"
+        pure 0
+      else
+        pure (v1 / v2)
+```
+
+</details>
+
+This function constructs a tree of effects — it doesn’t execute anything. It just builds a `Free Eff Int` value that represents what should happen.
+
+### What do we want to prove?
+
+We want to prove that the actual interpreter `run (eval e) env trace` matches the meaning given by `EvalRel`. That is:
+
+```lean
+theorem eval_correct :
+  ∀ (e : Expr) (env : Env) (trace : Trace) (res : Except String (Int × Env × Trace)),
+    EvalRel e env trace res →
+    run (eval e) env trace = res
+```
+
+### Proof sketch
+
+We prove this by induction on `EvalRel`. In each case:
+
+* We unfold the definition of `eval` for that constructor.
+* We apply helper lemmas to peel off the monadic `bind`s.
+* We simplify and match the shape of the result.
+
+We use two helper lemmas to handle monadic bind sequencing:
+
+<details>
+<summary><code>theorem run_bind_ok</code></summary>
+
+```lean
+theorem run_bind_ok {α β}
+    {p : Free Eff α} {k : α → Free Eff β}
+    {env env' : Env} {tr tr' : Trace} {v : α} :
+  run p env tr = .ok (v, env', tr') →
+  run (p >>= k) env tr = run (k v) env' tr' := by
+  intro h
+  revert env env' tr tr' v
+  induction p <;> simp [run, bind, bindFree] at *
+  · case pure a =>
+    intro env env' tr h; simp [h]
+  · case bind X Fx k' ih =>
+    intro env env' tr tr' a h
+    cases Fx
+    case inl sfx =>
+      cases sfx
+      case Get => simp [run, bindFree, ih] at *; apply ih; exact h
+      case Put newEnv => simp [run, bindFree, ih] at *; apply ih; exact h
+    case inr sfx =>
+      cases sfx
+      case inl efx =>
+        cases efx
+        case Fail msg => simp [run, bindFree, ih] at *
+      case inr tfx =>
+        cases tfx
+        case Log msg => simp [run, bindFree, ih] at *; apply ih; exact h
+```
+
+</details>
+
+<details>
+<summary><code>theorem run_bind_err</code></summary>
+
+```lean
+theorem run_bind_err {α β}
+    {p : Free Eff α} {k : α → Free Eff β}
+    {env : Env} {tr : Trace} {msg : String} :
+  run p env tr = .error msg →
+  run (p >>= k) env tr = .error msg := by
+  intro h
+  revert env tr msg
+  induction p <;> simp [run, bind, bindFree] at *
+  case bind X Fx k' ih =>
+    intro env tr msg h; cases Fx
+    case inl sfx =>
+      cases sfx
+      case Get => simp [run, bindFree, ih] at *; apply ih; exact h
+      case Put newEnv => simp [run, bindFree, ih] at *; apply ih; exact h
+    case inr sfx =>
+      cases sfx
+      case inl efx =>
+        cases efx
+        case Fail msg' => simp [run, bindFree, ih] at *; exact h
+      case inr tfx =>
+        cases tfx
+        case Log msg' => simp [run, bindFree, ih] at *; apply ih; exact h
+```
+
+</details>
+
+And finally, the main correctness theorem:
+
+<details>
+<summary><code>theorem eval_correct</code></summary>
+
+```lean
+theorem eval_correct :
+  ∀ (e : Expr) (env : Env) (trace : Trace) (res : Except String (Int × Env × Trace)),
+    EvalRel e env trace res →
+    run (eval e) env trace = res := by
+  intro e env trace res h
+  induction h
+  case val n env' trace' =>
+    simp [eval, pure, run]
+  case var_found x env' trace' v hfind =>
+    simp [eval, getEnv, run, bind, bindFree, FSum.inl, hfind]
+  case var_missing x' env' t hfind =>
+    simp [eval, getEnv, run, bind, bindFree, FSum.inl, hfind, Eff, fail, FSum.inr]
+  case add e1 e2 env' trace₁ trace₂ trace₃ v1 v2 env₂ env₃ he1 he2 ih₁ ih₂ =>
+    simp [eval, bind]
+    have step₁ := run_bind_ok (p := eval e1) (k := fun v1 => do let v2 ← eval e2; pure (v1 + v2)) ih₁
+    simp [bind] at step₁; simp [step₁]
+    have step₂ := run_bind_ok (p := eval e2) (k := fun v2 => pure (v1 + v2)) ih₂
+    simp [bind] at step₂; simp [step₂, run]
+  case div_ok e1 e2 env' trace₁ trace₂ trace₃ v1 v2 env₂ env₃ hne he1 he2 ih₁ ih₂ =>
+    simp [eval, bind]
+    have step₁ := run_bind_ok (p := eval e1) (k := fun v1 => do let v2 ← eval e2; if v2 = 0 then fail "divide by zero"; pure 0 else pure (v1 / v2)) ih₁
+    simp [bind] at step₁; simp [step₁]
+    have step₂ := run_bind_ok (p := eval e2) (k := fun v2 => if v2 = 0 then fail "divide by zero"; pure 0 else pure (v1 / v2)) ih₂
+    simp [bind] at step₂; simp [step₂, hne]; simp [run]
+  case div_zero e1 e2 env' trace₁ trace₂ trace₃ v1 v2 env₂ env₃ heq he1 he2 ih₁ ih₂ =>
+    simp [eval, bind]
+    have step₁ := run_bind_ok (p := eval e1) (k := fun v1 => do let v2 ← eval e2; if v2 = 0 then fail "divide by zero"; pure 0 else pure (v1 / v2)) ih₁
+    simp [bind] at step₁; simp [step₁]
+    have step₂ := run_bind_ok (p := eval e2) (k := fun v2 => if v2 = 0 then fail "divide by zero"; pure 0 else pure (v1 / v2)) ih₂
+    simp [bind] at step₂; simp [step₂, heq]; simp [fail, run, bindFree]
+```
+
+</details>
+
 ## Conclusion
 
 Hopefully this article was informative and helpful in understanding free monads mathematically and gave you a glimpse of their usefulness in programming. This is the first blog post I've written so I'm hoping it was enjoyable. To review what we did:
@@ -439,9 +647,9 @@ Hopefully this article was informative and helpful in understanding free monads 
 - We showed how this separation between syntax and semantics enables flexibility in evaluating and interpreting effectful languages.
 
 ## Exercises
+- Write an interpreter that counts how many times each effect is used in a program.
 - Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` monads.
 - Define the dual notion - the *cofree comonad* and explore its properties.
-
 
 ## References
 
