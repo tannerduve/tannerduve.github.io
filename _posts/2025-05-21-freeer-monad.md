@@ -209,7 +209,7 @@ Now we prove that our structure is a **lawful monad**, meaning it satisfies the 
   \text{pure}(a) \gg= f = f(a)
   $$
 
-* **Bind-Pure Composition (expresses `fmap` via `bind`):**
+* **Bind-Pure Composition (expresses `fmap` via `bind`):**  
 
   $$
   x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)
