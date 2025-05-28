@@ -200,70 +200,27 @@ comp_map := by
   case bind X Fx f ih =>
     simp [Free.map, ih]
 ```
+## Monad and Applicative Laws
 
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
-* **Pure-Bind (Left identity):**
+- **pure_bind**  
+  `pure x >>= f = f x`  
+  Pure followed by bind is equivalent to function application.
 
-  $$
-  \text{pure}(a) \gg= f = f(a)
-  $$
+- **bind_pure_comp**  
+  `x >>= (λ a → pure (f a)) = f <$> x`  
+  A bind followed by pure composed with a function is equivalent to a functorial map.
 
-* **Bind-Pure Composition (expresses `fmap` via `bind`):**  
+- **bind_map**  
+  `f >>= (λ g → g <$> x) = f <*> x`
+  A bind followed by a functorial map is equivalent to Applicative sequencing.
 
-  $$
-  x \gg= (\lambda a.\, \text{pure}(f(a))) = \text{map}(f, x)   
-  $$
+- **bind_assoc**  
+  `(x >>= f) >>= g = x >>= (λ a → f a >>= g)`  
+  Bind is associative.
 
-* **Applicative Compatibility (expresses `<*>` via `bind`):**
-
-  $$
-  f \gg= (\lambda g.\, \text{map}(g, x)) = f \texttt{<*>} x
-  $$
-
-* **Bind Associativity:**
-
-  $$
-  (x \gg= f) \gg= g = x \gg= (\lambda a.\, f(a) \gg= g)
-  $$
-
-Because `Applicative` is a superclass of `Monad`, we must also verify the **applicative functor laws**:
-
-* **Seq Left:**
-
-  $$
-  x \texttt{<*} y = \text{map}(\lambda x\, y.\, x, x) \texttt{<*>} y
-  $$
-
-* **Seq Right:**
-
-  $$
-  x \texttt{*>} y = \text{map}(\lambda x\, y.\, y, x) \texttt{<*>} y
-  $$
-    
-* **Pure-Seq (expresses `fmap` via `<*>`):**
-
-  $$
-  \text{pure}(g) \texttt{<*>} x = \text{map}(g, x)
-  $$
-
-* **Map-Pure:**
-
-  $$
-  \text{map}(g, \text{pure}(x)) = \text{pure}(g(x))
-  $$
-
-* **Seq-Pure:**
-
-  $$
-  g \texttt{<*>} \text{pure}(x) = \text{map}(\lambda h.\, h(x), g)
-  $$
-
-* **Seq Associativity:**
-
-  $$
-  h \texttt{<*>} (g \texttt{<*>} x) = \text{map}(\text{comp}, h) \texttt{<*>} g \texttt{<*>} x
-  $$
+Because `Applicative` is a superclass of `Monad`, we must also verify the **applicative functor laws**. You can view these in your editor.
 
 ```lean
 instance : LawfulMonad (Free F) where
