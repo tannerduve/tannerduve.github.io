@@ -201,10 +201,6 @@ comp_map := by
     simp [Free.map, ih]
 ```
 
-Understood. Here's your original structure, filled in precisely and accurately based on the Lean definitions:
-
----
-
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
 * **Pure-Bind (Left identity):**
