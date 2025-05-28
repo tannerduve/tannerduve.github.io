@@ -424,18 +424,18 @@ This is the central idea of the freer monad pattern: build your program as a tre
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
 
-In order to check that our interpreter is correct, we need some kind of semantics for our language — a definition of what it *means* for an expression to evaluate. In programming language theory, this is typically given by a **judgment** — a formal relation that specifies when evaluation succeeds and what result it produces.
+In order to check that our interpreter is correct, we need some kind of semantics for our language, ie. an assignment of meaning to our programs. In programming language theory, this is typically given by a **judgment** — a formal relation that specifies when evaluation succeeds and what result it produces.
 
-We’ll define a *big-step operational semantics* as an inductive relation, and then prove that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
+We’ll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
 ### What does it mean to evaluate an expression?
 
-We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace.
+We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
 <details>
 <summary><code>inductive EvalRel</code></summary>
 
-```lean
+```
 inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trace) → Prop where
 | val :
     ∀ n env trace,
@@ -471,12 +471,12 @@ inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trac
 
 ### What is `eval`?
 
-We now define a function `eval : Expr → Free Eff Int` that maps an expression into our effectful AST. It uses the `getEnv`, `fail`, etc. helpers we wrote earlier.
+We define a function `eval : Expr → Free Eff Int` that maps an expression into our effectful AST. It uses the `getEnv`, `fail`, etc. helpers we wrote earlier.
 
 <details>
 <summary><code>def eval</code></summary>
 
-```lean
+```
 def eval : Expr → Free Eff Int
   | .val n => pure n
   | .var x => do
@@ -523,12 +523,14 @@ We prove this by induction on `EvalRel`. In each case:
 * We apply helper lemmas to peel off the monadic `bind`s.
 * We simplify and match the shape of the result.
 
-We use two helper lemmas to handle monadic bind sequencing:
+Here are the two helper lemmas we use:
+
+**`run_bind_ok`** says: if `run p = .ok (v, env', tr')`, then `run (p >>= k)` just runs `k v` on the updated environment and trace.
 
 <details>
 <summary><code>theorem run_bind_ok</code></summary>
 
-```lean
+```
 theorem run_bind_ok {α β}
     {p : Free Eff α} {k : α → Free Eff β}
     {env env' : Env} {tr tr' : Trace} {v : α} :
@@ -558,10 +560,12 @@ theorem run_bind_ok {α β}
 
 </details>
 
+**`run_bind_err`** says: if `run p = .error msg`, then `run (p >>= k)` is also `.error msg`. In other words, the bind short-circuits on failure.
+
 <details>
 <summary><code>theorem run_bind_err</code></summary>
 
-```lean
+```
 theorem run_bind_err {α β}
     {p : Free Eff α} {k : α → Free Eff β}
     {env : Env} {tr : Trace} {msg : String} :
@@ -588,12 +592,12 @@ theorem run_bind_err {α β}
 
 </details>
 
-And finally, the main correctness theorem:
+And finally, we prove the main correctness theorem.
 
 <details>
 <summary><code>theorem eval_correct</code></summary>
 
-```lean
+```
 theorem eval_correct :
   ∀ (e : Expr) (env : Env) (trace : Trace) (res : Except String (Int × Env × Trace)),
     EvalRel e env trace res →
