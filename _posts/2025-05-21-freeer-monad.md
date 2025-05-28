@@ -420,11 +420,13 @@ This interpreter is just one way to give meaning to the syntax tree. Because eff
 
 This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then define an interpreter that evalutes your programs however you want.
 
+Here’s your revised **Verification** section with your new intro and consistent inlined formatting:
+
 ## Verification
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
 
-In order to check that our interpreter is correct, we need some kind of semantics for our language, ie. an assignment of meaning to our programs. In programming language theory, this is typically given by a **judgment** — a formal relation that specifies when evaluation succeeds and what result it produces.
+In order to check that our interpreter is correct, we need some kind of semantics for our language, i.e., an assignment of meaning to our programs. In programming language theory, this is typically given by a **judgment** — a formal relation that specifies when evaluation succeeds and what result it produces.
 
 We’ll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
@@ -432,10 +434,7 @@ We’ll define a *big-step operational semantics* as an inductive relation, and 
 
 We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
-<details>
-<summary><code>inductive EvalRel</code></summary>
-
-```
+```lean
 inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trace) → Prop where
 | val :
     ∀ n env trace,
@@ -467,16 +466,11 @@ inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trac
     EvalRel (.div e1 e2) env trace₁ (.error "divide by zero")
 ```
 
-</details>
-
 ### What is `eval`?
 
-We define a function `eval : Expr → Free Eff Int` that maps an expression into our effectful AST. It uses the `getEnv`, `fail`, etc. helpers we wrote earlier.
+The function `eval : Expr → Free Eff Int` maps an expression into our effectful AST. It constructs a tree of effects representing what should happen during evaluation — not how to run it. This is the object our interpreter consumes.
 
-<details>
-<summary><code>def eval</code></summary>
-
-```
+```lean
 def eval : Expr → Free Eff Int
   | .val n => pure n
   | .var x => do
@@ -500,13 +494,9 @@ def eval : Expr → Free Eff Int
         pure (v1 / v2)
 ```
 
-</details>
-
-This function constructs a tree of effects — it doesn’t execute anything. It just builds a `Free Eff Int` value that represents what should happen.
-
 ### What do we want to prove?
 
-We want to prove that the actual interpreter `run (eval e) env trace` matches the meaning given by `EvalRel`. That is:
+We want to prove that `eval` followed by `run` gives the same result as the semantics. That is:
 
 ```lean
 theorem eval_correct :
@@ -517,87 +507,33 @@ theorem eval_correct :
 
 ### Proof sketch
 
-We prove this by induction on `EvalRel`. In each case:
+We proceed by induction on the derivation of `EvalRel e env trace res`. In each case, we:
 
-* We unfold the definition of `eval` for that constructor.
-* We apply helper lemmas to peel off the monadic `bind`s.
-* We simplify and match the shape of the result.
+* Unfold the definition of `eval` for the given expression
+* Use helper lemmas to simplify `run (p >>= k)`
+* Match the result with the expected output
 
-Here are the two helper lemmas we use:
+These two helper lemmas handle the sequencing of computations in the `Free` monad:
 
-**`run_bind_ok`** says: if `run p = .ok (v, env', tr')`, then `run (p >>= k)` just runs `k v` on the updated environment and trace.
-
-<details>
-<summary><code>theorem run_bind_ok</code></summary>
-
-```
+```lean
 theorem run_bind_ok {α β}
     {p : Free Eff α} {k : α → Free Eff β}
     {env env' : Env} {tr tr' : Trace} {v : α} :
   run p env tr = .ok (v, env', tr') →
-  run (p >>= k) env tr = run (k v) env' tr' := by
-  intro h
-  revert env env' tr tr' v
-  induction p <;> simp [run, bind, bindFree] at *
-  · case pure a =>
-    intro env env' tr h; simp [h]
-  · case bind X Fx k' ih =>
-    intro env env' tr tr' a h
-    cases Fx
-    case inl sfx =>
-      cases sfx
-      case Get => simp [run, bindFree, ih] at *; apply ih; exact h
-      case Put newEnv => simp [run, bindFree, ih] at *; apply ih; exact h
-    case inr sfx =>
-      cases sfx
-      case inl efx =>
-        cases efx
-        case Fail msg => simp [run, bindFree, ih] at *
-      case inr tfx =>
-        cases tfx
-        case Log msg => simp [run, bindFree, ih] at *; apply ih; exact h
+  run (p >>= k) env tr = run (k v) env' tr' := ...
 ```
 
-</details>
-
-**`run_bind_err`** says: if `run p = .error msg`, then `run (p >>= k)` is also `.error msg`. In other words, the bind short-circuits on failure.
-
-<details>
-<summary><code>theorem run_bind_err</code></summary>
-
-```
+```lean
 theorem run_bind_err {α β}
     {p : Free Eff α} {k : α → Free Eff β}
     {env : Env} {tr : Trace} {msg : String} :
   run p env tr = .error msg →
-  run (p >>= k) env tr = .error msg := by
-  intro h
-  revert env tr msg
-  induction p <;> simp [run, bind, bindFree] at *
-  case bind X Fx k' ih =>
-    intro env tr msg h; cases Fx
-    case inl sfx =>
-      cases sfx
-      case Get => simp [run, bindFree, ih] at *; apply ih; exact h
-      case Put newEnv => simp [run, bindFree, ih] at *; apply ih; exact h
-    case inr sfx =>
-      cases sfx
-      case inl efx =>
-        cases efx
-        case Fail msg' => simp [run, bindFree, ih] at *; exact h
-      case inr tfx =>
-        cases tfx
-        case Log msg' => simp [run, bindFree, ih] at *; apply ih; exact h
+  run (p >>= k) env tr = .error msg := ...
 ```
 
-</details>
+Now we can prove the theorem.
 
-And finally, we prove the main correctness theorem.
-
-<details>
-<summary><code>theorem eval_correct</code></summary>
-
-```
+```lean
 theorem eval_correct :
   ∀ (e : Expr) (env : Env) (trace : Trace) (res : Except String (Int × Env × Trace)),
     EvalRel e env trace res →
@@ -630,7 +566,7 @@ theorem eval_correct :
     simp [bind] at step₂; simp [step₂, heq]; simp [fail, run, bindFree]
 ```
 
-</details>
+Now we have formally verified our interpreter agrees with our language semantics.
 
 ## Conclusion 
 
