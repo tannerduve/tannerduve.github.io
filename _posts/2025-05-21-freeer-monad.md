@@ -105,7 +105,7 @@ This already kind of looks like a monad by definition! Now, given that `f` is a 
 instance Functor f => Monad (Free f) where
   return = Pure
   Pure x >>= f = f x
-  Free g >>= f = Free ((>>= f) <\(> g)
+  Free g >>= f = Free ((>>= f) <$> g)
 ```
 
 ### In Lean
