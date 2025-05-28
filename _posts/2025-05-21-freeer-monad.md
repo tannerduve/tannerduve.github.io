@@ -68,7 +68,7 @@ $$
 F_a x = \mathbf{1} + (a \times x)
 $$
 
-(see: [inductive types as initial algebras](https://ncatlab.org/nlab/show/initial+algebra+of+an+endofunctor#more_examples)).
+(see: [inductive types as initial algebras](https://ncatlab.org/nlab/show/initial+algebra+of+an+endofunctor#more_examples))
 
 Well, since the List functor maps a type to its free monoid, and we want our free monad functor to map an endofunctor to its free monad, we "lift" what we have done on lists in the category of types to free monads in the category of endofunctors. In this sense, lists are to types as free monads are to endofunctors. In programmer terms, we are defining a higher-order functor that is analogous to `List`, but acts on functors rather than types.
 
