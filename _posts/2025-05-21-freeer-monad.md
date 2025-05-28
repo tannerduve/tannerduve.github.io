@@ -468,7 +468,7 @@ inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trac
 
 ### What is `eval`?
 
-The function `eval : Expr → Free Eff Int` maps an expression into our effectful AST. It constructs a tree of effects representing what should happen during evaluation — not how to run it. This is the object our interpreter consumes.
+The function `eval : Expr → Free Eff Int` maps an expression into our effectful AST. It constructs a tree of effects representing what should happen during evaluation. This is the object our interpreter consumes.
 
 ```lean
 def eval : Expr → Free Eff Int
