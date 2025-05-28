@@ -138,7 +138,7 @@ Since the free monad doesn't work due to type-theoretic restrictions, we need a 
 ```lean
 inductive Free (f : Type -> Type) (a : Type) where
   | pure : a -> Free f a
-  | bind : forall x, f x -> (x -> Free f a) -> Free f a
+  | bind : ∀ x, f x -> (x -> Free f a) -> Free f a
 ```
 
 In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor G.
