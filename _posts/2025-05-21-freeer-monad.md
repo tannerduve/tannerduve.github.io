@@ -293,7 +293,7 @@ seqLeft_eq := by
   case bind X Fx k ih => simp [bindFree, Free.map, ih]
 seqRight_eq := by
   intro α β x y; simp [Functor.map, bindFree, Free.map]; induction x
-  case pure a =>
+  case pure a => 
     simp [bindFree, Free.map]
     induction y
     case pure b => simp [SeqRight.seqRight, Seq.seq, Functor.map, bindFree, Free.map]
