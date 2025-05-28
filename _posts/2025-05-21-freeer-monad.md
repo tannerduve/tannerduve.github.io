@@ -4,7 +4,7 @@ layout: single
 permalink: /blog/freeer-monad/
 ---
 
-## Intro
+## Introduction
 
 Free monads allow you to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe *what* should happen as an abstract tree of effects, leaving open *how* you want it to happen. By decoupling syntax from semantics in this way you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
 
