@@ -204,10 +204,6 @@ comp_map := by
 
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
-- `pure_bind`
-  `pure x >>= f = f x`  
-  Pure followed by bind is equivalent to function application.
-
 - `bind_pure_comp`
   `x >>= (λ a → pure (f a)) = f <$> x`  
   A bind followed by pure composed with a function is equivalent to a functorial map.
@@ -216,11 +212,17 @@ Now we prove that our structure is a **lawful monad**, meaning it satisfies the 
   `f >>= (λ g → g <$> x) = f <*> x`
   A bind followed by a functorial map is equivalent to Applicative sequencing.
 
+- `pure_bind`
+  `pure x >>= f = f x`  
+  Pure followed by bind is equivalent to function application.
+
 - `bind_assoc`
   `(x >>= f) >>= g = x >>= (λ a → f a >>= g)`  
   Bind is associative.
 
 Because `Applicative` is a superclass of `Monad`, we must also verify the **applicative functor laws**. You can view these in your editor.
+
+The proof is as follows:
 
 ```lean
 instance : LawfulMonad (Free F) where
@@ -261,7 +263,7 @@ pure_seq := by
 ```
 I won't write out the informal details of the proof, but it is mostly straightforward, we unfold all the definitions using `simp`, and in some cases when we have a value of type `Free F a` we perform induction on it and simplify further.
 
-## An Interpreter with Side Effects
+## Tutorial : An Interpreter with Side Effects
 
 In this final section we will do a mini tutorial to show the power of the free monad by building an interpreter for an expression language with side effects. The key idea here is that the freer monad lets us separate what we want to do (a syntactic description of effectful computation) from how we want to do it (interpreting and executing the effects semantically).
 
@@ -379,7 +381,7 @@ This is the central idea of the freer monad pattern: build your program as a tre
 
 Here’s your revised **Verification** section with your new intro and consistent inlined formatting:
 
-## Verification
+### Verification
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
 
@@ -387,9 +389,9 @@ In order to check that our interpreter is correct, we need some kind of semantic
 
 We’ll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
-### What does it mean to evaluate an expression?
+#### What does it mean to evaluate an expression?
 
-We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
+We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. We also define a function `eval` which maps an expression to the effectful AST. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
 ```lean
 inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trace) → Prop where
@@ -423,9 +425,9 @@ inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trac
     EvalRel (.div e1 e2) env trace₁ (.error "divide by zero")
 ```
 
-### What is `eval`?
+#### What is `eval`?
 
-The function `eval : Expr → Free Eff Int` maps an expression into our effectful AST. It constructs a tree of effects representing what should happen during evaluation. This is the object our interpreter consumes.
+The function `eval : Expr → Free Eff Int` constructs a tree of effects representing what should happen during evaluation. This is the object our interpreter consumes.
 
 ```lean
 def eval : Expr → Free Eff Int
@@ -451,7 +453,7 @@ def eval : Expr → Free Eff Int
         pure (v1 / v2)
 ```
 
-### What do we want to prove?
+#### What do we want to prove?
 
 We want to prove that `eval` followed by `run` gives the same result as the semantics. That is:
 
@@ -462,7 +464,7 @@ theorem eval_correct :
     run (eval e) env trace = res
 ```
 
-### Proof sketch
+#### Proof sketch
 
 We proceed by induction on the derivation of `EvalRel e env trace res`. In each case, we:
 
