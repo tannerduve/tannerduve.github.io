@@ -650,6 +650,8 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 - We showed how this separation between syntax and semantics enables flexibility in evaluating and interpreting effectful languages.
 
+- We showed how to define an operational semantics and prove that the interpreter agrees with it.
+
 ## Exercises
 - Write an interpreter that counts how many times each effect is used in a program.
 - Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` monads.
