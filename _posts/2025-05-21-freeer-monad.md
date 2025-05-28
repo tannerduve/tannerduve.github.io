@@ -578,7 +578,7 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 - We introduced the concept of free objects in mathematics, starting with vector spaces, monoids, and groups.
 
-- We defined the free monad categorically as the lease fixed point of a particular functor, drawing analogy to the List type.
+- We defined the free monad categorically as the least fixed point of a particular functor, drawing analogy to the List type.
 
 - In Haskell, we implemented the standard `Free f a` type and gave it a Monad instance.
 
