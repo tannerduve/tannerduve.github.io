@@ -632,7 +632,7 @@ theorem eval_correct :
 
 </details>
 
-## Conclusion
+## Conclusion 
 
 Hopefully this article was informative and helpful in understanding free monads mathematically and gave you a glimpse of their usefulness in programming. This is the first blog post I've written so I'm hoping it was enjoyable. To review what we did:
 
