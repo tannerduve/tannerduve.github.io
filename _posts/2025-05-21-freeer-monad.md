@@ -513,7 +513,7 @@ We proceed by induction on the derivation of `EvalRel e env trace res`. In each 
 * Use helper lemmas to simplify `run (p >>= k)`
 * Match the result with the expected output
 
-These two helper lemmas handle the sequencing of computations in the `Free` monad:
+These two helper lemmas simplify `run (p >>= k)`:
 
 ```lean
 theorem run_bind_ok {α β}
@@ -523,6 +523,8 @@ theorem run_bind_ok {α β}
   run (p >>= k) env tr = run (k v) env' tr' := ...
 ```
 
+If `p` succeeds with `v`, then `p >>= k` runs `k v` next.
+
 ```lean
 theorem run_bind_err {α β}
     {p : Free Eff α} {k : α → Free Eff β}
@@ -530,6 +532,8 @@ theorem run_bind_err {α β}
   run p env tr = .error msg →
   run (p >>= k) env tr = .error msg := ...
 ```
+
+If `p` errors, then `p >>= k` errors with the same message.
 
 Now we can prove the theorem.
 
