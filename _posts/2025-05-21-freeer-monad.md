@@ -125,7 +125,7 @@ Weird. We get this opaque error message:
 datatypes being declared
 ```
 
-What could this mean?
+Why does the definition work in Haskell but not Lean?
 
 #### Strict Positivity
 
