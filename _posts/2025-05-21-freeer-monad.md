@@ -11,7 +11,7 @@ Free monads allow you to represent effectful sequential programs as pure syntact
 - Run it directly
 - Pretty print it
 - Analyze it statically
-- Compile to another language
+- Compile to another language 
 - Log or track resource use
 
 Each of these corresponds to a different interpreter. This approach also allows effects to be combined without you having to get tangled up in monad transformers. *Freer* monads are a flexible generalization of free monads that make combining and interpreting effects even easier.
