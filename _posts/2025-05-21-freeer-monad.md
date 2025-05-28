@@ -6,7 +6,7 @@ permalink: /blog/freeer-monad/
 
 ## Intro
 
-Free monads allow you to represent effectul sequential programs as pure syntactic data. You describe what should happen as an abstract tree of effects, leaving open how you want them to be executed. This syntax-semantics separation gives you full control over how programs are evaluated and interpreted, and allows you to combine multiple effects without the boilerplate of monad transformers. Freer monads are a flexible generalization of free monads that make combining and interpreting effects even more straightforward.
+Free monads allow you to represent effectful sequential programs as pure syntactic data, separate from its interpretation. You describe what should happen as an abstract tree of effects, leaving open how you want them to be executed. This clean boundary between syntax and semantics gives you full control over how programs are evaluated and interpreted, and allows you to combine multiple effects without the boilerplate of monad transformers. Freer monads are a flexible generalization of free monads that make combining and interpreting effects even more straightforward.
 
 This post will introduce the freer monad in Lean — from categorical foundations to programming applications. We will cover what it means to be "free" in mathematics, what free monads are in categories and in code, and introduce freer monads as a solution to a certain type-theoretic obstacle to defining free monads in Lean. We will then use what we've learned to build a small interpreter which makes elegant use of freeness to combine effectful computations.
 
