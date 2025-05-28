@@ -12,7 +12,7 @@ author_profile: true
 ---
 
 ### [The Free-er Monad](/blog/freeer-monad/)
-*Strictly positive thoughts on operational monads in Lean*
+*Strictly positive thoughts on freer monads in Lean for the mathematically inclined progammer*
 
 ---
 
