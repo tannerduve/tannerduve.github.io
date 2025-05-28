@@ -374,7 +374,7 @@ This interpreter is just one way to give meaning to the syntax tree. Because eff
 - A static analyzer that checks for possible failures without running the program.
 
 This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then define an interpreter that evalutes your programs however you want.
-
+  
 ## Verification
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
