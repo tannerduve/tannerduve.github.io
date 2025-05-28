@@ -141,7 +141,7 @@ inductive Free (f : Type -> Type) (a : Type) where
   | bind : ∀ x, f x -> (x -> Free f a) -> Free f a
 ```
 
-In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor G.
+In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor.
 
 #### Monad Instance of `Free f`
 
