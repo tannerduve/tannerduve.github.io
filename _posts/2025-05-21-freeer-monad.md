@@ -375,7 +375,7 @@ This interpreter is just one way to give meaning to the syntax tree. Because eff
 
 This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then define an interpreter that evalutes your programs however you want.
 
-### Verification
+## Verification
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
 
@@ -383,7 +383,7 @@ In order to check that our interpreter is correct, we need some kind of semantic
 
 We’ll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
-#### What does it mean to evaluate an expression?
+### What does it mean to evaluate an expression?
 
 We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. We also define a function `eval` which maps an expression to the effectful AST. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
@@ -419,8 +419,6 @@ inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trac
     EvalRel (.div e1 e2) env trace₁ (.error "divide by zero")
 ```
 
-#### What is `eval`?
-
 The function `eval : Expr → Free Eff Int` constructs a tree of effects representing what should happen during evaluation. This is the object our interpreter consumes.
 
 ```lean
@@ -447,7 +445,7 @@ def eval : Expr → Free Eff Int
         pure (v1 / v2)
 ```
 
-#### What do we want to prove?
+### What do we want to prove?
 
 We want to prove that `eval` followed by `run` gives the same result as the semantics. That is:
 
@@ -458,7 +456,7 @@ theorem eval_correct :
     run (eval e) env trace = res
 ```
 
-#### Proof sketch
+### Proof
 
 We proceed by induction on the derivation of `EvalRel e env trace res`. In each case, we:
 
