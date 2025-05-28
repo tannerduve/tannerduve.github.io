@@ -240,7 +240,7 @@ Because `Applicative` is a superclass of `Monad`, we must also verify the **appl
   $$
   x \texttt{*>} y = \text{map}(\lambda x\, y.\, y, x) \texttt{<*>} y
   $$
-
+    
 * **Pure-Seq (expresses `fmap` via `<*>`):**
 
   $$
