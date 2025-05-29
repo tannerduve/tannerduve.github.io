@@ -379,11 +379,11 @@ This is the central idea of the freer monad pattern: build your program as a tre
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
 
-In order to check that our interpreter is correct, we need some kind of semantics for our language, i.e., an assignment of meaning to our programs. In programming language theory, this is typically given by a **judgment** — a formal relation that specifies when evaluation succeeds and what result it produces.
+In order to check that our interpreter is correct, we need some kind of semantics for our language, i.e., an assignment of meaning to our programs. In programming language theory, this is given as a formal relation that specifies when evaluation succeeds and what result it produces.
 
 We’ll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
-### What does it mean to evaluate an expression?
+### Semantics
 
 We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. We also define a function `eval` which maps an expression to the effectful AST. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
