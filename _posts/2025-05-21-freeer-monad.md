@@ -29,10 +29,12 @@ This post assumes you know basic concepts from both category theory and function
    - [In Lean](#InLean)
 4. [Monad and Applicative Laws](#MonadandApplicativeLaws)
 5. [Tutorial: A Verified Interpreter with Side Effects](#Tutorial:AVerifiedInterpreterwithSideEffects)
+    - [Language and Effects](#LanguageandEffects)
+    - [Interpreter](#RunningtheProgram)
+    - [Verification](#Verification)
 6. [Conclusion](#Conclusion)
 7. [Exercises](#Exercises)
 8. [References](#References)
-
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -330,7 +332,7 @@ Notice how free monads are extensible in their effects. Adding a new effect is s
 
 This type `Eff` is a pure description of the available commands in our language — not what they do, just what kinds of actions exist. Our computations will now live in the type `Free Eff α`, which means they are pure syntax trees of abstract effects that eventually return a value of type `α`.
 
-###  5.2. <a name='LiftingEffectsintotheSyntaxTree'></a>Lifting Effects into the Syntax Tree
+**Lifting Effects into the Syntax Tree**
 
 To construct nodes in our effect AST, we define some helper functions that wrap each command in the Free monad:
 
@@ -348,7 +350,7 @@ def log (msg : String) : Free Eff Unit :=
   Free.bind _ (FSum.inr (FSum.inr (TraceEff.Log msg))) Free.pure
 ```
 
-###  5.3. <a name='WritingaProgram'></a>Writing a Program
+**Writing a Program**
 
 We can now write a little program. It logs a message, updates the environment, reads back a variable, and returns its increment:
 
@@ -365,7 +367,7 @@ This "program" is constructing a tree of abstract effects independently of any e
 
 This separation between syntax and semantics is the core idea. We build up a value of type `Free Eff Int` that describes a program in terms of its desired behavior. This value is like an AST of effects. The tree is built using the constructors pure and bind, and the functorial action of the coproduct `⊕` lets us represent multiple kinds of effects simultaneously.
 
-###  5.4. <a name='RunningtheProgram'></a>Running the Program
+###  5.4. <a name='RunningtheProgram'></a>Interpreter
 
 To actually run the program, we define an interpreter — a recursive function that walks the syntax tree and gives meaning to each effect node. This function takes a `Free Eff α` value, along with an environment and a trace list, and evaluates the computation into an `Except String (α × Env × Trace)`:
 
@@ -406,7 +408,7 @@ In order to check that our interpreter is correct, we need some kind of semantic
 
 We’ll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
-####  5.5.1. <a name='Semantics'></a>Semantics
+**Semantics**
 
 We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. We also define a function `eval` which maps an expression to the effectful AST. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
@@ -468,7 +470,7 @@ def eval : Expr → Free Eff Int
         pure (v1 / v2)
 ```
 
-####  5.5.2. <a name='Whatdowewanttoprove'></a>What do we want to prove?
+**What do we want to prove?**
 
 We want to prove that `eval` followed by `run` gives the same result as the semantics. That is:
 
@@ -479,7 +481,7 @@ theorem eval_correct :
     run (eval e) env trace = res
 ```
 
-####  5.5.3. <a name='Proof'></a>Proof
+**Proof**
 
 We proceed by induction on the derivation of `EvalRel e env trace res`. In each case, we:
 
