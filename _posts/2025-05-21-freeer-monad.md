@@ -67,7 +67,7 @@ The moral of the story here is that a free construction is the canonical way to 
 
 > "A monad is just a monoid in the category of endofunctors, what's the problem?"
 
-You’ve probably heard someone jokingly say monads are *just* monoids in the category of endofunctors. It's technically a correct definition, but it tells you nothing if you don't speak category theory. However, understanding monads as monoids may actually help us construct the free monad by analogy to the free monoid — aka the List type constructor. I know I promised this was an article on Lean but we will start with some Haskell first.
+You’ve probably heard someone jokingly say monads are *just* monoids in the category of endofunctors. It's technically a correct definition, but it tells you nothing if you don't speak category theory. However, understanding monads as monoids may actually help us construct the free monad by analogy to the free monoid — aka the `List` type. I know I promised this was an article on Lean but we will start with some Haskell first.
 
 ###  3.1. <a name='InHaskell'></a>In Haskell
 
