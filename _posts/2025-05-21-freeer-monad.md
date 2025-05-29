@@ -4,34 +4,6 @@ layout: single
 permalink: /blog/freeer-monad/
 ---
 
-<!-- vscode-markdown-toc -->
-* 1. [Introduction](#Introduction)
-* 2. [Free Objects](#FreeObjects)
-* 3. [Free Monads](#FreeMonads)
-	* 3.1. [In Haskell](#InHaskell)
-	* 3.2. [In Lean](#InLean)
-		* 3.2.1. [Strict Positivity](#StrictPositivity)
-		* 3.2.2. [Monad Instance of `Free f`](#MonadInstanceofFreef)
-* 4. [Monad and Applicative Laws](#MonadandApplicativeLaws)
-* 5. [Tutorial : A Verified Interpreter with Side Effects](#Tutorial:AVerifiedInterpreterwithSideEffects)
-	* 5.1. [Language and Effects](#LanguageandEffects)
-	* 5.2. [Lifting Effects into the Syntax Tree](#LiftingEffectsintotheSyntaxTree)
-	* 5.3. [Writing a Program](#WritingaProgram)
-	* 5.4. [Running the Program](#RunningtheProgram)
-	* 5.5. [Verification](#Verification)
-		* 5.5.1. [Semantics](#Semantics)
-		* 5.5.2. [What do we want to prove?](#Whatdowewanttoprove)
-		* 5.5.3. [Proof](#Proof)
-* 6. [Conclusion](#Conclusion)
-* 7. [Exercises](#Exercises)
-* 8. [References](#References)
-
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
-
 ##  1. <a name='Introduction'></a>Introduction
 
 Free monads provide a way to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe *what* should happen as an abstract tree of effects, leaving open *how* you want it to happen. By decoupling syntax from semantics like this you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
@@ -46,6 +18,27 @@ Each of these corresponds to a different interpreter. This approach also allows 
 This post will introduce the freer monad in Lean — from categorical foundations to programming applications. We will cover what it means to be "free" in mathematics, what free monads are in categories and in code, and introduce freer monads as a solution to a certain type-theoretic obstacle to defining free monads in Lean. We will then use what we've learned to build and verify a small interpreter which makes elegant use of freeness to combine effectful computations.
 
 This post assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes.
+
+<!-- vscode-markdown-toc -->
+## Table of Contents
+
+1. [Introduction](#Introduction)
+2. [Free Objects](#FreeObjects)
+3. [Free Monads](#FreeMonads)
+   - [In Haskell](#InHaskell)
+   - [In Lean](#InLean)
+4. [Monad and Applicative Laws](#MonadandApplicativeLaws)
+5. [Tutorial: A Verified Interpreter with Side Effects](#Tutorial:AVerifiedInterpreterwithSideEffects)
+6. [Conclusion](#Conclusion)
+7. [Exercises](#Exercises)
+8. [References](#References)
+
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
 
 ##  2. <a name='FreeObjects'></a>Free Objects
 
