@@ -6,13 +6,12 @@ permalink: /blog/freeer-monad/
 
 ## Introduction
 
-Free monads allow you to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe *what* should happen as an abstract tree of effects, leaving open *how* you want it to happen. By decoupling syntax from semantics in this way you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
+Free monads provide a way to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe *what* should happen as an abstract tree of effects, leaving open *how* you want it to happen. By decoupling syntax from semantics like this you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
 
 - Run it directly
 - Pretty print it
 - Analyze it statically
 - Compile to another language 
-- Log or track resource use
 
 Each of these corresponds to a different interpreter. This approach also allows effects to be combined without you having to get tangled up in monad transformers. *Freer* monads are a flexible generalization of free monads that make combining and interpreting effects even easier.
 
@@ -208,6 +207,7 @@ Now we prove that our structure is a **lawful monad**, meaning it satisfies the 
   A bind followed by pure composed with a function is equivalent to a functorial map.
 
 - `bind_map : f >>= (λ g → g <$> x) = f <*> x`
+
   A bind followed by a functorial map is equivalent to Applicative sequencing.
 
 - `pure_bind : pure x >>= f = f x`  
