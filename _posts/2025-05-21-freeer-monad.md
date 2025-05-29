@@ -27,7 +27,6 @@ This post assumes you know basic concepts from both category theory and function
 3. [Free Monads](#FreeMonads)
    - [In Haskell](#InHaskell)
    - [In Lean](#InLean)
-4. [Monad and Applicative Laws](#MonadandApplicativeLaws)
 5. [Tutorial: A Verified Interpreter with Side Effects](#Tutorial:AVerifiedInterpreterwithSideEffects)
     - [Language and Effects](#LanguageandEffects)
     - [Interpreter](#RunningtheProgram)
@@ -149,7 +148,7 @@ datatypes being declared
 
 Why does the definition work in Haskell but not Lean?
 
-####  3.2.1. <a name='StrictPositivity'></a>Strict Positivity
+**Strict Positivity**
 
 Recall that, in languages like Lean (or Coq, or Agda), in order for the proof system to be consistent, all functions must terminate. Proofs correspond to programs, and if we had programs that could loop forever, we could prove anything, and our logic would be useless.
 
@@ -165,7 +164,7 @@ inductive Free (f : Type -> Type) (a : Type) where
 
 In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor.
 
-####  3.2.2. <a name='MonadInstanceofFreef'></a>Monad Instance of `Free f`
+**Monad Instance of `Free f`**
 
 We begin by providing a Functor instance, which is just defining a map function, lifting a function $f : \alpha \to \beta$ to a function $Ff : \text{Free } F \ \alpha \to \text{Free } F \ \beta$:
 
@@ -222,7 +221,6 @@ comp_map := by
   case bind X Fx f ih =>
     simp [Free.map, ih]
 ```
-##  4. <a name='MonadandApplicativeLaws'></a>Monad and Applicative Laws
 
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
