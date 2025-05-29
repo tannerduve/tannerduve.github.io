@@ -293,7 +293,7 @@ In this final section we will do a mini tutorial to show the power of the free m
 
 ###  5.1. <a name='LanguageandEffects'></a>Language and Effects
 
-We begin by defining a tiny expression language, with integers, variables, addition, and division:
+We begin by defining a tiny expression language, with integers, variables, addition, and division. We use the `Env` type to represent environments, which are just mappings of variables to values:
 
 ```lean
 inductive Expr where
@@ -301,6 +301,8 @@ inductive Expr where
   | var : String → Expr
   | add : Expr → Expr → Expr
   | div : Expr → Expr → Expr
+
+abbrev Env := List (String × Int)
 ```
 
 We also define three effect types: mutable state (for the environment), errors (for failed variable lookups or division by zero), and a trace log (for inspection or debugging):
