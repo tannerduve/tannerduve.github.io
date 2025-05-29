@@ -132,7 +132,7 @@ Recall that, in languages like Lean (or Coq, or Agda), in order for the proof sy
 
 To enforce this, defining inductive types has a restriction, called [**strict positivity**](https://www.pls-lab.org/Strictly_positive). Basically, an inductive type can not refer to itself on the left side of an arrow in its constructors. If Lean allowed this definition, we could inhabit the empty type (i.e. prove False) using a contravariant functor.
 
-Since the free monad doesn't work due to type-theoretic restrictions, we need a little bit more freedom. Enter: the freer monad. The below definition is strictly positive:
+Since the free monad doesn't work due to type-theoretic restrictions, we need a little bit more freedom. *Enter the freer monad*. The below definition is strictly positive:
 
 ```lean
 inductive Free (f : Type -> Type) (a : Type) where
