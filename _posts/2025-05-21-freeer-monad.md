@@ -130,7 +130,7 @@ Why does the definition work in Haskell but not Lean?
 
 Recall that, in languages like Lean (or Coq, or Agda), in order for the proof system to be consistent, all functions must terminate. Proofs correspond to programs, and if we had programs that could loop forever, we could prove anything, and our logic would be useless.
 
-To enforce this, defining inductive types has a restriction, called **strict positivity**. Strict positivity disallows contravariant occurrences of self-reference in the constructors of an inductive type. In simpler terms, an inductive type definition cannot refer to itself on the left side of an arrow in the constructors. If Lean allowed this definition, we could inhabit the empty type (i.e. prove false) using a contravariant functor.
+To enforce this, defining inductive types has a restriction, called [**strict positivity**](https://www.pls-lab.org/Strictly_positive). Basically, an inductive type can not refer to itself on the left side of an arrow in its constructors. If Lean allowed this definition, we could inhabit the empty type (i.e. prove False) using a contravariant functor.
 
 Since the free monad doesn't work due to type-theoretic restrictions, we need a little bit more freedom. Enter: the freer monad. The below definition is strictly positive:
 
