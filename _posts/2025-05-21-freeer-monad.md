@@ -4,7 +4,35 @@ layout: single
 permalink: /blog/freeer-monad/
 ---
 
-## Introduction
+<!-- vscode-markdown-toc -->
+* 1. [Introduction](#Introduction)
+* 2. [Free Objects](#FreeObjects)
+* 3. [Free Monads](#FreeMonads)
+	* 3.1. [In Haskell](#InHaskell)
+	* 3.2. [In Lean](#InLean)
+		* 3.2.1. [Strict Positivity](#StrictPositivity)
+		* 3.2.2. [Monad Instance of `Free f`](#MonadInstanceofFreef)
+* 4. [Monad and Applicative Laws](#MonadandApplicativeLaws)
+* 5. [Tutorial : A Verified Interpreter with Side Effects](#Tutorial:AVerifiedInterpreterwithSideEffects)
+	* 5.1. [Language and Effects](#LanguageandEffects)
+	* 5.2. [Lifting Effects into the Syntax Tree](#LiftingEffectsintotheSyntaxTree)
+	* 5.3. [Writing a Program](#WritingaProgram)
+	* 5.4. [Running the Program](#RunningtheProgram)
+	* 5.5. [Verification](#Verification)
+		* 5.5.1. [Semantics](#Semantics)
+		* 5.5.2. [What do we want to prove?](#Whatdowewanttoprove)
+		* 5.5.3. [Proof](#Proof)
+* 6. [Conclusion](#Conclusion)
+* 7. [Exercises](#Exercises)
+* 8. [References](#References)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+##  1. <a name='Introduction'></a>Introduction
 
 Free monads provide a way to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe *what* should happen as an abstract tree of effects, leaving open *how* you want it to happen. By decoupling syntax from semantics like this you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
 
@@ -19,7 +47,7 @@ This post will introduce the freer monad in Lean — from categorical foundation
 
 This post assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes.
 
-## Free Objects
+##  2. <a name='FreeObjects'></a>Free Objects
 
 Before getting into free monads, we will first consider what it means for some structure to be "free". This section is pretty mathematical but if you're like me it may help understand things down the line when we start coding, otherwise you can skim this section.
 
@@ -41,13 +69,13 @@ This can also be stated in terms of a universal property. Slightly informally, a
 
 The moral of the story here is that a free construction is the canonical way to generate the desired structure from some underlying data, adding only what is necessary to satisfy the rules of the desired structure. Our free monad is thus the canonical monad generated from an endofunctor, satisfying nothing other than the monad laws.
 
-## Free Monads
+##  3. <a name='FreeMonads'></a>Free Monads
 
 > "A monad is just a monoid in the category of endofunctors, what's the problem?"
 
 You’ve probably heard someone jokingly say monads are *just* monoids in the category of endofunctors. It's technically a correct definition, but it tells you nothing if you don't speak category theory. However, understanding monads as monoids may actually help us construct the free monad by analogy to the free monoid — aka the List type constructor. I know I promised this was an article on Lean but we will start with some Haskell first.
 
-### In Haskell
+###  3.1. <a name='InHaskell'></a>In Haskell
 
 The List type is defined as follows:
 
@@ -107,7 +135,7 @@ instance Functor f => Monad (Free f) where
   Free g >>= f = Free ((>>= f) <$> g)
 ```
 
-### In Lean
+###  3.2. <a name='InLean'></a>In Lean
 
 Now, as promised, we will do the rest of our work in Lean. Let's write the same definition in Lean:
 
@@ -126,7 +154,7 @@ datatypes being declared
 
 Why does the definition work in Haskell but not Lean?
 
-#### Strict Positivity
+####  3.2.1. <a name='StrictPositivity'></a>Strict Positivity
 
 Recall that, in languages like Lean (or Coq, or Agda), in order for the proof system to be consistent, all functions must terminate. Proofs correspond to programs, and if we had programs that could loop forever, we could prove anything, and our logic would be useless.
 
@@ -142,7 +170,7 @@ inductive Free (f : Type -> Type) (a : Type) where
 
 In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor.
 
-#### Monad Instance of `Free f`
+####  3.2.2. <a name='MonadInstanceofFreef'></a>Monad Instance of `Free f`
 
 We begin by providing a Functor instance, which is just defining a map function, lifting a function $f : \alpha \to \beta$ to a function $Ff : \text{Free } F \ \alpha \to \text{Free } F \ \beta$:
 
@@ -199,7 +227,7 @@ comp_map := by
   case bind X Fx f ih =>
     simp [Free.map, ih]
 ```
-## Monad and Applicative Laws
+##  4. <a name='MonadandApplicativeLaws'></a>Monad and Applicative Laws
 
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
 
@@ -259,11 +287,11 @@ pure_seq := by
 ```
 I won't write out the informal details of the proof, but it is mostly straightforward, we unfold all the definitions using `simp`, and in some cases when we have a value of type `Free F a` we perform induction on it and simplify further.
 
-## Tutorial : An Interpreter with Side Effects
+##  5. <a name='Tutorial:AVerifiedInterpreterwithSideEffects'></a>Tutorial : A Verified Interpreter with Side Effects
 
 In this final section we will do a mini tutorial to show the power of the free monad by building an interpreter for an expression language with side effects. The key idea here is that the freer monad lets us separate what we want to do (a syntactic description of effectful computation) from how we want to do it (interpreting and executing the effects semantically).
 
-### Language and Effects
+###  5.1. <a name='LanguageandEffects'></a>Language and Effects
 
 We begin by defining a tiny expression language, with integers, variables, addition, and division:
 
@@ -307,7 +335,7 @@ Notice how free monads are extensible in their effects. Adding a new effect is s
 
 This type `Eff` is a pure description of the available commands in our language — not what they do, just what kinds of actions exist. Our computations will now live in the type `Free Eff α`, which means they are pure syntax trees of abstract effects that eventually return a value of type `α`.
 
-### Lifting Effects into the Syntax Tree
+###  5.2. <a name='LiftingEffectsintotheSyntaxTree'></a>Lifting Effects into the Syntax Tree
 
 To construct nodes in our effect AST, we define some helper functions that wrap each command in the Free monad:
 
@@ -325,7 +353,7 @@ def log (msg : String) : Free Eff Unit :=
   Free.bind _ (FSum.inr (FSum.inr (TraceEff.Log msg))) Free.pure
 ```
 
-### Writing a Program
+###  5.3. <a name='WritingaProgram'></a>Writing a Program
 
 We can now write a little program. It logs a message, updates the environment, reads back a variable, and returns its increment:
 
@@ -342,7 +370,7 @@ This "program" is constructing a tree of abstract effects independently of any e
 
 This separation between syntax and semantics is the core idea. We build up a value of type `Free Eff Int` that describes a program in terms of its desired behavior. This value is like an AST of effects. The tree is built using the constructors pure and bind, and the functorial action of the coproduct `⊕` lets us represent multiple kinds of effects simultaneously.
 
-### Running the Program
+###  5.4. <a name='RunningtheProgram'></a>Running the Program
 
 To actually run the program, we define an interpreter — a recursive function that walks the syntax tree and gives meaning to each effect node. This function takes a `Free Eff α` value, along with an environment and a trace list, and evaluates the computation into an `Except String (α × Env × Trace)`:
 
@@ -375,7 +403,7 @@ This interpreter is just one way to give meaning to the syntax tree. Because eff
 
 This is the central idea of the freer monad pattern: build your program as a tree of abstract, uninterpreted commands. Delay all execution. Then define an interpreter that evalutes your programs however you want.
   
-## Verification
+###  5.5. <a name='Verification'></a>Verification
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
 
@@ -383,7 +411,7 @@ In order to check that our interpreter is correct, we need some kind of semantic
 
 We’ll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
-### Semantics
+####  5.5.1. <a name='Semantics'></a>Semantics
 
 We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. We also define a function `eval` which maps an expression to the effectful AST. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
@@ -445,7 +473,7 @@ def eval : Expr → Free Eff Int
         pure (v1 / v2)
 ```
 
-### What do we want to prove?
+####  5.5.2. <a name='Whatdowewanttoprove'></a>What do we want to prove?
 
 We want to prove that `eval` followed by `run` gives the same result as the semantics. That is:
 
@@ -456,7 +484,7 @@ theorem eval_correct :
     run (eval e) env trace = res
 ```
 
-### Proof
+####  5.5.3. <a name='Proof'></a>Proof
 
 We proceed by induction on the derivation of `EvalRel e env trace res`. In each case, we:
 
@@ -523,7 +551,7 @@ theorem eval_correct :
 
 Now we have formally verified our interpreter agrees with our language semantics.
 
-## Conclusion 
+##  6. <a name='Conclusion'></a>Conclusion 
 
 Hopefully this article was informative and helpful in understanding free monads mathematically and gave you a glimpse of their usefulness in programming. This is the first blog post I've written so I'm hoping it was enjoyable. To review what we did:
 
@@ -543,12 +571,12 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 - We showed how to define an operational semantics and prove that the interpreter agrees with it.
 
-## Exercises
+##  7. <a name='Exercises'></a>Exercises
 - Write an interpreter that counts how many times each effect is used in a program.
 - Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` monads.
 - Define the dual notion - the *cofree comonad* and explore its properties.
 
-## References
+##  8. <a name='References'></a>References
 
 * [nLab: Free Monad](https://ncatlab.org/nlab/show/free+monad)
 
