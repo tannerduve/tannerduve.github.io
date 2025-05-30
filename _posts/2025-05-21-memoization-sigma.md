@@ -203,7 +203,7 @@ def maxDollars (n : Nat) : Nat :=
   (helper n (HashMap.empty)).1
 ```
 
-We've done most of the proof work already, and the final proof of correctness becomes trivial. For an arbitrary $n$, compute the table full of values and their proofs, and just pull out the $n$^th proof:
+We've done most of the proof work already, and the final proof of correctness becomes trivial. For an arbitrary $n$, compute the table full of values and their proofs, and just pull out the $n$th proof:
 ```lean
 theorem maxDollars_spec_correct : ∀ n, maxDollars n = maxDollars_spec n := by
   intro n
