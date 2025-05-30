@@ -230,6 +230,8 @@ To review what we did:
 
 * We ended with a trivial top-level proof: correctness follows directly from the structure of the implementation.
 
+All this code is available at [this repo](https://github.com/tannerduve/coins)
+
 ## 6. <a name='Exercises'></a>Exercises
 
 Each of the following DP problems can be solved using the same framework introduced in this post: define a recurrence relation as a specification, write a memoized implementation that returns values paired with correctness proofs via subtypes, and prove the top-level function computes the intended result.
