@@ -215,7 +215,7 @@ And we're done. The algorithm has been verified.
 
 ## 5. <a name='Conclusion'></a>Conclusion
 
-My goal here was to share what I learned from this cool technique and show how it can be applied to a particular problem. Ilso hope the reader came away understanding subtypes from the perspective of dependent type theory. I find intertwining code with proof in this way really cool and the people I've shown this to felt the same.
+My goal here was to share what I learned from this cool technique and show how it can be applied to a particular problem. I also hope the reader came away understanding subtypes from the perspective of dependent type theory. I find intertwining code with proof in this way really cool and the people I've shown this to felt the same.
 
 To review what we did:
 
