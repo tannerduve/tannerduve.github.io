@@ -41,14 +41,15 @@ The solution is classic DP. Observe that for any amount up to 8, we can't get mo
 ## 3. <a name='FirstSolution'></a>First Solution
 
 The solution is given by the following recurrence relation : 
-$$
-f(n)=
-\begin{cases}
-n, & n \le 8,\\[6pt]
-\displaystyle 
-\max\!\bigl(n,\; f(\lfloor n/2\rfloor)+f(\lfloor n/3\rfloor)+f(\lfloor n/4\rfloor)\bigr), & n>8.
-\end{cases}
-$$
+
+  $$
+  f(n)=
+  \begin{cases}
+  n, & n \le 8,\\[6pt]
+  \displaystyle 
+  \max\!\bigl(n,\; f(\lfloor n/2\rfloor)+f(\lfloor n/3\rfloor)+f(\lfloor n/4\rfloor)\bigr), & n>8.
+  \end{cases}
+  $$
 
 Before writing any code, here is the header we'll want to use:
 ```lean
