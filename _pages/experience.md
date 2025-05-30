@@ -29,7 +29,7 @@ redirect_from:
 **Applied Category Theory Researcher**  
 - Research in categorical semantics of compositional reinforcement learning under Bakirtzis and Savvas  
 - Developed a theory of box products of MDPs and comonadic structures modeling side information.
-- Presenting at ACT 2025, with publications in progress.
+- Presenting at ACT 2025, with publications in progress
 
 ---
 
@@ -37,7 +37,7 @@ redirect_from:
 **Applied Science Intern**  
 - SMT-based analysis of authorization logic  
 - Built a permissiveness checker for Cedar policies using Lean and SMT
-- Only non-PhD applied scientist in my org.
+- Only non-PhD applied scientist in my org
 
 ---
 
