@@ -27,13 +27,13 @@ This post assumes you know basic concepts from both category theory and function
 3. [Free Monads](#FreeMonads)
    - [In Haskell](#InHaskell)
    - [In Lean](#InLean)
-5. [Tutorial: A Verified Interpreter with Side Effects](#Tutorial:AVerifiedInterpreterwithSideEffects)
+4. [Tutorial: A Verified Interpreter with Side Effects](#Tutorial:AVerifiedInterpreterwithSideEffects)
     - [Language and Effects](#LanguageandEffects)
     - [Interpreter](#RunningtheProgram)
     - [Verification](#Verification)
-6. [Conclusion](#Conclusion)
-7. [Exercises](#Exercises)
-8. [References](#References)
+5. [Conclusion](#Conclusion)
+6. [Exercises](#Exercises)
+7. [References](#References)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
