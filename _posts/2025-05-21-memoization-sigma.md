@@ -19,8 +19,8 @@ This should be pretty beginner friendly. Basic data structures+algorithms and so
 3. [First Solution](#FirstSolution)
 4. [Type Theory Interlude: Subtypes and Dependent Pairs](#Sigma)
 5. [Improved Solution](#Solution)
-6. [Exercises](#Exercises)
-7. [Conclusion](#Conclusion)
+6. [Conclusion](#Conclusion)
+7. [Exercises](#Exercises)
 8. [References](#References)
 
 <!-- vscode-markdown-toc-config
