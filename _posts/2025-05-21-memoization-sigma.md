@@ -235,7 +235,7 @@ To review what we did:
 
 Each of the following DP problems can be solved using the same framework introduced in this post: define a recurrence relation as a specification, write a memoized implementation that returns values paired with correctness proofs via subtypes, and prove the top-level function computes the intended result.
 
-Try implementing and verifying your favorite(s) the following:
+Try implementing and verifying your favorite(s) of the following:
 * **Rod Cutting**
   Given a rod of length `n` and a list of prices `p : List ℕ` where `p[i]` is the price of a rod of length `i + 1`, define:
 
