@@ -242,20 +242,6 @@ Try implementing and verifying your favorite(s) the following:
 
   Implement `rodCut : ℕ → ℕ` using a memoization table and prove correctness
 
-* **Longest Common Subsequence (LCS)**
-  Given two strings `s` and `t`, define:
-
-  $$
-  \text{lcs}(i, j) =
-  \begin{cases}
-  0, & i = 0 \text{ or } j = 0 \\
-  1 + \text{lcs}(i{-}1, j{-}1), & s[i{-}1] = t[j{-}1] \\
-  \max(\text{lcs}(i{-}1, j), \text{lcs}(i, j{-}1)), & \text{otherwise}
-  \end{cases}
-  $$
-
-  Write a verified memoized version `lcs : String → String → ℕ`.
-
 * **0/1 Knapsack**
   Given `n` items with weights `w : Fin n → ℕ`, values `v : Fin n → ℕ`, and a maximum capacity `C`, define:
 
