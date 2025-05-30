@@ -28,15 +28,16 @@ redirect_from:
 ### Adjoint School (2025)  
 **Applied Category Theory Researcher**  
 - Research in categorical semantics of compositional reinforcement learning under Bakirtzis and Savvas  
-- Developed a theory of box products of MDPs and comonadic structures modeling inductive bias  
-- Presenting at ACT 2025  
+- Developed a theory of box products of MDPs and comonadic structures modeling side information.
+- Presenting at ACT 2025, with publications in progress.
 
 ---
 
 ### AWS Automated Reasoning Group (Summer 2024)  
 **Applied Science Intern**  
 - SMT-based analysis of authorization logic  
-- Built a permissiveness checker for Cedar policies using Lean and SMT encoding  
+- Built a permissiveness checker for Cedar policies using Lean and SMT
+- Only non-PhD applied scientist in my org.
 
 ---
 
