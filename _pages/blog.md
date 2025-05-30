@@ -27,7 +27,7 @@ author_profile: true
 ---
 
 ### [ZkFlow: A Formally Verified Compiler for Zero-Knowledge Circuits](/blog/zkflow/)
-*From declarative syntax to ZK constraint systems - verified in Lean*
+*From declarative syntax to ZK constraints - verified in Lean*
 ---
 
 ### [Chicken-pi: A Toy Proof Assistant in Haskell](/blog/chicken-pi/)
