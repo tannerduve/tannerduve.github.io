@@ -122,8 +122,7 @@ For the memoization, the property we want to hold is: for a pair `(k, v)` stored
 Now the implementation is as follows. We begin with a very general definition: a pair of values with a property attached to it:
 
 ```lean
-def cell (f : α → β):=
-  {c: α × β // f c.fst = c.snd}
+def cell (f : α → β) := {c: α × β // f c.fst = c.snd}
 ```
 That is, given a function `f : α → β`, for example the recurrence `maxDollars_spec` above, `cell f` is the type of all pairs `(a, b) : α × β` such that `f a = b`
 
