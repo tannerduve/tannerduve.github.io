@@ -7,7 +7,7 @@ permalink: /blog/memoization-sigma/
 ##  1. <a name='Introduction'></a>Introduction
 If you've taken an algorithms class, you have likely seen dynamic programming, specifically a technique called *memoization*. Memoization works to optimize recursive algorithms by *caching* the solutions to subproblems in a table, and when a subproblem is encountered, it queries the table instead of recomputing the solution. This gives us an exponential performance boost. 
 
-This blog post will show how to solve a particular dynamic programming problem using memoization in Lean, and verify its correctness against a specification. The technique used in the proof of correctness here is an interesting application of Lean's dependent types, and is generalized to work for any memoization algorithm. The idea came from a conversation with [GasStationManager](https://gasstationmanager.github.io) over at the [Lean Zulip chat](https://leanprover.zulipchat.com), who I credit with coming up with the general technique.
+This blog post will show how to solve a dynamic programming problem using memoization in Lean, and verify its correctness against a specification. The technique used in the proof of correctness here is an interesting application of Lean's dependent types, and is generalized to work for any memoization algorithm. The idea came from a conversation with [GasStationManager](https://gasstationmanager.github.io) over at the [Lean Zulip chat](https://leanprover.zulipchat.com), who I credit with coming up with the general technique.
 
 This should be pretty beginner friendly. Basic data structures+algorithms and some Lean experience is helpful.
 
