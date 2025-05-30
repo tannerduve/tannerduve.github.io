@@ -98,7 +98,7 @@ Now our correctness claim is as follows:
 ```lean
 theorem memo_correct : ∀ (n : ℕ), maxDollarsMemo n = maxDollarsSpec n
 ```
-That is, our memoized solution computes the recurrence correctly on every $n \in \mathbb{N}$
+That is, our memoized solution computes the recurrence correctly on every $n \in \mathbb{N}$.
 Trying to prove this ends up being *very* difficult. I invite the reader to try it out themselves and see where you get stuck. A good prover may figure it out. I attempted strong induction on $n$ to no avail and trying various approaches I kept getting stuck. The direct proof is indeed possible but the statement feels far too intuitively true to be worth this much effort. The key realization here as to what makes this proof difficult is that correctness relies on invariant properties of the data structure which we store our values in. 
 
 First off, we need to prove that the HashMap correctly computes subproblems, that is, that `get? x` always returns either `none` or a value which is equal to `maxDollars_spec x`. We also rely on the invariant that if the HashMap satisfies this property before the call to `helperMemo`, then it satisfies this property after the call to `helperMemo`. To prove this requires reasoning about the body of `helperMemo`.
