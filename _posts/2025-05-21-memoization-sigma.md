@@ -91,8 +91,7 @@ def maxDollarsMemo (n : Nat) : Nat :=
   (helperMemo n (HashMap.emptyWithCapacity)).fst
 ```
 This function defines a helper which caches the solutions to subproblems in a hashmap and at each recursive call, queries the hashmap for a stored value. It then calls the helper on the empty map and returns the `n`th value
-
-(Exercise : Rewrite this using a state monad to simulate mutating the hashmap instead of passing around a new one with each insertion)
+*(Exercise : Rewrite this using a state monad to simulate mutating the hashmap instead of passing around a new one with each insertion)*
  
 Now our correctness claim is as follows:
 ```lean
