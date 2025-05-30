@@ -16,8 +16,8 @@ author_profile: true
 
 ---
 
-### [Introduction to Computability Theory in Lean (Part 1)](/blog/computability-lean-part-1/)
-*Formalizing the theory of oracles and Turing degrees*
+### [Verifying Memoization with Σ-types in Lean](/blog/memoization-sigma/)
+*Solving a competitive programming problem and proving it correct with a novel use of dependent types*
 
 ---
 
@@ -26,8 +26,8 @@ author_profile: true
 
 ---
 
-### [Verifying Memoization with Σ-types in Lean](/blog/memoization-sigma/)
-*Solving a competitive programming problem and proving it correct with a novel use of dependent types*
+### [Introduction to Computability Theory in Lean (Part 1)](/blog/computability-lean-part-1/)
+*Formalizing the theory of oracles and Turing degrees*
 
 ---
 
