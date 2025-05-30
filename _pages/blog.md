@@ -21,14 +21,13 @@ author_profile: true
 
 ---
 
-### [ZkFlow: A Formally Verified Compiler for Zero-Knowledge Circuits](/blog/zkflow/)
-*From declarative syntax to ZK constraint systems - verified in Lean*
-
----
-
 ### [Introduction to Computability Theory in Lean (Part 1)](/blog/computability-lean-part-1/)
 *Formalizing the theory of oracles and Turing degrees*
 
+---
+
+### [ZkFlow: A Formally Verified Compiler for Zero-Knowledge Circuits](/blog/zkflow/)
+*From declarative syntax to ZK constraint systems - verified in Lean*
 ---
 
 ### [Chicken-pi: A Toy Proof Assistant in Haskell](/blog/chicken-pi/)
