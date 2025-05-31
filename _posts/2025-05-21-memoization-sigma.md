@@ -1,5 +1,5 @@
 ---
-title: "Verifying Memoization with Σ-types in Lean"
+title: "Verified Dynamic Programming with Σ-types in Lean"
 layout: single
 permalink: /blog/memoization-sigma/
 ---
