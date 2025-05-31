@@ -566,6 +566,8 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 - We showed how to define an operational semantics and prove that the interpreter agrees with it.
 
+All the code used in this project can be found [here](https://github.com/tannerduve/lean-playground/blob/main/LeanPlayground/freemonad.lean)
+
 ##  7. <a name='Exercises'></a>Exercises
 - Write an interpreter that counts how many times each effect is used in a program.
 - Define the standard monads such as `State`, `Writer`, and `Reader` as `Free` monads.
