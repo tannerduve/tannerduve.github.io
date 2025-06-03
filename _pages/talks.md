@@ -11,6 +11,9 @@ I like to typeset lecture notes when I give talks. Here are a few I've given
 
 ### Recent talks
 
+- **Algorithmic Category Theory for Reinforcement Learning**
+  Slideshow by my group at the Adjoint School, presented at [ACT 2025](https://gataslab.org/act2025/act2025) [PDF](/files/ACT_presentation.pdf)
+
 - **Domain Theory and Denotational Semantics**  
 
   Penn Graduate Logic Seminar (GLoS), 2025
@@ -31,6 +34,3 @@ I like to typeset lecture notes when I give talks. Here are a few I've given
   Introduction to monads in Lean and in category theory [PDF](/files/monads.pdf)
 
   Lean reading seminar
-
-- **Algorithmic Category Theory for Reinforcement Learning**
-  Slideshow by my group at the Adjoint School, presented at [ACT 2025](https://gataslab.org/act2025/act2025) [PDF](/files/ACT_presentation.pdf)
