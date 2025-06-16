@@ -10,7 +10,7 @@ In the [last section](/blog/freeer-monad/part1/), we introduced the free monad a
 
 ##  1. <a name='Introduction'></a>Introduction
 
-In this part, we will explore a particular universal constructions, giving rise to a unique morphism that, as programmers, we can think of as an "interpreters" in a certain sense. In parituclar, we will be looking at **catamorphisms** from initial algebras
+In this part, we will explore a particular universal construction, giving rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. In particular, we will be looking at **catamorphisms** from initial algebras
 
 We will examine how free monads act as initial algebras, giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing data into values, providing a way to interpret structured data.
 
