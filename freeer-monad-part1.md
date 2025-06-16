@@ -1,5 +1,5 @@
 ---
-title: "Free-er Monad — Part 1: Defining the Free Monad in Lean"
+title: "Part 1: Defining the Free Monad in Lean"
 layout: single
 permalink: /blog/freeer-monad/part1/
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Free-er Monad — Part 2: Catamorphisms, Interpreters, and Universal Proprties"
+title: "Part 2: Catamorphisms, Interpreters, and Universal Proprties"
 layout: single
 permalink: /blog/freeer-monad/part2/
 ---
