@@ -1,7 +1,7 @@
 ---
 title: "Tutorial : A Verified Interpreter with Side Effects"
 layout: single
-permalink: /blog/freeer-monad/
+permalink: /blog/freeer-monad/part3/
 ---
 
 ##  1. <a name='Introduction'></a>Introduction
@@ -137,7 +137,7 @@ def effInterp : {α : Type} → Eff α → Env → Trace → Except String (α �
 
 This gives us the semantics for a single `Eff` node. But interpreting a full program requires recursively folding over the `FreeM` tree. Think of `effInterp` as the function which we will fold over the tree.
 
-We define this fold using a catamorphism:
+We define this fold using our catamorphism:
 
 ```lean
 def cataFreeM {F : Type u → Type v} {α β : Type w}
