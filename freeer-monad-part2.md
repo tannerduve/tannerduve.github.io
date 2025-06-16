@@ -32,11 +32,11 @@ We'll first examine how free monads act as initial algebras, giving us catamorph
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
-##  1. <a name='InitialAlgebras'></a>Initial Algebras and Inductive Types
+##  2. <a name='InitialAlgebras'></a>Initial Algebras and Inductive Types
 
 Algebra is about manipulating formal expressions. Consider algebraic expressions like $2(x + y)$ or $ax^2 + bx + c$. Notice that there are infinitely many of them, yet only a finite number of rules for making them. This suggests that the rules are used recursively. Let's examine this connection between algebra and recursion a bit, from the perspective of category theory.
 
-**Algebras and their morphisms**  
+##  2.1. <a name='Algebras'></a>Algebras and their Morphisms
 Let $F : C \to D$ be a functor. An *algebra* over $F$ is a pair $(A, \alpha)$ where $\alpha : FA \to A$.
 
 Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
@@ -56,8 +56,8 @@ Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-al
 
 $F$-algebras and their morphisms form a category, and the initial object in this category is called the *initial algebra*. That is, $(A, \alpha)$ is an initial $F$-algebra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
 
-**Inductive Types**
-As it turns out, in terms of categorical semantics, an inductive type is a type whose interpretation is given by an initial algebra of an endofunctor. This was mentioned and shown in part 1 using the example of the `List` type but perhaps was not explained sufficiently. Let's unpack it a bit. First, recall the definition of the type `List α` for an arbitrary type `α`:
+## 2.2. <a name='InductiveTypes'></a>Lists as Initial Algebras
+As it turns out, in terms of categorical semantics, an inductive type is a type whose interpretation is given by an initial algebra of an endofunctor. This was mentioned in part 1 using the example of the `List` type but perhaps was not explained sufficiently. Let's unpack it a bit. First, recall the definition of the type `List α` for an arbitrary type `α`:
 
 ```lean
 inductive List (α : Type u) where
@@ -71,7 +71,7 @@ If you think of "or" as a sum, "and" as a product, and "empty" as a unit, we can
 $$
 \phi: \mathbf{1} + (\alpha \times \texttt{List} \alpha) \to \texttt{List} \alpha
 $$
-That is, $(\texttt{List} \alpha, \phi)$ an *algebra* of the functor:
+That is, $(\texttt{List} \alpha, \phi)$ is an *algebra* of the functor:
 $$
 F_\alpha x = \mathbf{1} + (\alpha \times x)
 $$

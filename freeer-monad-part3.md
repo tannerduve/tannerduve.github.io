@@ -6,7 +6,7 @@ permalink: /blog/freeer-monad/
 
 ##  1. <a name='Introduction'></a>Introduction
 
-In this final section we will do a mini tutorial to show the power of the free monad by building an interpreter for an expression language with side effects. The key idea here is that the freer monad lets us separate what we want to do (a syntactic description of effectful computation) from how we want to do it (interpreting and executing the effects semantically).
+In this final section we will do a mini tutorial to show the power of the free monad by building an interpreter for an expression language with side effects. The key idea here is that the free monad lets us separate what we want to do (a syntactic description of effectful computation) from how we want to do it (interpreting and executing the effects semantically).
 
 <!-- vscode-markdown-toc -->
 ## Table of Contents
@@ -111,13 +111,13 @@ This separation between syntax and semantics is the core idea. We build up a val
 
 ##  3. <a name='Interpreter'></a>Interpreter
 
-To run a program written in `FreeM Eff α`, we must interpret its abstract syntax tree into a concrete computation. This involves defining a **catamorphism** — a recursive fold over the `FreeM` structure — into a semantic domain of computations:
+To run a program written in `FreeM Eff α`, we must interpret its abstract syntax tree into a concrete computation. This involves defining a **catamorphism** — a recursive fold over the `FreeM` structure — into a semantic domain of effectful computations:
 
 ```lean
 Env → Trace → Except String (α × Env × Trace)
 ```
 
-Before we can fold the entire syntax tree, we need to define how to interpret each individual effect. This is done via a *handler*, which is a function that gives meaning to one primitive operation in the effect functor `Eff`.
+Before we can fold the entire syntax tree, we need to define how to interpret each individual effect. This is done via a *handler*, which is a function that gives meaning to each primitive operation in the effect functor `Eff`.
 
 ```lean
 Eff α → Env → Trace → Except String (α × Env × Trace)
@@ -341,7 +341,7 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 - We introduced the concept of free objects in mathematics, starting with vector spaces, monoids, and groups.
 
-- We defined the free monad categorically as the least fixed point of a particular functor, drawing analogy to the List type.
+- We defined the free monad categorically as the initial algebra of a particular functor, drawing analogy to the List type.
 
 - In Haskell, we implemented the standard `FreeM f a` type and gave it a Monad instance.
 
