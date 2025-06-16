@@ -215,7 +215,10 @@ This is the fold analogue for the free monad: the unique morphism from the initi
 ##  4. <a name='Cata'></a>Catamorphisms as Interpreters
 We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" their data into another value. In functional programming, there is a word for the unique morphism from an initial algebra - a **catamorphism**. This is a generalization of folding that allows you to collapse structured data from an initial algebra into a single value. 
 
-UNDER CONSTRUCTION...
+Catamorphisms can be thought of as interpreters, and in the case of the free monad, the separation of syntax and semantics provides additional freedom in how programs are interpreted. Given a computation tree defined by a free monad, one can evaluate its value, execute its effects, pretty print its nodes, or anything else all by selecting the appropriate target algebra for its catamorphism. We will put this to use in part 3.
+
+##  5. <a name='Universal Morphisms'></a>Universal Morphisms
+Remember the discussion of free objects from part 1, in particular the commutative diagram that look
 
 
 
