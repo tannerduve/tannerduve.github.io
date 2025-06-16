@@ -172,9 +172,8 @@ We have two constructors, which tells us we have a sum, with `pure` and `liftBin
 $$
 \Phi_F(X) := \alpha + \sum_\iota F \iota \times (\iota \to X)
 $$ 
-To give an algebra over this functor means: given either
 </div>
-
+To give an algebra over this functor means: given either
 - a **value** of type `α`, or
 - an **index** `ι`, an **effect** `op : F ι`, and a **continuation** `k : ι → FreeM F α`,
 
