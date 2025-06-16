@@ -6,7 +6,7 @@ permalink: /blog/freeer-monad/part1/
 
 ##  1. <a name='Introduction'></a>Introduction
 
-In this first part of our three part series we will introduce the free monad from first principles, and discuss some of the finesse involved in implement it in a proof assistant like Lean, compared to a functional language like Haskell.
+In this first part of our three part series we will introduce and implemnt the free monad from first principles, and discuss some of the finesse involved in implementing it in a proof assistant like Lean, compared to a functional language like Haskell.
 
 <!-- vscode-markdown-toc -->
 ## Table of Contents
@@ -39,16 +39,7 @@ Consider the functor $U : \texttt{Grp} \to \texttt{Set}$ which forgets the group
 This can also be stated in terms of a universal property. Slightly informally, an object $X'$ is the free $C$-object on $X$ if there is an embedding $\iota : X \to X'$ such that for any $C$-object $G$ with a map $h : X \to G$, there is a unique $C$-morphism $\hat{h} : X' \to G$ such that the following diagram commutes:
 
 <div style="text-align: center;">
-  <script type="text/tikz">
-    \begin{tikzcd}
-    	{X'} && G \\
-    	\\
-    	X
-    	\arrow["{\hat{h}}", from=1-1, to=1-3]
-    	\arrow["\iota", from=3-1, to=1-1]
-    	\arrow["h"', from=3-1, to=1-3]
-    \end{tikzcd}
-  </script>
+  <img src="https://raw.githubusercontent.com/tannerduve/tannerduve.github.io/master/images/tikz.png" alt="tikz diagram" />
 </div>
 
 *(Exercise: Let $U : \texttt{Grp} \to \texttt{Set}$ be the forgetful functor and $F$ a left adjoint. Prove $FX$ satisfies the above universal property for any set $X$.)*
@@ -80,6 +71,8 @@ i.e., the List type is a fixed point of the functor:
 $$
 F_a x = \mathbf{1} + (a \times x)
 $$
+
+*[Part 2](/blog/freeer-monad/part2/) goes into more detail about inductive types as initial algebras. This part is just briefly explaining the analogy between lists and free monads, and the mathematical detail is not centrally important yet*
 
 The List functor maps a type to its free monoid, and we want our free monad functor to map an endofunctor to its free monad. The heart of the analogy is that lists are to types as free monads are to functors. So, we "lift" what we have done on lists in the category of types to free monads in the category of endofunctors. In programmer terms, we are defining a higher-order functor that is analogous to `List`, but acts on functors rather than types.
 
@@ -253,4 +246,4 @@ In this first part of our series, we explored the concept of free objects and in
 
 We discussed the idea of *strict positivity*, leading us to the freer monad construction as both a workaround and a generalization. We were able to define a monad instance on `FreeM F` for any `F : Type -> Type`, and proved that it satisfies the monad laws.
 
-The story continues in [Part 2](/blog/freeer-monad/part2/) with catamorphisms, interpreters, and universal properties.
+The story continues in [Part 2](/blog/freeer-monad/part2/) with catamorphisms, interpreters, and universal properties.
