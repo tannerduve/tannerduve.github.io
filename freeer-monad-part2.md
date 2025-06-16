@@ -4,6 +4,8 @@ layout: single
 permalink: /blog/freeer-monad/part2/
 ---
 
+This post is under construction.
+
 In the [last section](/blog/freeer-monad/part1/), we introduced the free monad and implemented it in Lean. In this section we will look into the theory a bit more deeply, by understanding the notions of algebra and universality.
 
 ##  1. <a name='Introduction'></a>Introduction: Two Universal Properties
@@ -40,19 +42,19 @@ Algebra is about manipulating formal expressions. Consider algebraic expressions
 Let $F : C \to D$ be a functor. An *algebra* over $F$ is a pair $(A, \alpha)$ where $\alpha : FA \to A$.
 
 Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
-                                        <div style="text-align: center;">
-                                        <script type="text/tikz">
-                                            \begin{tikzcd}
-                                                FA && A \\
-                                                \\
-                                                FB && B
-                                                \arrow["\alpha", from=1-1, to=1-3]
-                                                \arrow["Ff"', from=1-1, to=3-1]
-                                                \arrow["f", from=1-3, to=3-3]
-                                                \arrow["\beta"', from=3-1, to=3-3]
-                                            \end{tikzcd}
-                                        </script>
-                                        </div>
+<div style="text-align: center;">
+    <script type="text/tikz">
+    \begin{tikzcd}
+    FA && A \\
+    \\
+    FB && B
+    \arrow["\alpha", from=1-1, to=1-3]
+    \arrow["Ff"', from=1-1, to=3-1]
+    \arrow["f", from=1-3, to=3-3]
+    \arrow["\beta"', from=3-1, to=3-3]
+    \end{tikzcd}
+    </script>
+</div>
 
 $F$-algebras and their morphisms form a category, and the initial object in this category is called the *initial algebra*. That is, $(A, \alpha)$ is an initial $F$-algebra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
 
@@ -212,6 +214,9 @@ This is the fold analogue for the free monad: the unique morphism from the initi
 
 
 4. [Catamorphisms as Interpreters](#Cata)
+We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" their data into another value. In functional programming, there is a word for the unique morphism from an initial algebra - a **catamorphism**. This is a generalization of folding that allows you to collapse structured data from an initial algebra into a single value. 
+
+UNDER CONSTRUCTION...
 
 
 
