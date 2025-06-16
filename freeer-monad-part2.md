@@ -72,7 +72,7 @@ This says, a list of `α`'s is either empty, OR it consists of a single `α` AND
 If you think of "or" as a sum, "and" as a product, and "empty" as a unit, we can express this function as a morphism: 
 <div style="text-align: center;">
 $$
-\phi: \mathbf{1} + (\alpha \times \texttt{List} \alpha) \to \texttt{List} \alpha
+\phi: \mathbf{1} + (\alpha \times \texttt{List } \alpha) \to \texttt{List } \alpha
 $$
 </div>
 That is, $(\texttt{List} \alpha, \phi)$ is an *algebra* of the functor:
@@ -183,7 +183,7 @@ you tell me how to return a value of type `FreeM F α`.
 So just like with `List`, we can define a morphism:
 <div style="text-align: center;">
 $$
-\varphi_F : \alpha + \textstyle\sum_\iota F\,\iota \times (\iota \to \mathrm{FreeM}\,F\,\alpha) \to \mathrm{FreeM}\,F\,\alpha
+\varphi_F : \alpha + \textstyle\sum_\iota F\ \iota \times (\iota \to \mathrm{FreeM }F\alpha) \to \mathrm{FreeM } F\alpha
 $$
 </div>
 
