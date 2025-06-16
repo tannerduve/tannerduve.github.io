@@ -213,7 +213,7 @@ def foldFree {F : Type u → Type v} {α β : Type w}
 This is the fold analogue for the free monad: the unique morphism from the initial algebra `FreeM F α` to any other algebra `(β, pureCase, bindCase)`. It lets us "run" or "collapse" a free monadic structure by specifying what to do at each node of the tree.
 
 
-4. [Catamorphisms as Interpreters](#Cata)
+##  4. <a name='Cata'></a>Catamorphisms as Interpreters
 We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" their data into another value. In functional programming, there is a word for the unique morphism from an initial algebra - a **catamorphism**. This is a generalization of folding that allows you to collapse structured data from an initial algebra into a single value. 
 
 UNDER CONSTRUCTION...
