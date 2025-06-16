@@ -224,9 +224,3 @@ In this post, we explored how free monads arise as initial algebras over a parti
 * Suppose `Tree α` is defined as either a `Leaf α` or a `Branch` of two subtrees. Define it as an initial algebra over an appropriate functor and write the associated `foldTree`.
 
 👉 [Continue to Part 3](/blog/freeer-monad/part3/)
-
----
-
-Let me know if you'd like to add visual aids, Lean examples, or connect it to the concrete interpreter example earlier.
-
-
