@@ -1,7 +1,7 @@
 ---
 title: "Part 3: Universal Morphisms and Effect Handlers"
 layout: single
-permalink: /blog/freeer-monad/part3/
+permalink: /blog/freeer-monad/part4/
 ---
 
 This post is under construction.
