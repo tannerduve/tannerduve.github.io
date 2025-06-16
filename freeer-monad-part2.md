@@ -1,5 +1,5 @@
 ---
-title: "Catamorphisms, Interpreters, and Universal Properties"
+title: "Catamorphisms, Interpreters, and Interpreters"
 layout: single
 permalink: /blog/freeer-monad/part2/
 ---
@@ -8,13 +8,11 @@ This post is under construction.
 
 In the [last section](/blog/freeer-monad/part1/), we introduced the free monad and implemented it in Lean. In this section we will look into the theory a bit more deeply, by understanding the notions of algebra and universality.
 
-##  1. <a name='Introduction'></a>Introduction: Two Universal Properties
+##  1. <a name='Introduction'></a>Introduction
 
-In this part, we will explore two related but distinct universal constructions, both of which will give rise to unique morphisms that, as programmers, we can think of as "interpreters" in different senses. We will be looking at
-- **Catamorphisms** from initial algeberas, and
-- **Universal morphisms** from free objects
+In this part, we will explore a particular universal constructions, giving rise to a unique morphism that, as programmers, we can think of as an "interpreters" in a certain sense. In parituclar, we will be looking at **catamorphisms** from initial algebras
 
-We'll first examine how free monads act as initial algebras, giving us catamorphisms into other algebras. Then, we'll revisit the notion of a free object from part 1, and explain how the free monad induces a universal morphism into any monad equipped with an effect handler. Both of these yield interpreters: catamorphisms interpret by folding data, while universal morphisms interpret by replaying abstract operations in a concrete monad.
+We will examine how free monads act as initial algebras, giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing data into values, providing a way to interpret structured data.
 
 <!-- vscode-markdown-toc -->
 ## Table of Contents
@@ -25,8 +23,8 @@ We'll first examine how free monads act as initial algebras, giving us catamorph
     - [Lists as Initial Algebras](#InductiveTypes)
 3. [Free Monads as Initial Algebras](#FreeMonads)
 4. [Catamorphisms as Interpreters](#Cata)
-5. [The Universal Morphism](#UniversalMorphisms)
-6. [Interpreters as Universal Morphisms](#Universal)
+5. [Conclusion](Conclusion)
+6. [Exercise](Exercise)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -217,11 +215,18 @@ We've now seen two initial algebras and described their unique outgoing morphism
 
 Catamorphisms can be thought of as interpreters, and in the case of the free monad, the separation of syntax and semantics provides additional freedom in how programs are interpreted. Given a computation tree defined by a free monad, one can evaluate its value, execute its effects, pretty print its nodes, or anything else all by selecting the appropriate target algebra for its catamorphism. We will put this to use in part 3.
 
-##  5. <a name='Universal Morphisms'></a>Universal Morphisms
-Remember the discussion of free objects from part 1, in particular the commutative diagram that look
+## 5. <a name='Conclusion'></a>Conclusion
 
+In this post, we explored how free monads arise as initial algebras over a particular functor, and how this initiality gives rise to a unique morphism—called a catamorphism—that collapses or interprets the structure into some other type. This construction generalizes common patterns in functional programming, such as folding over lists.
 
+## 6. <a name='Exercise'></a>Exercise
 
+* Suppose `Tree α` is defined as either a `Leaf α` or a `Branch` of two subtrees. Define it as an initial algebra over an appropriate functor and write the associated `foldTree`.
 
+👉 [Continue to Part 3](/blog/freeer-monad/part3/)
+
+---
+
+Let me know if you'd like to add visual aids, Lean examples, or connect it to the concrete interpreter example earlier.
 
 
