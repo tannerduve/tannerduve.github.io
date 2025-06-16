@@ -114,7 +114,7 @@ So any such `(B, b₀, step)` forms an $F_\alpha$-algebra.
 
 ### The Unique Morphism from `List α`
 
-Now the magic: because `List α` is the *initial algebra* of \$F\_\alpha\$, there exists a **unique morphism** from `List α` to any other \$F\_\alpha\$-algebra `(B, β)`.
+Now the magic: because `List α` is the *initial algebra* of $F_\alpha$, there exists a **unique morphism** from `List α` to any other $F_\alpha$-algebra `(B, β)`.
 
 This morphism is defined by recursion:
 
@@ -145,7 +145,24 @@ In categorical terms:
 
 So every time you use `foldr`, you’re using the initiality of `List α` to collapse the list into a value.
 
-UNDER CONSTRUCTION...
+##  3. <a name='FreeMonads'></a>Free Monads as Initial Algebras
+Now remember in part 1, we gave a functorial description of free monads analogously to that of lists, as follows:
+$$
+\Phi_F G = \text{Id} + F \circ G
+$$
+Hopefully now this makes even more sense. But remember, the way we ended up defining free monads in Lean was not the traditional `Free` definition we had in Haskell. Due to strict positivity, we had to give a slightly trickier definition:
+```lean
+inductive FreeM.{u, v, w} (F : Type u → Type v) (α : Type w) where
+  | pure : α → FreeM F α
+  | liftBind {ι : Type u} (op : F ι) (cont : ι → FreeM F α) : FreeM F α
+```
+It's an inductive type, so it's an initial algebra over some functor. What could this functor be? Let's break it down a bit and try to build up what this functor looks like categorically. 
+
+We have two constructors, which again tells us we have a sum, with `pure` and `liftBind` on either side. `pure` is pretty straightforward, its just an `α`, so our functor will be $\alpha + ...$ followed by something. The `liftBind` constructor is a bit tricker. It's indexed by `ι`, so we can think of `liftBind` as a *family* of constructors indexed by `Type u`. It also requires an `op : f ι` and a `cont : ι → FreeM f α`. We can represent our family of constructors as an indexed sum, and the other arguments as the usual product. The functor then looks like this:
+$$
+\Phi_F(X) := \alpha + \sum_\iota F \iota \times (\iota \to X)
+$$
+
 
 
 
