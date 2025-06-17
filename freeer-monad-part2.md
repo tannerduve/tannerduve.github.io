@@ -58,7 +58,7 @@ Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-al
   </span>
 </div>
 
-$F$-algebras and their morphisms form a category, and the initial object in this category is called the *initial algebra*. That is, $(A, \alpha)$ is an initial $F$-algebra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
+$F$-algebras and their morphisms form a category, and the initial object in this category is called the *initial algebra*. That is, $(A, \alpha)$ is an initial $F$-algeb ra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
 
 ## 2.2. <a name='InductiveTypes'></a>Lists as Initial Algebras
 As it turns out, in terms of categorical semantics, an inductive type is a type whose interpretation is given by an initial algebra of an endofunctor. This was mentioned in part 1 using the example of the `List` type but perhaps was not explained sufficiently. Let's unpack it a bit. First, recall the definition of the type `List α` for an arbitrary type `α`:
@@ -190,7 +190,7 @@ you tell me how to return a value of type `FreeM F α`.
 So just like with `List`, we can define a morphism:
 <div style="text-align: center;">
 $$
-\varphi_F : \alpha + \textstyle\sum_\iota F\ \iota \times (\iota \to \mathrm{FreeM }F\alpha) \to \mathrm{FreeM } F\alpha
+\varphi_F : \alpha + \textstyle\sum_\iota F\ \iota \times (\iota \to \text{FreeM }F\alpha) \to \text{FreeM } F\alpha
 $$
 </div>
 
