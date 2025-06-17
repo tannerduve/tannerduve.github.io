@@ -1,5 +1,5 @@
 ---
-title: "Initial Algebra, Catamorphisms, and Interpreters"
+title: "Initial Algebras, Catamorphisms, and Interpreters"
 layout: single
 permalink: /blog/freeer-monad/part2/
 ---
