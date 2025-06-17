@@ -234,27 +234,3 @@ In this post, we explored how free monads arise as initial algebras over a parti
 * Suppose `Tree α` is defined as either a `Leaf α` or a `Branch` of two subtrees. Define it as an initial algebra over an appropriate functor and write the associated `foldTree`.
 
 👉 [Continue to Part 3 - ](/blog/freeer-monad/part3/)
-
-<style>
-.tikzjax-svg {
-  width: 150% !important;
-  height: auto !important;
-  max-width: none !important;
-}
-</style>
-
-<div style="text-align: center;">
-  <span style="display: inline-block;">
-    <script type="text/tikz">
-      \begin{tikzcd}[scale=1.5, column sep=huge, row sep=huge]
-        FA && A \\
-        \\
-        FB && B
-        \arrow["\alpha", from=1-1, to=1-3]
-        \arrow["Ff"', from=1-1, to=3-1]
-        \arrow["f", from=1-3, to=3-3]
-        \arrow["\beta"', from=3-1, to=3-3]
-      \end{tikzcd}
-    </script>
-  </span>
-</div>
