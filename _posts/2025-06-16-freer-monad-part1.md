@@ -53,8 +53,6 @@ This can also be stated in terms of a universal property. Slightly informally, a
   </span>
 </div>
 
-In part 3 we will explore this universal property and what it means for us as programmers more deeply.
-
 *(Exercise: Let $U : \texttt{Grp} \to \texttt{Set}$ be the forgetful functor and $F$ a left adjoint. Prove $FX$ satisfies the above universal property for any set $X$.)*
 
 The moral of the story here is that a free construction is the canonical way to generate the desired structure from some underlying data, adding only what is necessary to satisfy the rules of the desired structure. Our free monad is thus the canonical monad generated from an endofunctor, satisfying nothing other than the monad laws.
