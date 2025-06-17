@@ -4,55 +4,44 @@ layout: single
 permalink: /blog/freeer-monad/part4/
 ---
 
-This post is under construction.
+##  1. <a name='Introduction'></a>Introduction
+As we recall from [part 1](/blog/freeer-monad/part1/), free objects are defined by left adjoints to forgetful functors, and can also be defined by a particular universal property. Universal properties are given by *universal arrows*: unique morphisms that characterize an object up to isomorphism. 
 
-In the [previous section](/blog/freeer-monad/part2/), we explored free monads as initial algebras and used catamorphisms to define recursive interpreters. In this part, we shift to a different universal property — the **universal morphism** from free objects — and how it gives rise to a second, equally powerful notion of interpreter.
+In this section we will apply the general universal property of the free object to our special case of monads. Specifically, we’ll discuss the free monad over a functor `F` is the monad that arises from freely generating effects described by `F`, with just enough structure to satisfy the monad laws and nothing else.
+
+This point of view leads naturally to the concept of an effect handler, which is a function that interprets operations from `F` into a monad `M`. The universal property of the free monad ensures that any such handler extends uniquely to a monad morphism from the free monad into `M`. This morphism, in turn, acts as an interpreter for the entire computation.
 
 <!-- vscode-markdown-toc -->
 ## Table of Contents
 
 1. [Introduction](#Introduction)
-2. [Free Objects and Universal Morphisms](#Universal)
-3. [Free Monads as Free Objects](#FreeMonadAsFreeObject)
-4. [Effect Handlers as Algebra Morphisms](#Handlers)
-5. [The Universal Morphism](#UnivMorphism)
-6. [Conclusion](#Conclusion)
-7. [Exercise](#Exercise)
+2. [Free Monads as Free Objects](#FreeMonadAsFreeObject)
+3. [Effect Handlers as Algebra Morphisms](#Handlers)
+4. [The Universal Morphism](#UnivMorphism)
+5. [Conclusion](#Conclusion)
+6. [Exercise](#Exercise)
 <!-- /vscode-markdown-toc -->
-```
 
----
 
-### Section-by-section breakdown:
+##  2. <a name='FreeMonadAsFreeObject'></a>Free Monads as Free Objects
 
----
+The universal property of free objects, as we saw in part 1, the free object on some "basis" data $X$ is a structured object $X'$ which includes $X$, such that any map from $X$ into another structured object $G$ uniquely extends to a morphism from $X'$ to $G$. Diagrammatically:
 
-## 1. Introduction
+<div style="text-align: center;">
+  <span style="display: inline-block;">
+    <script type="text/tikz">
+      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
+        {X'} && G \\
+        \\
+        X
+        \arrow["{\hat{h}}", dashed, from=1-1, to=1-3]
+        \arrow["\iota", from=3-1, to=1-1]
+        \arrow["h"', from=3-1, to=1-3]
+      \end{tikzcd}
+    </script>
+  </span>
+</div>
 
-* Brief recap of part 2: catamorphisms arise from initial algebras.
-* Set up contrast: this time we focus on *free objects* in the categorical sense.
-* Say: "The story is no longer about folding, but about replaying."
-
----
-
-## 2. Free Objects and Universal Morphisms
-
-* Define a *free object* over a functor \$U : D \to C\$ as a pair \$(F(a), \eta : a \to U(F(a)))\$ satisfying a universal property.
-* Explain that a morphism out of the free object corresponds uniquely to an interpretation into any target object *with structure*.
-* Link to monads: free monad over a functor \$F\$ is free for the forgetful functor `Monad → Endofunctor`.
-
----
-
-## 3. Free Monads as Free Objects
-
-* Explain that `Free F` is the free monad on `F`.
-* Introduce the key data:
-
-  * You give a natural transformation `F → M` (a handler).
-  * You get a unique monad morphism `Free F → M`.
-* Compare to part 2: instead of interpreting inductively, we’re interpreting by *replaying* the operations in another monad.
-
----
 
 ## 4. Effect Handlers as Algebra Morphisms
 
