@@ -4,8 +4,6 @@ layout: single
 permalink: /blog/freeer-monad/part2/
 ---
 
-This post is under construction.
-
 In the [last section](/blog/freeer-monad/part1/), we introduced the free monad and implemented it in Lean. In this section we will look into the theory a bit more deeply, by understanding the notions of algebra and universality.
 
 ##  1. <a name='Introduction'></a>Introduction
