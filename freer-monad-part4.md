@@ -7,7 +7,7 @@ permalink: /blog/freer-monad/part4/
 ##  1. <a name='Introduction'></a>Introduction
 As we recall from [part 1](/blog/freer-monad/part1/), free objects are defined by left adjoints to forgetful functors, and can also be defined by a particular universal property. Universal properties are given by *universal arrows*: unique morphisms that characterize an object up to isomorphism. 
 
-In this section we will apply the general universal property of the free object to our special case of monads. Specifically, we'll discuss the free monad over a functor `F` is the monad that arises from freely generating effects described by `F`, with just enough structure to satisfy the monad laws and nothing else.
+In this section we will apply the general universal property of the free object to our special case of monads. Specifically, we'll discuss how the free monad over a type constructors `F` is the monad that arises from freely generating effects described by `F`, with just enough structure to satisfy the monad laws and nothing else.
 
 This point of view leads naturally to the concept of an effect handler, which is a function that interprets operations from `F` into a monad `M`. The universal property of the free monad ensures that any such handler extends uniquely to a monad morphism from the free monad into `M`. This morphism, in turn, acts as an interpreter for the entire computation.
 
@@ -25,7 +25,7 @@ This point of view leads naturally to the concept of an effect handler, which is
 
 ##  2. <a name='FreeMonadAsFreeObject'></a>Free Monads as Free Objects
 
-The universal property of free objects, as we saw in part 1, the free object on some "basis" data $X$ is a structured object $X'$ which includes $X$, such that any map from $X$ into another structured object $G$ uniquely extends to a morphism from $X'$ to $G$. Diagrammatically:
+The universal property of free objects, as we saw in part 1, says the free object on some "basis" data $X$ is a structured object $X'$ which includes $X$, such that any map from $X$ into another structured object $G$ uniquely extends to a morphism from $X'$ to $G$. Diagrammatically:
 
 <div style="text-align: center;">
   <span style="display: inline-block;">
