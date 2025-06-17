@@ -12,7 +12,7 @@ In the [last section](/blog/freeer-monad/part1/), we introduced the free monad a
 
 Algebra is about manipulating formal expressions. Consider algebraic expressions like $2(x + y)$ or $ax^2 + bx + c$. Notice that there are infinitely many of them, yet only a finite number of rules for making them. This suggests that the rules are used recursively. In this part, we will examine this connection between algebra and recursion a bit, from the perspective of category theory.
 
-In particular, we will explore a universal construction called an initial algebra. An initial algebras gives rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. These morphisms are often called **catamorphisms** in programming. 
+In particular, we will explore a universal construction called an initial algebra. An initial algebra gives rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. These morphisms are often called **catamorphisms** in programming, and they beautifully capture the essence of recursion. 
 
 We will then see how free monads are initial algebras giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing data into values, providing a way to interpret structured data.
 
