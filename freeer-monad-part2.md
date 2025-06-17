@@ -12,7 +12,7 @@ Algebra is about manipulating formal expressions. Consider algebraic expressions
 
 In particular, we will explore a universal construction called an initial algebra. An initial algebra gives rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. These morphisms are often called **catamorphisms** in programming, and they beautifully capture the essence of recursion. 
 
-We will then see how free monads are initial algebras giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing data into values, providing a way to interpret structured data.
+We will then see how free monads are initial algebras giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing structure, providing a way to interpret recursive data.
 
 <!-- vscode-markdown-toc -->
 ## Table of Contents
