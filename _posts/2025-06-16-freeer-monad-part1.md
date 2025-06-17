@@ -1,7 +1,7 @@
 ---
 title: "Part 1: Defining the Free Monad in Lean"
 layout: single
-permalink: /blog/freeer-monad/part1/
+permalink: /blog/freer-monad/part1/
 ---
 
 ##  1. <a name='Introduction'></a>Introduction
@@ -85,7 +85,7 @@ $$
 F_a x = \mathbf{1} + (a \times x)
 $$
 
-*[Part 2](/blog/freeer-monad/part2/) goes into more detail about inductive types as fixed points of functors. This part is just briefly explaining the analogy between lists and free monads, and the mathematical detail is not centrally important yet*
+*[Part 2](/blog/freer-monad/part2/) goes into more detail about inductive types as fixed points of functors. This part is just briefly explaining the analogy between lists and free monads, and the mathematical detail is not centrally important yet*
 
 The List functor maps a type to its free monoid, and we want our free monad functor to map an endofunctor to its free monad. The heart of the analogy is that lists are to types as free monads are to functors. So, we "lift" what we have done on lists in the category of types to free monads in the category of endofunctors. In programmer terms, we are defining a higher-order functor that is analogous to `List`, but acts on functors rather than types.
 
@@ -259,4 +259,4 @@ In this first part of our series, we explored the concept of free objects and in
 
 We discussed the idea of *strict positivity*, leading us to the freer monad construction as both a workaround and a generalization. We were able to define a monad instance on `FreeM F` for any `F : Type -> Type`, and proved that it satisfies the monad laws.
 
-The story continues in [Part 2](/blog/freeer-monad/part2/) with catamorphisms, interpreters, and universal properties.
+The story continues in [Part 2](/blog/freer-monad/part2/) with catamorphisms, interpreters, and universal properties.

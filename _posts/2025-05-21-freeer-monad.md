@@ -1,7 +1,7 @@
 ---
 title: "The Free-er Monad"
 layout: single
-permalink: /blog/freeer-monad/
+permalink: /blog/freer-monad/
 ---
 
 Free monads provide a way to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe *what* should happen as an abstract tree of effects, leaving open *how* you want it to happen. By decoupling syntax from semantics like this you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
@@ -16,6 +16,6 @@ This three-part series will introduce the freer monad in Lean — Part 1 will in
 
 This series assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes.
 
-1. [Part&nbsp;1 — Defining the Free Monad in Lean](/blog/freeer-monad/part1/)
-2. [Part&nbsp;2 — Catamorphisms, Interpreters, and Universal Properties](/blog/freeer-monad/part2/)
-3. [Part&nbsp;3 — Tutorial: A Verified Interpreter with Side Effects](/blog/freeer-monad/part3/)
+1. [Part&nbsp;1 — Defining the Free Monad in Lean](/blog/freer-monad/part1/)
+2. [Part&nbsp;2 — Catamorphisms, Interpreters, and Universal Properties](/blog/freer-monad/part2/)
+3. [Part&nbsp;3 — Tutorial: A Verified Interpreter with Side Effects](/blog/freer-monad/part3/)

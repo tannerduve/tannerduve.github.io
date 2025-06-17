@@ -1,10 +1,10 @@
 ---
 title: "Initial Algebras, Catamorphisms, and Interpreters"
 layout: single
-permalink: /blog/freeer-monad/part2/
+permalink: /blog/freer-monad/part2/
 ---
 
-In the [last section](/blog/freeer-monad/part1/), we introduced the free monad and implemented it in Lean. In this section we will study the theory a bit more deeply, by understanding the notions of algebra and universality.
+In the [last section](/blog/freer-monad/part1/), we introduced the free monad and implemented it in Lean. In this section we will study the theory a bit more deeply, by understanding the notions of algebra and universality.
 
 ##  1. <a name='Introduction'></a>Introduction
 
@@ -231,4 +231,4 @@ In this post, we explored how free monads arise as initial algebras over a parti
 
 * Suppose `Tree α` is defined as either a `Leaf α` or a `Branch` of two subtrees. Define it as an initial algebra over an appropriate functor and write the associated `foldTree`.
 
-👉 [Continue to Part 3 - A Tutorial](/blog/freeer-monad/part3/)
+👉 [Continue to Part 3 - A Tutorial](/blog/freer-monad/part3/)
