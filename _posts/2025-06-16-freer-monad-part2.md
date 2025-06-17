@@ -8,7 +8,8 @@ In the [last section](/blog/freer-monad/part1/), we introduced the free monad an
 
 ##  1. <a name='Introduction'></a>Introduction
 
-> The essence of algebra is the formal manipulation of expressions. But what are expressions, and how do we manipulate them? The first things to observe about algebraic expressions like $2(x + y)$ or $ax^2 + bx + c$ is that there are infinitely many of them. There is a finite number of rules for making them, but these rules can be used in infinitely many combinations. This suggests that the rules are used *recursively*.    - Bartosz Milewski, The Dao of Functional Programming
+> The essence of algebra is the formal manipulation of expressions. But what are expressions, and how do we manipulate them? The first things to observe about algebraic expressions like $2(x + y)$ or $ax^2 + bx + c$ is that there are infinitely many of them. There is a finite number of rules for making them, but these rules can be used in infinitely many combinations. This suggests that the rules are used *recursively*.    
+> - Bartosz Milewski, The Dao of Functional Programming
 
 In this part, we will examine this connection between algebra and recursion a bit, from the perspective of category theory.
 
