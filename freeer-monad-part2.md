@@ -1,5 +1,5 @@
 ---
-title: "Catamorphisms, Interpreters, and Interpreters"
+title: "Initial Algebra, Catamorphisms, and Interpreters"
 layout: single
 permalink: /blog/freeer-monad/part2/
 ---
@@ -10,9 +10,11 @@ In the [last section](/blog/freeer-monad/part1/), we introduced the free monad a
 
 ##  1. <a name='Introduction'></a>Introduction
 
-In this part, we will explore a particular universal construction, giving rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. In particular, we will be looking at **catamorphisms** from initial algebras
+Algebra is about manipulating formal expressions. Consider algebraic expressions like $2(x + y)$ or $ax^2 + bx + c$. Notice that there are infinitely many of them, yet only a finite number of rules for making them. This suggests that the rules are used recursively. In this part, we will examine this connection between algebra and recursion a bit, from the perspective of category theory.
 
-We will examine how free monads act as initial algebras, giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing data into values, providing a way to interpret structured data.
+In particular, we will explore a universal construction called an initial algebra. An initial algebras gives rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. These morphisms are often called **catamorphisms** in programming. 
+
+We will then see how free monads are initial algebras giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing data into values, providing a way to interpret structured data.
 
 <!-- vscode-markdown-toc -->
 ## Table of Contents
@@ -34,24 +36,26 @@ We will examine how free monads act as initial algebras, giving us catamorphisms
 
 ##  2. <a name='InitialAlgebras'></a>Initial Algebras and Inductive Types
 
-Algebra is about manipulating formal expressions. Consider algebraic expressions like $2(x + y)$ or $ax^2 + bx + c$. Notice that there are infinitely many of them, yet only a finite number of rules for making them. This suggests that the rules are used recursively. Let's examine this connection between algebra and recursion a bit, from the perspective of category theory.
+We begin this section with some definitions.
 
 ##  2.1. <a name='Algebras'></a>Algebras and their Morphisms
 Let $F : C \to D$ be a functor. An *algebra* over $F$ is a pair $(A, \alpha)$ where $\alpha : FA \to A$.
 
 Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
 <div style="text-align: center;">
+  <span style="display: inline-block;">
     <script type="text/tikz">
-    \begin{tikzcd}
-    FA && A \\
-    \\
-    FB && B
-    \arrow["\alpha", from=1-1, to=1-3]
-    \arrow["Ff"', from=1-1, to=3-1]
-    \arrow["f", from=1-3, to=3-3]
-    \arrow["\beta"', from=3-1, to=3-3]
-    \end{tikzcd}
+      \begin{tikzcd}[scale=1.5, column sep=huge, row sep=huge]
+        FA && A \\
+        \\
+        FB && B
+        \arrow["\alpha", from=1-1, to=1-3]
+        \arrow["Ff"', from=1-1, to=3-1]
+        \arrow["f", from=1-3, to=3-3]
+        \arrow["\beta"', from=3-1, to=3-3]
+      \end{tikzcd}
     </script>
+  </span>
 </div>
 
 $F$-algebras and their morphisms form a category, and the initial object in this category is called the *initial algebra*. That is, $(A, \alpha)$ is an initial $F$-algebra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
@@ -88,6 +92,12 @@ $$
 F_\alpha X = \mathbf{1} + (\alpha \times X)
 $$
 </div>
+
+Or, in code if you prefer:
+```lean
+def ListF {α : Type u} (X : Type u) : Type u :=
+  Unit ⊕ (α × X)
+```
 
 An $F_\alpha$-algebra is a pair $(B, \beta)$ where $\beta : \mathbf{1} + (\alpha \times B) \to B$. That is, $\beta$ tells you how to collapse either:
 
@@ -211,9 +221,9 @@ This is the fold analogue for the free monad: the unique morphism from the initi
 
 
 ##  4. <a name='Cata'></a>Catamorphisms as Interpreters
-We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" their data into another value. In functional programming, there is a word for the unique morphism from an initial algebra - a **catamorphism**. This is a generalization of folding that allows you to collapse structured data from an initial algebra into a single value. 
+We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" their data into another value. In functional programming, there is a word for the unique morphism from an initial algebra - a **catamorphism**. This is a generalization of folding that allows you to collapse structured data from an initial algebra into a single value. More precisely, a catamorphism is the unique function from an inductive type to any algebra over its defining functor, which folds the recursive structure into some value and respects the algebra's semantics.
 
-Catamorphisms can be thought of as interpreters, and in the case of the free monad, the separation of syntax and semantics provides additional freedom in how programs are interpreted. Given a computation tree defined by a free monad, one can evaluate its value, execute its effects, pretty print its nodes, or anything else all by selecting the appropriate target algebra for its catamorphism. We will put this to use in part 3.
+Catamorphisms can be thought of as interpreters, and in the case of the free monad, the separation of syntax and semantics provides additional freedom in how programs are interpreted. Given a computation tree defined by a free monad, one can evaluate its value, execute its effects, pretty print its nodes, or anything else all by selecting the appropriate target algebra for its catamorphism. We will put this to use in part 3, where we build and verify an interpreter for a small effectful language.
 
 ## 5. <a name='Conclusion'></a>Conclusion
 
@@ -223,4 +233,28 @@ In this post, we explored how free monads arise as initial algebras over a parti
 
 * Suppose `Tree α` is defined as either a `Leaf α` or a `Branch` of two subtrees. Define it as an initial algebra over an appropriate functor and write the associated `foldTree`.
 
-👉 [Continue to Part 3](/blog/freeer-monad/part3/)
+👉 [Continue to Part 3 - ](/blog/freeer-monad/part3/)
+
+<style>
+.tikzjax-svg {
+  width: 150% !important;
+  height: auto !important;
+  max-width: none !important;
+}
+</style>
+
+<div style="text-align: center;">
+  <span style="display: inline-block;">
+    <script type="text/tikz">
+      \begin{tikzcd}[scale=1.5, column sep=huge, row sep=huge]
+        FA && A \\
+        \\
+        FB && B
+        \arrow["\alpha", from=1-1, to=1-3]
+        \arrow["Ff"', from=1-1, to=3-1]
+        \arrow["f", from=1-3, to=3-3]
+        \arrow["\beta"', from=3-1, to=3-3]
+      \end{tikzcd}
+    </script>
+  </span>
+</div>
