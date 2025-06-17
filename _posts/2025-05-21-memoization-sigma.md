@@ -128,7 +128,7 @@ That is, given a function `f : α → β`, for example the recurrence `maxDollar
 Our new HashMap, `PropMap`, stores keys of type `α` and values of type `cell f` whose first element is equal to the key: 
 ```lean
 abbrev PropMap [BEq α][Hashable α] [LawfulBEq α] (f : α → β) :=
-  HashMap α { c : α × β // f c.fst = c.snd }
+  HashMap α (cell f)
 ```
 
 Now we can define `get?` with the guarantee we are looking for:
