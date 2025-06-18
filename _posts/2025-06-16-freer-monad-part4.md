@@ -16,8 +16,7 @@ In this final section we will do a mini tutorial to show the power of the free m
 3. [Interpreter](#Interpreter)
 4. [Verification](#Verification)
 5. [Conclusion](#Conclusion)
-6. [Exercises](#Exercises)
-7. [References](#References)
+6. [References](#References)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -359,11 +358,7 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 All this code can be found [here](https://github.com/tannerduve/lean-playground/blob/main/LeanPlayground/freemonad.lean)
 
-##  7. <a name='Exercises'></a>Exercises
-- Define the standard monads such as `Cont`, `Writer`, and `Reader` as `Free` monads.
-- Define the dual notion - the *cofree comonad* and explore its properties.
-
-##  8. <a name='References'></a>References
+##  6. <a name='References'></a>References
 
 * [nLab: Free Monad](https://ncatlab.org/nlab/show/free+monad)
 
