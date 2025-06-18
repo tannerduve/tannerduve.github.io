@@ -1,7 +1,7 @@
 ---
 title: "Tutorial : A Verified Interpreter with Side Effects"
 layout: single
-permalink: /blog/freer-monad/part3/
+permalink: /blog/freer-monad/part4/
 ---
 
 ##  1. <a name='Introduction'></a>Introduction
