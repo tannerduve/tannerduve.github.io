@@ -149,7 +149,7 @@ This interpreter maps our `FreeState` computations into the built-in `StateM` mo
 
 The universal property of free monads provides a canonical interpreter with nice mathematical guarantees, ensuring that any choice of an effect handler uniquely determines how entire computations get interpreted. In this post we explored this universal property and showed an example in interpreting free computations into the state monad.
 
-In practice, this means defining computations using `FreeM` is extremely flexible, as changing how we interpret effects is simply a matter of providing different handlers. The next and final section will be a tutorial on using the state monad to design a small DSL with mutable state, logging, and exceptions, and building a verified interpreter for the language.
+In practice, this means defining computations using `FreeM` is extremely flexible, as changing how we interpret effects is simply a matter of providing different handlers. The next and final section will be a tutorial on using the free monad to design a small DSL with mutable state, logging, and exceptions, and building a verified interpreter for the language.
 
 👉 [Continue to Part 4 - A Tutorial](/blog/freer-monad/part4/)
 
