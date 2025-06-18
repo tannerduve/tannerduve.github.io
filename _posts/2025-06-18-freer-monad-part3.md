@@ -80,7 +80,7 @@ The universal property, more precisely, is as follows:
 > f' (lift op) = f op
 > ```
 
-Here, `lift` is the inclusion map from our effects into the free monad. It lifts a primitive operation into its free monad structure.
+Here, `lift` is the inclusion map from our type constructor into the free monad. It lifts a primitive operation into its free monad structure.
 
 Explicitly, we define this inclusion as:
 
