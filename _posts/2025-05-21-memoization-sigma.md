@@ -72,8 +72,7 @@ This directly computes the maximum earnable amount. We will use this as our spec
 Now here is a memoized solution:
 ```lean
 def maxDollarsMemo (n : Nat) : Nat :=
-  let rec helperMemo : Nat → HashMap Nat Nat → Nat × HashMap Nat Nat
-    | n, memo =>
+  let rec helperMemo (n : Nat) (memo : HashMap Nat Nat) : Nat × HashMap Nat Nat :=
       match memo.get? n with
       | some v => (v, memo)  -- already cached
       | none =>
@@ -88,7 +87,7 @@ def maxDollarsMemo (n : Nat) : Nat :=
           let best := max n (v1 + v2 + v3)
           let memo' := memo3.insert n best
           (best, memo')
-  (helperMemo n (HashMap.emptyWithCapacity)).fst
+  (helperMemo n (HashMap.empty)).fst
 ```
 This function defines a helper which caches the solutions to subproblems in a hashmap and at each recursive call, queries the hashmap for a stored value. It then calls the helper on the empty map and returns the `n`th value
 *(Exercise : Rewrite this using a state monad to simulate mutating the hashmap instead of passing around a new one with each insertion)*
