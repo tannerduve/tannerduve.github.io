@@ -11,7 +11,7 @@ author_profile: true
 
 ---
 
-### Free Monads in Lean — Four Part Series
+### Free Monads in Lean — A Four Part Series
 *Strictly positive thoughts on free monads in Lean for the mathematically inclined programmer*
 
 1. [Part&nbsp;1 – Defining the Free Monad in Lean](/blog/freer-monad/part1/)
