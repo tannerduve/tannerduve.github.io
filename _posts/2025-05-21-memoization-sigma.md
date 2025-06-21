@@ -200,7 +200,7 @@ def maxDollars (n : Nat) : Nat :=
   (helper n (HashMap.empty)).1
 ```
 
-We've done most of the proof work already, and the final proof of correctness becomes trivial. For an arbitrary $n$, compute the table full of values and their proofs, and just pull out the $n$th proof:
+We've embedded the proof into the algorithm itself: every computed value is stored together with a proof that it satisfies the spec. So to prove correctness for any n, we just apply the function — its type guarantees that the result equals maxDollars_spec n:
 ```lean
 theorem maxDollars_spec_correct : ∀ n, maxDollars n = maxDollars_spec n := by
   intro n
