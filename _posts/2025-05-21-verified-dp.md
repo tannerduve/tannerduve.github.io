@@ -1,7 +1,7 @@
 ---
 title: "Verified Dynamic Programming with Σ-types in Lean"
 layout: single
-permalink: /blog/memoization-sigma/
+permalink: /blog/verified-dp/
 ---
 
 ##  1. <a name='Introduction'></a>Introduction

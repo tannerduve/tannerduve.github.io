@@ -21,7 +21,7 @@ author_profile: true
 
 ---
 
-### [Verified Dynamic Programming with Σ-types in Lean](/blog/memoization-sigma/)
+### [Verified Dynamic Programming with Σ-types in Lean](/blog/verified-dp/)
 *Solving a competitive programming problem and proving it correct with a novel use of dependent types - a beginner friendly tutorial*
 
 ---
