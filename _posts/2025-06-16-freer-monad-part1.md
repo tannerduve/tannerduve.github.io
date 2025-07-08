@@ -1,7 +1,6 @@
 ---
 title: "Part 1: Defining the Free Monad in Lean"
 layout: single
-image: images/cata.png
 permalink: /blog/freer-monad/part1/
 ---
 
