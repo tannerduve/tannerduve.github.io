@@ -1,7 +1,7 @@
 ---
 title: "Part 1: Defining the Free Monad in Lean"
 layout: single
-image: https://tannerduve.github.io/images/cata.png
+image: "https://tannerduve.github.io/images/cata.png"
 permalink: /blog/freer-monad/part1/
 ---
 
