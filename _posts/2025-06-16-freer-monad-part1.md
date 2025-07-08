@@ -269,4 +269,4 @@ In this first part of our series, we explored the concept of free objects and in
 
 We discussed the idea of *strict positivity*, leading us to the freer monad construction as both a workaround and a generalization. We were able to define a monad instance on `FreeM F` for any `F : Type -> Type`, and proved that it satisfies the monad laws.
 
-The story continues in [Part 2](/blog/freer-monad/part2/) with catamorphisms, interpreters, and universal properties.
+## **The story continues in [Part 2](/blog/freer-monad/part2/) with catamorphisms, interpreters, and universal properties.**
