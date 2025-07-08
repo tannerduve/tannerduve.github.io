@@ -18,7 +18,7 @@ This four-part series will introduce the free monad in Lean. In this first part 
 
 In part 2 we will further explore some theory and study initial algebras and catamorphisms, and how they give rise to interpreters for effectful computation trees. In part 3 we will study the universal property of free monads and what it provides for us as programmers. Finally in part 4, we will use what we've learned to build and verify a real interpreter for a small language, making elegant use of freeness to combine effectful computations.
 
-This series assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes.
+This series assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes. You can find most of the code used here at [this Mathlib PR](https://github.com/leanprover-community/mathlib4/pull/25491)
 
 <!-- vscode-markdown-toc -->
 ## Table of Contents
