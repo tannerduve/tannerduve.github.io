@@ -14,7 +14,7 @@ author_profile: true
 ### Free Monads in Lean — A Four Part Series
 *Strictly positive thoughts on free monads in Lean for the mathematically inclined programmer*
 
-1. [Part&nbsp;1 – Defining the Free Monad in Lean](/blog/freer-monad/part1/)
+1. [Part&nbsp;1 – Defining the Free Monad in Lean](/blog/freer-monad/part-1/)
 2. [Part&nbsp;2 – Catamorphisms, Interpreters, and Initial Algebras](/blog/freer-monad/part2/)
 3. [Part&nbsp;3 – Universal Morphisms and Effect Handlers](/blog/freer-monad/part3/)
 4. [Part&nbsp;4 – Tutorial: A Verified Interpreter with Side Effects](/blog/freer-monad/part4/)

@@ -1,7 +1,7 @@
 ---
 title: "Part 1: Defining the Free Monad in Lean"
 layout: single
-permalink: /blog/freer-monad/part1/
+permalink: /blog/freer-monad/part-1/
 ---
 
 ##  1. <a name='Introduction'></a>Introduction

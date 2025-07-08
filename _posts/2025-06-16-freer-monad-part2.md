@@ -4,7 +4,7 @@ layout: single
 permalink: /blog/freer-monad/part2/
 ---
 
-In the [last section](/blog/freer-monad/part1/), we introduced the free monad and implemented it in Lean. In this section we will study the theory a bit more deeply, by understanding the notions of algebra and universality.
+In the [last section](/blog/freer-monad/part-1/), we introduced the free monad and implemented it in Lean. In this section we will study the theory a bit more deeply, by understanding the notions of algebra and universality.
 
 ##  1. <a name='Introduction'></a>Introduction
 
