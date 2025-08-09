@@ -14,7 +14,7 @@ In the [last section](/blog/freer-monad/part-1/), we introduced the free monad a
 
 In this part, we will examine this connection between algebra and recursion a bit, from the perspective of category theory.
 
-In particular, we will explore a universal construction called an initial algebra. An initial algebra gives rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. These morphisms are often called **catamorphisms** in programming, and they beautifully capture the essence of recursion. 
+In particular, we will explore a universal construction called an initial algebra. An initial algebra gives rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. These morphisms are often called **catamorphisms** in programming, and are an instance of a broader concept called a **recursion scheme**.
 
 We will then see how free monads are initial algebras giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing structure, providing a way to interpret recursive data.
 
@@ -60,10 +60,10 @@ Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-al
   </span>
 </div>
 
-$F$-algebras and their morphisms form a category, and the initial object in this category is called the *initial algebra*. That is, $(A, \alpha)$ is an initial $F$-algeb ra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
+$F$-algebras and their morphisms form a category, and the initial object in this category is called the *initial algebra*. That is, $(A, \alpha)$ is an initial $F$-algebra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
 
 ## 2.2. <a name='InductiveTypes'></a>Lists as Initial Algebras
-As it turns out, in terms of categorical semantics, an inductive type is a type whose interpretation is given by an initial algebra of an endofunctor. This was mentioned in part 1 using the example of the `List` type but perhaps was not explained sufficiently. Let's unpack it a bit. First, recall the definition of the type `List α` for an arbitrary type `α`:
+As it turns out, an inductive type is a type whose interpretation is given by an initial algebra of an endofunctor. This was mentioned in part 1 using the example of the `List` type but perhaps was not explained sufficiently. Let's unpack it a bit. First, recall the definition of the type `List α` for an arbitrary type `α`:
 
 ```lean
 inductive List (α : Type u) where
@@ -225,7 +225,7 @@ This is the fold analogue for the free monad: the unique morphism from the initi
 ##  4. <a name='Cata'></a>Catamorphisms as Interpreters
 We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" their data into another value. In functional programming, there is a word for the unique morphism from an initial algebra - a **catamorphism**. This is a generalization of folding that allows you to collapse structured data from an initial algebra into a single value. More precisely, a catamorphism is the unique function from an inductive type to any algebra over its defining functor, which folds the recursive structure into some value and respects the algebra's semantics.
 
-Catamorphisms can be thought of as interpreters, and in the case of the free monad, the separation of syntax and semantics provides additional freedom in how programs are interpreted. Given a computation tree defined by a free monad, one can evaluate its value, execute its effects, pretty print its nodes, or anything else all by selecting the appropriate target algebra for its catamorphism. We will put this to use in part 3, where we build and verify an interpreter for a small effectful language.
+In the case of the free monad, the separation of syntax and semantics provides additional freedom in how programs are interpreted. Given a computation tree defined by a free monad, one can evaluate its value, execute its effects, pretty print its nodes, or anything else all by selecting the appropriate target algebra for its catamorphism. We will put this to use in part 4, where we build and verify an interpreter for a small effectful language.
 
 ## 5. <a name='Conclusion'></a>Conclusion
 
