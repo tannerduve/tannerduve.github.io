@@ -28,7 +28,7 @@ Below is a growing collection of books that I have enjoyed and/or have shaped my
 - [*The Dao of Functional Programming*](https://tannerduve.github.io/files/DaoFP.pdf) - Bartosz Milewski
 - [*Types and Programming Languages*](https://www.goodreads.com/book/show/112252.Types_and_Programming_Languages) — Benjamin C. Pierce  
 - [*Topoi: The Categorial Analysis of Logic*](https://www.goodreads.com/book/show/323609.Topoi) — Robert Goldblatt 
-- [*Homotopy Type Theory: Univalent Foundations of Mathematics*](https://www.goodreads.com/book/show/18106978-homotopy-type-theory)  
+- [*Type Theory and Formal Proof*](https://anggtwu.net/tmp/nederpelt_geuvers__type_theory_and_formal_proof_an_introduction.pdf) - Nederpelt and Geuvers
 - [*Lectures on the Philosophy of Mathematics*](https://www.goodreads.com/book/show/53730382-lectures-on-the-philosophy-of-mathematics) — Joel David Hamkins  
 
 ---
