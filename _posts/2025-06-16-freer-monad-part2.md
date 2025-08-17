@@ -41,7 +41,7 @@ We will then see how free monads are initial algebras giving us catamorphisms in
 We begin this section with some definitions.
 
 ##  2.1. <a name='Algebras'></a>Algebras and their Morphisms
-Let $F : C \to D$ be a functor. An *algebra* over $F$ is a pair $(A, \alpha)$ where $\alpha : FA \to A$.
+Let $F : C \to C$ be an endofunctor. An *algebra* over $F$ is a pair $(A, \alpha)$ where $\alpha : FA \to A$.
 
 Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
 <div style="text-align: center;">
