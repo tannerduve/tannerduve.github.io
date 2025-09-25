@@ -26,15 +26,11 @@ author_profile: true
 
 ---
 
-### [Introduction to Computability Theory in Lean (Part 1)](/blog/computability-lean-part-1/)
-*Formalizing the theory of oracles and Turing degrees*
+## Coming Soon
 
----
+### Introduction to Computability Theory in Lean
+*Formalizing the theory of oracles and Turing degrees in a multi-part series exploring recursive functions, decidability, and the arithmetic hierarchy*
 
-### [ZkFlow: A Formally Verified Compiler for Zero-Knowledge Circuits](/blog/zkflow/)
-*From declarative syntax to ZK constraints - verified in Lean*
+### Linear Logic: Syntax, Semantics and Applications
+*An introduction to the syntax and semantics of linear logic. We'll explore its use in programming by looking at the Par language, a new process language implemented in Rust based on classical linear logic*
 
----
-
-### [Chicken-pi: A Toy Proof Assistant in Haskell](/blog/chicken-pi/)
-*A Coq-inspired toy proof assistant with inductives, dependent types, pattern matching, and universes — baked in Haskell.*
