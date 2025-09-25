@@ -7,7 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-🛠️ This blog is under construction, but here are the upcoming posts:
+🛠️ This blog is under construction
 
 ---
 
