@@ -32,5 +32,5 @@ author_profile: true
 *Formalizing the theory of oracles and Turing degrees in a multi-part series exploring recursive functions, decidability, and the arithmetic hierarchy*
 
 ### Linear Logic: Syntax, Semantics and Applications
-*An introduction to the syntax and semantics of linear logic. We'll explore its use in programming by looking at the Par language, a new process language implemented in Rust based on classical linear logic*
+*An introduction to the syntax and semantics of linear logic. We'll explore its use in programming by looking at **Par**, a new process language implemented in Rust based on classical linear logic*
 
