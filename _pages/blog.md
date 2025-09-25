@@ -34,6 +34,6 @@ author_profile: true
 ### Linear Logic: Syntax, Semantics and Applications
 *An introduction to the syntax and semantics of linear logic. We'll explore its use in programming by looking at **Par**, a new process language implemented in Rust based on classical linear logic*
 
-### LiHKAL: A Survey of Formal Systems and their Models
+### LiHKAL: Varieties of Formal Systems
 *Logics I Have Known and Loved*
 
