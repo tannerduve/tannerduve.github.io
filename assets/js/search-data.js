@@ -55,7 +55,7 @@ ninja.data = [{
         
           title: "Tutorial: A Verified Interpreter with Side Effects",
         
-        description: "",
+        description: "Part of the free monads series",
         section: "Posts",
         handler: () => {
           
@@ -66,7 +66,7 @@ ninja.data = [{
         
           title: "Part 3: Universal Morphisms and Effect Handlers",
         
-        description: "",
+        description: "Part of the free monads series",
         section: "Posts",
         handler: () => {
           
@@ -77,7 +77,7 @@ ninja.data = [{
         
           title: "Part 2: Initial Algebras, Catamorphisms, and Interpreters",
         
-        description: "",
+        description: "Part of the free monads series",
         section: "Posts",
         handler: () => {
           
@@ -88,7 +88,7 @@ ninja.data = [{
         
           title: "Part 1: Defining the Free Monad in Lean",
         
-        description: "",
+        description: "Introducing the categorical theory and implementation of free monads in Lean",
         section: "Posts",
         handler: () => {
           
@@ -99,7 +99,7 @@ ninja.data = [{
         
           title: "The Free Monad: A Four-Part Series",
         
-        description: "",
+        description: "A four-part series on free monads in Lean",
         section: "Posts",
         handler: () => {
           
@@ -110,7 +110,7 @@ ninja.data = [{
         
           title: "Verified Dynamic Programming with Σ-types in Lean",
         
-        description: "",
+        description: "Solving a competitive programming problem and proving it correct with dependent types",
         section: "Posts",
         handler: () => {
           
