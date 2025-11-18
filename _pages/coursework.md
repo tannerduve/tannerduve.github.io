@@ -20,6 +20,8 @@ nav_order: 4
 
 ### Coursework Highlights
 
+Below are some of my favorite courses taken during my time at Penn. If any current students are reading this, I highly recommend considering some of these.
+
 #### Computer Science
 
 - [Software Foundations](https://softwarefoundations.cis.upenn.edu) - Benjamin Pierce (CIS 5000)  
@@ -47,7 +49,6 @@ nav_order: 4
 - Philosophy of Science - Aydin Mohseni (PHIL 3800)
 - Philosophy of Mathematics - Scott Weinstein (PHIL 4770)
 - Philosophy of Computability and Randomness - Scott Weinstein (PHIL 3800)
-- What is Taoism? - Ori Tavor (RELS 1520)
 
 ---
 
