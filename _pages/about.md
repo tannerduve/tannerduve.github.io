@@ -1,10 +1,8 @@
 ---
 layout: about
-title: About
+title: about
 permalink: /
 subtitle: Proof Engineer, Logician
-nav: true
-nav_order: 1
 
 profile:
   align: right
