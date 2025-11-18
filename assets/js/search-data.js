@@ -4,19 +4,12 @@ const ninja = document.querySelector('ninja-keys');
 // add the home and posts menu items
 ninja.data = [{
     id: "nav-about",
-    title: "About",
+    title: "about",
     section: "Navigation",
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-about",
-          title: "About",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/";
-          },
-        },{id: "nav-blog",
+  },{id: "nav-blog",
           title: "Blog",
           description: "",
           section: "Navigation",
@@ -127,6 +120,16 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/braiding-sweetgrass/";
+            },},{id: "books-categories-for-quantum-theory",
+          title: 'Categories for Quantum Theory',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/categories-for-quantum-theory/";
+            },},{id: "books-category-theory-in-context",
+          title: 'Category Theory in Context',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/category-theory-in-context/";
             },},{id: "books-computational-complexity-a-modern-approach",
           title: 'Computational Complexity: A Modern Approach',
           description: "",
@@ -142,6 +145,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/lectures-on-the-philosophy-of-mathematics/";
+            },},{id: "books-the-logic-of-reliable-inquiry",
+          title: 'The Logic of Reliable Inquiry',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/logic-of-reliable-inquiry/";
             },},{id: "books-logicomix-an-epic-search-for-truth",
           title: 'Logicomix: An Epic Search for Truth',
           description: "",
@@ -172,6 +180,16 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/quintessence/";
+            },},{id: "books-rationalist-spirituality",
+          title: 'Rationalist Spirituality',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/rationalist-spirit/";
+            },},{id: "books-reality",
+          title: 'Reality+',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/reality-plus/";
             },},{id: "books-tantra-illuminated",
           title: 'Tantra Illuminated',
           description: "",
@@ -227,6 +245,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/types-and-programming-languages/";
+            },},{id: "books-zhuangzi",
+          title: 'Zhuangzi',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/zhuangzi/";
             },},{id: "news-a-simple-inline-announcement",
           title: 'A simple inline announcement.',
           description: "",
