@@ -86,51 +86,7 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-tutorial-a-verified-interpreter-with-side-effects",
-        
-          title: "Tutorial: A Verified Interpreter with Side Effects",
-        
-        description: "",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2025/freer-monad-part4/";
-          
-        },
-      },{id: "post-part-3-universal-morphisms-and-effect-handlers",
-        
-          title: "Part 3: Universal Morphisms and Effect Handlers",
-        
-        description: "",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2025/freer-monad-part3/";
-          
-        },
-      },{id: "post-part-2-initial-algebras-catamorphisms-and-interpreters",
-        
-          title: "Part 2: Initial Algebras, Catamorphisms, and Interpreters",
-        
-        description: "",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2025/freer-monad-part2/";
-          
-        },
-      },{id: "post-part-1-defining-the-free-monad-in-lean",
-        
-          title: "Part 1: Defining the Free Monad in Lean",
-        
-        description: "",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2025/freer-monad-part1/";
-          
-        },
-      },{id: "post-the-free-er-monad",
+            },{id: "post-the-free-er-monad",
         
           title: "The Free-er Monad",
         
