@@ -4,6 +4,7 @@ date: 2025-06-16 10:00:00 -0800
 categories: [Formal Verification, Free Monads]
 tags: [lean, free-monads, catamorphisms, interpreters]
 math: true
+hidden: true
 ---
 
 In the [last section](/blog/freer-monad/part-1/), we introduced the free monad and implemented it in Lean. In this section we will study the theory a bit more deeply, by understanding the notions of algebra and universality.

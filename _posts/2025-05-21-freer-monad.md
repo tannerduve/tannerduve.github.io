@@ -1,5 +1,5 @@
 ---
-title: "The Free-er Monad"
+title: "The Free Monad: A Four-Part Series"
 date: 2025-05-21 13:00:00 -0800
 categories: [Formal Verification, Free Monads]
 tags: [lean, free-monads, category-theory, effects]

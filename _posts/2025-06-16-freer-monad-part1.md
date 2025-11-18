@@ -4,6 +4,7 @@ date: 2025-06-16 09:00:00 -0800
 categories: [Formal Verification, Free Monads]
 tags: [lean, free-monads, category-theory]
 math: true
+hidden: true
 ---
 
 ## 1. <a name='Introduction'></a>Introduction

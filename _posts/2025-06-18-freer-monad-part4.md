@@ -4,6 +4,7 @@ date: 2025-06-18 12:00:00 -0800
 categories: [Formal Verification, Type Theory]
 tags: [lean, formal-verification, free-monads, type-theory, tutorial]
 math: true
+hidden: true
 ---
 
 ## 1. <a name='Introduction'></a>Introduction
