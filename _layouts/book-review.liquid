@@ -62,8 +62,16 @@ layout: default
             </a>
           {% endif %}
         {% endif %}
-        {% if page.buy_link %}
+        {% if page.goodreads_url %}
           {% if page.started or page.finished or page.stars %}
+            &nbsp;&middot;&nbsp;
+          {% endif %}
+          <a target="_blank" href="{{ page.goodreads_url }}"
+            ><i class="fa-brands fa-goodreads"></i>
+          </a>
+        {% endif %}
+        {% if page.buy_link %}
+          {% if page.started or page.finished or page.stars or page.goodreads_url %}
             &nbsp;&middot;&nbsp;
           {% endif %}
           <a target="_blank" href="{{ page.buy_link }}"
