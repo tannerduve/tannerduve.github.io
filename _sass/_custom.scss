@@ -20,6 +20,12 @@
   }
 }
 
+// Remove error highlighting (red background) for unrecognized tokens
+.highlight .err {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
 // Ensure all code blocks preserve whitespace properly
 figure.highlight pre code,
 div.highlight pre code {
