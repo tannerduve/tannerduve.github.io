@@ -1,7 +1,7 @@
 ---
 layout: default
+title: Blog
 permalink: /blog/
-title: blog
 nav: true
 nav_order: 1
 pagination:
@@ -12,8 +12,41 @@ pagination:
   sort_field: date
   sort_reverse: true
   trail:
-    before: 1 # The number of links before the current page
-    after: 3 # The number of links after the current page
+    before: 1
+    after: 3
+---
+This blog is under construction
+
+---
+
+### Free Monads in Lean - A Four Part Series
+*Strictly positive thoughts on free monads in Lean for the mathematically inclined programmer*
+
+1. [Part 1 - Defining the Free Monad in Lean](/blog/freer-monad/part-1/)
+2. [Part 2 - Catamorphisms, Interpreters, and Initial Algebras](/blog/freer-monad/part2/)
+3. [Part 3 - Universal Morphisms and Effect Handlers](/blog/freer-monad/part3/)
+4. [Part 4 - Tutorial: A Verified Interpreter with Side Effects](/blog/freer-monad/part4/)
+
+---
+
+### [Verified Dynamic Programming with Sigma-types in Lean](/blog/verified-dp/)
+*Solving a competitive programming problem and proving it correct with a novel use of dependent types - a beginner friendly tutorial*
+
+---
+
+## Coming Soon
+### Introduction to the ZX-calculus
+*A diagrammatic language for expressing and reasoning about quantum processes via monoidal categories*
+
+### Linear Logic: Syntax, Semantics and Applications
+*An introduction to the syntax and semantics of linear logic. We'll explore its use in programming by looking at **Par**, a new process language implemented in Rust based on classical linear logic*
+
+### LiHKAL (Logics I Have Known and Loved)
+*On the varieties of formal systems*
+
+### Introduction to Computability Theory in Lean
+*Formalizing the theory of oracles and Turing degrees in a multi-part series exploring recursive functions, decidability, and the arithmetic hierarchy*
+
 ---
 
 <div class="post">

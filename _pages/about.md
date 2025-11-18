@@ -1,34 +1,33 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: Formal verification at Nexus - PL + logic enthusiast
 
 profile:
   align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image: pfp1.png
+  image_circular: true
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Formal Verification Engineer @ <a href="https://nexus.xyz">Nexus</a></p>
+    <p>Zero-Knowledge Virtual Machine team</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+selected_papers: false
+social: true
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  enabled: false
 
 latest_posts:
-  enabled: true
-  scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
-  limit: 3 # leave blank to include all the blog posts
+  enabled: false
 ---
+Hi! I'm Tanner. I am a formal verification software engineer at [Nexus](https://nexus.xyz), building and verifying the [Zero-Knowledge Virtual Machine](https://nexus.xyz/zkvm). I graduated from the University of Pennsylvania with an MSE in computer science and a BA in mathematical logic. My academic interests include formal verification, programming languages, category theory, type theory, and all things logic.
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am an avid user of the [Lean](https://leanprover-community.github.io/index.html) theorem prover and I have done contracting work formalizing mathematical proofs for [Harmonic](https://harmonic.fun/index) and [Project Numina](https://projectnumina.ai). Independently I have made contributions to both [Mathlib](https://github.com/leanprover-community/mathlib4) and [CSLib](https://github.com/leanprover/cslib) and I enjoy formalizing things related to logic and programming languages.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I have participated in the [Adjoint School](https://adjointschool.com/index.html), doing research in categorical semantics of compositional reinforcement learning, under supervision of [Georgios Bakirtzis](https://bakirtzis.net) and [Michail Savvas](https://michailsavvas.github.io). Previously I have interned with Amazon's [Automated Reasoning Group](https://aws.amazon.com/what-is/automated-reasoning/), and at Meta.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Outside of work I enjoy reading philosophy, in particular analytic philosophy, philosophy of mind and consciousness, metaphysics, and Eastern philosophy and mysticism. I played 2 years of D1 football at Penn and I enjoy lifting weights, yoga, and running. I am also learning guitar (primarily 90s grunge) and am passionate about veganism and total liberation for all beings.
+
+![Nexus team at Summit V, June 2025]({{ '/assets/img/nexus.jpg' | relative_url }})
+*Nexus team at Summit V, June 2025*
