@@ -75,7 +75,7 @@ $F$-algebras and their morphisms form a category, and the initial object in this
 
 As it turns out, an inductive type is a type whose interpretation is given by an initial algebra of an endofunctor. This was mentioned in part 1 using the example of the `List` type but perhaps was not explained sufficiently. Let's unpack it a bit. First, recall the definition of the type `List α` for an arbitrary type `α`:
 
-```haskell
+```lean
 inductive List (α : Type u) where
   | nil : List α
   | cons (head : α) (tail : List α) : List α
@@ -109,7 +109,7 @@ $$
 
 Or, in code if you prefer:
 
-```haskell
+```lean
 def ListF {α : Type u} (X : Type u) : Type u :=
   Unit ⊕ (α × X)
 ```
@@ -134,7 +134,7 @@ These two pieces of data:
 
 together define a function:
 
-```haskell
+```lean
 β : Unit + (α × B) → B
 ```
 
@@ -153,7 +153,7 @@ This morphism is defined by recursion:
 
 Let's define it in Lean:
 
-```haskell
+```lean
 def reduce {α β : Type} (b₀ : β) (step : α → β → β) : List α → β
   | [] => b₀
   | x :: xs => step x (reduce b₀ step xs)
@@ -161,7 +161,7 @@ def reduce {α β : Type} (b₀ : β) (step : α → β → β) : List α → β
 
 This may look familiar to you if you have ever used a functional language before, in fact, this is just the `foldr` function! If you've ever written any functional programs you have likely used this plenty.
 
-```haskell
+```lean
 def foldr {α β : Type} (b₀ : β) (step : α → β → β) : List α → β
   | [] => b₀
   | x :: xs => step x (foldr b₀ step xs)
@@ -185,7 +185,7 @@ $$
 $$
 </div>
 Hopefully now this makes even more sense. But remember, the way we ended up defining free monads in Lean was not the traditional `Free` definition we had in Haskell. Due to strict positivity, we had to give a slightly trickier definition:
-```haskell
+```lean
 inductive FreeM.{u, v, w} (F : Type u → Type v) (α : Type w) where
   | pure : α → FreeM F α
   | liftBind {ι : Type u} (op : F ι) (cont : ι → FreeM F α) : FreeM F α
@@ -227,7 +227,7 @@ we want to define a function `⟦·⟧ : FreeM F α → B` that collapses the en
 
 Just like with `foldr` for lists, we define this function recursively:
 
-```haskell
+```lean
 def foldFree {F : Type u → Type v} {α β : Type w}
   (pureCase : α → β)
   (bindCase : {ι : Type u} → F ι → (ι → β) → β)

@@ -1,0 +1,30 @@
+// Custom styles for Lean code blocks
+// Since Rouge doesn't support Lean, we style it manually
+
+.language-lean {
+  .highlight {
+    pre {
+      white-space: pre !important;
+      overflow-x: auto;
+      tab-size: 2;
+      
+      code {
+        white-space: pre !important;
+        word-wrap: normal;
+        display: block;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+// Ensure all code blocks preserve whitespace properly
+figure.highlight pre code,
+div.highlight pre code {
+  white-space: pre !important;
+  word-wrap: normal;
+  tab-size: 2;
+}
+

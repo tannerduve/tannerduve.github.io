@@ -134,20 +134,21 @@ layout: default
     {% else %}
       <figure>
         {% if page.cover %}
-          <img alt="{{ page.title }} cover" src="{{ site.baseurl }}/{{ page.cover }}">
-          <figcaption>
-            Cover of <em>{{ page.title }}</em>
-          </figcaption>
+          {% if page.goodreads_url %}
+            <a href="{{ page.goodreads_url }}" target="_blank">
+              <img alt="{{ page.title }} cover" src="{{ site.baseurl }}/{{ page.cover }}">
+            </a>
+          {% else %}
+            <img alt="{{ page.title }} cover" src="{{ site.baseurl }}/{{ page.cover }}">
+          {% endif %}
         {% elsif page.olid %}
-          <img alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/olid/{{ page.olid }}-L.jpg?default=false">
-          <figcaption>
-            Cover of <em>{{ page.title }}</em> on the <a href="https://openlibrary.org/olid/{{ page.olid }}">Open Library</a>.
-          </figcaption>
+          <a href="https://openlibrary.org/olid/{{ page.olid }}" target="_blank">
+            <img alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/olid/{{ page.olid }}-L.jpg?default=false">
+          </a>
         {% elsif page.isbn %}
-          <img alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/isbn/{{ page.isbn }}-L.jpg?default=false">
-          <figcaption>
-            Cover of <em>{{ page.title }}</em> on the <a href="https://openlibrary.org/isbn/{{ page.isbn }}">Open Library</a>.
-          </figcaption>
+          <a href="https://openlibrary.org/isbn/{{ page.isbn }}" target="_blank">
+            <img alt="{{ page.title }} cover" src="http://covers.openlibrary.org/b/isbn/{{ page.isbn }}-L.jpg?default=false">
+          </a>
         {% endif %}
       </figure>
       <br class="mobile-break" clear="right">

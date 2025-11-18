@@ -53,7 +53,7 @@ Now what does this mean for monads? We know that our free monad generates a mona
 
 Intuitively, you can think of the morphism `h` as an _effect handler_ - it interprets each primitive operation described by `F` as a monadic computation in `M`. The universal property ensures that this effect handler uniquely lifts to a interpretation of entire programs written in the free monad, ie. computations of type `FreeM F`. That is, any computation of type `Free M a`, can be interpreted as a computation in `M` via a morphism `h' a : Free M a -> M a`. `h'` being a morphism, means it respects both `pure` and `bind` of the monads, ie:
 
-```haskell
+```lean
 h' (pure a) = pure a
 h' (m >>= k) = h' m >>= fun x => h' (k x)
 ```
@@ -62,7 +62,7 @@ h' (m >>= k) = h' m >>= fun x => h' (k x)
 
 Let's formalize the universal property precisely. Recall, our `FreeM F` monad was defined inductively as a tree of computations:
 
-```haskell
+```lean
 inductive FreeM (F : Type u → Type v) (α : Type w)
   | pure : α → FreeM F α
   | liftBind {ι : Type u} (op : F ι) (cont : ι → FreeM F α) : FreeM F α
@@ -72,19 +72,19 @@ The universal property, more precisely, is as follows:
 
 > Given any monad `M` and any function (an effect handler)
 >
-> ```haskell
+> ```lean
 > f : ∀ α, F α → M α
 > ```
 >
 > there exists a unique monad morphism
 >
-> ```haskell
+> ```lean
 > f' : ∀ α, FreeM F α → M α
 > ```
 >
 > such that
 >
-> ```haskell
+> ```lean
 > f' (lift op) = f op
 > ```
 
@@ -92,7 +92,7 @@ Here, `lift` is the inclusion map from our type constructor into the free monad.
 
 Explicitly, we define this inclusion as:
 
-```haskell
+```lean
 def lift {F : Type u → Type v} {ι : Type u} (op : F ι) : FreeM F ι :=
   FreeM.liftBind op pure
 ```
@@ -101,7 +101,7 @@ The map `lift` takes a single operation from our basis `F` and wraps it as an ef
 
 The universal property then guarantees that for any monad `M` and any interpretation `f` from our effects to `M`, we can define our unique interpreter `liftM f`:
 
-```haskell
+```lean
 def liftM {M : Type u → Type w} [Monad M
     {α : Type u} : FreeM F α → ({β : Type u} → F β → M β) → M α
   | FreeM.pure a, _ => pure a
@@ -112,7 +112,7 @@ This interpreter `liftM` traverses our computation tree. It interprets each effe
 
 The commutativity condition of the universal property explicitly states:
 
-```haskell
+```lean
 liftM f (lift op) = f op
 ```
 
@@ -122,7 +122,7 @@ In other words, interpreting an operation wrapped by `lift` using `liftM` is exa
 
 Let's illustrate this concretely with an example. Suppose we have a simple effect type describing state operations:
 
-```haskell
+```lean
 inductive StateF (σ : Type u) : Type u → Type u
   | get : StateF σ σ
   | set : σ → StateF σ PUnit
@@ -130,7 +130,7 @@ inductive StateF (σ : Type u) : Type u → Type u
 
 Using `lift`, we embed these operations into `FreeState σ α := FreeM (StateF σ) α`:
 
-```haskell
+```lean
 def get {σ : Type u} : FreeState σ σ := lift StateF.get
 
 def set {σ : Type u} (s : σ) : FreeState σ PUnit := lift (StateF.set s)
@@ -138,7 +138,7 @@ def set {σ : Type u} (s : σ) : FreeState σ PUnit := lift (StateF.set s)
 
 Now suppose we want to interpret our `FreeState` computations into the standard state monad `StateM`. Our effect handler is straightforward:
 
-```haskell
+```lean
 def stateInterp {σ : Type u} : ∀ {α}, StateF σ α → StateM σ α
   | _, StateF.get => StateM.get
   | _, StateF.set s => StateM.set s
@@ -146,7 +146,7 @@ def stateInterp {σ : Type u} : ∀ {α}, StateF σ α → StateM σ α
 
 By the universal property, we uniquely lift this handler to interpret entire computations:
 
-```haskell
+```lean
 def toStateM {σ α : Type u} (comp : FreeState σ α) : StateM σ α :=
   liftM stateInterp comp
 ```
