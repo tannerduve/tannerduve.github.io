@@ -18,45 +18,6 @@ pagination:
 
 <div class="post">
 
-<div class="header-bar">
-  <h2>Featured Series</h2>
-</div>
-
-<p><em>This blog is under construction</em></p>
-
-<h3>Free Monads in Lean - A Four Part Series</h3>
-<p><em>Strictly positive thoughts on free monads in Lean for the mathematically inclined programmer</em></p>
-
-<ol>
-  <li><a href="/blog/freer-monad/part-1/">Part 1 - Defining the Free Monad in Lean</a></li>
-  <li><a href="/blog/freer-monad/part2/">Part 2 - Catamorphisms, Interpreters, and Initial Algebras</a></li>
-  <li><a href="/blog/freer-monad/part3/">Part 3 - Universal Morphisms and Effect Handlers</a></li>
-  <li><a href="/blog/freer-monad/part4/">Part 4 - Tutorial: A Verified Interpreter with Side Effects</a></li>
-</ol>
-
-<hr>
-
-<h3><a href="/blog/verified-dp/">Verified Dynamic Programming with Sigma-types in Lean</a></h3>
-<p><em>Solving a competitive programming problem and proving it correct with a novel use of dependent types - a beginner friendly tutorial</em></p>
-
-<hr>
-
-<h3>Coming Soon</h3>
-
-<h4>Introduction to the ZX-calculus</h4>
-<p><em>A diagrammatic language for expressing and reasoning about quantum processes via monoidal categories</em></p>
-
-<h4>Linear Logic: Syntax, Semantics and Applications</h4>
-<p><em>An introduction to the syntax and semantics of linear logic. We'll explore its use in programming by looking at <strong>Par</strong>, a new process language implemented in Rust based on classical linear logic</em></p>
-
-<h4>LiHKAL (Logics I Have Known and Loved)</h4>
-<p><em>On the varieties of formal systems</em></p>
-
-<h4>Introduction to Computability Theory in Lean</h4>
-<p><em>Formalizing the theory of oracles and Turing degrees in a multi-part series exploring recursive functions, decidability, and the arithmetic hierarchy</em></p>
-
-<hr>
-
 {% assign blog_name_size = site.blog_name | size %}
 {% assign blog_description_size = site.blog_description | size %}
 
@@ -231,5 +192,21 @@ pagination:
 {% if page.pagination.enabled %}
 {% include pagination.liquid %}
 {% endif %}
+
+<hr>
+
+<h3>Coming Soon</h3>
+
+<h4>Introduction to the ZX-calculus</h4>
+<p><em>A diagrammatic language for expressing and reasoning about quantum processes via monoidal categories</em></p>
+
+<h4>Linear Logic: Syntax, Semantics and Applications</h4>
+<p><em>An introduction to the syntax and semantics of linear logic. We'll explore its use in programming by looking at <strong>Par</strong>, a new process language implemented in Rust based on classical linear logic</em></p>
+
+<h4>LiHKAL (Logics I Have Known and Loved)</h4>
+<p><em>On the varieties of formal systems</em></p>
+
+<h4>Introduction to Computability Theory in Lean</h4>
+<p><em>Formalizing the theory of oracles and Turing degrees in a multi-part series exploring recursive functions, decidability, and the arithmetic hierarchy</em></p>
 
 </div>
