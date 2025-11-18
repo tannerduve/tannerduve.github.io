@@ -2,6 +2,7 @@
 layout: book-review
 title: "Tao Te Ching"
 author: Lao Tzu
+cover: assets/img/book_covers/taoteching.png
 tags:
   - mysticism
 status: finished

@@ -2,6 +2,7 @@
 layout: book-review
 title: "The Zen Teachings of Huang Po: On the Transmission of Mind"
 author: Huang Po
+cover: assets/img/book_covers/zenhuangpo.png
 tags:
   - mysticism
 status: finished

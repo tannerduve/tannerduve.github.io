@@ -2,6 +2,7 @@
 layout: book-review
 title: "Philosophy of Mind: Classical and Contemporary Readings"
 author: David Chalmers (ed.)
+cover: assets/img/book_covers/philofmind.png
 tags:
   - philosophy
 status: finished

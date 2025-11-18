@@ -2,6 +2,7 @@
 layout: book-review
 title: "Paths to God: Living the Bhagavad Gita"
 author: Ram Dass
+cover: assets/img/book_covers/pathstogod.png
 tags:
   - mysticism
 status: finished

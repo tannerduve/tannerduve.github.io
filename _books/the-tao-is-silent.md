@@ -2,6 +2,7 @@
 layout: book-review
 title: "The Tao Is Silent"
 author: Raymond Smullyan
+cover: assets/img/book_covers/taosilent.png
 tags:
   - mysticism
 status: finished

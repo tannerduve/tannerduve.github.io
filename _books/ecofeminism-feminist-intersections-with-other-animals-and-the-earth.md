@@ -2,6 +2,7 @@
 layout: book-review
 title: "Ecofeminism: Feminist Intersections with Other Animals and the Earth"
 author: Carol J. Adams and Lori Gruen (eds.)
+cover: assets/img/book_covers/ecofeminism.png
 tags:
   - ecology
 status: finished

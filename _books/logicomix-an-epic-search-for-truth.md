@@ -2,6 +2,7 @@
 layout: book-review
 title: "Logicomix: An Epic Search for Truth"
 author: Apostolos Doxiadis and Christos Papadimitriou
+cover: assets/img/book_covers/logicomix.png
 tags:
   - pop-math
 status: finished

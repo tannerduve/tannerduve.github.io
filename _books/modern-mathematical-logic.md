@@ -2,6 +2,7 @@
 layout: book-review
 title: "Modern Mathematical Logic"
 author: Joseph Mileti
+cover: assets/img/book_covers/miletilogic.png
 tags:
   - math
 status: finished

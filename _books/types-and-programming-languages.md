@@ -2,6 +2,7 @@
 layout: book-review
 title: "Types and Programming Languages"
 author: Benjamin C. Pierce
+cover: assets/img/book_covers/tapl.png
 tags:
   - math
 status: finished
