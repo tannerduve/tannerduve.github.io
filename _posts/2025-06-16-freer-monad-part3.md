@@ -35,13 +35,13 @@ The universal property of free objects, as we saw in part 1, says the free objec
 <div style="text-align: center;">
   <span style="display: inline-block;">
     <script type="text/tikz">
-      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge
+      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
         {X'} && G \\
         \\
         X
-        \arrow["{\hat{h}}", dashed, from=1-1, to=1-3
-        \arrow["\iota", from=3-1, to=1-1
-        \arrow["h"', from=3-1, to=1-3
+        \arrow["{\hat{h}}", dashed, from=1-1, to=1-3]
+        \arrow["\iota", from=3-1, to=1-1]
+        \arrow["h"', from=3-1, to=1-3]
       \end{tikzcd}
     </script>
   </span>
