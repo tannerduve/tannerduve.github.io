@@ -19,7 +19,7 @@ This four-part series will introduce the freer monad in Lean — Part 1 will int
 
 This series assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes.
 
-1. [Part 1 — Defining the Free Monad in Lean](/blog/2025/part-1-defining-the-free-monad-in-lean/)
-2. [Part 2 — Initial Algebras, Catamorphisms, and Interpreters](/blog/2025/part-2-initial-algebras-catamorphisms-and-interpreters/)
-3. [Part 3 — Universal Morphisms and Effect Handlers](/blog/2025/part-3-universal-morphisms-and-effect-handlers/)
-4. [Part 4 — Tutorial: A Verified Interpreter with Side Effects](/blog/2025/part-4-tutorial-a-verified-interpreter-with-side-effects/)
+1. [Part 1 — Defining the Free Monad in Lean]({% post_url 2025-06-16-freer-monad-part1 %})
+2. [Part 2 — Initial Algebras, Catamorphisms, and Interpreters]({% post_url 2025-06-16-freer-monad-part2 %})
+3. [Part 3 — Universal Morphisms and Effect Handlers]({% post_url 2025-06-16-freer-monad-part3 %})
+4. [Part 4 — Tutorial: A Verified Interpreter with Side Effects]({% post_url 2025-06-18-freer-monad-part4 %})
