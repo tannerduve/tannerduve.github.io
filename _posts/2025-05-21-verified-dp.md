@@ -13,7 +13,7 @@ If you've taken an algorithms class, you have likely seen dynamic programming, s
 
 This blog post will show how to solve a dynamic programming problem using memoization in Lean, and verify its correctness against a specification. The technique used in the proof of correctness here is an interesting application of Lean's dependent types, and is generalized to work for any memoization algorithm. The idea came from a conversation with [GasStationManager](https://gasstationmanager.github.io) over at the [Lean Zulip chat](https://leanprover.zulipchat.com), who I credit with coming up with the general technique.
 
-This should be pretty beginner friendly. Basic data structures+algorithms at the undergrad level. Lean experience is not necessary but is helpful for following code samples.
+This should be pretty beginner friendly. Basic data structures+algorithms at the undergrad level. Lean experience is not necessary but you should be able to read functional code.
 
 <!-- vscode-markdown-toc -->
 
