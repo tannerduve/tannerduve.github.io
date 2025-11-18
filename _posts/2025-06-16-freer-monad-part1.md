@@ -6,6 +6,7 @@ description: Introducing the categorical theory and implementation of free monad
 categories: Formal-Verification Free-Monads
 tags: lean free-monads category-theory
 hidden: true
+tikzjax: true
 ---
 
 ## 1. <a name='Introduction'></a>Introduction

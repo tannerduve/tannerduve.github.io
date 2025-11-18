@@ -6,6 +6,7 @@ description: Part of the free monads series
 categories: Formal Verification, Free Monads
 tags: lean, free-monads, universal-properties, effect-handlers
 hidden: true
+tikzjax: true
 ---
 
 ## 1. <a name='Introduction'></a>Introduction
