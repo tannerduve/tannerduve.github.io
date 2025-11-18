@@ -8,4 +8,3 @@ tags:
 status: finished
 section: "Eastern Philosophy and Mysticism"
 ---
-
