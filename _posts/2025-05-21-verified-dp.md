@@ -59,14 +59,14 @@ $$
 
 Before writing any code, here is the header we'll want to use:
 
-```lean
+```haskell
 import Std.Data.HashMap
 open Std
 ```
 
 We define the recurrence in Lean as follows:
 
-```lean
+```haskell
 def maxDollars_spec (n : Nat) : Nat :=
   if n ≤ 8 then
   -- Base case: for `n ≤ 8`, it's better to sell the coin directly.
@@ -80,7 +80,7 @@ This directly computes the maximum earnable amount. We will use this as our spec
 
 Now here is a memoized solution:
 
-```lean
+```haskell
 def maxDollarsMemo (n : Nat) : Nat :=
   let rec helperMemo (n : Nat) (memo : HashMap Nat Nat) : Nat × HashMap Nat Nat :=
       match memo.get? n with
@@ -105,7 +105,7 @@ _(Exercise : Rewrite this using a state monad to simulate mutating the hashmap i
 
 Now our correctness claim is as follows:
 
-```lean
+```haskell
 theorem memo_correct : ∀ (n : ℕ), maxDollarsMemo n = maxDollarsSpec n
 ```
 
@@ -134,7 +134,7 @@ For the memoization, the property we want to hold is: for a pair `(k, v)` stored
 
 Now the implementation is as follows. We begin with a very general definition: a pair of values with a property attached to it:
 
-```lean
+```haskell
 def cell (f : α → β) := {c: α × β // f c.fst = c.snd}
 ```
 
@@ -142,14 +142,14 @@ That is, given a function `f : α → β`, for example the recurrence `maxDollar
 
 Our new HashMap, `PropMap`, stores keys of type `α` and values of type `cell f` whose first element is equal to the key:
 
-```lean
+```haskell
 abbrev PropMap [BEq α][Hashable α] [LawfulBEq α] (f : α → β) :=
   HashMap α (cell f)
 ```
 
 Now we can define `get?` with the guarantee we are looking for:
 
-```lean
+```haskell
 def PropMap_get? [BEq α][Hashable α] [LawfulBEq α] (ft : α → β) (hm : PropMap ft) (a : α) : Option { b : β // ft a = b } :=
   match hf : hm.get? a with  -- Attempt to get the value associated with `a` in the map.
   | none => none            -- If not found, return `none`.
@@ -167,7 +167,7 @@ def PropMap_get? [BEq α][Hashable α] [LawfulBEq α] (ft : α → β) (hm : Pro
 
 As well as an insertion function:
 
-```lean
+```haskell
 def PropMap_insert [BEq α][Hashable α] [LawfulBEq α] (ft : α → β) (hm : PropMap ft) (k : α) (v : β) (h : ft k = v) : PropMap ft :=
   let cell : { c : α × β // ft c.fst = c.snd } := ⟨(k, v), h⟩  -- Create the cell with proof.
   hm.insert k cell  -- Insert the cell into the map at key `k`.
@@ -175,7 +175,7 @@ def PropMap_insert [BEq α][Hashable α] [LawfulBEq α] (ft : α → β) (hm : P
 
 And now we can define our recursive helper:
 
-```lean
+```haskell
 def helper (n : Nat) (memo : PropMap maxDollars_spec) :
   { v : Nat // maxDollars_spec n = v } × PropMap maxDollars_spec :=
   match PropMap_get? maxDollars_spec memo n with
@@ -218,14 +218,14 @@ Look here. Subtypes require proofs that their value satisfies their logical prop
 
 And finally, here is our main function:
 
-```lean
+```haskell
 def maxDollars (n : Nat) : Nat :=
   (helper n (HashMap.empty)).1
 ```
 
 We've embedded the proof into the algorithm itself: every computed value is stored together with a proof that it satisfies the spec. So to prove correctness for any n, we just apply the function — its type guarantees that the result equals maxDollars_spec n:
 
-```lean
+```haskell
 theorem maxDollars_spec_correct : ∀ n, maxDollars n = maxDollars_spec n := by
   intro n
   unfold maxDollars
@@ -304,7 +304,7 @@ Try implementing and verifying your favorite(s) of the following:
 
 In each case, define the specification as a recursive function, then write a subtype-verified implementation using a `PropMap` to cache and prove subproblem results. Your goal is a final theorem of the form:
 
-```lean
+```haskell
 theorem algorithm_correct : ∀ input, algorithm input = spec input
 ```
 

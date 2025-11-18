@@ -144,7 +144,7 @@ instance Functor f => Monad (Free f) where
 
 Now, as promised, we will do the rest of our work in Lean. Let's write the same definition in Lean:
 
-```lean
+```haskell
 inductive Free (f : Type → Type) (a : Type) where
   | pure : a → Free f a
   | free : f (Free f a) → Free f a
@@ -167,7 +167,7 @@ To enforce this, defining inductive types has a restriction, called [**strict po
 
 Since the free monad doesn't work due to type-theoretic restrictions, we need a little bit more freedom. _Enter the freer monad_. The below definition is strictly positive:
 
-```lean
+```haskell
 inductive FreeM.{u, v, w} (f : Type u → Type v) (α : Type w) where
   | pure : α → FreeM f α
   | liftBind {ι : Type u} (op : f ι) (cont : ι → FreeM f α) : FreeM f α
@@ -179,7 +179,7 @@ In fact, this is _freer_ in the sense that we no longer even require `f` to be a
 
 We begin by providing a Functor instance, which is just defining a map function, lifting a function $f : \alpha \to \beta$ to a function $Ff : \text{FreeM } F \ \alpha \to \text{FreeM } F \ \beta$:
 
-```lean
+```haskell
 universe u v w w' w''
 namespace FreeM
 variable {F : Type u → Type v} {ι : Type u} {α : Type w} {β : Type w'} {γ : Type w''}
@@ -194,7 +194,7 @@ instance : Functor (FreeM F) where
 
 Now we can provide a monad instance by defining `pure` and `bind` as follows:
 
-```lean
+```haskell
 protected def bind (x : FreeM F α) (f : α → FreeM F β) : FreeM F β :=
   match x with
   | .pure a => f a
@@ -212,7 +212,7 @@ We first prove it is a lawful functor, i.e. it is _functorial_ in the categorica
 - Identity law: $\text{map}\ id = id$
 - Composition law: $\text{map}\ (g \circ f) = \text{map}\ g \circ \text{map}\ f$
 
-```lean
+```haskell
 instance : LawfulFunctor (FreeM F) where
   map_const := rfl
   id_map x := by
@@ -243,7 +243,7 @@ Now we prove that our structure is a **lawful monad**, meaning it satisfies the 
 
 The proof is as follows:
 
-```lean
+```haskell
 -- Lemma that bind is associative
 protected theorem bind_assoc (x : FreeM F α) (f : α → FreeM F β) (g : β → FreeM F γ) :
     (x.bind f).bind g = x.bind (fun x => (f x).bind g) := by

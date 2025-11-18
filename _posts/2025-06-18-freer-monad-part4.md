@@ -33,7 +33,7 @@ In this final section we will do a mini tutorial to show the power of the free m
 
 We begin by defining a tiny expression language, with integers, variables, addition, and division. We use the `Env` type to represent environments, which are just mappings of variables to values:
 
-```lean
+```haskell
 inductive Expr where
   | val : Int → Expr
   | var : String → Expr
@@ -45,7 +45,7 @@ abbrev Env := List (String × Int)
 
 We also define three effect types: mutable state (for the environment), errors (for failed variable lookups or division by zero), and a trace log (for inspection or debugging):
 
-```lean
+```haskell
 inductive StateEff : Type → Type where
   | Get : StateEff Env
   | Put : Env → StateEff Unit
@@ -59,7 +59,7 @@ inductive TraceEff : Type → Type where
 
 We can then define a sum/coproduct of type constructors as follows:
 
-```lean
+```haskell
 inductive FSum (F G : Type → Type) (α : Type) where
   | inl : F α → FSum F G α
   | inr : G α → FSum F G α
@@ -69,7 +69,7 @@ infixl:50 "⊕" => FSum
 
 And we define our overall effect signature as the nested sum:
 
-```lean
+```haskell
 abbrev Eff := StateEff ⊕ (ErrorEff ⊕ TraceEff)
 ```
 
@@ -81,7 +81,7 @@ This type `Eff` is a pure description of the available commands in our language.
 
 To construct nodes in our effect AST, we define some helper functions that wrap each command in the FreeM monad. We first define a general way to lift an effect signature from `F` into its free monad `FreeM F`. This is the morphism `lift : F -> FreeM F` in the universal property diagram:
 
-```lean
+```haskell
 def lift (op : F ι) : FreeM F ι :=
   .liftBind op pure
 
@@ -102,7 +102,7 @@ def log (msg : String) : FreeM Eff Unit :=
 
 We can now write a little program. It logs a message, updates the environment, reads back a variable, and returns its increment:
 
-```lean
+```haskell
 def ex : FreeM Eff Int := do
   log "Starting"
   putEnv [("x", 10)
@@ -120,19 +120,19 @@ This separation between syntax and semantics is the core idea. We build up a val
 
 To run a program written in `FreeM Eff α`, we must interpret its abstract syntax tree into a concrete computation. This involves defining a **catamorphism** — a recursive fold over the `FreeM` structure — into a semantic domain of effectful computations:
 
-```lean
+```haskell
 Env → Trace → Except String (α × Env × Trace)
 ```
 
 Before we can fold the entire syntax tree, we need to define how to interpret each individual effect. This is done via a _handler_, which is a function that gives meaning to each primitive operation in the effect functor `Eff`.
 
-```lean
+```haskell
 Eff α → Env → Trace → Except String (α × Env × Trace)
 ```
 
 This function interprets each effect label into our semantic domain of exceptions, states, traces:
 
-```lean
+```haskell
 abbrev Trace := List String
 
 def effInterp : {α : Type} → Eff α → Env → Trace → Except String (α × Env × Trace)
@@ -146,7 +146,7 @@ This gives us the semantics for a single `Eff` node. But interpreting a full pro
 
 We define this fold using our catamorphism:
 
-```lean
+```haskell
 def cataFreeM {F : Type u → Type v} {α β : Type w}
   (pureCase : α → β)
   (bindCase : {ι : Type u} → F ι → (ι → β) → β)
@@ -159,13 +159,13 @@ This is saying, given a type `β` with a `pureCase : α → β` and a `bindCase 
 
 We define the carrier type of our effect algebra as:
 
-```lean
+```haskell
 abbrev EffAction (α : Type) := Env → Trace → Except String (α × Env × Trace)
 ```
 
 Then we define the two parts of the algebra:
 
-```lean
+```haskell
 -- Handle pure values
 def effPure {α} (a : α) : EffAction α :=
   fun env tr => .ok (a, env, tr)
@@ -183,7 +183,7 @@ def effStep {α} :
 
 Finally, we combine the two cases into a full interpreter via our catamorphism `cataFreeM`:
 
-```lean
+```haskell
 def run {α} : FreeM Eff α → EffAction α :=
   cataFreeM effPure effStep
 ```
@@ -202,7 +202,7 @@ We'll define a _big-step operational semantics_ as an inductive relation, and th
 
 We define a relation `EvalRel e env trace res` that says: under environment `env` and trace `trace`, expression `e` evaluates to result `res`. This result is either an error or a triple of the resulting value, environment, and trace. We also define a function `eval` which maps an expression to the effectful AST. Our correctness claim will then be that if `EvalRel e env trace res` holds (i.e., `e` evaluates to `res`), then our interpreter also returns `res` when run on the output of `eval e`.
 
-```lean
+```haskell
 inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trace) → Prop where
 | val :
     ∀ n env trace,
@@ -236,7 +236,7 @@ inductive EvalRel : Expr → Env → Trace → Except String (Int × Env × Trac
 
 The function `eval : Expr → FreeM Eff Int` constructs a tree of effects representing what should happen during evaluation from an expression. This is the object our interpreter consumes.
 
-```lean
+```haskell
 def eval : Expr → FreeM Eff Int
   | .val n => pure n
   | .var x => do
@@ -264,7 +264,7 @@ def eval : Expr → FreeM Eff Int
 
 We want to prove that `eval` followed by `run` gives the same result as the semantics. That is:
 
-```lean
+```haskell
 theorem eval_correct (e : Expr) (env : Env) (trace : Trace)
     (res : Except String (Int × Env × Trace))
     (h : EvalRel e env trace res) :
@@ -281,7 +281,7 @@ We proceed by induction on the derivation of `EvalRel e env trace res`. In each 
 
 These two helper lemmas simplify `run (p >>= k)`:
 
-```lean
+```haskell
 theorem run_bind_ok {α β}
     {p : FreeM Eff α} {k : α → FreeM Eff β}
     {env env' : Env} {tr tr' : Trace} {v : α} (h : runEff p env tr = .ok (v, env', tr')) :
@@ -290,7 +290,7 @@ theorem run_bind_ok {α β}
 
 The above says if `p` succeeds with `v`, then `p >>= k` runs `k v` next.
 
-```lean
+```haskell
 theorem run_bind_err {α β}
     {p : FreeM Eff α} {k : α → FreeM Eff β}
     {env : Env} {tr : Trace} {msg : String} :
@@ -302,7 +302,7 @@ This one says if `p` errors, then `p >>= k` errors with the same message.
 
 Now we can prove the theorem.
 
-```lean
+```haskell
 theorem eval_correct (e : Expr) (env : Env) (trace : Trace)
     (res : Except String (Int × Env × Trace))
     (h : EvalRel e env trace res) :
