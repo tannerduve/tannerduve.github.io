@@ -2,6 +2,7 @@
 layout: book-review
 title: "Analytic Idealism in a Nutshell"
 author: Bernardo Kastrup
+cover: assets/img/book_covers/analyticidealism.png
 tags:
   - philosophy
 status: finished

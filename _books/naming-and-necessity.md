@@ -2,6 +2,7 @@
 layout: book-review
 title: "Naming and Necessity"
 author: Saul Kripke
+cover: assets/img/book_covers/namingnecessitycover.png
 tags:
   - philosophy
 status: finished

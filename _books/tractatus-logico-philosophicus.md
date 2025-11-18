@@ -2,6 +2,7 @@
 layout: book-review
 title: "Tractatus Logico-Philosophicus"
 author: Ludwig Wittgenstein
+cover: assets/img/book_covers/tractatuscover.png
 tags:
   - philosophy
 status: finished

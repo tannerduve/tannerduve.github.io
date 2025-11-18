@@ -2,6 +2,7 @@
 layout: book-review
 title: "Computational Complexity: A Modern Approach"
 author: Sanjeev Arora and Boaz Barak
+cover: assets/img/book_covers/arorabarak.png
 tags:
   - math
 status: finished

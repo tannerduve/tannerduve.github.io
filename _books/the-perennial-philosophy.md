@@ -2,6 +2,7 @@
 layout: book-review
 title: "The Perennial Philosophy"
 author: Aldous Huxley
+cover: assets/img/book_covers/perennialphilosophycover.png
 tags:
   - mysticism
 status: finished
