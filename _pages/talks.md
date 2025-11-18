@@ -22,4 +22,3 @@ I like to typeset lecture notes when I give talks. Here are a few recent ones:
 
 - **Monads in Lean**  
   Lean reading seminar - [notes (PDF)](/files/monads.pdf)
-

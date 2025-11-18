@@ -6,11 +6,12 @@ tags: [lean, formal-verification, free-monads, type-theory, tutorial]
 math: true
 ---
 
-##  1. <a name='Introduction'></a>Introduction
+## 1. <a name='Introduction'></a>Introduction
 
 In this final section we will do a mini tutorial to show the power of the free monad by building an interpreter for an expression language with side effects. The key idea here is that the free monad lets us separate what we want to do (a syntactic description of effectful computation) from how we want to do it (interpreting and executing the effects semantically).
 
 <!-- vscode-markdown-toc -->
+
 ## Table of Contents
 
 1. [Introduction](#Introduction)
@@ -26,7 +27,7 @@ In this final section we will do a mini tutorial to show the power of the free m
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
-##  2. <a name='LanguageandEffects'></a>Language and Effects
+## 2. <a name='LanguageandEffects'></a>Language and Effects
 
 We begin by defining a tiny expression language, with integers, variables, addition, and division. We use the `Env` type to represent environments, which are just mappings of variables to values:
 
@@ -63,11 +64,13 @@ inductive FSum (F G : Type → Type) (α : Type) where
 
 infixl:50 "⊕" => FSum
 ```
+
 And we define our overall effect signature as the nested sum:
 
 ```lean
 abbrev Eff := StateEff ⊕ (ErrorEff ⊕ TraceEff)
 ```
+
 Notice how free monads are extensible in their effects. Adding a new effect is simply constructing a new datatype and adding it to the Eff definition.
 
 This type `Eff` is a pure description of the available commands in our language. Not what they do, just what kinds of actions exist. Our computations will now live in the type `FreeM Eff α`, which means they are pure syntax trees of abstract effects that eventually return a value of type `α`.
@@ -106,11 +109,12 @@ def ex : FreeM Eff Int := do
   | some (_, x) => pure (x + 1)
   | none => do fail "x not found"; pure 0
 ```
+
 This "program" is constructing a tree of abstract effects independently of any execution or semantics. The calls to `log`, `putEnv`, `getEnv`, and fail are not doing anything yet, they are just nodes in a tree. When programs are represented as data structures you can do much more with them than just their operational interpretation, and you gain immense leverage and control over how you'd like to interpret them.
 
 This separation between syntax and semantics is the core idea. We build up a value of type `FreeM Eff Int` that describes a program in terms of its desired behavior. This value is like an AST of effects. The tree is built using the constructors pure and bind, and the functorial action of the coproduct `⊕` lets us represent multiple kinds of effects simultaneously.
 
-##  3. <a name='Interpreter'></a>Interpreter
+## 3. <a name='Interpreter'></a>Interpreter
 
 To run a program written in `FreeM Eff α`, we must interpret its abstract syntax tree into a concrete computation. This involves defining a **catamorphism** — a recursive fold over the `FreeM` structure — into a semantic domain of effectful computations:
 
@@ -118,7 +122,7 @@ To run a program written in `FreeM Eff α`, we must interpret its abstract synta
 Env → Trace → Except String (α × Env × Trace)
 ```
 
-Before we can fold the entire syntax tree, we need to define how to interpret each individual effect. This is done via a *handler*, which is a function that gives meaning to each primitive operation in the effect functor `Eff`.
+Before we can fold the entire syntax tree, we need to define how to interpret each individual effect. This is done via a _handler_, which is a function that gives meaning to each primitive operation in the effect functor `Eff`.
 
 ```lean
 Eff α → Env → Trace → Except String (α × Env × Trace)
@@ -148,6 +152,7 @@ def cataFreeM {F : Type u → Type v} {α β : Type w}
 | .pure a => pureCase a
 | .liftBind op k => bindCase op (fun x => cataFreeM pureCase bindCase (k x))
 ```
+
 This is saying, given a type `β` with a `pureCase : α → β` and a `bindCase : {ι : Type u} → F ι → (ι → β) → β` (making it an algebra over the free monad functor), we define a function `cataFreeM : FreeM F α -> β`. This is indeed the catamorphism guaranteed by initiality of `FreeM F α`.
 
 We define the carrier type of our effect algebra as:
@@ -157,6 +162,7 @@ abbrev EffAction (α : Type) := Env → Trace → Except String (α × Env × Tr
 ```
 
 Then we define the two parts of the algebra:
+
 ```lean
 -- Handle pure values
 def effPure {α} (a : α) : EffAction α :=
@@ -182,13 +188,13 @@ def run {α} : FreeM Eff α → EffAction α :=
 
 This catamorphism `run` is the unique morphism from `FreeM Eff α` to our effect algebra `EffAction α` which interprets computation trees of type `FreeM Eff α` by evaluating them and executing their effects concretely.
 
-###  4. <a name='Verification'></a>Verification
+### 4. <a name='Verification'></a>Verification
 
 Now that we have an interpreter, we can verify its correctness. What does correctness mean here?
 
 In order to check that our interpreter is correct, we need some kind of semantics for our language, i.e., an assignment of meaning to our programs. In programming language theory, this is given as a formal relation that specifies when evaluation succeeds and what result it produces.
 
-We'll define a *big-step operational semantics* as an inductive relation, and then prove that the interpreter agrees with the semantics.
+We'll define a _big-step operational semantics_ as an inductive relation, and then prove that the interpreter agrees with the semantics.
 
 **Semantics**
 
@@ -267,9 +273,9 @@ theorem eval_correct (e : Expr) (env : Env) (trace : Trace)
 
 We proceed by induction on the derivation of `EvalRel e env trace res`. In each case, we:
 
-* Unfold the definition of `eval` for the given expression
-* Use helper lemmas to simplify `run (p >>= k)`
-* Match the result with the expected output
+- Unfold the definition of `eval` for the given expression
+- Use helper lemmas to simplify `run (p >>= k)`
+- Match the result with the expected output
 
 These two helper lemmas simplify `run (p >>= k)`:
 
@@ -336,7 +342,7 @@ theorem eval_correct (e : Expr) (env : Env) (trace : Trace)
 
 Now we have formally verified our interpreter agrees with our language semantics.
 
-##  5. <a name='Conclusion'></a>Conclusion 
+## 5. <a name='Conclusion'></a>Conclusion
 
 Hopefully this article was informative and helpful in understanding free monads mathematically and gave you a glimpse of their usefulness in programming. This is the first blog post I've written so I'm hoping it was enjoyable. To review what we did:
 
@@ -360,14 +366,14 @@ Hopefully this article was informative and helpful in understanding free monads 
 
 All this code can be found [here](https://github.com/tannerduve/lean-playground/blob/main/LeanPlayground/freemonad.lean)
 
-##  6. <a name='References'></a>References
+## 6. <a name='References'></a>References
 
-* [nLab: Free Monad](https://ncatlab.org/nlab/show/free+monad)
+- [nLab: Free Monad](https://ncatlab.org/nlab/show/free+monad)
 
-* [CIS 5520 Lecture Notes on Freer Monads](https://www.seas.upenn.edu/~cis5520/22fa/lectures/stub/11-transformers/Freer.html)
+- [CIS 5520 Lecture Notes on Freer Monads](https://www.seas.upenn.edu/~cis5520/22fa/lectures/stub/11-transformers/Freer.html)
 
-* *The Dao of Functional Programming*, Bartosz Milewski (2025)
+- _The Dao of Functional Programming_, Bartosz Milewski (2025)
 
-* [Serokell: Introduction to Free Monads](https://serokell.io/blog/introduction-to-free-monads)
+- [Serokell: Introduction to Free Monads](https://serokell.io/blog/introduction-to-free-monads)
 
-* [Okmij : FreeM and Freer Monads: Putting Monads Back into Closet](https://okmij.org/ftp/Computation/free-monad.html)
+- [Okmij : FreeM and Freer Monads: Putting Monads Back into Closet](https://okmij.org/ftp/Computation/free-monad.html)

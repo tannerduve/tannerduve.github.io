@@ -6,15 +6,15 @@ tags: [lean, free-monads, category-theory]
 math: true
 ---
 
-##  1. <a name='Introduction'></a>Introduction
+## 1. <a name='Introduction'></a>Introduction
 
-Free monads provide a way to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe *what* should happen as an abstract tree of effects, leaving open *how* you want it to happen. By decoupling syntax from semantics like this you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
+Free monads provide a way to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe _what_ should happen as an abstract tree of effects, leaving open _how_ you want it to happen. By decoupling syntax from semantics like this you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
 
 - Run it directly
 - Pretty print it
 - Analyze it statically
 
-Each of these corresponds to a different interpreter. This approach also allows effects to be combined without you having to get tangled up in monad transformers. 
+Each of these corresponds to a different interpreter. This approach also allows effects to be combined without you having to get tangled up in monad transformers.
 
 This four-part series will introduce the free monad in Lean. In this first part we will introduce and implement the free monad from first principles, and discuss some of the finesse involved in implementing it in a proof assistant like Lean, compared to a functional language like Haskell.
 
@@ -23,6 +23,7 @@ In part 2 we will further explore some theory and study initial algebras and cat
 This series assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes. You can find most of the code used here at [this Mathlib PR](https://github.com/leanprover-community/mathlib4/pull/25491)
 
 <!-- vscode-markdown-toc -->
+
 ## Table of Contents
 
 1. [Introduction](#Introduction)
@@ -38,7 +39,7 @@ This series assumes you know basic concepts from both category theory and functi
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
-##  2. <a name='FreeObjects'></a>Free Objects
+## 2. <a name='FreeObjects'></a>Free Objects
 
 Before getting into free monads, we will first consider what it means for some structure to be "free". This section is pretty mathematical but if you're like me it may help understand things down the line when we start coding, otherwise you can skim this section.
 
@@ -46,7 +47,7 @@ As a familiar example, consider a vector space $V$ over a field $F$ with basis $
 
 The free object which is most familiar to the programmer is the free monoid on a datatype `α`, aka the type `List α`. This is of course the type of all finite sequences of elements of `α`, which forms the monoid `(List α, ++, [])`, where `++` is list concatenation.
 
-How can we generalize this? In general categories, free constructions are defined as left adjoints to forgetful functors. If a forgetful functor $U : C \to D$ has a left adjoint $F : D \to C$, then for any $x \in D$, $Fx$ is the free $C$-object on $x$. 
+How can we generalize this? In general categories, free constructions are defined as left adjoints to forgetful functors. If a forgetful functor $U : C \to D$ has a left adjoint $F : D \to C$, then for any $x \in D$, $Fx$ is the free $C$-object on $x$.
 
 Consider the functor $U : \texttt{Grp} \to \texttt{Set}$ which forgets the group structure and returns the underlying set. If $F : \texttt{Set} \to \texttt{Grp}$ is left adjoint to $U$, then $FX$ is the free group on $X$ for any set $X$.
 
@@ -67,22 +68,22 @@ This can also be stated in terms of a universal property. Slightly informally, a
   </span>
 </div>
 
-*(Exercise: Let $U : \texttt{Grp} \to \texttt{Set}$ be the forgetful functor and $F$ a left adjoint. Prove $FX$ satisfies the above universal property for any set $X$.)*
+_(Exercise: Let $U : \texttt{Grp} \to \texttt{Set}$ be the forgetful functor and $F$ a left adjoint. Prove $FX$ satisfies the above universal property for any set $X$.)_
 
 The moral of the story here is that a free construction is the canonical way to generate the desired structure from some underlying data, adding only what is necessary to satisfy the rules of the desired structure. Our free monad is thus the canonical monad generated from an endofunctor, satisfying nothing other than the monad laws.
 
-##  3. <a name='FreeMonads'></a>Free Monads
+## 3. <a name='FreeMonads'></a>Free Monads
 
 > "A monad is just a monoid in the category of endofunctors, what's the problem?"
 
-You've probably heard someone jokingly say monads are *just* monoids in the category of endofunctors. It's technically a correct definition, but it tells you nothing if you don't speak category theory. However, understanding monads as monoids may actually help us construct the free monad by analogy to the free monoid, aka the `List` type. I know I promised this was an article on Lean but we will start with some Haskell first.
+You've probably heard someone jokingly say monads are _just_ monoids in the category of endofunctors. It's technically a correct definition, but it tells you nothing if you don't speak category theory. However, understanding monads as monoids may actually help us construct the free monad by analogy to the free monoid, aka the `List` type. I know I promised this was an article on Lean but we will start with some Haskell first.
 
-###  3.1. <a name='InHaskell'></a>In Haskell
+### 3.1. <a name='InHaskell'></a>In Haskell
 
 The List type is defined as follows:
 
 ```haskell
-data List a = Nil | Cons a (List a) 
+data List a = Nil | Cons a (List a)
 ```
 
 Categorically this looks like:
@@ -97,7 +98,7 @@ $$
 F_a x = \mathbf{1} + (a \times x)
 $$
 
-*[Part 2](/blog/freer-monad/part2/) goes into more detail about inductive types as fixed points of functors. This part is just briefly explaining the analogy between lists and free monads, and the mathematical detail is not centrally important yet*
+_[Part 2](/blog/freer-monad/part2/) goes into more detail about inductive types as fixed points of functors. This part is just briefly explaining the analogy between lists and free monads, and the mathematical detail is not centrally important yet_
 
 The List functor maps a type to its free monoid, and we want our free monad functor to map an endofunctor to its free monad. The heart of the analogy is that lists are to types as free monads are to functors. So, we "lift" what we have done on lists in the category of types to free monads in the category of endofunctors. In programmer terms, we are defining a higher-order functor that is analogous to `List`, but acts on functors rather than types.
 
@@ -137,7 +138,7 @@ instance Functor f => Monad (Free f) where
   Free g >>= f = Free ((>>= f) <$> g)
 ```
 
-###  3.2. <a name='InLean'></a>In Lean
+### 3.2. <a name='InLean'></a>In Lean
 
 Now, as promised, we will do the rest of our work in Lean. Let's write the same definition in Lean:
 
@@ -162,7 +163,7 @@ Recall that, in languages like Lean (or Coq, or Agda), in order for the proof sy
 
 To enforce this, defining inductive types has a restriction, called [**strict positivity**](https://www.pls-lab.org/Strictly_positive). Basically, an inductive type can not refer to itself on the left side of an arrow in its constructors. If Lean allowed this definition, we could inhabit the empty type (i.e. prove False) using a contravariant functor.
 
-Since the free monad doesn't work due to type-theoretic restrictions, we need a little bit more freedom. *Enter the freer monad*. The below definition is strictly positive:
+Since the free monad doesn't work due to type-theoretic restrictions, we need a little bit more freedom. _Enter the freer monad_. The below definition is strictly positive:
 
 ```lean
 inductive FreeM.{u, v, w} (f : Type u → Type v) (α : Type w) where
@@ -170,7 +171,7 @@ inductive FreeM.{u, v, w} (f : Type u → Type v) (α : Type w) where
   | liftBind {ι : Type u} (op : f ι) (cont : ι → FreeM f α) : FreeM f α
 ```
 
-In fact, this is *freer* in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor.
+In fact, this is _freer_ in the sense that we no longer even require `f` to be a functor. Let's define the Functor and Monad instances for this type, given any type constructor.
 
 **Monad Instance of `FreeM f`**
 
@@ -204,7 +205,7 @@ instance : Monad (FreeM F) where
 
 Of course we all love Lean because you can actually prove things about the code you write. Lean provides not just a `Monad` typeclass, but a `LawfulMonad` typeclass, which additionally requires explicit proofs that the monad laws are satisfied. Let's do this for fun. Throughout these posts I will be using some lemmas that you can find in the source code whose statements/proofs I won't expliclty be showing here.
 
-We first prove it is a lawful functor, i.e. it is *functorial* in the categorical sense:
+We first prove it is a lawful functor, i.e. it is _functorial_ in the categorical sense:
 
 - Identity law: $\text{map}\ id = id$
 - Composition law: $\text{map}\ (g \circ f) = \text{map}\ g \circ \text{map}\ f$
@@ -263,12 +264,13 @@ instance : LawfulMonad (FreeM F) := LawfulMonad.mk'
   (pure_bind := fun x f => rfl)
   (bind_assoc := FreeM.bind_assoc)
 ```
+
 I won't write out the informal details of the proof, but it is mostly straightforward, we unfold all the definitions using `simp`, and in some cases when we have a value of type `FreeM F a` we perform induction on it and simplify further using our lemmas.
 
 ## 4. <a name='Conclusion'></a>Conclusion
 
 In this first part of our series, we explored the concept of free objects and introduced the idea of a free monad from a categorical perspective. Starting from familiar examples like free vector spaces and monoids, we generalized the construction to free monads, and implemented the free monad in Lean from the ground up.
 
-We discussed the idea of *strict positivity*, leading us to the freer monad construction as both a workaround and a generalization. We were able to define a monad instance on `FreeM F` for any `F : Type -> Type`, and proved that it satisfies the monad laws.
+We discussed the idea of _strict positivity_, leading us to the freer monad construction as both a workaround and a generalization. We were able to define a monad instance on `FreeM F` for any `F : Type -> Type`, and proved that it satisfies the monad laws.
 
 ## **The story continues in [Part 2](/blog/freer-monad/part2/) with catamorphisms, interpreters, and universal properties.**

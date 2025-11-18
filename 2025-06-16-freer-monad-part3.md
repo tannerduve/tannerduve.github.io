@@ -6,14 +6,16 @@ tags: [lean, free-monads, universal-properties, effect-handlers]
 math: true
 ---
 
-##  1. <a name='Introduction'></a>Introduction
-As we recall from [part 1](/blog/freer-monad/part1/), free objects are defined by left adjoints to forgetful functors, and can also be defined by a particular universal property. Universal properties are given by *universal arrows*: unique morphisms that characterize an object up to isomorphism. In [part 2](/blog/freer-monad/part2/), we talked about one particular universal property, and this part will focus on another.
+## 1. <a name='Introduction'></a>Introduction
+
+As we recall from [part 1](/blog/freer-monad/part1/), free objects are defined by left adjoints to forgetful functors, and can also be defined by a particular universal property. Universal properties are given by _universal arrows_: unique morphisms that characterize an object up to isomorphism. In [part 2](/blog/freer-monad/part2/), we talked about one particular universal property, and this part will focus on another.
 
 In this section we will apply the general universal property of the free object to our special case of monads. The free monad over a type constructor `F` is the monad that arises from freely generating effects described by `F`, with just enough structure to satisfy the monad laws and nothing else.
 
 This point of view leads naturally to the concept of an effect handler, which is a function that interprets operations from `F` into a monad `M`. The universal property of the free monad ensures that any such handler extends uniquely to a monad morphism from the free monad into `M`. This morphism, in turn, acts as an interpreter for the entire computation.
 
 <!-- vscode-markdown-toc -->
+
 ## Table of Contents
 
 1. [Introduction](#Introduction)
@@ -23,8 +25,7 @@ This point of view leads naturally to the concept of an effect handler, which is
 5. [Conclusion](#Conclusion)
 <!-- /vscode-markdown-toc -->
 
-
-##  2. <a name='FreeMonadAsFreeObject'></a>Free Monads as Free Objects
+## 2. <a name='FreeMonadAsFreeObject'></a>Free Monads as Free Objects
 
 The universal property of free objects, as we saw in part 1, says the free object on some "basis" data $X$ is a structured object $X'$ which includes $X$, such that any map from $X$ into another structured object $G$ uniquely extends to a morphism from $X'$ to $G$. Diagrammatically:
 
@@ -45,13 +46,15 @@ The universal property of free objects, as we saw in part 1, says the free objec
 
 In the category of vector spaces for example, this intuitively says that if you have a function from a set $B$ to a vector space $W$, then this function can be extended uniquely (as a linear transformation) to the entire vector space $V_B$ with basis $B$. As we know from linear algebra, any linear transformation is uniquely defined by how it acts on a basis. This is the universal property in action.
 
-Now what does this mean for monads? We know that our free monad generates a monad from a type constructor `F : Type -> Type`, so our "basis" data on which we freely generate our structured object (in this case, a monad) is `F` itself. Plugging things into the diagram, we get that for any type constructor `F` and a monad `M` with a map `h {a : Type} : F a -> M a`, `h` extends uniquely to a monad morphism `h' {a : Type} : FreeM F a -> M a`. 
+Now what does this mean for monads? We know that our free monad generates a monad from a type constructor `F : Type -> Type`, so our "basis" data on which we freely generate our structured object (in this case, a monad) is `F` itself. Plugging things into the diagram, we get that for any type constructor `F` and a monad `M` with a map `h {a : Type} : F a -> M a`, `h` extends uniquely to a monad morphism `h' {a : Type} : FreeM F a -> M a`.
 
-Intuitively, you can think of the morphism `h` as an *effect handler* - it interprets each primitive operation described by `F` as a monadic computation in `M`. The universal property ensures that this effect handler uniquely lifts to a interpretation of entire programs written in the free monad, ie. computations of type `FreeM F`. That is, any computation of type `Free M a`, can be interpreted as a computation in `M` via a morphism `h' a : Free M a -> M a`. `h'` being a morphism,  means it respects both `pure` and `bind` of the monads, ie:
+Intuitively, you can think of the morphism `h` as an _effect handler_ - it interprets each primitive operation described by `F` as a monadic computation in `M`. The universal property ensures that this effect handler uniquely lifts to a interpretation of entire programs written in the free monad, ie. computations of type `FreeM F`. That is, any computation of type `Free M a`, can be interpreted as a computation in `M` via a morphism `h' a : Free M a -> M a`. `h'` being a morphism, means it respects both `pure` and `bind` of the monads, ie:
+
 ```lean
 h' (pure a) = pure a
 h' (m >>= k) = h' m >>= fun x => h' (k x)
 ```
+
 ## 3. <a name='UnivMorphism'></a>The Universal Morphism
 
 Let's formalize the universal property precisely. Recall, our `FreeM F` monad was defined inductively as a tree of computations:
@@ -154,6 +157,5 @@ The universal property of free monads provides a canonical interpreter with nice
 In practice, this means defining computations using `FreeM` is extremely flexible, as changing how we interpret effects is simply a matter of providing different handlers. The next and final section will be a tutorial on using the free monad to design a small DSL with mutable state, logging, and exceptions, and building a verified interpreter for the language.
 
 ## **Continue to Part 4 - A Tutorial**
+
 [Continue to Part 4 - A Tutorial](/blog/freer-monad/part4/)
-
-

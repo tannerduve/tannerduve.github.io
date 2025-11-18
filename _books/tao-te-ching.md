@@ -8,4 +8,3 @@ status: finished
 section: "Eastern Philosophy and Mysticism"
 goodreads_url: https://www.goodreads.com/book/show/439655.Tao_Te_Ching
 ---
-

@@ -21,6 +21,7 @@ announcements:
 latest_posts:
   enabled: false
 ---
+
 Hi! I'm Tanner. I am a formal verification software engineer at [Nexus](https://nexus.xyz), building and verifying the [Zero-Knowledge Virtual Machine](https://nexus.xyz/zkvm). I graduated from the University of Pennsylvania with an MSE in computer science and a BA in mathematical logic. My academic interests include formal verification, programming languages, category theory, type theory, and all things logic.
 
 I have done research in applied category theory with [Georgios Bakirtzis](https://bakirtzis.net) and [Michail Savvas](https://michailsavvas.github.io), and in programming languages and formal verification with Amazon's [Automated Reasoning Group](https://aws.amazon.com/what-is/automated-reasoning/).
@@ -31,4 +32,4 @@ Outside of work I enjoy reading philosophy, in particular analytic philosophy, p
 
 ---
 
-*Favorite PLs: Rust, Lean, OCaml, Haskell*
+_Favorite PLs: Rust, OCaml, Haskell, Lean_

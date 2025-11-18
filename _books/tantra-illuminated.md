@@ -8,4 +8,3 @@ status: finished
 section: "Eastern Philosophy and Mysticism"
 goodreads_url: https://www.goodreads.com/book/show/15731041-tantra-illuminated
 ---
-

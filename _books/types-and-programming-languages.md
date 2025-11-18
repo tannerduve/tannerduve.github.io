@@ -8,4 +8,3 @@ status: finished
 section: "Mathematics and Theoretical CS"
 goodreads_url: https://www.goodreads.com/book/show/112252.Types_and_Programming_Languages
 ---
-

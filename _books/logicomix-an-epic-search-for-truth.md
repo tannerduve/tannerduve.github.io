@@ -8,4 +8,3 @@ status: finished
 section: "Pop-Math"
 goodreads_url: https://www.goodreads.com/book/show/6493321-logicomix
 ---
-

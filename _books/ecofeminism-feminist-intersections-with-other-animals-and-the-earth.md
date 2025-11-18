@@ -8,4 +8,3 @@ status: finished
 section: "Eco-Consciousness"
 goodreads_url: https://www.goodreads.com/book/show/18402851-ecofeminism
 ---
-
