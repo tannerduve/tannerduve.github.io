@@ -1,9 +1,10 @@
 ---
+layout: post
 title: "Part 1: Defining the Free Monad in Lean"
 date: 2025-06-16 09:00:00 -0800
-categories: [Formal Verification, Free Monads]
-tags: [lean, free-monads, category-theory]
-math: true
+description: Introducing the categorical theory and implementation of free monads in Lean
+categories: Formal-Verification Free-Monads
+tags: lean free-monads category-theory
 hidden: true
 ---
 

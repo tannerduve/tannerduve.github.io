@@ -1,9 +1,10 @@
 ---
+layout: post
 title: "Part 2: Initial Algebras, Catamorphisms, and Interpreters"
 date: 2025-06-16 10:00:00 -0800
-categories: [Formal Verification, Free Monads]
-tags: [lean, free-monads, catamorphisms, interpreters]
-math: true
+description: Part of the free monads series
+categories: Formal Verification, Free Monads
+tags: lean, free-monads, catamorphisms, interpreters
 hidden: true
 ---
 
@@ -54,14 +55,14 @@ Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-al
 <div style="text-align: center;">
   <span style="display: inline-block;">
     <script type="text/tikz">
-      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
+      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge
         FA && A \\
         \\
         FB && B
-        \arrow["\alpha", from=1-1, to=1-3]
-        \arrow["Ff"', from=1-1, to=3-1]
-        \arrow["f", from=1-3, to=3-3]
-        \arrow["\beta"', from=3-1, to=3-3]
+        \arrow["\alpha", from=1-1, to=1-3
+        \arrow["Ff"', from=1-1, to=3-1
+        \arrow["f", from=1-3, to=3-3
+        \arrow["\beta"', from=3-1, to=3-3
       \end{tikzcd}
     </script>
   </span>

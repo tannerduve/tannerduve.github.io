@@ -1,9 +1,10 @@
 ---
+layout: post
 title: "Tutorial: A Verified Interpreter with Side Effects"
 date: 2025-06-18 12:00:00 -0800
-categories: [Formal Verification, Type Theory]
-tags: [lean, formal-verification, free-monads, type-theory, tutorial]
-math: true
+description: Part of the free monads series
+categories: Formal Verification, Type Theory
+tags: lean, formal-verification, free-monads, type-theory, tutorial
 hidden: true
 ---
 
@@ -104,7 +105,7 @@ We can now write a little program. It logs a message, updates the environment, r
 ```lean
 def ex : FreeM Eff Int := do
   log "Starting"
-  putEnv [("x", 10)]
+  putEnv [("x", 10)
   let env ← getEnv
   match env.find? (⋅.fst = "x") with
   | some (_, x) => pure (x + 1)
@@ -308,36 +309,36 @@ theorem eval_correct (e : Expr) (env : Env) (trace : Trace)
     runEff (eval e) env trace = res := by
     induction' h
     · case val z env trace =>
-      simp [eval, pure_eq_purePure, runEff, cataFreeM, effPure]
+      simp [eval, pure_eq_purePure, runEff, cataFreeM, effPure
     · case var_found x env trace v h =>
-      simp [runEff, eval, getEnv, bind_pure_comp, lift_def, cataFreeM, effStep, h, effPure]
+      simp [runEff, eval, getEnv, bind_pure_comp, lift_def, cataFreeM, effStep, h, effPure
     · case var_missing x env trace h =>
-      simp [runEff, eval, bind, getEnv, fail, lift_def, cataFreeM, effStep, h]
+      simp [runEff, eval, bind, getEnv, fail, lift_def, cataFreeM, effStep, h
     · case add e₁ e₂ env trace₁ trace₂ trace₃ v1 v2 env₂ env₃ h₁ h₂ ih₁ ih₂ =>
-      simp [eval, bind]
+      simp [eval, bind
       have step₁ := runEff_bind_ok (p := eval e₁ ) (k := fun v1 => do
         let v2 ← eval e₂
         pure (v1 + v2)) ih₁
-      simp [bind] at step₁; simp [step₁]
+      simp [bind] at step₁; simp [step₁
       have step₂ := runEff_bind_ok (p := eval e₂) (k := fun v2 => pure (v1 + v2)) ih₂
       simp [bind] at step₂; simp [step₂]; congr
     · case div_ok e₁ e₂ env trace₁ trace₂ trace₃ v₁ v₂ env₂ env₃ v₂_ne_0 h₁ h₂ ih₁ ih₂  =>
-      simp [eval, bind]
+      simp [eval, bind
       have step₁ := runEff_bind_ok (p := eval e₁) (k := fun v1 => do
         let v2 ← eval e₂
         if v2 = 0 then do fail "divide by zero"; pure 0 else pure (v1 / v2)) ih₁
-      simp [bind] at step₁; simp [step₁]
+      simp [bind] at step₁; simp [step₁
       have step₂ := runEff_bind_ok (p := eval e₂) (k := fun v₂ =>
         if v₂ = 0 then do fail "divide by zero"; pure 0 else pure (v₁ / v₂)) ih₂
-      simp [bind] at step₂; simp [step₂, v₂_ne_0]
+      simp [bind] at step₂; simp [step₂, v₂_ne_0
       congr
     · case div_zero e₁ e₂ env' trace₁ trace₂ trace₃ v₁ v₂ env₂ env₃ v₂_ne_0 h₁ h₂ ih₁ ih₂ =>
-      simp [eval, bind]
+      simp [eval, bind
       have step₁ := runEff_bind_ok (p := eval e₁) (k := fun v₁ => do let v₂ ← eval e₂; if v₂ = 0 then fail "divide by zero"; pure 0 else pure (v₁ / v₂)) ih₁
-      simp [bind] at step₁; simp [step₁]
+      simp [bind] at step₁; simp [step₁
       have step₂ := runEff_bind_ok (p := eval e₂) (k := fun v₂ => if v₂ = 0 then (do fail "divide by zero"; pure 0) else pure (v₁ / v₂)) ih₂
-      simp [bind] at step₂; simp [step₂, v₂_ne_0]
-      simp [pure, fail, lift, runEff]
+      simp [bind] at step₂; simp [step₂, v₂_ne_0
+      simp [pure, fail, lift, runEff
       congr
 ```
 

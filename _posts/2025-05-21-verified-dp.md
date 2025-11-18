@@ -1,9 +1,10 @@
 ---
+layout: post
 title: "Verified Dynamic Programming with Σ-types in Lean"
 date: 2025-05-21 12:00:00 -0800
-categories: [Formal Verification, Algorithms]
-tags: [lean, dynamic-programming, formal-verification, dependent-types, sigma-types]
-math: true
+description: Solving a competitive programming problem and proving it correct with dependent types
+categories: Formal-Verification Algorithms
+tags: lean dynamic-programming formal-verification dependent-types sigma-types
 ---
 
 ## 1. <a name='Introduction'></a>Introduction
@@ -50,7 +51,7 @@ The solution is given by the following recurrence relation :
 $$
 f(n)=
 \begin{cases}
-n, & n \le 8,\\[6pt]
+n, & n \le 8,\\[6pt
 \displaystyle
 \max\!\bigl(n,\; f(\lfloor n/2\rfloor)+f(\lfloor n/3\rfloor)+f(\lfloor n/4\rfloor)\bigr), & n>8.
 \end{cases}
@@ -186,7 +187,7 @@ def helper (n : Nat) (memo : PropMap maxDollars_spec) :
     if h : n ≤ 8 then
       -- Base case: for `n ≤ 8`.
       let v := n
-      let h_spec : maxDollars_spec n = v := by simp [maxDollars_spec, h]
+      let h_spec : maxDollars_spec n = v := by simp [maxDollars_spec, h
       -- Prove that `maxDollars_spec n = n` using simplification.
       let memo' := PropMap_insert maxDollars_spec memo n v h_spec
       -- Insert `(n, v)` with proof into the memoization map.
@@ -205,7 +206,7 @@ def helper (n : Nat) (memo : PropMap maxDollars_spec) :
       have h_spec : maxDollars_spec n = v := by
         unfold maxDollars_spec         -- Expand `maxDollars_spec n`.
         rw [if_neg h]                  -- Since `n > 8`, use the recursive case.
-        rw [r1.property, r2.property, r3.property]
+        rw [r1.property, r2.property, r3.property
 
       -- Replace recursive calls with their computed values using the proofs from `r1`, `r2`, `r3`.
       let memo' := PropMap_insert maxDollars_spec memo3 n v h_spec

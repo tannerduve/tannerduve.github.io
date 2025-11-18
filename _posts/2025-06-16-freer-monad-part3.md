@@ -1,9 +1,10 @@
 ---
+layout: post
 title: "Part 3: Universal Morphisms and Effect Handlers"
 date: 2025-06-16 11:00:00 -0800
-categories: [Formal Verification, Free Monads]
-tags: [lean, free-monads, universal-properties, effect-handlers]
-math: true
+description: Part of the free monads series
+categories: Formal Verification, Free Monads
+tags: lean, free-monads, universal-properties, effect-handlers
 hidden: true
 ---
 
@@ -33,13 +34,13 @@ The universal property of free objects, as we saw in part 1, says the free objec
 <div style="text-align: center;">
   <span style="display: inline-block;">
     <script type="text/tikz">
-      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
+      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge
         {X'} && G \\
         \\
         X
-        \arrow["{\hat{h}}", dashed, from=1-1, to=1-3]
-        \arrow["\iota", from=3-1, to=1-1]
-        \arrow["h"', from=3-1, to=1-3]
+        \arrow["{\hat{h}}", dashed, from=1-1, to=1-3
+        \arrow["\iota", from=3-1, to=1-1
+        \arrow["h"', from=3-1, to=1-3
       \end{tikzcd}
     </script>
   </span>
@@ -100,7 +101,7 @@ The map `lift` takes a single operation from our basis `F` and wraps it as an ef
 The universal property then guarantees that for any monad `M` and any interpretation `f` from our effects to `M`, we can define our unique interpreter `liftM f`:
 
 ```lean
-def liftM {M : Type u → Type w} [Monad M]
+def liftM {M : Type u → Type w} [Monad M
     {α : Type u} : FreeM F α → ({β : Type u} → F β → M β) → M α
   | FreeM.pure a, _ => pure a
   | FreeM.liftBind op cont, interp => interp op >>= fun result => liftM (cont result) interp

@@ -1,9 +1,10 @@
 ---
+layout: post
 title: "The Free Monad: A Four-Part Series"
 date: 2025-05-21 13:00:00 -0800
-categories: [Formal Verification, Free Monads]
-tags: [lean, free-monads, category-theory, effects]
-math: true
+description: A four-part series on free monads in Lean
+categories: Formal-Verification Free-Monads
+tags: lean free-monads category-theory effects
 ---
 
 Free monads provide a way to represent effectful sequential programs as pure syntactic data, separate from their interpretation. You describe _what_ should happen as an abstract tree of effects, leaving open _how_ you want it to happen. By decoupling syntax from semantics like this you gain full control over how programs are evaluated and interpreted - for example we could interpret a syntax tree in multiple ways:
