@@ -185,11 +185,6 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the-zen-teachings-of-huang-po-on-the-transmission-of-mind/";
-            },},{id: "books-the-godfather",
-          title: 'The Godfather',
-          description: "",
-          section: "Books",handler: () => {
-              window.location.href = "/books/the_godfather/";
             },},{id: "books-topoi-the-categorial-analysis-of-logic",
           title: 'Topoi: The Categorial Analysis of Logic',
           description: "",
