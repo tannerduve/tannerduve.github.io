@@ -3,6 +3,8 @@ layout: about
 title: About
 permalink: /
 subtitle: Proof Engineer, Logician
+nav: true
+nav_order: 1
 
 profile:
   align: right

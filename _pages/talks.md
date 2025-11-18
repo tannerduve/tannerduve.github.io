@@ -3,7 +3,7 @@ layout: page
 title: Talks
 permalink: /talks/
 nav: true
-nav_order: 5.5
+nav_order: 4
 ---
 
 I like to typeset lecture notes when I give talks. Here are a few recent ones:
