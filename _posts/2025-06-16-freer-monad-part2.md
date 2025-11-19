@@ -51,7 +51,7 @@ We begin this section with some definitions.
 
 Let $F : C \to C$ be an endofunctor. An _algebra_ over $F$ is a pair $(A, \alpha)$ where $\alpha : FA \to A$.
 
-Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
+Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\f : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
 
 <script type="text/tikz">
   \begin{tikzcd}[column sep=huge, row sep=huge]
