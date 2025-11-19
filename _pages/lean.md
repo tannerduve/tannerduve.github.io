@@ -26,4 +26,4 @@ Here is a few open source contributions and personal projects I've done in Lean:
 
 **[ZxLean: Verifying the ZX calculus for reasoning about quantum programs](https://github.com/tannerduve/ZxLean)**
 
-**[zxFlow: A simple syntax for building zero-knowledge constraint systems](https://github.com/tannerduve/zkflow)**
+**[zkFlow: A simple syntax for building zero-knowledge constraint systems](https://github.com/tannerduve/zkflow)**
