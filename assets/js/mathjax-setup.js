@@ -7,9 +7,9 @@ window.MathJax = {
     ],
   },
   options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-    ignoreHtmlClass: 'tex2jax_ignore',
-    processHtmlClass: 'tex2jax_process',
+    skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+    ignoreHtmlClass: "tex2jax_ignore",
+    processHtmlClass: "tex2jax_process",
     renderActions: {
       addCss: [
         200,
@@ -34,6 +34,6 @@ window.MathJax = {
       if (!MathJax.startup.document.skipTags.includes('script[type="text/tikz"]')) {
         MathJax.startup.document.skipTags.push('script[type="text/tikz"]');
       }
-    }
-  }
+    },
+  },
 };

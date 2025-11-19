@@ -7,7 +7,7 @@
   padding: 2rem 2rem;
   clear: both;
   overflow: visible !important;
-  
+
   // The SVG will be positioned inside this container
   svg {
     position: relative !important;
@@ -18,12 +18,12 @@
     transform-origin: center center !important;
     overflow: visible !important;
     margin: 0 2rem !important;
-    
+
     // Override all stroke colors to match theme
     * {
       stroke: var(--global-text-color) !important;
     }
-    
+
     // Override all fill colors for text
     text {
       fill: var(--global-text-color) !important;
@@ -35,26 +35,26 @@
       stroke-linecap: round !important;
       stroke-linejoin: round !important;
     }
-    
+
     // Make lines thicker and more visible
-    line, path[d] {
+    line,
+    path[d] {
       stroke-width: 1.5 !important;
     }
-    
+
     // Arrow heads and markers
     marker * {
       fill: var(--global-text-color) !important;
       stroke: var(--global-text-color) !important;
     }
-    
+
     // Groups with stroke/fill attributes
     g[stroke="#000"] {
       stroke: var(--global-text-color) !important;
     }
-    
+
     g[fill="#000"] {
       fill: var(--global-text-color) !important;
     }
   }
 }
-

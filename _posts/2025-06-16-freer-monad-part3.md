@@ -11,7 +11,7 @@ tikzjax: true
 
 ## 1. <a name='Introduction'></a>Introduction
 
-As we recall from [part 1](/blog/freer-monad/part1/), free objects are defined by left adjoints to forgetful functors, and can also be defined by a particular universal property. Universal properties are given by _universal arrows_: unique morphisms that characterize an object up to isomorphism. In [part 2](/blog/freer-monad/part2/), we talked about one particular universal property, and this part will focus on another.
+As we recall from [part 1](/blog/2025/freer-monad-part1/), free objects are defined by left adjoints to forgetful functors, and can also be defined by a particular universal property. Universal properties are given by _universal arrows_: unique morphisms that characterize an object up to isomorphism. In [part 2](/blog/2025/freer-monad-part2/), we talked about one particular universal property, and this part will focus on another.
 
 In this section we will apply the general universal property of the free object to our special case of monads. The free monad over a type constructor `F` is the monad that arises from freely generating effects described by `F`, with just enough structure to satisfy the monad laws and nothing else.
 
