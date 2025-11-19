@@ -57,19 +57,13 @@ Consider the functor $U : \texttt{Grp} \to \texttt{Set}$ which forgets the group
 This can also be stated in terms of a universal property. Slightly informally, an object $X'$ is the free $C$-object on $X$ if there is an embedding $\iota : X \to X'$ such that for any $C$-object $G$ with a map $h : X \to G$, there is a unique $C$-morphism $\hat{h} : X' \to G$ such that the following diagram commutes:
 
 <div style="text-align: center;">
-  <span style="display: inline-block;">
-    <script type="text/tikz">
-      \usetikzlibrary{cd}
-      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
-        {X'} && G \\
-        \\
-        X
-        \arrow["{\hat{h}}", dashed, from=1-1, to=1-3]
-        \arrow["\iota", from=3-1, to=1-1]
-        \arrow["h"', from=3-1, to=1-3]
-      \end{tikzcd}
-    </script>
-  </span>
+  <script type="text/tikz">
+    \begin{tikzcd}
+      X' \arrow[rr, dashed, "\hat{h}"] && G \\
+      \\
+      X \arrow[uu, "\iota"] \arrow[uurr, "h"']
+    \end{tikzcd}
+  </script>
 </div>
 
 _(Exercise: Let $U : \texttt{Grp} \to \texttt{Set}$ be the forgetful functor and $F$ a left adjoint. Prove $FX$ satisfies the above universal property for any set $X$.)_

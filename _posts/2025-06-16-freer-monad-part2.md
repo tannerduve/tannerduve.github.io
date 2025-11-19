@@ -54,20 +54,13 @@ Let $F : C \to C$ be an endofunctor. An _algebra_ over $F$ is a pair $(A, \alpha
 Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
 
 <div style="text-align: center;">
-  <span style="display: inline-block;">
-    <script type="text/tikz">
-      \usetikzlibrary{cd}
-      \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
-        FA && A \\
-        \\
-        FB && B
-        \arrow["\alpha", from=1-1, to=1-3]
-        \arrow["Ff"', from=1-1, to=3-1]
-        \arrow["f", from=1-3, to=3-3]
-        \arrow["\beta"', from=3-1, to=3-3]
-      \end{tikzcd}
-    </script>
-  </span>
+  <script type="text/tikz">
+    \begin{tikzcd}
+      FA \arrow[rr, "\alpha"] \arrow[dd, "Ff"'] && A \arrow[dd, "f"] \\
+      \\
+      FB \arrow[rr, "\beta"'] && B
+    \end{tikzcd}
+  </script>
 </div>
 
 $F$-algebras and their morphisms form a category, and the initial object in this category is called the _initial algebra_. That is, $(A, \alpha)$ is an initial $F$-algebra iff for any $F$-algebra $(B, \beta)$, there is a unique morphism $\phi : (A, \alpha) \to (B, \beta)$
