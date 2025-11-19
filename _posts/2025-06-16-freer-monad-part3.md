@@ -32,15 +32,13 @@ This point of view leads naturally to the concept of an effect handler, which is
 
 The universal property of free objects, as we saw in part 1, says the free object on some "basis" data $X$ is a structured object $X'$ which includes $X$, such that any map from $X$ into another structured object $G$ uniquely extends to a morphism from $X'$ to $G$. Diagrammatically:
 
-<div style="text-align: center;">
-  <script type="text/tikz">
-    \begin{tikzcd}
-      X' \arrow[rr, dashed, "\hat{h}"] && G \\
-      \\
-      X \arrow[uu, "\iota"] \arrow[uurr, "h"']
-    \end{tikzcd}
-  </script>
-</div>
+<script type="text/tikz">
+  \begin{tikzcd}[column sep=huge, row sep=huge, labels={font=\normalsize}]
+    {X'} \arrow[rr, dashed, "{\hat{h}}"] && G \\
+    \\
+    X \arrow[uu, "\iota"', pos=0.35] \arrow[uurr, "h"', pos=0.55]
+  \end{tikzcd}
+</script>
 
 In the category of vector spaces for example, this intuitively says that if you have a function from a set $B$ to a vector space $W$, then this function can be extended uniquely (as a linear transformation) to the entire vector space $V_B$ with basis $B$. As we know from linear algebra, any linear transformation is uniquely defined by how it acts on a basis. This is the universal property in action.
 

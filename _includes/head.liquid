@@ -186,4 +186,7 @@
 
 {% if page.tikzjax %}
   <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+  <script>
+    window.WebAssembly || document.write('<script src="https://cdn.jsdelivr.net/npm/@ungap/wasm-loader@0.1.1/index.min.js"><\/script>');
+  </script>
 {% endif %}
