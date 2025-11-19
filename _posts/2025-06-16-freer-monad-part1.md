@@ -59,6 +59,7 @@ This can also be stated in terms of a universal property. Slightly informally, a
 <div style="text-align: center;">
   <span style="display: inline-block;">
     <script type="text/tikz">
+      \usetikzlibrary{cd}
       \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
         {X'} && G \\
         \\

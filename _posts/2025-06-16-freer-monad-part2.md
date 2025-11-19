@@ -56,6 +56,7 @@ Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\phi : A \to B$ is an $F$-al
 <div style="text-align: center;">
   <span style="display: inline-block;">
     <script type="text/tikz">
+      \usetikzlibrary{cd}
       \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
         FA && A \\
         \\

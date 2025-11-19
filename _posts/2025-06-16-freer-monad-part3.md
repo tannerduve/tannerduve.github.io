@@ -35,6 +35,7 @@ The universal property of free objects, as we saw in part 1, says the free objec
 <div style="text-align: center;">
   <span style="display: inline-block;">
     <script type="text/tikz">
+      \usetikzlibrary{cd}
       \begin{tikzcd}[scale=2, column sep=huge, row sep=huge]
         {X'} && G \\
         \\
