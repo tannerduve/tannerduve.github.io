@@ -1,44 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>TikZ Test - Simple</title>
-  <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
-</head>
-<body>
-  <h1>TikZ Test - Does it work at all?</h1>
-  
-  <h2>Test 1: Simple circle</h2>
-  <script type="text/tikz">
-    \begin{tikzpicture}
-      \draw (0,0) circle (1in);
-    \end{tikzpicture}
-  </script>
-  
-  <h2>Test 2: Simple commutative diagram</h2>
-  <script type="text/tikz">
-    \begin{tikzcd}
-      A \arrow[r] \arrow[d] & B \arrow[d] \\
-      C \arrow[r] & D
-    \end{tikzcd}
-  </script>
-  
-  <h2>Test 3: Your diagram</h2>
-  <script type="text/tikz">
-    \begin{tikzcd}
-      FA \arrow[rr, "\alpha"] \arrow[dd, "Ff"'] && A \arrow[dd, "f"] \\
-      \\
-      FB \arrow[rr, "\beta"'] && B
-    \end{tikzcd}
-  </script>
-  
-  <script src="https://tikzjax.com/v1/tikzjax.js"></script>
-  
-  <h2>Check Console</h2>
-  <p>Open browser console (F12) and check for errors</p>
-  <script>
-    console.log("TikzJax test page loaded");
-    console.log("TikZ script tags found:", document.querySelectorAll('script[type="text/tikz"]').length);
-  </script>
-</body>
-</html>
+  <head>
+    <title>TikZ Test - Simple</title>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css" />
+  </head>
+  <body>
+    <h1>TikZ Test - Does it work at all?</h1>
 
+    <h2>Test 1: Simple circle</h2>
+    <script type="text/tikz">
+      \begin{tikzpicture}
+        \draw (0,0) circle (1in);
+      \end{tikzpicture}
+    </script>
+
+    <h2>Test 2: Simple commutative diagram</h2>
+    <script type="text/tikz">
+      \begin{tikzcd}
+        A \arrow[r] \arrow[d] & B \arrow[d] \\
+        C \arrow[r] & D
+      \end{tikzcd}
+    </script>
+
+    <h2>Test 3: Your diagram</h2>
+    <script type="text/tikz">
+      \begin{tikzcd}
+        FA \arrow[rr, "\alpha"] \arrow[dd, "Ff"'] && A \arrow[dd, "f"] \\
+        \\
+        FB \arrow[rr, "\beta"'] && B
+      \end{tikzcd}
+    </script>
+
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
+    <h2>Check Console</h2>
+    <p>Open browser console (F12) and check for errors</p>
+    <script>
+      console.log("TikzJax test page loaded");
+      console.log("TikZ script tags found:", document.querySelectorAll('script[type="text/tikz"]').length);
+    </script>
+  </body>
+</html>
