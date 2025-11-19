@@ -162,4 +162,4 @@ In practice, this means defining computations using `FreeM` is extremely flexibl
 
 ## **Continue to Part 4 - A Tutorial**
 
-[Continue to Part 4 - A Tutorial](/blog/freer-monad/part4/)
+[Continue to Part 4 - A Tutorial](/blog/2025/freer-monad-part4/)

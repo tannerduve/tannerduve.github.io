@@ -9,7 +9,7 @@ hidden: true
 tikzjax: true
 ---
 
-In the [last section](/blog/freer-monad/part-1/), we introduced the free monad and implemented it in Lean. In this section we will study the theory a bit more deeply, by understanding the notions of algebra and universality.
+In the [last section](/blog/2025/freer-monad-part1/), we introduced the free monad and implemented it in Lean. In this section we will study the theory a bit more deeply, by understanding the notions of algebra and universality.
 
 ## 1. <a name='Introduction'></a>Introduction
 
@@ -255,4 +255,4 @@ In this post, we explored how free monads arise as initial algebras over a parti
 
 ## **Continue to Part 3 - Universal Morphisms**
 
-[Continue to Part 3 - Universal Morphisms](/blog/freer-monad/part3/)
+[Continue to Part 3 - Universal Morphisms](/blog/2025/freer-monad-part3/)
