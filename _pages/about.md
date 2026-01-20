@@ -20,7 +20,7 @@ latest_posts:
   enabled: false
 ---
 
-Hi! I'm Tanner. I am a research engineer at Logical Intelligence, working on formal verification and compilers. I graduated from the University of Pennsylvania with an MSE in computer science and a BA in mathematical logic. My academic interests include formal verification, programming languages, category theory, type theory, and all things logic.
+Hi! I'm Tanner. I am a Member of Technical Staff at Logical Intelligence, working on formal verification and compilers. I graduated from the University of Pennsylvania with an MSE in computer science and a BA in mathematical logic. My academic interests include formal verification, programming languages, category theory, type theory, and all things logic.
 
 Previously I worked as a software engineer writing Rust at [Nexus](https://nexus.xyz). I have done research in applied category theory with [Georgios Bakirtzis](https://bakirtzis.net) and [Michail Savvas](https://michailsavvas.github.io), and in programming languages and formal verification with Amazon's [Automated Reasoning Group](https://aws.amazon.com/what-is/automated-reasoning/).
 
