@@ -6,7 +6,7 @@ nav: true
 nav_order: 3.5
 ---
 
-Here is a few open source contributions and personal projects I've done in Lean:
+Here are a few open source contributions and personal projects I've done in Lean:
 
 ### CSLib
 
