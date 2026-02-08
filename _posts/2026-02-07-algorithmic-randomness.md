@@ -2,7 +2,7 @@
 layout: post
 title: "Foundations of Algorithmic Randomness and Computability"
 date: 2026-02-07 12:00:00 -0800
-description: An introduction to computability theory
+description: An introduction to computability theory, turing degrees, and randomness, supported by a Lean formalization
 categories: Computability Randomness
 tags: computability randomness lean formal-verification kolmogorov-complexity
 toc:
