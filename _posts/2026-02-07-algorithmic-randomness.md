@@ -15,7 +15,7 @@ toc:
 
 This post explores two fundamental questions: what does it mean to be random, and what does it mean to compute? We develop the theory of computation and algorithmic randomness by introducing historical background, the central constructions in computability theory, and three mathematical approaches to defining randomness. Our discussion is enriched by a formalization written in the Lean theorem prover, and code snippets will be used throughout the text to supplement and substantiate the ideas we present.
 
-## I. The Formalization of Computation
+## I. History
 
 ### The Dream of Mechanical Reasoning
 
@@ -47,7 +47,9 @@ The **Church-Turing thesis** is a philosophical claim asserting that this shared
 
 While the CT thesis can't be proven, this convergence provides pretty convincing evidence of its truth. Three mathematicians with different motivations and different formalisms arrived at the same boundary. Every subsequent attempt to formalize computation—register machines, Post systems, cellular automata—has yielded the same class of functions. When every reasonable approach produces identical results, we have good reason to believe we've identified something fundamental about the universe.
 
-### Partial Recursive Functions: The Formal Definition
+## II. Formal Introduction
+
+### Partial Recursive Functions
 
 We work with the recursive function approach, as it connects most directly to our formalization. A **partial recursive function** is built from simple primitives using a small set of operations. The word "partial" matters here: these functions need not be defined everywhere. A computation might run forever without producing an answer.
 
@@ -250,7 +252,7 @@ To compute the jump of an oracle $f$ on input $n$, we decode $n$ as a program, r
 
 The theory developed in this section allows us to study infinite objects through the lens of computation. In particular, we can ask whether an infinite binary sequence can be predicted, compressed, or successfully exploited by any algorithmic procedure. This viewpoint leads to computability-theoretic definitions of randomness, which introduce in the next section.
 
-## II. Translating Abstract Randomness to Mathematics
+## III. Three Definitions of Randomness
 
 Armed with this hefty tool we call "computation," we may use against another abstract notion: Randomness. What is *randomness*? Intuitively we may have some ideas, but formalization requires rigor. First, we must fix an object of study. What things are we going to classify as random or not random? As algorithmic randomness is a field within theoretical computer science, those who came before us chose infinite binary sequences. Here are a few examples:
 
