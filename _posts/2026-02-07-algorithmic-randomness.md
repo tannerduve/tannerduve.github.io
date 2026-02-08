@@ -349,7 +349,7 @@ Crazy enough, there does exist a universal Martin-Löf test. Meaning that this s
 
 ### Gambling Randomness
 
-Let's shift gears. Say you have $\$1$ and we sit down to flip a coin many, many times. You bet whatever money you have at each flip. Your final winnings will be based on how you choose to divide your current winnings at any given point between heads and tails. Any way you could possibly choose each of your bets we can model using some sort of a computable process.
+Let's shift gears. Say you have a single dollar and we sit down to flip a coin many, many times. You bet whatever money you have at each flip. Your final winnings will be based on how you choose to divide your current winnings at any given point between heads and tails. Any way you could possibly choose each of your bets we can model using some sort of a computable process.
 
 We formally define a *martingale* to be a function $d$ from finite binary strings $\sigma$ to nonnegative real numbers that satisfies
 
