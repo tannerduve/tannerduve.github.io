@@ -48,7 +48,7 @@ ninja.data = [{
         
           title: "Foundations of Algorithmic Randomness and Computability",
         
-        description: "An introduction to computability and randomness with",
+        description: "An introduction to computability theory",
         section: "Posts",
         handler: () => {
           
