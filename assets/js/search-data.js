@@ -44,7 +44,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/talks/";
           },
-        },{id: "post-tutorial-a-verified-interpreter-with-side-effects",
+        },{id: "post-foundations-of-algorithmic-randomness-and-computability",
+        
+          title: "Foundations of Algorithmic Randomness and Computability",
+        
+        description: "An introduction to computability and randomness with",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/algorithmic-randomness/";
+          
+        },
+      },{id: "post-tutorial-a-verified-interpreter-with-side-effects",
         
           title: "Tutorial: A Verified Interpreter with Side Effects",
         
