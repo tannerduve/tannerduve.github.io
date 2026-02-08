@@ -48,7 +48,7 @@ ninja.data = [{
         
           title: "Foundations of Algorithmic Randomness and Computability",
         
-        description: "An introduction to computability theory",
+        description: "An introduction to computability theory, turing degrees, and randomness, supported by a Lean formalization",
         section: "Posts",
         handler: () => {
           
