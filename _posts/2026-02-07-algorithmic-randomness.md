@@ -288,9 +288,9 @@ theorem decode_encode (σ : BinSeq) :
 
 Algorithmic randomness uses the term "machine" to describe the lifting of a partially recursive function to take and return finite binary strings. Given some fixed machine, $M$, we can ask which strings it will output and how difficult it is to actually return them. For some finite binary string, $\sigma$, we may ask what is the shortest string such that running $M$ on that string will output $\sigma$. Formally, we can define Kolmogorov complexity with respect to a machine $M$ as 
 
-$$C_M(\sigma) = \min \{ |\tau| : M(\tau) = \sigma \}$$
+$$C_M(\sigma) = \min \{ \lvert\tau\rvert : M(\tau) = \sigma \}$$
 
-where $|\tau|$ denotes the length of $\tau$ and $M(\tau) = \sigma$ means executing machine $M$ on $\tau$ halts with output $\sigma$.
+where $\lvert\tau\rvert$ denotes the length of $\tau$ and $M(\tau) = \sigma$ means executing machine $M$ on $\tau$ halts with output $\sigma$.
 
 Now, inputs to these machines that halt on any arbitrary set of inputs have access more information than just the bits that make them up. Such a machine must somehow know when it has finished reading its input. Since our programs consist only of $0$'s and $1$'s, this information cannot come from a special end marker. Essentially, the machine is given the length of the input for free, even though this information is not encoded in the input string.
 
@@ -300,7 +300,7 @@ But why just concern ourselves with $M$? Recall that universal machines can simu
 
 $$U(\rho_M \sigma) = M(\sigma)$$
 
-where $\rho_M$ is the coding string for machine $M$ and $|\rho_M|$ is the coding constant for $U$, the cost of simulating $M$. Fortunately for us, universal prefix-free machines exist and we can define prefix-free Kolmogorov complexity to be $K(\sigma) = C_U(\sigma)$ where $U$ is prefix-free. In our formalization, we have the following
+where $\rho_M$ is the coding string for machine $M$ and $\lvert\rho_M\rvert$ is the coding constant for $U$, the cost of simulating $M$. Fortunately for us, universal prefix-free machines exist and we can define prefix-free Kolmogorov complexity to be $K(\sigma) = C_U(\sigma)$ where $U$ is prefix-free. In our formalization, we have the following
 
 ```lean
 def Produces {α : Type} [Primcodable α]
@@ -337,7 +337,7 @@ Per Martin-Löf took a different approach. He used measure theory to check how p
 
 ![Binary Tree](/assets/img/binary-tree.png "Binary Tree")
 
-If we think of the tree as having total measure $1$, then its subtrees with roots at (the binary strings) $0$ and $1$ each have measure $\frac{1}{2}$ since their sum gives the measure of the entire tree. In fact, as we go down the tree, we define the subtree with root $\sigma$ to have measure $2^{-|\sigma|}$. Let's look at an example to see Martin-Löf's intuition.
+If we think of the tree as having total measure $1$, then its subtrees with roots at (the binary strings) $0$ and $1$ each have measure $\frac{1}{2}$ since their sum gives the measure of the entire tree. In fact, as we go down the tree, we define the subtree with root $\sigma$ to have measure $2^{-\lvert\sigma\rvert}$. Let's look at an example to see Martin-Löf's intuition.
 
 Consider $B$ to be the class of infinite binary strings such that the every odd bit is $1$. So $101010..., 111111, 1110101... \in B$ and $011111, 010101, 001010 \notin B$. Clearly, the strings in $B$ are not random, they follow some simple rule. Now, how can we use our tree to pin down where exactly these strings live? We will denote set of extensions of some finite string $\sigma$ as $\lbrack\!\lbrack \sigma \rbrack\!\rbrack$. It is now our goal to "capture" $B$ in a series of progressively more specific sections of the tree. For every $A \in B$, we have that $A \in \lbrack\!\lbrack 1 \rbrack\!\rbrack$. Only looking at $\lbrack\!\lbrack 1 \rbrack\!\rbrack$ is too restrictive since that set includes strings like $10000...$ which do not have $1$ at the third bit. In order to ensure that our third bit is $1$, it must be the case that $A \in \lbrack\!\lbrack 101 \rbrack\!\rbrack$ or $A \in \lbrack\!\lbrack 111 \rbrack\!\rbrack$. 
 
