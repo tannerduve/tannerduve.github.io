@@ -288,9 +288,11 @@ theorem decode_encode (σ : BinSeq) :
 
 Algorithmic randomness uses the term "machine" to describe the lifting of a partially recursive function to take and return finite binary strings. Given some fixed machine, $M$, we can ask which strings it will output and how difficult it is to actually return them. For some finite binary string, $\sigma$, we may ask what is the shortest string such that running $M$ on that string will output $\sigma$. Formally, we can define Kolmogorov complexity with respect to a machine $M$ as 
 
-$$C_M(\sigma) = \min \{ |\tau| : M(\tau) = \sigma \}$$
+$$
+C_M(\sigma) = \min \{ |\tau| : M(\tau) = \sigma \}
+$$
 
-where $|\tau|$ denotes the length of $\tau$ and $M(\tau)=\sigma$ means executing machine $M$ on $\tau$ halts with output $\sigma$.
+where $\|\tau\|$ denotes the length of $\tau$ and $M(\tau) = \sigma$ means executing machine $M$ on $\tau$ halts with output $\sigma$.
 
 Now, inputs to these machines that halt on any arbitrary set of inputs have access more information than just the bits that make them up. Such a machine must somehow know when it has finished reading its input. Since our programs consist only of $0$'s and $1$'s, this information cannot come from a special end marker. Essentially, the machine is given the length of the input for free, even though this information is not encoded in the input string.
 
@@ -298,9 +300,11 @@ From an information-theoretic perspective, this is unsatisfactory. If we hope fo
 
 But why just concern ourselves with $M$? Recall that universal machines can simulate every other machine, meaning for all machines $M$, and strings $\sigma$, there is some $\rho_M$ such that
 
-$$U(\rho_M\sigma) = M(\sigma)$$
+$$
+U(\rho_M \sigma) = M(\sigma)
+$$
 
-where $\rho_M$ is the coding string for machine $M$ and $|\rho_M|$ is the coding constant for $U$, the cost of simulating $M$. Fortunately for us, universal prefix-free machines exist and we can define prefix-free Kolmogorov complexity to be $K(\sigma) = C_U(\sigma)$ where $U$ is prefix-free. In our formalization, we have the following
+where $\rho_M$ is the coding string for machine $M$ and $\|\rho_M\|$ is the coding constant for $U$, the cost of simulating $M$. Fortunately for us, universal prefix-free machines exist and we can define prefix-free Kolmogorov complexity to be $K(\sigma) = C_U(\sigma)$ where $U$ is prefix-free. In our formalization, we have the following
 
 ```lean
 def Produces {α : Type} [Primcodable α]
