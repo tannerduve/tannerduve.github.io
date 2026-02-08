@@ -2,7 +2,7 @@
 layout: post
 title: "Foundations of Algorithmic Randomness and Computability"
 date: 2026-02-07 12:00:00 -0800
-description: An introduction to computability and randomness with 
+description: An introduction to computability theory
 categories: Computability Randomness
 tags: computability randomness lean formal-verification kolmogorov-complexity
 toc:
@@ -82,7 +82,7 @@ $$
 
 If no such $n$ exists, the search runs forever. The function is undefined at that input.
 
-### Why μ-Minimization Matters
+### μ-Minimization
 
 Primitive recursion alone gives you a lot: all the arithmetic operations, primality testing, anything with a predictable runtime. But it doesn't give you *everything* computable. 
 
@@ -149,8 +149,6 @@ $$\mathbf{0} < \mathbf{0'} < \mathbf{0''} < \mathbf{0'''} < \cdots$$
 One might imagine that the hierarchy of degrees forms a linear chain, ie. that the degrees are totally ordered. However, in 1956, Friedberg and Muchnik independently proved that there exist **incomparable degrees**: degrees **a** and **b** such that neither **a** $\leq$ **b** nor **b** $\leq$ **a**. This shows that some problems are incommensurable in difficulty; neither helps you solve the other.
 
 More specifically the degrees form a join semilattice: any two degrees **a** and **b** have a least upper bound **a** $\lor$ **b**. Picture the structure as branching upward everywhere. From $\mathbf{0}$, it fans out into continuum-many incomparable directions. There are minimal degrees just above $\mathbf{0}$ with nothing between. There are dense chains. There are antichains of any finite size. Any two degrees can be joined, so paths merge going up. But there's no ceiling, and no uniform way to factor a degree into simpler pieces.
-
-![The Turing Degrees](/assets/img/degrees.png "The Turing Degrees")
 
 In Lean, we define the join by interleaving: even inputs query $f$, odd inputs query $g$, and we encode which oracle answered in the output.
 
