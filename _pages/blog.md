@@ -207,8 +207,4 @@ pagination:
 
 <h4>LiHKAL (Logics I Have Known and Loved)</h4>
 <p><em>On the varieties of formal systems</em></p>
-
-<h4>Introduction to Computability Theory in Lean</h4>
-<p><em>Formalizing the theory of oracles and Turing degrees in a multi-part series exploring recursive functions, decidability, and the arithmetic hierarchy</em></p>
-
 </div>
