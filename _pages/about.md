@@ -30,4 +30,4 @@ Outside of work I enjoy reading philosophy, in particular analytic philosophy, p
 
 ---
 
-_Favorite PLs: Rust, OCaml, Haskell, Lean_
+_Favorite PLs: Haskell, Rust, Lean_
