@@ -18,6 +18,8 @@ This three-part post will cover how to model and reason about potentially-diverg
 
 We will then use Lean to define a small imperative programming language with loops, give it denotational semantics using `Part`, and prove that these programs satisfy their specifications using Hoare logic.
 
+All code used in this post is available in [this repo](https://github.com/tannerduve/part-monad-blog), and some is being contributed to Mathlib at [this PR](https://github.com/leanprover-community/mathlib4/pull/38316).
+
 1. [Part 1 — Domain Theory Basics]({% post_url 2026-04-17-part-monad-1 %})
 2. [Part 2 — Lean's `Part` Monad]({% post_url 2026-04-17-part-monad-2 %})
 3. [Part 3 — Denotational Semantics of `IMP`]({% post_url 2026-04-17-part-monad-3 %})
