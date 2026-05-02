@@ -6,6 +6,7 @@ description: Modeling divergence and nontermination in Lean
 categories: Formal-Verification
 tags: lean category-theory domain-theory halting-problem monads
 series_intro: part-monad
+thumbnail: assets/img/collatz.png
 ---
 
 Lately I've been doing some work involving modeling and verifying imperative programs, and in particular those that may diverge (ie. not terminate), such as functions that contain loops that can run forever. 
