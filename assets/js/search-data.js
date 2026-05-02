@@ -44,7 +44,62 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/talks/";
           },
-        },{id: "post-foundations-of-algorithmic-randomness-and-computability",
+        },{id: "post-currying-categorically",
+        
+          title: "Currying, Categorically",
+        
+        description: "Cartesian closed categories and the Curry-Howard correspondence",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/curry-categories/";
+          
+        },
+      },{id: "post-part-3-a-denotational-semantics-for-while",
+        
+          title: "Part 3: A Denotational Semantics for While",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/part-monad-3/";
+          
+        },
+      },{id: "post-part-2-lean-39-s-part-monad",
+        
+          title: "Part 2: Lean&#39;s `Part` Monad",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/part-monad-2/";
+          
+        },
+      },{id: "post-part-1-domain-theory-101",
+        
+          title: "Part 1: Domain Theory 101",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/part-monad-1/";
+          
+        },
+      },{id: "post-partiality-in-a-total-type-theory",
+        
+          title: "Partiality in a Total Type Theory",
+        
+        description: "Modeling divergence and nontermination in Lean",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/part-monad/";
+          
+        },
+      },{id: "post-foundations-of-algorithmic-randomness-and-computability",
         
           title: "Foundations of Algorithmic Randomness and Computability",
         
