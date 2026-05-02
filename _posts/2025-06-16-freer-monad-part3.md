@@ -95,7 +95,7 @@ The map `lift` takes a single operation from our basis `F` and wraps it as an ef
 The universal property then guarantees that for any monad `M` and any interpretation `f` from our effects to `M`, we can define our unique interpreter `liftM f`:
 
 ```lean
-def liftM {M : Type u → Type w} [Monad M
+def liftM {M : Type u → Type w} [Monad M]
     {α : Type u} : FreeM F α → ({β : Type u} → F β → M β) → M α
   | FreeM.pure a, _ => pure a
   | FreeM.liftBind op cont, interp => interp op >>= fun result => liftM (cont result) interp
