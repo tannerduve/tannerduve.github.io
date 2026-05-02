@@ -55,9 +55,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/curry-categories/";
           
         },
-      },{id: "post-part-3-a-denotational-semantics-for-while",
+      },{id: "post-part-3-a-denotational-semantics-for-imp",
         
-          title: "Part 3: A Denotational Semantics for While",
+          title: "Part 3: A Denotational Semantics for IMP",
         
         description: "",
         section: "Posts",
