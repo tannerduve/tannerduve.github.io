@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Free Monad: A Four-Part Series"
+title: "The Free Monad"
 date: 2025-05-21 13:00:00 -0800
 description: A four-part series on free monads in Lean
 categories: Formal-Verification Free-Monads

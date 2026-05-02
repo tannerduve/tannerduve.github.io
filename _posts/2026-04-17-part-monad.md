@@ -13,6 +13,6 @@ It may seem like there's an issue here. If I'm working in a total proof assistan
 
 This three-part post will cover how to model and reason about potentially-diverging computations in Lean. I will explain the basics of domain theory, explore the internals of the `Part` monad, and formalize a useful theorem in domain theory. We will then use Lean to define a small imperative programming language with loops, give it denotational semantics using the `Part` monad, and prove that these programs satisfy their specifications.
 
-1. [Part 1 — Domain Theory 101]({% post_url 2026-04-17-part-monad-1 %})
+1. [Part 1 — Domain Theory Basics]({% post_url 2026-04-17-part-monad-1 %})
 2. [Part 2 — Lean's `Part` Monad]({% post_url 2026-04-17-part-monad-2 %})
 3. [Part 3 — Denotational Semantics of `WHILE`]({% post_url 2026-04-17-part-monad-3 %})
