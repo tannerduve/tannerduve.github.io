@@ -81,17 +81,7 @@ $$\mathrm{Hom}_{\mathbf{C}}(A \times B,\, C) \;\cong\; \mathrm{Hom}_{\mathbf{C}}
 
 This object $C^B$ in a category of types is exactly the function type $B \to C$. 
 
-This third axiom of cartesian closed categories is telling us that functions from $A \times B$ into $C$ are equivalent to functions from $A$ into the function type $B \to C$, which is *exactly* what currying says. Currying falls out of the definition of our categorical model, and can be cexpressed as this commutative diagram:
-
-<script type="text/tikz">
-\begin{tikzcd}[column sep=5em, row sep=5em, labels={font=\normalsize}]
-  A \times B \arrow[rr, "{\tilde{f} \times \mathrm{id}_B}"] \arrow[ddrr, "f"', pos=0.55] && C^B \times B \arrow[dd, "\mathrm{eval}"] \\
-  \\
-  && C
-\end{tikzcd}
-</script>
-
-[So much in that excellent formula](https://x.com/elonmusk/status/1813224573770633599?s=20)
+This third axiom of cartesian closed categories is telling us that functions from $A \times B$ into $C$ are equivalent to functions from $A$ into the function type $B \to C$, which is *exactly* what currying says. Currying falls out of the definition of our categorical model.
 
 ## Summary of the correspondence
 
