@@ -15,4 +15,4 @@ This three-part post will cover how to model and reason about potentially-diverg
 
 1. [Part 1 — Domain Theory Basics]({% post_url 2026-04-17-part-monad-1 %})
 2. [Part 2 — Lean's `Part` Monad]({% post_url 2026-04-17-part-monad-2 %})
-3. [Part 3 — Denotational Semantics of `WHILE`]({% post_url 2026-04-17-part-monad-3 %})
+3. [Part 3 — Denotational Semantics of `IMP`]({% post_url 2026-04-17-part-monad-3 %})
