@@ -12,20 +12,11 @@ tikzjax: true
 
 ## 1. <a name='Introduction'></a>Introduction
 
-In functional programming, monads are how we structure and sequence computations with side effects like state, IO, or failure. Each monad bakes its semantics into its definition. `State` updates a state, `IO` talks to the world, `Maybe` short-circuits on failure. *Free* monads provide a bit more freedom, in that they let you write effectful programs as pure data, without committing to a particular interpretation of the effects. You can write monadic programs in `do` notation, describing some sequence of effects, and only decide what they mean later. For example, these are just a few things you can do with a program-as-data:
+In this part we define the free monad in Lean from first principles. We begin thinking about what *free* means in mathematics, with familiar examples like vector spaces and the free monoid (the `List` type). The free monad is the analogous construction one level up, the canonical monad generated from an endofunctor.
 
-- Run it directly
-- Pretty print it
-- Analyze it statically
-- Track its resource usage
+Then we consider its implementation, first in Haskell, where the standard `Free f` definition works naturally. Then in Lean, where Lean's type theory poses an obstacle for the initial definition, which we sidestep with a nice generalization. We close by giving `FreeM F` a `Monad` instance and proving it's lawful.
 
-Each of these corresponds to a different interpreter. This approach also allows effects to be combined without you having to get tangled up in monad transformers.
-
-This four-part series will introduce the free monad in Lean. In this first part we will introduce and implement the free monad from first principles, and discuss some of the finesse involved in implementing it in a proof assistant like Lean, compared to a language like Haskell.
-
-In part 2 we will further explore some theory and study initial algebras and catamorphisms, and how they give rise to interpreters for effectful computation trees. In part 3 we will study the universal property of free monads and what it provides for us as programmers. Finally in part 4, we will use what we've learned to build and verify a real interpreter for a small language, making elegant use of freeness to combine effectful computations.
-
-This series assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes. All of the code in this blog post has been packaged into a library, now merged into [CSlib](https://github.com/leanprover/cslib/tree/main/Cslib/Foundations/Control/Monad)
+All the code is packaged into [CSlib](https://github.com/leanprover/cslib/tree/main/Cslib/Foundations/Control/Monad).
 
 <!-- vscode-markdown-toc -->
 

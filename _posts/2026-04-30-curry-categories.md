@@ -6,6 +6,7 @@ description: Cartesian closed categories and the Curry-Howard correspondence
 categories: Formal-Verification
 tags: functional-programming category-theory
 tikzjax: true
+thumbnail: assets/img/MelliesClassicalComputationalTrilogy.jpg
 ---
 
 > The central dogma of computational trinitarianism holds that Logic, Languages, and Categories are but three manifestations of one divine notion of computation.
@@ -81,9 +82,9 @@ This object $C^B$ in a category of types is exactly the function type $B \to C$.
 This third axiom of cartesian closed categories is telling us that functions from $A \times B$ into $C$ are equivalent to functions from $A$ into the function type $B \to C$, which is *exactly* what currying says. Currying falls out of the definition of our categorical model, and can be cexpressed as this commutative diagram:
 
 <script type="text/tikz">
-\begin{tikzcd}[column sep=large, row sep=large]
-A \times B \arrow[r, "\tilde{f} \times \mathrm{id}_B"] \arrow[dr, "f"', swap] & C^B \times B \arrow[d, "\mathrm{eval}"] \\
-& C
+\begin{tikzcd}[column sep=5em, row sep=5em, labels={font=\normalsize}]
+  A \times B \arrow[r, "{\tilde{f} \times \mathrm{id}_B}"] \arrow[dr, "f"', pos=0.5] & C^B \times B \arrow[d, "\mathrm{eval}"] \\
+  & C
 \end{tikzcd}
 </script>
 
