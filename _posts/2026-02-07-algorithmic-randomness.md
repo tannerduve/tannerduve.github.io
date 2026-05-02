@@ -13,25 +13,29 @@ toc:
 
 ## Introduction
 
-This post explores two fundamental questions: what does it mean to be random, and what does it mean to compute? We develop the theory of computation and algorithmic randomness by introducing historical background, the central constructions in computability theory, and three mathematical approaches to defining randomness. Our discussion is enriched by a formalization written in the Lean theorem prover, and code snippets will be used throughout the text to supplement and substantiate the ideas we present.
+This post explores two fundamental questions: what does it mean to be random, and what does it mean to compute? We develop the theory of computation and algorithmic randomness by introducing historical background, the central constructions in computability theory, and three mathematical approaches to defining randomness. 
+
+Our discussion is enriched by a formalization written in the Lean theorem prover, and code snippets will be used throughout the text to supplement and substantiate the ideas we present.
 
 ## I. History
 
 ### The Dream of Mechanical Reasoning
 
-At the turn of the twentieth century, David Hilbert expressed the belief that all of mathematics could be reduced to mechanical symbolic manipulation, void of the need for human insight or creativity. If we could just find the right formal system, the right rules for pushing symbols around, then we could put any conjecture into a machine and receive either a proof or a refutation. In terms that hadn't yet been coined, he believed in the existence of an *algorithm* for deciding all mathematical truth. This was referred to as the Entscheidungsproblem.
+At the turn of the twentieth century, David Hilbert expressed the belief that all of mathematics could be reduced to mechanical symbolic manipulation, void of the need for human insight or creativity. 
+
+If we could just find the right formal system, the right rules for pushing symbols around, then we could put any conjecture into a machine and receive either a proof or a refutation. In terms that hadn't yet been coined, he believed in the existence of an *algorithm* for deciding all mathematical truth. This was referred to as the Entscheidungsproblem.
 
 To answer this question positively, one would simply have to provide such an algorithm. But to prove such a machine does not exist, we need to step back and answer a more fundamental question: *what is an algorithm?*. Before the 1930s, this notion lived only in intuition. Computation had the status of "I know it when I see it". But to make progress on this question we had to put the notion on formal grounds.
 
 In the 1930s, Turing, Church, and Gödel each provided rigorous definitions of computability, and these definitions gave us the tools to prove Hilbert wrong. Gödel's incompleteness theorems showed that any sufficiently powerful formal system contains true statements it cannot prove, Turing proved that no algorithm can decide whether an arbitrary program halts, and the fully mechanical mathematician was proven impossible.
 
-Still, something survives from Hilbert's vision. We cannot mechanize the *discovery* of all mathematical truth, but we can mechanize its *verification*. Modern proof assistants like Lean, Coq, and Isabelle let us write proofs in formal languages where every step is checked against a set of rules encoded into the language. The computer cannot tell us what to prove or how, but it can confirm, with absolute certainty, that our reasoning is valid.
+While we cannot mechanize the *discovery* of all mathematical truth, but we can mechanize its *verification*. Modern proof assistants like Lean, Coq, and Isabelle let us write proofs in formal languages where every step is checked against a set of rules encoded into the language. The computer cannot tell us what to prove or how, but it can confirm that our reasoning is valid.
 
 While Gödel and Turing's results provide hard theoretical limits on computation, recent progress in machine learning suggests that some sufficiently advanced models may be able to approximate Hilbert's dream in practice. Modern systems have very recently been able to generate formal proofs of previously unsolved problems, do graduate-level mathematics, and win the most difficult math competitions. They're beginning to assist not just with verification but with actual mathematical discovery. One can imagine an AI system powerful enough to answer, with high probability, every mathematical question humans actually want to ask, and this would resemble Hilbert's magical oracle. 
 
 ### Three Models of Computation
 
-In the 1930s, three mathematicians working independently proposed formal definitions of computability. Alan Turing imagined an idealized human computer: someone with unlimited paper, a finite set of instructions, and infinite patience. Alonzo Church built a calculus of pure functions, where computation meant simplifying terms by applying and substituting. And Kurt Gödel, building on work by Herbrand, defined a class of arithmetic functions that could be built from simple pieces using specific construction rules.
+In the 1930s, three mathematicians working independently proposed formal definitions of computability. Alan Turing imagined an idealized human computer; someone with unlimited paper, a finite set of instructions, and infinite patience. Alonzo Church built a calculus of pure functions, where computation meant simplifying terms by applying and substituting. And Kurt Gödel, building on work by Herbrand, defined a class of arithmetic functions that could be built from simple pieces using specific construction rules.
 
 **Turing machines.** Alan Turing's idealized human computer: someone with unlimited paper tape divided into cells, and a finite set of instructions. The machine reads one cell at a time, writes a symbol, moves left or right, and transitions between states according to fixed rules. Turing claims a function is computable if there is a Turing machine which will halt and return the output of the function.
 
@@ -94,7 +98,9 @@ The μ-operator is what separates the *primitive* recursive functions from the *
 
 ### Oracles and Relative Computability
 
-We can all recognize that some problems are harder than others. In computability we are interested in comparing the relative difficulty of computational problems. One way to compare difficulty is through *reducibility*. Reducibility is a way of converting one problem into another, something which naturally comes up in everyday life. For example, if you are looking to find your way to a certain destination, this becomes easy if you are able to obtain a map to your destination, i.e. the problem of finding your destination *reduces* to finding a map to it. Another way to look at it is: the problem of finding your destination is *no more unsolvable* than the problem of obtaining a map.
+We can all recognize that some problems are harder than others. In computability we are interested in comparing the relative difficulty of computational problems. One way to compare difficulty is through *reducibility*. Reducibility is a way of converting one problem into another, something which naturally comes up in everyday life. 
+
+For example, if you are looking to find your way to a certain destination, this becomes easy if you are able to obtain a map to your destination, i.e. the problem of finding your destination *reduces* to finding a map to it. Another way to look at it is: the problem of finding your destination is *no more unsolvable* than the problem of obtaining a map.
 
 Suppose we augment our computing device with an **oracle**, a black box that instantly answers queries about some function $g$. We can't see inside the box; we just submit inputs and receive outputs, at zero cost. A function $f$ is **recursive in** $g$ (written $f \leq_T g$ for Turing reducibility) if $f$ can be computed by a machine with oracle access to $g$. This relation captures a notion of *relative difficulty*: $f \leq_T g$ means "$f$ is no harder to compute than $g$," or "if someone handed us the answers for $g$, we could compute $f$."
 
@@ -144,13 +150,17 @@ With this lifted ordering, the Turing degrees form a **partial order**: reflexiv
 
 The simplest non-computable degree is $\mathbf{0'}$ (read "zero jump"), the degree of the halting problem. Given an encoding of programs, the halting problem asks: does program $e$ halt on input $n$? Turing proved that no computable function can answer this question for all pairs $(e, n)$. Yet the halting problem is well-defined as a set, and any function that could answer it would live in degree $\mathbf{0'}$.
 
-The relationship between 0 and 0' is an instance of a general construction called the **jump operator**. Given any function $f$, its jump $f'$ is the *relativized halting problem*: which programs halt when given oracle access to $f$? We can simulate any $f$-oracle program step by step, so $f'$ is computable *from* $f$. But crucially, $f'$ is never computable *in* $f$. The same diagonalization that makes the halting problem undecidable relativizes: no $f$-oracle program can decide which $f$-oracle programs halt. This means the degrees are unbounded from above. For any degree **a**, the jump **a'** sits strictly higher:
+The relationship between 0 and 0' is an instance of a general construction called the **jump operator**. Given any function $f$, its jump $f'$ is the *relativized halting problem*: which programs halt when given oracle access to $f$? We can simulate any $f$-oracle program step by step, so $f'$ is computable *from* $f$. 
+
+Crucially, $f'$ is never computable *in* $f$. The same diagonalization that makes the halting problem undecidable relativizes: no $f$-oracle program can decide which $f$-oracle programs halt. This means the degrees are unbounded from above. For any degree **a**, the jump **a'** sits strictly higher:
 
 $$\mathbf{0} < \mathbf{0'} < \mathbf{0''} < \mathbf{0'''} < \cdots$$
 
 One might imagine that the hierarchy of degrees forms a linear chain, ie. that the degrees are totally ordered. However, in 1956, Friedberg and Muchnik independently proved that there exist **incomparable degrees**: degrees **a** and **b** such that neither **a** $\leq$ **b** nor **b** $\leq$ **a**. This shows that some problems are incommensurable in difficulty; neither helps you solve the other.
 
-More specifically the degrees form a join semilattice: any two degrees **a** and **b** have a least upper bound **a** $\lor$ **b**. Picture the structure as branching upward everywhere. From $\mathbf{0}$, it fans out into continuum-many incomparable directions. There are minimal degrees just above $\mathbf{0}$ with nothing between. There are dense chains. There are antichains of any finite size. Any two degrees can be joined, so paths merge going up. But there's no ceiling, and no uniform way to factor a degree into simpler pieces.
+More specifically the degrees form a join semilattice: any two degrees **a** and **b** have a least upper bound **a** $\lor$ **b**. Picture the structure as branching upward everywhere. 
+
+From $\mathbf{0}$, it fans out into continuum-many incomparable directions. There are minimal degrees just above $\mathbf{0}$ with nothing between. There are dense chains. There are antichains of any finite size. Any two degrees can be joined, so paths merge going up. But there's no ceiling, and no uniform way to factor a degree into simpler pieces.
 
 In Lean, we define the join by interleaving: even inputs query $f$, odd inputs query $g$, and we encode which oracle answered in the output.
 
@@ -181,9 +191,11 @@ instance instSemilatticeSup : SemilatticeSup TuringDegree where
   sup_le _ _ _ := sup_le
 ```
 
-One mysterious part of the structure of the Turing degrees is its **automorphism group**, $Aut(\mathbf{T})$. An automorphism of the Turing degrees is a permutation $\pi$ that preserves the ordering in both directions: $a \leq b$ if and only if $\pi(a) \leq \pi(b)$. The trivial automorphism is the identity function. There is an open conjecture which asks whether there are *any* non-trivial automorphisms at all. The closest we've gotten is from Slaman and Woodin, who proved that $Aut(\mathbf{T})$ is at most countable - we don't know if there are more than one, but we know there are fewer than there are real numbers!
+One mysterious part of the structure of the Turing degrees is its **automorphism group**, $Aut(\mathbf{T})$. An automorphism of the Turing degrees is a permutation $\pi$ that preserves the ordering in both directions: $a \leq b$ if and only if $\pi(a) \leq \pi(b)$. 
 
-These different aspects of this structure matter for randomness. When we say a sequence is "random," we are making a claim about its computational properties. Random sequences are incomputable—they sit strictly above $\mathbf{0}$—and they resist computation in specific, measure-theoretic ways.
+The trivial automorphism is the identity function. There is an open conjecture which asks whether there are *any* non-trivial automorphisms at all. The closest we've gotten is from Slaman and Woodin, who proved that $Aut(\mathbf{T})$ is at most countable; all we know is that the number of automorphisms is somewhere between 1 and $\omega$.
+
+These different aspects of this structure matter for randomness. When we say a sequence is "random," we are making a claim about its computational properties. Random sequences are incomputable in that they sit strictly above $\mathbf{0}$—and they resist computation in specific measure-theoretic ways.
 
 ### Gödel Encoding: Programs as Numbers
 
@@ -339,13 +351,25 @@ Per Martin-Löf took a different approach. He used measure theory to check how p
 
 If we think of the tree as having total measure $1$, then its subtrees with roots at (the binary strings) $0$ and $1$ each have measure $\frac{1}{2}$ since their sum gives the measure of the entire tree. In fact, as we go down the tree, we define the subtree with root $\sigma$ to have measure $2^{-\lvert\sigma\rvert}$. Let's look at an example to see Martin-Löf's intuition.
 
-Consider $B$ to be the class of infinite binary strings such that the every odd bit is $1$. So $101010..., 111111, 1110101... \in B$ and $011111, 010101, 001010 \notin B$. Clearly, the strings in $B$ are not random, they follow some simple rule. Now, how can we use our tree to pin down where exactly these strings live? We will denote set of extensions of some finite string $\sigma$ as $\lbrack\mkern-2mu\lbrack \sigma \rbrack\mkern-2mu\rbrack$. It is now our goal to "capture" $B$ in a series of progressively more specific sections of the tree. For every $A \in B$, we have that $A \in \lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$. Only looking at $\lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$ is too restrictive since that set includes strings like $10000...$ which do not have $1$ at the third bit. In order to ensure that our third bit is $1$, it must be the case that $A \in \lbrack\mkern-2mu\lbrack 101 \rbrack\mkern-2mu\rbrack$ or $A \in \lbrack\mkern-2mu\lbrack 111 \rbrack\mkern-2mu\rbrack$. 
+Consider $B$ to be the class of infinite binary strings such that the every odd bit is $1$. So $101010..., 111111, 1110101... \in B$ and $011111, 010101, 001010 \notin B$. Clearly, the strings in $B$ are not random, they follow some simple rule. 
 
-Adopting Martin-Löf's notation, we define a Martin-Löf test to be a sequence $\{ U_n \}_{n \in \mathbb{N}}$ of sets such that the measure of $U_n \le 2^{-n}$ and each $U_n$ is the union of such extensions. Taking unions of such extensions means that we are asking a question of the form, "Does there exist an extension of any of these finite strings which gives us our infinite binary string?" This is found using $\mu$-minimization, connecting us to our computable functions above. We can denote the measure of a set by $\mu(\cdot)$. For our example, $U_1 = \lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$ and $U_2 = \lbrack\mkern-2mu\lbrack 101 \rbrack\mkern-2mu\rbrack \cup \lbrack\mkern-2mu\lbrack 111 \rbrack\mkern-2mu\rbrack$. Notice that $\lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$ is half of our tree, so $\mu(U_1)=\frac{1}{2}=2^{-1}$ and $\lbrack\mkern-2mu\lbrack 101 \rbrack\mkern-2mu\rbrack \cup \lbrack\mkern-2mu\lbrack 111 \rbrack\mkern-2mu\rbrack$ is the union of two eighths of our tree, so $\mu(U_2)=\frac{1}{8} + \frac{1}{8} = \frac{1}{4} = 2^{-2}$. Try to see how you would define $U_n$ for each $n$ and verify that the measures behave nicely.
+Now, how can we use our tree to pin down where exactly these strings live? We will denote set of extensions of some finite string $\sigma$ as $\lbrack\mkern-2mu\lbrack \sigma \rbrack\mkern-2mu\rbrack$. It is now our goal to "capture" $B$ in a series of progressively more specific sections of the tree. 
 
-We call a class $C$ Martin-Löf null if there is a Martin-Löf test $\{ U_n \}_{n \in \mathbb{N}}$ such that $C \subseteq \bigcap_n U_n$. So our class $B$ *is* Martin-Löf null since the construction above gives such a Martin-Löf test. Martin-Löf nullity formally defines some reasonable property of our class in question. Finally, an infinite binary string $A$ is Martin-Löf random if $\{A\}$ is not Martin-Löf null. Viewing a Martin-Löf test as a query into whether some property holds of a sequence, $A$ is random if $A$ does not satisfy any property that is effectively describable.
+For every $A \in B$, we have that $A \in \lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$. Only looking at $\lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$ is too restrictive since that set includes strings like $10000...$ which do not have $1$ at the third bit. 
 
-Crazy enough, there does exist a universal Martin-Löf test. Meaning that this singular test encompasses all other Martin-Löf tests. While we can enumerate the test, it requires infinite questions which means we cannot decide in finite time whether something is random.
+In order to ensure that our third bit is $1$, it must be the case that $A \in \lbrack\mkern-2mu\lbrack 101 \rbrack\mkern-2mu\rbrack$ or $A \in \lbrack\mkern-2mu\lbrack 111 \rbrack\mkern-2mu\rbrack$. 
+
+Adopting Martin-Löf's notation, we define a Martin-Löf test to be a sequence $\{ U_n \}_{n \in \mathbb{N}}$ of sets such that the measure of $U_n \le 2^{-n}$ and each $U_n$ is the union of such extensions. Taking unions of such extensions means that we are asking a question of the form, "Does there exist an extension of any of these finite strings which gives us our infinite binary string?" This is found using $\mu$-minimization, connecting us to our computable functions above. 
+
+We can denote the measure of a set by $\mu(\cdot)$. For our example, $U_1 = \lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$ and $U_2 = \lbrack\mkern-2mu\lbrack 101 \rbrack\mkern-2mu\rbrack \cup \lbrack\mkern-2mu\lbrack 111 \rbrack\mkern-2mu\rbrack$. Notice that $\lbrack\mkern-2mu\lbrack 1 \rbrack\mkern-2mu\rbrack$ is half of our tree, so $\mu(U_1)=\frac{1}{2}=2^{-1}$ and $\lbrack\mkern-2mu\lbrack 101 \rbrack\mkern-2mu\rbrack \cup \lbrack\mkern-2mu\lbrack 111 \rbrack\mkern-2mu\rbrack$ is the union of two eighths of our tree, so $\mu(U_2)=\frac{1}{8} + \frac{1}{8} = \frac{1}{4} = 2^{-2}$.
+
+Try to see how you would define $U_n$ for each $n$ and verify that the measures behave nicely.
+
+We call a class $C$ Martin-Löf null if there is a Martin-Löf test $\{ U_n \}_{n \in \mathbb{N}}$ such that $C \subseteq \bigcap_n U_n$. So our class $B$ *is* Martin-Löf null since the construction above gives such a Martin-Löf test. Martin-Löf nullity formally defines some reasonable property of our class in question. Finally, an infinite binary string $A$ is Martin-Löf random if $\{A\}$ is not Martin-Löf null. 
+
+Viewing a Martin-Löf test as a query into whether some property holds of a sequence, $A$ is random if $A$ does not satisfy any property that is effectively describable.
+
+Surprisingly, there does exist a universal Martin-Löf test. Meaning that this singular test encompasses all other Martin-Löf tests. While we can enumerate the test, it requires infinite questions which means we cannot decide in finite time whether something is random.
 
 ### Gambling Randomness
 
@@ -357,7 +381,9 @@ $$d(\sigma) = \frac{d(\sigma0) + d(\sigma1)}{2}$$
 
 That's right. The CT thesis in action! Effective functions producing the limits of human computation power. 
 
-This condition is known as the fairness condition and prohibits money from appearing out of nowhere, you can only make what you bet. Turning it to an inequality would yield supermartingales, similar functions with slightly different behavior. Alternatively, we can restrict $d$'s values to be approximable by a computable sequence of rational numbers from below which we call computably enumerable (c.e.) martingales. We say that a betting strategy succeeds on a sequence of coin flips if such a strategy results in infinite winnings. Formally, a martingale $d$ succeeds on an infinite binary sequence $A$ succeeds if
+This condition is known as the fairness condition and prohibits money from appearing out of nowhere, you can only make what you bet. Turning it to an inequality would yield supermartingales, similar functions with slightly different behavior. 
+
+Alternatively, we can restrict $d$'s values to be approximable by a computable sequence of rational numbers from below which we call computably enumerable (c.e.) martingales. We say that a betting strategy succeeds on a sequence of coin flips if such a strategy results in infinite winnings. Formally, a martingale $d$ succeeds on an infinite binary sequence $A$ succeeds if
 
 $$\limsup_n d(A \upharpoonright n) = \infty$$
 
@@ -365,4 +391,6 @@ Finally, $A$ is random if no c.e. martingale succeeds on it. This notion of rand
 
 ### They are all equivalent!
 
-The notion of randomness as represented by incompressibility, measure theoretic tests, and c.e. martingales turn out to agree on everything! That is, each identifies exactly the same infinite binary sequences as random. Another instance, along with the CT thesis, of different formalizations of abstract notions converging to one: what began as very different formalizations of our intuitive idea of "lack of pattern" end up describing precisely the same phenomenon. When independent formalizations of the same intuitive concept consistently single out the same objects, that is evidence that we have stumbled upon something "real", not just an artifact of the formalism.
+The notion of randomness as represented by incompressibility, measure theoretic tests, and c.e. martingales turn out to agree on everything! That is, each identifies exactly the same infinite binary sequences as random. Another instance, along with the CT thesis, of different formalizations of abstract notions converging to one: what began as very different formalizations of our intuitive idea of "lack of pattern" end up describing precisely the same phenomenon. 
+
+When independent formalizations of the same intuitive concept consistently single out the same objects, that is evidence that we have stumbled upon something "real", not just an artifact of the formalism.
