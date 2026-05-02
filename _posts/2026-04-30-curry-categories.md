@@ -19,7 +19,9 @@ I was recently having a conversation with a mathematician about functional progr
 
 Functional programmers are all familiar with the idea of "currying", i.e. that a function of two arguments can be thought of as a function of one argument which returns another function of one argument. The same idea generalizes to any arity. 
 
-An immediate use of this is partial application; say I have an addition function on naturals, `add : ℕ → ℕ → ℕ`. I can write `add 3` and I get a function `ℕ → ℕ` which adds 3 to its input. This allows for combinator-style point-free (pointless?) programming with higher-order combinators like `map`, `fold`, `(.)`, or what have you, since each multi-argument function is just a one-argument function which can apply more functions. 
+An immediate use of this is partial application; say I have an addition function on naturals, `add : ℕ → ℕ → ℕ`. I can write `add 3` and I get a function `ℕ → ℕ` which adds 3 to its input. 
+
+This allows for combinator-style point-free (pointless?) programming with higher-order combinators like `map`, `fold`, `(.)`, or what have you, since each multi-argument function is just a one-argument function which can apply more functions. 
 
 We will see that currying is an elegant and natural notion, in the sense that it falls cleanly out of the mathematical ground underlying functional programming.
 
