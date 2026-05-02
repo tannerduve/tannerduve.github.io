@@ -51,7 +51,9 @@ This correspondence is what we call Curry-Howard, and it underlies modern proof 
 
 ## Lambek's contribution: the third pillar
 
-Joachim Lambek introduced a third member to this connection by providing a model of the simply typed lambda calculus in a *cartesian closed category* (which we will define in a moment). He showed that programs in a simply typed lambda calculus (equivalently, proofs in intuitionistic logic) can be interpreted as morphisms in a cartesian closed category, and that this interpretation is sound and complete: if two lambda terms are $\beta\eta$-equivalent, they are interpreted as the same morphism (soundness), and vice versa (completeness). 
+Joachim Lambek introduced a third member to this connection by providing a model of the simply typed lambda calculus in a *cartesian closed category*, which we will define in a moment.
+
+He showed that programs in a simply typed lambda calculus (equivalently, proofs in intuitionistic logic) can be interpreted as morphisms in a cartesian closed category, and that this interpretation is sound and complete: if two lambda terms are $\beta\eta$-equivalent, they are interpreted as the same morphism (soundness), and vice versa (completeness). 
 
 What we now have is the following: propositions are types are objects, and proofs are programs are morphisms. This extends to higher-order type systems, such as dependent types, and really several other logics and type systems (see [Propositions as Sessions](https://www.pst.ifi.lmu.de/~petersen/lehre/ss17/sessiontypes/wadler-propositions-as-sessions.pdf) for a Curry-Howard view of linear logic).
 
