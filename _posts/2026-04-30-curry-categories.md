@@ -13,7 +13,7 @@ tags: functional-programming category-theory
 
 ## Introduction
 
-I was recently having a conversation with a mathematician about functional programming and the Curry-Howard correspondence, and of course I had to bring up the less-talked-about third pillar of the correspondence, i.e. the language of cartesian closed categories. So I wanted to write a post introducing this idea.
+I was recently having a conversation with a mathematician about functional programming and Curry-Howard, and of course I had to bring up the less-talked-about third pillar of the correspondence, i.e. the language of cartesian closed categories. So I wanted to write a post introducing this idea.
 
 Functional programmers are all familiar with the idea of "currying": that a function of two arguments can be thought of as a function of one argument which returns another function of one argument. The same trick generalizes to any arity. 
 
