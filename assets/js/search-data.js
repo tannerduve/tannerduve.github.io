@@ -44,9 +44,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/talks/";
           },
-        },{id: "post-currying-categorically",
+        },{id: "post-currying-in-categories",
         
-          title: "Currying, Categorically",
+          title: "Currying in Categories",
         
         description: "Cartesian closed categories and the Curry-Howard correspondence",
         section: "Posts",
