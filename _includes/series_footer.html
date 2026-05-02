@@ -1,0 +1,45 @@
+{% if page.series %}
+  {% assign series = site.data.series[page.series] %}
+  {% assign current_slug = page.path | replace: '_posts/', '' | replace: '.md', '' %}
+  {% assign current_index = -1 %}
+  {% for slug in series.parts %}
+    {% if slug == current_slug %}
+      {% assign current_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+  {% if current_index >= 0 %}
+    {% assign prev_index = current_index | minus: 1 %}
+    {% assign next_index = current_index | plus: 1 %}
+
+    <nav class="series-nav" aria-label="Series navigation">
+      <div class="series-nav-cell series-nav-prev">
+        {% if prev_index >= 0 %}
+          {% assign prev_slug = series.parts[prev_index] %}
+          {% for post in site.posts %}
+            {% assign post_slug = post.path | replace: '_posts/', '' | replace: '.md', '' %}
+            {% if post_slug == prev_slug %}
+              <a href="{{ post.url | relative_url }}">
+                <span class="series-nav-direction">← Previous</span>
+                <span class="series-nav-title">{{ post.title }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="series-nav-cell series-nav-next">
+        {% if next_index < series.parts.size %}
+          {% assign next_slug = series.parts[next_index] %}
+          {% for post in site.posts %}
+            {% assign post_slug = post.path | replace: '_posts/', '' | replace: '.md', '' %}
+            {% if post_slug == next_slug %}
+              <a href="{{ post.url | relative_url }}">
+                <span class="series-nav-direction">Next →</span>
+                <span class="series-nav-title">{{ post.title }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </nav>
+  {% endif %}
+{% endif %}

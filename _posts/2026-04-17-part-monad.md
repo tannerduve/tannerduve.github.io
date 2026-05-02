@@ -5,6 +5,7 @@ date: 2026-04-17 13:00:00 -0800
 description: Modeling divergence and nontermination in Lean
 categories: Formal-Verification
 tags: lean category-theory domain-theory halting-problem monads
+series_intro: part-monad
 ---
 
 Lately I've been doing some work involving modeling and verifying imperative programs, and in particular imperative programs that may diverge (ie. not terminate), such as functions that contain loops that can run forever. In proof assistants like Lean we require that all functions are *total*, meaning any function which is definable in the core calculus will always terminate and return a value. This property is required for the consistency of the logic; if we could write nonterminating functions, we could write proofs of `False`, and our "proof" system would be useless.

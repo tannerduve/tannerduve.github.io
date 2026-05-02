@@ -5,6 +5,7 @@ date: 2025-06-16 10:00:00 -0800
 description: Part of the free monads series
 categories: Formal Verification, Free Monads
 tags: lean, free-monads, catamorphisms, interpreters
+series: free-monads
 hidden: true
 tikzjax: true
 ---

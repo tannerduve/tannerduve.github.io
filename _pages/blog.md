@@ -139,6 +139,12 @@ pagination:
         {% else %}
           <a class="post-title" href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
         {% endif %}
+        {% if post.series_intro %}
+          {% assign intro_series = site.data.series[post.series_intro] %}
+          {% if intro_series %}
+            <span class="series-badge">▸ {{ intro_series.parts.size }} parts</span>
+          {% endif %}
+        {% endif %}
       </h3>
       <p>{{ post.description }}</p>
       <p class="post-meta">

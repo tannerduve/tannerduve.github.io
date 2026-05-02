@@ -5,6 +5,7 @@ date: 2025-06-16 09:00:00 -0800
 description: Introducing the categorical theory and implementation of free monads in Lean
 categories: Formal-Verification Free-Monads
 tags: lean free-monads category-theory
+series: free-monads
 hidden: true
 tikzjax: true
 ---

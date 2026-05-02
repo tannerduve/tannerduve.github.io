@@ -1,0 +1,16 @@
+free-monads:
+  title: "Free Monads in Lean"
+  intro_post: 2025-05-21-freer-monad
+  parts:
+    - 2025-06-16-freer-monad-part1
+    - 2025-06-16-freer-monad-part2
+    - 2025-06-16-freer-monad-part3
+    - 2025-06-18-freer-monad-part4
+
+part-monad:
+  title: "Partiality in a Total Type Theory"
+  intro_post: 2026-04-17-part-monad
+  parts:
+    - 2026-04-17-part-monad-1
+    - 2026-04-17-part-monad-2
+    - 2026-04-17-part-monad-3

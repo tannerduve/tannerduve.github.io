@@ -5,6 +5,7 @@ date: 2025-06-18 12:00:00 -0800
 description: Part of the free monads series
 categories: Formal Verification, Type Theory
 tags: lean, formal-verification, free-monads, type-theory, tutorial
+series: free-monads
 hidden: true
 ---
 

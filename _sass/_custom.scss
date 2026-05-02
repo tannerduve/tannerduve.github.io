@@ -1,6 +1,12 @@
-// Custom styles for Lean code blocks
-// Since Rouge doesn't support Lean, we style it manually
+// =============================================================================
+// Custom styles for the blog
+// =============================================================================
 
+// -----------------------------------------------------------------------------
+// Code blocks
+// -----------------------------------------------------------------------------
+
+// Lean code blocks (Rouge doesn't support Lean, so style manually)
 .language-lean {
   .highlight {
     pre {
@@ -26,10 +32,419 @@
   color: inherit !important;
 }
 
-// Ensure all code blocks preserve whitespace properly
-figure.highlight pre code,
-div.highlight pre code {
-  white-space: pre !important;
-  word-wrap: normal;
-  tab-size: 2;
+// Polished code block container
+figure.highlight,
+div.highlight {
+  margin: 1.5em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--global-divider-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  pre {
+    margin: 0;
+    padding: 1.1em 1.25em;
+    border-radius: 0;
+    border: none;
+    background: var(--global-code-bg-color);
+    line-height: 1.55;
+    font-size: 0.875rem;
+
+    code {
+      white-space: pre !important;
+      word-wrap: normal;
+      tab-size: 2;
+      background: transparent;
+      padding: 0;
+      font-size: inherit;
+      line-height: inherit;
+    }
+  }
+}
+
+// Slightly nicer inline code
+:not(pre) > code {
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+  font-size: 0.92em;
+}
+
+// -----------------------------------------------------------------------------
+// Syntax-highlighting palette overrides
+// The bundled pygments themes use low-contrast desaturated colors. Override
+// just the token colors so we get something readable without replacing the
+// stylesheets entirely.
+// -----------------------------------------------------------------------------
+
+// Dark mode palette — VSCode Dark+ colors, no bold weights
+html[data-theme="dark"] {
+  .highlight {
+    pre,
+    .hll {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+    }
+
+    pre code {
+      color: #d4d4d4;
+    }
+
+    // Default foreground for unclassified tokens
+    .n,   // name
+    .nv,  // variable
+    .nl,  // label
+    .nx,  // other name
+    .py,  // property
+    .l,   // literal default
+    .x,   // other
+    .p,   // punctuation
+    .o {  // operator
+      color: #d4d4d4;
+      font-weight: 400;
+    }
+
+    // Comments — slate grey, no green
+    .c,
+    .ch,
+    .cd,
+    .cm,
+    .cp,
+    .cpf,
+    .c1,
+    .cs {
+      color: #7f848e;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    // Keywords — purple, no bold
+    .k,
+    .kc,
+    .kn,
+    .kp,
+    .kr,
+    .kv {
+      color: #c586c0;
+      font-weight: 400;
+    }
+
+    // Storage / declaration keywords (def, val, theorem, fun, ...) — blue
+    .kd {
+      color: #569cd6;
+      font-weight: 400;
+    }
+
+    // Types — teal
+    .kt,
+    .nc,
+    .nn {
+      color: #4ec9b0;
+      font-weight: 400;
+    }
+
+    // Constants — light blue
+    .no {
+      color: #4fc1ff;
+      font-weight: 400;
+    }
+
+    // Function and method names — yellow
+    .nf,
+    .fm,
+    .nb {
+      color: #dcdcaa;
+      font-weight: 400;
+    }
+
+    // Strings — orange
+    .s,
+    .sa,
+    .sb,
+    .sc,
+    .dl,
+    .sd,
+    .s2,
+    .se,
+    .sh,
+    .si,
+    .sx,
+    .sr,
+    .s1,
+    .ss {
+      color: #ce9178;
+      font-weight: 400;
+    }
+
+    // Numbers — sage
+    .m,
+    .mb,
+    .mf,
+    .mh,
+    .mi,
+    .il,
+    .mo {
+      color: #b5cea8;
+      font-weight: 400;
+    }
+
+    // Operator words (and, or, not)
+    .ow {
+      color: #c586c0;
+      font-weight: 400;
+    }
+
+    // Diff markers
+    .gd { color: #ff7b72; }
+    .gi { color: #7ee787; }
+    .gh { color: #79c0ff; font-weight: 400; }
+
+    // Decorators / built-in entities
+    .nd,
+    .ni,
+    .ne {
+      color: #4fc1ff;
+      font-weight: 400;
+    }
+
+    // Tag / attribute names
+    .nt { color: #569cd6; font-weight: 400; }
+    .na { color: #9cdcfe; font-weight: 400; }
+
+    // Plain Lean blocks (no rouge token classes) inherit default
+    .language-lean,
+    .language-lean code {
+      color: #d4d4d4;
+    }
+  }
+}
+
+// Light mode palette (lightly tunes jekyll-pygments-themes-github.css for
+// better contrast against our slightly-purple code background). al-folio
+// doesn't set data-theme on light, so use :root with extra specificity to
+// beat the unqualified .highlight rules in the bundled stylesheet.
+:root .highlight {
+  pre,
+  .hll {
+    background-color: #f6f3fb;
+  }
+
+  .c, .c1, .cm, .cs, .ch, .cd, .cp, .cpf {
+    color: #6a737d;
+  }
+
+  .k, .kc, .kd, .kn, .kp, .kr, .kv {
+    color: #6f42c1;
+    font-weight: 500;
+  }
+
+  .kt, .nc, .nn, .no {
+    color: #005cc5;
+  }
+
+  .nf, .fm, .nb {
+    color: #6f42c1;
+  }
+
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss {
+    color: #032f62;
+  }
+
+  .m, .mb, .mf, .mh, .mi, .il, .mo {
+    color: #005cc5;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Tables in post body — give them visible borders and breathing room
+// -----------------------------------------------------------------------------
+
+#markdown-content table {
+  border-collapse: collapse;
+  margin: 1.5em 0 2em 0;
+  width: 100%;
+  font-size: 0.95em;
+  border: 1px solid var(--global-divider-color);
+
+  thead th {
+    text-align: left;
+    padding: 0.55rem 0.85rem;
+    font-weight: 600;
+    background: var(--global-code-bg-color);
+    border-bottom: 2px solid var(--global-divider-color);
+    border-right: 1px solid var(--global-divider-color);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  tbody td {
+    padding: 0.5rem 0.85rem;
+    vertical-align: top;
+    border-top: 1px solid var(--global-divider-color);
+    border-right: 1px solid var(--global-divider-color);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  tbody tr:nth-child(even) td {
+    background: var(--global-code-bg-color);
+  }
+}
+
+// Section headings get a bit more breathing room before them in posts
+#markdown-content h2 {
+  margin-top: 2.25rem;
+}
+
+#markdown-content h3 {
+  margin-top: 1.75rem;
+}
+
+// -----------------------------------------------------------------------------
+// Series structure (top pill + bottom prev/next nav)
+// -----------------------------------------------------------------------------
+
+.series-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem 0;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--global-text-color-light);
+  background: var(--global-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 999px;
+
+  .series-pill-label {
+    color: var(--global-text-color);
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  .series-pill-divider {
+    color: var(--global-divider-color);
+  }
+
+  .series-pill-link {
+    color: var(--global-theme-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.series-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 3rem 0 1rem 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--global-divider-color);
+
+  .series-nav-cell {
+    min-height: 1px;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--global-divider-color);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--global-text-color);
+      transition: border-color 0.12s ease, background 0.12s ease;
+
+      &:hover {
+        border-color: var(--global-theme-color);
+        background: var(--global-bg-color);
+      }
+    }
+  }
+
+  .series-nav-prev a {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .series-nav-next a {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .series-nav-direction {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--global-text-color-light);
+  }
+
+  .series-nav-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--global-text-color);
+  }
+}
+
+// "▸ N parts" badge on series intros in the blog index
+.series-badge {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+  color: var(--global-theme-color);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+html[data-theme="dark"] .series-badge {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+// -----------------------------------------------------------------------------
+// Blog index polish
+// -----------------------------------------------------------------------------
+
+.post-list {
+  li {
+    h3 {
+      margin-bottom: 0.35rem;
+      line-height: 1.25;
+
+      .post-title {
+        font-weight: 600;
+      }
+    }
+
+    > p {
+      margin-bottom: 0.4rem;
+      color: var(--global-text-color);
+    }
+
+    .post-meta,
+    .post-tags {
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      color: var(--global-text-color-light);
+    }
+
+    .post-tags {
+      margin-top: 0.15rem;
+      text-transform: lowercase;
+    }
+  }
 }

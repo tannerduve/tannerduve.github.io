@@ -1,0 +1,26 @@
+{% if page.series %}
+  {% assign series = site.data.series[page.series] %}
+  {% assign current_slug = page.path | replace: '_posts/', '' | replace: '.md', '' %}
+  {% assign current_index = -1 %}
+  {% for slug in series.parts %}
+    {% if slug == current_slug %}
+      {% assign current_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+  {% if current_index >= 0 %}
+    {% assign part_number = current_index | plus: 1 %}
+    {% assign total_parts = series.parts.size %}
+    {% assign intro_url = '' %}
+    {% for post in site.posts %}
+      {% assign post_slug = post.path | replace: '_posts/', '' | replace: '.md', '' %}
+      {% if post_slug == series.intro_post %}
+        {% assign intro_url = post.url %}
+      {% endif %}
+    {% endfor %}
+    <div class="series-pill">
+      <span class="series-pill-label">Part {{ part_number }} of {{ total_parts }}</span>
+      <span class="series-pill-divider">·</span>
+      <a class="series-pill-link" href="{{ intro_url | relative_url }}">{{ series.title }}</a>
+    </div>
+  {% endif %}
+{% endif %}
