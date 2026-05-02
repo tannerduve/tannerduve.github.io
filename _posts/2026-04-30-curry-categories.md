@@ -23,7 +23,9 @@ We will see that currying is an elegant and natural notion, in the sense that it
 
 ## The Curry-Howard correspondence
 
-The Curry-Howard correspondence is a deep connection between functional programming and formal logic. In essence, you can read a proof of $A \implies B$ as a *function* which transforms evidence of $A$ into evidence of $B$, and conversely you can read a function of type `A → B` as a proof of $A \implies B$. That is, we can read *propositions* as *types*, and *proofs* as *programs* (I implore everyone to read Wadler's [Propositions as Types](https://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf), or at least watch his [talk](https://www.youtube.com/watch?v=IOiZatlZtGU&time_continue=1&source_ve_path=NzY3NTg&embeds_referring_euri=https%3A%2F%2Fwww.google.com%2F)). 
+The Curry-Howard correspondence is a deep connection between functional programming and formal logic. In essence, you can read a proof of $A \implies B$ as a *function* which transforms evidence of $A$ into evidence of $B$, and conversely you can read a function of type `A → B` as a proof of $A \implies B$. 
+
+That is, we can read *propositions* as *types*, and *proofs* as *programs* (I implore everyone to read Wadler's [Propositions as Types](https://homepages.inf.ed.ac.uk/wadler/papers/propositions-as-types/propositions-as-types.pdf), or at least watch his [talk](https://www.youtube.com/watch?v=IOiZatlZtGU&time_continue=1&source_ve_path=NzY3NTg&embeds_referring_euri=https%3A%2F%2Fwww.google.com%2F)). 
 
 This extends to the other connectives in basic logic: "and" corresponds to the cartesian product of types, "or" to their disjoint sum, "true" to the unit type, and "false" to the void/empty type. 
 
