@@ -55,9 +55,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/curry-categories/";
           
         },
-      },{id: "post-part-3-a-denotational-semantics-for-imp",
+      },{id: "post-part-3-verifying-imp-programs",
         
-          title: "Part 3: A Denotational Semantics for IMP",
+          title: "Part 3: Verifying IMP Programs",
         
         description: "",
         section: "Posts",
