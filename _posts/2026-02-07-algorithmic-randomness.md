@@ -5,6 +5,7 @@ date: 2026-02-07 12:00:00 -0800
 description: An introduction to computability theory, Turing degrees, and randomness
 categories: Computability Randomness
 tags: computability randomness lean formal-verification kolmogorov-complexity
+thumbnail: assets/img/degrees.png
 toc:
   beginning: true
 ---

@@ -6,6 +6,7 @@ description: A four-part series on free monads in Lean
 categories: Formal-Verification Free-Monads
 tags: lean free-monads category-theory effects
 series_intro: free-monads
+thumbnail: assets/img/free-monad-thumb.png
 ---
 
 In functional programming, monads are how we structure and sequence computations with side effects like state, IO, or failure. Each monad bakes its semantics into its definition. `State` updates a state, `IO` talks to the world, `Maybe` short-circuits on failure. *Free* monads provide a bit more freedom, in that they let you write effectful programs as pure data, without committing to a particular interpretation of the effects. You can write monadic programs in `do` notation, describing some sequence of effects, and only decide what they mean later. For example, these are just a few things you can do with a program-as-data:

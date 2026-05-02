@@ -5,6 +5,7 @@ date: 2025-05-21 12:00:00 -0800
 description: Solving a competitive programming problem and proving it correct with dependent types
 categories: Formal-Verification Algorithms
 tags: lean dynamic-programming formal-verification dependent-types sigma-types
+thumbnail: assets/img/binary-tree.png
 ---
 
 ## 1. <a name='Introduction'></a>Introduction

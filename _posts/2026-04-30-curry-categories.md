@@ -85,8 +85,9 @@ This third axiom of cartesian closed categories is telling us that functions fro
 
 <script type="text/tikz">
 \begin{tikzcd}[column sep=5em, row sep=5em, labels={font=\normalsize}]
-  A \times B \arrow[r, "{\tilde{f} \times \mathrm{id}_B}"] \arrow[dr, "f"', pos=0.5] & C^B \times B \arrow[d, "\mathrm{eval}"] \\
-  & C
+  A \times B \arrow[rr, "{\tilde{f} \times \mathrm{id}_B}"] \arrow[ddrr, "f"', pos=0.55] && C^B \times B \arrow[dd, "\mathrm{eval}"] \\
+  \\
+  && C
 \end{tikzcd}
 </script>
 
