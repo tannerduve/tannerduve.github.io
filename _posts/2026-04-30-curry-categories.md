@@ -99,7 +99,7 @@ As an example, if you've ever taken a linear algebra class (a cool linear algebr
 
 $$\mathrm{Hom}(A \otimes B,\, C) \;\cong\; \mathrm{Hom}(A,\, \mathrm{Hom}(B, C))$$
 
-As you can see, this is essentially the same as the statement above. The category of vector spaces is indeed closed monoidal, and this theorem holds for any closed monoidal category. This is the general setting currying comes from.
+As you can see, this is essentially the same as the statement above. The category of modules over a ring is indeed closed monoidal, and this theorem holds for any closed monoidal category. This is the general setting currying comes from.
 
 ## References
 
