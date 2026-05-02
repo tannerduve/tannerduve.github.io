@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Currying, Categorically"
+title: "Currying in Categories"
 date: 2026-04-30 13:00:00 -0800
 description: Cartesian closed categories and the Curry-Howard correspondence
 categories: Formal-Verification
@@ -49,9 +49,9 @@ What we now have is the following: propositions are types are objects, and proof
 
 ## Cartesian closed categories
 
-Now let's define what cartesian closed categories are. First consider the [categorical product](https://en.wikipedia.org/wiki/Product_(category_theory)) construction. When a category $\mathcal{C}$ has binary products, this means for any objects $A, B$ in $\mathcal{C}$, there is a *product* $A \times B$ defined by a certain universal property.
+Now let's define what cartesian closed categories are. First consider the [categorical product](https://en.wikipedia.org/wiki/Product_(category_theory)) construction. When a category $\mathbf{C}$ has binary products, this means for any objects $A, B$ in $\mathbf{C}$, there is a *product* $A \times B$ defined by a certain universal property.
 
-We can view this as a functor: denote by $- \times B : \mathcal{C} \to \mathcal{C}$ the functor which sends an object $A$ to $A \times B$. We say a category is *cartesian closed* if the following hold:
+We can view this as a functor: denote by $- \times B : \mathbf{C} \to \mathbf{C}$ the functor which sends an object $A$ to $A \times B$. We say a category is *cartesian closed* if the following hold:
 
 1. It has a terminal object.
 2. It has binary products.
@@ -61,13 +61,13 @@ The right adjoint to the product functor is often called the internal-hom or the
 
 ## Currying as an adjunction
 
-Recall that two functors $F : \mathcal{C} \to \mathcal{D}$ and $G : \mathcal{D} \to \mathcal{C}$ are *adjoint* (written $F \dashv G$) when for any objects $A \in \mathcal{C}$ and $B \in \mathcal{D}$ we have a natural isomorphism
+Recall that two functors $F : \mathbf{C} \to \mathbf{D}$ and $G : \mathbf{D} \to \mathbf{C}$ are *adjoint* (written $F \dashv G$) when for any objects $A \in \mathbf{C}$ and $B \in \mathbf{D}$ we have a natural isomorphism
 
-$$\mathrm{Hom}_{\mathcal{D}}(FA,\, B) \;\cong\; \mathrm{Hom}_{\mathcal{C}}(A,\, GB).$$
+$$\mathrm{Hom}_{\mathbf{D}}(FA,\, B) \;\cong\; \mathrm{Hom}_{\mathbf{C}}(A,\, GB).$$
 
-Applying this to $(- \times B) \dashv (-)^B$, we get a bijection on hom-sets natural in $A$ and $C$.
+Applying this to $(- \times B) \dashv (-)^B$, we get for any object $C$ a bijection on hom-sets natural in $A$ and $C$.
 
-$$\mathrm{Hom}_{\mathcal{C}}(A \times B,\, C) \;\cong\; \mathrm{Hom}_{\mathcal{C}}(A,\, C^B)$$
+$$\mathrm{Hom}_{\mathbf{C}}(A \times B,\, C) \;\cong\; \mathrm{Hom}_{\mathbf{C}}(A,\, C^B)$$
 
 This object $C^B$ in a category of types is exactly the function type $B \to C$. 
 
