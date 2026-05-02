@@ -30,8 +30,8 @@ In this part we'll examine the connection between algebra and recursion through 
    - [Lists as Initial Algebras](#InductiveTypes)
 3. [Free Monads as Initial Algebras](#FreeMonads)
 4. [Catamorphisms as Interpreters](#Cata)
-5. [Conclusion](Conclusion)
-6. [Exercise](Exercise)
+5. [Conclusion](#Conclusion)
+6. [Exercise](#Exercise)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
