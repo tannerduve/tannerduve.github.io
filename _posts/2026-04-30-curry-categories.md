@@ -7,6 +7,7 @@ categories: Formal-Verification
 tags: functional-programming category-theory
 tikzjax: true
 thumbnail: assets/img/curry-howard-thumb.png
+og_image: assets/img/curry-howard-og.png
 ---
 
 > The central dogma of computational trinitarianism holds that Logic, Languages, and Categories are but three manifestations of one divine notion of computation.
