@@ -18,11 +18,7 @@ In the [last section](/blog/2025/freer-monad-part1/), we introduced the free mon
 >
 > - Bartosz Milewski, The Dao of Functional Programming
 
-In this part, we will examine this connection between algebra and recursion a bit, from the perspective of category theory.
-
-In particular, we will explore a universal construction called an initial algebra. An initial algebra gives rise to a unique morphism that, as programmers, we can think of as an "interpreter" in a certain sense. These morphisms are often called **catamorphisms** in programming, and are an instance of a broader concept called a **recursion scheme**.
-
-We will then see how free monads are initial algebras giving us catamorphisms into other algebras, and how catamorphisms are essentially ways of collapsing structure, providing a way to interpret recursive data.
+In this part we'll examine the connection between algebra and recursion through category theory. The central construction is the **initial algebra**, which gives rise to a unique morphism we can think of as an "interpreter". These morphisms are called **catamorphisms** in programming and are an instance of a broader concept called a **recursion scheme**. We'll see how free monads are initial algebras giving catamorphisms into other algebras, and how catamorphisms collapse structure to interpret recursive data.
 
 <!-- vscode-markdown-toc -->
 
@@ -45,13 +41,11 @@ We will then see how free monads are initial algebras giving us catamorphisms in
 
 ## 2. <a name='InitialAlgebras'></a>Initial Algebras and Inductive Types
 
-We begin this section with some definitions.
-
 ## 2.1. <a name='Algebras'></a>Algebras and their Morphisms
 
 Let $F : C \to C$ be an endofunctor. An _algebra_ over $F$ is a pair $(A, \alpha)$ where $\alpha : FA \to A$.
 
-Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $\f : A \to B$ is an $F$-algebra morphism iff the following diagram commutes:
+Given $F$-algebras $(A, \alpha)$ and $(B, \beta)$, $f : A \to B$ is an $F$-algebra morphism iff the following diagram commutes.
 
 <script type="text/tikz">
   \begin{tikzcd}[column sep=huge, row sep=huge]
@@ -65,7 +59,7 @@ $F$-algebras and their morphisms form a category, and the initial object in this
 
 ## 2.2. <a name='InductiveTypes'></a>Lists as Initial Algebras
 
-As it turns out, an inductive type is a type whose interpretation is given by an initial algebra of an endofunctor. This was mentioned in part 1 using the example of the `List` type but perhaps was not explained sufficiently. Let's unpack it a bit. First, recall the definition of the type `List α` for an arbitrary type `α`:
+As it turns out, an inductive type is one whose interpretation is given by an initial algebra of an endofunctor. We mentioned this in part 1 with `List`. Let's unpack it. First, recall the definition of `List α`.
 
 ```lean
 inductive List (α : Type u) where
@@ -151,7 +145,7 @@ def reduce {α β : Type} (b₀ : β) (step : α → β → β) : List α → β
   | x :: xs => step x (reduce b₀ step xs)
 ```
 
-This may look familiar to you if you have ever used a functional language before, in fact, this is just the `foldr` function! If you've ever written any functional programs you have likely used this plenty.
+If you've used any functional language, this should look familiar. It's just the `foldr` function.
 
 ```lean
 def foldr {α β : Type} (b₀ : β) (step : α → β → β) : List α → β
@@ -184,7 +178,7 @@ inductive FreeM.{u, v, w} (F : Type u → Type v) (α : Type w) where
 ```
 It's an inductive type, so it's an initial algebra over some functor. What could this functor be? Let's break it down a bit and try to build up what this functor looks like categorically.
 
-We have two constructors, which tells us we have a sum, with `pure` and `liftBind` on either side. `pure` is pretty straightforward, its just an `α`, so our functor will be $\alpha + ...$ followed by something. The `liftBind` constructor is a bit tricker. It's indexed by `ι`, so we can think of `liftBind` as a _family_ of constructors indexed by `Type u`. It also requires an `op : f ι` and a `cont : ι → FreeM f α`. We can represent our family of constructors as an indexed sum, and the other arguments as the usual product. The functor then looks like this:
+We have two constructors, which tells us we have a sum, with `pure` and `liftBind` on either side. `pure` is pretty straightforward, its just an `α`, so our functor will be $\alpha + ...$ followed by something. The `liftBind` constructor is a bit trickier. It's indexed by `ι`, so we can think of `liftBind` as a _family_ of constructors indexed by `Type u`. It also requires an `op : f ι` and a `cont : ι → FreeM f α`. We can represent our family of constructors as an indexed sum, and the other arguments as the usual product. The functor then looks like this:
 
 <div style="text-align: center;">
 $$
@@ -210,7 +204,7 @@ by matching on the sum:
 - If it's an `inl a`, return `pure a`
 - If it's an `inr (ι, (op, k))`, return `liftBind op k`
 
-Now to show that `FreeM F α` is initial, we need to define the unique morphism from it into any other $\Phi_F$-algebra. This is just like what we did with `List α`. Given an algebra `(B, pureCase, bindCase)` — that is:
+Now to show that `FreeM F α` is initial, we need to define the unique morphism from it into any other $\Phi_F$-algebra. This is just like what we did with `List α`. Given an algebra `(B, pureCase, bindCase)`, that is
 
 - a function `pureCase : α → B` for the `pure` case, and
 - a function `bindCase : ∀ {ι}, F ι → (ι → B) → B` for the `liftBind` case,
@@ -232,13 +226,13 @@ This is the fold analogue for the free monad: the unique morphism from the initi
 
 ## 4. <a name='Cata'></a>Catamorphisms as Interpreters
 
-We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" their data into another value. In functional programming, there is a word for the unique morphism from an initial algebra - a **catamorphism**. This is a generalization of folding that allows you to collapse structured data from an initial algebra into a single value. More precisely, a catamorphism is the unique function from an inductive type to any algebra over its defining functor, which folds the recursive structure into some value and respects the algebra's semantics.
+We've now seen two initial algebras and described their unique outgoing morphisms as ways of "folding" or "collapsing" data into another value. In functional programming this unique morphism has a name, a **catamorphism**. It is the unique function from an inductive type to any algebra over its defining functor, folding the recursive structure into a value while respecting the algebra's semantics.
 
 In the case of the free monad, the separation of syntax and semantics provides additional freedom in how programs are interpreted. Given a computation tree defined by a free monad, one can evaluate its value, execute its effects, pretty print its nodes, or anything else all by selecting the appropriate target algebra for its catamorphism. We will put this to use in part 4, where we build and verify an interpreter for a small effectful language.
 
 ## 5. <a name='Conclusion'></a>Conclusion
 
-In this post, we explored how free monads arise as initial algebras over a particular functor, and how this initiality gives rise to a unique morphism—called a catamorphism—that collapses or interprets the structure into some other type. This construction generalizes common patterns in functional programming, such as folding over lists.
+In this post, we explored how free monads arise as initial algebras over a particular functor, and how this initiality gives rise to a unique morphism, called a catamorphism, that collapses or interprets the structure into some other type. This construction generalizes common patterns in functional programming, such as folding over lists.
 
 ## 6. <a name='Exercise'></a>Exercise
 
