@@ -29,5 +29,3 @@ I am an avid user of the [Lean](https://leanprover-community.github.io/index.htm
 Outside of work I enjoy reading philosophy, in particular analytic philosophy, philosophy of mind and consciousness, metaphysics, and Eastern philosophy and mysticism. I played 2 years of D1 football at Penn and I enjoy lifting weights, yoga, and running. I am also learning guitar, and am passionate about veganism and total liberation for all beings.
 
 ---
-
-_Favorite PLs: Haskell, Rust, Lean_
