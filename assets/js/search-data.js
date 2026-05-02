@@ -77,9 +77,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/part-monad-2/";
           
         },
-      },{id: "post-part-1-domain-theory-101",
+      },{id: "post-part-1-domain-theory-basics",
         
-          title: "Part 1: Domain Theory 101",
+          title: "Part 1: Domain Theory Basics",
         
         description: "",
         section: "Posts",
@@ -154,9 +154,9 @@ ninja.data = [{
             window.location.href = "/blog/2025/freer-monad-part1/";
           
         },
-      },{id: "post-the-free-monad-a-four-part-series",
+      },{id: "post-the-free-monad",
         
-          title: "The Free Monad: A Four-Part Series",
+          title: "The Free Monad",
         
         description: "A four-part series on free monads in Lean",
         section: "Posts",
