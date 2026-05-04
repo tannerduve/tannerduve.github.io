@@ -79,10 +79,8 @@
             <h1><xsl:value-of select="atom:title"/></h1>
             <p class="subtitle">RSS feed</p>
             <div class="rss-info">
-              <p style="margin:0 0 0.5rem 0;"><strong>This is a feed, not a webpage.</strong></p>
               <p style="margin:0;">
-                Paste this URL into a feed reader (e.g. Feedly, NetNewsWire, Inoreader)
-                to get notified when new posts go up:
+                Paste this URL into a feed reader to get notified when new posts go up:
                 <code>
                   <xsl:value-of select="atom:link[@rel='self']/@href"/>
                 </code>
