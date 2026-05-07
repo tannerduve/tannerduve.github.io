@@ -24,7 +24,7 @@ In part 2 we will study the universal property of free monads and what it provid
 
 This series assumes you know basic concepts from both category theory and functional programming, including functors, monads, and inductive datatypes. All of the code in this blog post has been packaged into a library, now merged into [CSlib](https://github.com/leanprover/cslib/tree/main/Cslib/Foundations/Control/Monad).[^zklean]
 
-[^zklean]: The free monad construction we develop in this series has seen real industrial use. Galois's [zkLean](https://github.com/GaloisInc/zkLean) is a Lean DSL for formally verified zero-knowledge proofs, built on top of this construction.
+[^zklean]: The free monad construction we develop in this series has been used in industry. Galois's [zkLean](https://github.com/GaloisInc/zkLean) is a Lean DSL for formally verified zero-knowledge proofs, which uses free monads in its semantics.
 
 1. [Part 1 — Defining the Free Monad in Lean]({% post_url 2025-06-16-freer-monad-part1 %})
 2. [Part 2 — Universal Morphisms and Effect Handlers]({% post_url 2025-06-16-freer-monad-part2 %})
