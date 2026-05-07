@@ -118,23 +118,12 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/freer-monad-part4/";
-          
-        },
-      },{id: "post-part-3-universal-morphisms-and-effect-handlers",
-        
-          title: "Part 3: Universal Morphisms and Effect Handlers",
-        
-        description: "Part of the free monads series",
-        section: "Posts",
-        handler: () => {
-          
             window.location.href = "/blog/2025/freer-monad-part3/";
           
         },
-      },{id: "post-part-2-initial-algebras-catamorphisms-and-interpreters",
+      },{id: "post-part-2-universal-morphisms-and-effect-handlers",
         
-          title: "Part 2: Initial Algebras, Catamorphisms, and Interpreters",
+          title: "Part 2: Universal Morphisms and Effect Handlers",
         
         description: "Part of the free monads series",
         section: "Posts",
@@ -158,7 +147,7 @@ ninja.data = [{
         
           title: "The Free Monad",
         
-        description: "A four-part series on free monads in Lean",
+        description: "A three-part series on free monads in Lean",
         section: "Posts",
         handler: () => {
           
