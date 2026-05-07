@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Tutorial: A Verified Interpreter with Side Effects"
+title: "Tutorial: A Verified Interpreter"
 date: 2025-06-18 12:00:00 -0800
 description: Part of the free monads series
 categories: Formal Verification, Type Theory
@@ -11,7 +11,7 @@ hidden: true
 
 ## 1. <a name='Introduction'></a>Introduction
 
-To close the series, we'll build an interpreter for an expression language with side effects. The free monad lets us separate *what* we want to do (a syntactic description of effectful computation) from *how* we want to do it (interpreting the effects).
+To close the series, we'll build an interpreter for an expression language with algebraic effects. The free monad lets us separate *what* we want to do (a syntactic description of effectful computation) from *how* we want to do it (interpreting the effects).
 
 <!-- vscode-markdown-toc -->
 

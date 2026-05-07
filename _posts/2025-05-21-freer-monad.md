@@ -28,4 +28,4 @@ This series assumes you know basic concepts from both category theory and functi
 
 1. [Part 1 — Defining the Free Monad in Lean]({% post_url 2025-06-16-freer-monad-part1 %})
 2. [Part 2 — Universal Morphisms and Effect Handlers]({% post_url 2025-06-16-freer-monad-part2 %})
-3. [Part 3 — Tutorial: A Verified Interpreter with Side Effects]({% post_url 2025-06-18-freer-monad-part3 %})
+3. [Part 3 — Tutorial: A Verified Interpreter]({% post_url 2025-06-18-freer-monad-part3 %})
