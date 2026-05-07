@@ -48,31 +48,25 @@ datatypes being declared
   <span class="n">map_const</span> := <span class="n">rfl</span>
   <span class="n">id_map</span> <span class="n">x</span> := <span class="k">by</span>
     <span class="n">induction</span> <span class="n">x</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="n">rfl</span>
-    <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span>
-      <span class="n">simp_all</span> [<span class="n">map_eq_map</span>, <span class="n">lift_def</span>, <span class="n">map</span>, <span class="n">ih</span>]
+    <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="o">...</span>
+    <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span> <span class="o">...</span>
   <span class="n">comp_map</span> <span class="n">g</span> <span class="n">h</span> <span class="n">x</span> := <span class="k">by</span>
     <span class="n">induction</span> <span class="n">x</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="n">rfl</span>
-    <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span>
-      <span class="n">simp_all</span> [<span class="n">map_eq_map</span>, <span class="n">lift_def</span>, <span class="n">map</span>, <span class="n">ih</span>]
+    <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="o">...</span>
+    <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span> <span class="o">...</span>
 </code></pre></div></div> <p>Now we prove that our structure is a <strong>lawful monad</strong>, meaning it satisfies the following <strong>monad laws</strong>:</p> <ul> <li> <p><code class="language-plaintext highlighter-rouge">bind_pure_comp : x &gt;&gt;= (λ a → pure (f a)) = f &lt;$&gt; x</code><br> A bind followed by pure composed with a function is equivalent to a functorial map.</p> </li> <li> <p><code class="language-plaintext highlighter-rouge">id_map : id &lt;$&gt; x = x</code><br> Mapping the identity function over a value leaves it unchanged.</p> </li> <li> <p><code class="language-plaintext highlighter-rouge">pure_bind : pure x &gt;&gt;= f = f x</code><br> Pure followed by bind is equivalent to function application.</p> </li> <li> <p><code class="language-plaintext highlighter-rouge">bind_assoc : (x &gt;&gt;= f) &gt;&gt;= g = x &gt;&gt;= (λ a → f a &gt;&gt;= g)</code><br> Bind is associative.</p> </li> </ul> <p>The proof is as follows:</p> <div class="language-lean highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cd">-- Lemma that bind is associative</span>
 <span class="k">protected</span> <span class="k">theorem</span> <span class="n">bind_assoc</span> (<span class="n">x</span> : <span class="n">FreeM</span> <span class="n">F</span> α) (<span class="n">f</span> : α <span class="o">→</span> <span class="n">FreeM</span> <span class="n">F</span> β) (<span class="n">g</span> : β <span class="o">→</span> <span class="n">FreeM</span> <span class="n">F</span> <span class="err">γ</span>) :
     (<span class="n">x</span><span class="o">.</span><span class="n">bind</span> <span class="n">f</span>)<span class="o">.</span><span class="n">bind</span> <span class="n">g</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">bind</span> (<span class="k">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> (<span class="n">f</span> <span class="n">x</span>)<span class="o">.</span><span class="n">bind</span> <span class="n">g</span>) := <span class="k">by</span>
   <span class="n">induction</span> <span class="n">x</span> <span class="k">with</span>
-  <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="n">rfl</span>
-  <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span>
-    <span class="n">simp</span> [<span class="n">FreeM</span><span class="o">.</span><span class="n">bind</span>,  <span class="err">←</span> <span class="n">pure_eq_pure</span>] <span class="n">at</span> <span class="o">*</span>
-    <span class="n">simp</span> [<span class="n">ih</span>]
+  <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="o">...</span>
+  <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span> <span class="o">...</span><span class="cd">
 
-<span class="cd">-- Complete proof that FreeM F is a lawful monad</span>
+-- Complete proof that FreeM F is a lawful monad</span>
 <span class="k">instance</span> : <span class="n">LawfulMonad</span> (<span class="n">FreeM</span> <span class="n">F</span>) := <span class="n">LawfulMonad</span><span class="o">.</span><span class="n">mk</span><span class="err">'</span>
   (<span class="n">bind_pure_comp</span> := <span class="k">fun</span> <span class="n">f</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="k">by</span>
     <span class="n">induction</span> <span class="n">x</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="n">rfl</span>
-    <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span>
-      <span class="n">simp</span> <span class="n">only</span> [<span class="n">FreeM</span><span class="o">.</span><span class="n">bind</span>, <span class="n">bind_eq_bind</span>, <span class="n">map_eq_map</span>, <span class="n">pure_eq_purePure</span>, <span class="n">map</span>] <span class="n">at</span> <span class="o">*</span>
-      <span class="n">simp</span> <span class="n">only</span> [<span class="n">ih</span>]
+    <span class="o">|</span> <span class="n">pure</span> <span class="n">a</span> <span class="o">=&gt;</span> <span class="o">...</span>
+    <span class="o">|</span> <span class="n">liftBind</span> <span class="n">op</span> <span class="n">cont</span> <span class="n">ih</span> <span class="o">=&gt;</span> <span class="o">...</span>
   )
   (<span class="n">id_map</span> := <span class="n">id_map</span>)
   (<span class="n">pure_bind</span> := <span class="k">fun</span> <span class="n">x</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="n">rfl</span>)
