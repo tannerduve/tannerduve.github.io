@@ -202,14 +202,12 @@ instance : LawfulFunctor (FreeM F) where
   map_const := rfl
   id_map x := by
     induction x with
-    | pure a => rfl
-    | liftBind op cont ih =>
-      simp_all [map_eq_map, lift_def, map, ih]
+    | pure a => ...
+    | liftBind op cont ih => ...
   comp_map g h x := by
     induction x with
-    | pure a => rfl
-    | liftBind op cont ih =>
-      simp_all [map_eq_map, lift_def, map, ih]
+    | pure a => ...
+    | liftBind op cont ih => ...
 ```
 
 Now we prove that our structure is a **lawful monad**, meaning it satisfies the following **monad laws**:
@@ -233,19 +231,15 @@ The proof is as follows:
 protected theorem bind_assoc (x : FreeM F α) (f : α → FreeM F β) (g : β → FreeM F γ) :
     (x.bind f).bind g = x.bind (fun x => (f x).bind g) := by
   induction x with
-  | pure a => rfl
-  | liftBind op cont ih =>
-    simp [FreeM.bind,  ← pure_eq_pure] at *
-    simp [ih]
+  | pure a => ...
+  | liftBind op cont ih => ...
 
 -- Complete proof that FreeM F is a lawful monad
 instance : LawfulMonad (FreeM F) := LawfulMonad.mk'
   (bind_pure_comp := fun f x => by
     induction x with
-    | pure a => rfl
-    | liftBind op cont ih =>
-      simp only [FreeM.bind, bind_eq_bind, map_eq_map, pure_eq_purePure, map] at *
-      simp only [ih]
+    | pure a => ...
+    | liftBind op cont ih => ...
   )
   (id_map := id_map)
   (pure_bind := fun x f => rfl)
