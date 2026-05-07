@@ -110,9 +110,9 @@ ninja.data = [{
             window.location.href = "/blog/2026/algorithmic-randomness/";
           
         },
-      },{id: "post-tutorial-a-verified-interpreter-with-side-effects",
+      },{id: "post-tutorial-a-verified-interpreter",
         
-          title: "Tutorial: A Verified Interpreter with Side Effects",
+          title: "Tutorial: A Verified Interpreter",
         
         description: "Part of the free monads series",
         section: "Posts",
