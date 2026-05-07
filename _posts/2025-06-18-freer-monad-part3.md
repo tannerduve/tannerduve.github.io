@@ -95,18 +95,18 @@ abbrev Trace := List String
 abbrev EffAction (α : Type) := Env → Trace → Except String (α × Env × Trace)
 ```
 
-The fold itself is a **catamorphism** over `FreeM`.
+The fold is just the recursor over `FreeM`, the analogue of `List.foldr` for the free monad.
 
 ```lean
-def cataFreeM {F : Type u → Type v} {α β : Type w}
+def foldFreeM {F : Type u → Type v} {α β : Type w}
   (pureCase : α → β)
   (bindCase : {ι : Type u} → F ι → (ι → β) → β)
   : FreeM F α → β
 | .pure a => pureCase a
-| .liftBind op k => bindCase op (fun x => cataFreeM pureCase bindCase (k x))
+| .liftBind op k => bindCase op (fun x => foldFreeM pureCase bindCase (k x))
 ```
 
-Given a type `β` with a `pureCase : α → β` and a `bindCase : {ι : Type u} → F ι → (ι → β) → β` (making it an algebra over the free monad functor), `cataFreeM` produces the unique morphism `FreeM F α → β` guaranteed by initiality of `FreeM F α`.
+Given a target type `β` with a `pureCase` for `pure` nodes and a `bindCase` for `liftBind` nodes, `foldFreeM` walks the syntax tree and produces a `β`.
 
 Here are the two parts of the algebra over `EffAction`.
 
@@ -124,11 +124,11 @@ def effStep {α} :
   | _, .Log msg,  k => fun env tr => k () env (tr ++ [msg])
 ```
 
-`run` is then their catamorphism.
+`run` is then the corresponding fold.
 
 ```lean
 def run {α} : FreeM EffectSig α → EffAction α :=
-  cataFreeM effPure effStep
+  foldFreeM effPure effStep
 ```
 
 ## 4. <a name='Verification'></a>Verification
@@ -235,10 +235,10 @@ theorem eval_correct (e : Expr) (env : Env) (trace : Trace)
     run (eval e) env trace = res := by
   induction' h
   · case val z env trace =>
-    simp [eval, pure_eq_purePure, run, cataFreeM, effPure]
+    simp [eval, pure_eq_purePure, run, foldFreeM, effPure]
   · case var_found x env trace v h =>
     simp [run, eval, getEnv, bind_pure_comp, lift_def,
-          cataFreeM, effStep, h, effPure]
+          foldFreeM, effStep, h, effPure]
   · all_goals sorry  -- see below
 ```
 
@@ -246,7 +246,7 @@ The remaining cases (`var_missing`, `add`, `div_ok`, `div_zero`) follow the same
 
 ## 5. <a name='Conclusion'></a>Conclusion
 
-That covers the arc of this series. Free objects in mathematics, the free monad as the initial algebra of an endofunctor, the Freer construction that fixes strict positivity in Lean, and a small effect language interpreted as a catamorphism then verified against an operational semantics. Treating effects as data is what makes this kind of verification clean. You build a syntax tree of abstract effects and verify the interpreter as a separate object.
+That covers the arc of this series. Free objects in mathematics, the Freer construction that fixes strict positivity in Lean, the universal property that turns effect handlers into interpreters, and a small effect language interpreted by a fold over `FreeM` then verified against an operational semantics. Treating effects as data is what makes this kind of verification clean. You build a syntax tree of abstract effects and verify the interpreter as a separate object.
 
 All the code is in the [repo](https://github.com/tannerduve/lean-playground/blob/main/LeanPlayground/freemonad.lean).
 

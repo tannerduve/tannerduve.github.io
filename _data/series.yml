@@ -4,8 +4,7 @@ free-monads:
   parts:
     - 2025-06-16-freer-monad-part1
     - 2025-06-16-freer-monad-part2
-    - 2025-06-16-freer-monad-part3
-    - 2025-06-18-freer-monad-part4
+    - 2025-06-18-freer-monad-part3
 
 part-monad:
   title: "Partiality in a Total Type Theory"
