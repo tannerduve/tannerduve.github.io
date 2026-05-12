@@ -86,7 +86,7 @@ This object $C^B$ in a category of types is exactly the function type $B \to C$.
 
 This third axiom of cartesian closed categories is telling us that functions from $A \times B$ into $C$ are equivalent to functions from $A$ into the function type $B \to C$, which is *exactly* what currying says. Currying falls out of the definition of our categorical model via this pair of adjoint functors.[^adjoints]
 
-[^adjoints]: [As a wise man once said](https://x.com/jevonduve/status/1985024300269944942?s=20), there are adjoint functors everywhere for those with eyes to see them.
+[^adjoints]: [A wise man once said](https://x.com/jevonduve/status/1985024300269944942?s=20), *there are adjoint functors everywhere for those with eyes to see them*.
 
 ## Summary of the correspondence
 
