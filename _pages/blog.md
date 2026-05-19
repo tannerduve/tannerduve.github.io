@@ -4,6 +4,7 @@ title: Blog
 permalink: /blog/
 nav: true
 nav_order: 2
+disable_og_image: true
 pagination:
   enabled: true
   collection: posts
@@ -17,6 +18,8 @@ pagination:
 ---
 
 <div class="post">
+
+<p>I like to write about things I spend time thinking about or working on, and lately that tends to land on the algebraic and categorical foundations of functional programming, as well as logic and formal methods more broadly.</p>
 
 {% assign blog_name_size = site.blog_name | size %}
 {% assign blog_description_size = site.blog_description | size %}

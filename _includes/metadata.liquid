@@ -62,7 +62,11 @@
     Resolve preview image: prefer page.og_image, then page.thumbnail, then site-wide site.og_image.
     Twitter and Facebook both require absolute URLs, so pipe through absolute_url.
   {% endcomment %}
-  {% assign preview_image = page.og_image | default: page.thumbnail | default: site.og_image %}
+  {% if page.disable_og_image %}
+    {% assign preview_image = nil %}
+  {% else %}
+    {% assign preview_image = page.og_image | default: page.thumbnail | default: site.og_image %}
+  {% endif %}
   {% if preview_image %}
     <meta property="og:image" content="{{ preview_image | absolute_url }}">
   {% endif %}
