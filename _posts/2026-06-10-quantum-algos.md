@@ -18,7 +18,6 @@ thumbnail: assets/img/DJ.png
   - [Deutsch-Jozsa Algorithm](#Deutsch-Jozsa)
 - [Part 2: The Quantum Circuit Model](#Part2)
   - [GHZ Algorithm](#GHZ)
-- [Conclusion](#Conclusion)
 - [Acknowledgements](#Acknowledgements)
 - [References](#References)
 
@@ -30,13 +29,13 @@ thumbnail: assets/img/DJ.png
 
 ## <a name='Introduction'></a>Introduction
 
-I'm new to quantum computing, but in [how I've approached it](https://academic.oup.com/book/43710), I think that its compositional and algebraic nature is well suited for typed functional programming,[^quipper] and in particular I've become interested in using Lean to implement and prove things about quantum computation.
+I'm new to the quantum world, but in [how I've approached it](https://academic.oup.com/book/43710), I think that its compositional and algebraic nature is well suited for typed functional programming,[^quipper] and in particular I've become interested in using Lean to implement and prove things about quantum computation.
 
 [^quipper]: See [Quipper](https://www.mathstat.dal.ca/~selinger/quipper/), a Haskell DSL for quantum programming.
 
-In this post I will show how to formalize basic textbook quantum algorithms in Lean. Our underlying computation framework is the query-combinator model from [Algolean](https://github.com/Shreyas4991/Algolean), by [Shreyas Srinivas](https://cispa.de/en/people/c01shsr). This model uses [free monads](https://tannerduve.github.io/blog/2025/freer-monad/) to allow users to write imperative programs in arbitrary computation models, verify their correctness using Lean's [mvcgen tactic](https://lean-lang.org/doc/reference/latest/The--mvcgen--tactic/), and analyze their complexity.
+In this post I will show how to formalize basic textbook quantum algorithms in Lean. Our underlying computation framework is the query-combinator model from [Algolean](https://github.com/Shreyas4991/Algolean), by [Shreyas Srinivas](https://cispa.de/en/people/c01shsr). This model uses [free monads](https://tannerduve.github.io/blog/2025/freer-monad/) to allow users to write imperative programs in arbitrary computation models and verify their correctness using Lean's [mvcgen tactic](https://lean-lang.org/doc/reference/latest/The--mvcgen--tactic/), as well as analyze their complexity.
 
-The query-combinator model is a research product that deserves better treatment than a blog post, so I won't explain in detail here. But from a user's standpoint the interface is as follows:
+The query-combinator model is a research product that will get a better treatment than a blog post, so I won't explain in detail here. But from a user's standpoint the interface is as follows:
 
 - Define a query type `Q : Type → Type`, where `Q α` is the type of basic operations of your computation model returning values of type `α`.
 - Take the free monad over `Q`, which allows algorithms to be written in imperative-style `do` notation. This monad is denoted `Prog Q`
@@ -64,7 +63,7 @@ $$
 
 whose complex coefficients $\alpha_x$ are called *amplitudes*.
 
-Gates are *unitary* maps on this space, meaning linear maps that preserve length and so send unit vectors to unit vectors, keeping a state a valid state. A gate on a single qubit acts as the identity on the rest of the register. The basic operations of our quantum computation model are these gates.
+Gates are *unitary* maps on this space, linear maps that preserve length and send valid states to valid states. A gate on a single qubit acts as the identity on the rest of the register. The basic operations of our quantum computation model are these gates.
 
 One gate worth mentioning here is the Hadamard gate, $H\lvert b\rangle = \tfrac{1}{\sqrt{2}}\sum_{b'}(-1)^{b\cdot b'}\lvert b'\rangle$, which applied to every qubit of $\lvert0\cdots 0\rangle$ produces the uniform *superposition* $\tfrac{1}{\sqrt{2^n}}\sum_x \lvert x\rangle$, an equal-weighted combination of all $2^n$ basis states.
 
@@ -97,7 +96,7 @@ inductive QuantumQuery (n : ℕ) : Type → Type where
   | oracle : QuantumQuery n (𝐔[Fin n → Fin 2])
 ```
 
-Queries are syntactic data used to denote unitaries. The actual unitaries come from the `Model`, which interprets each query denotationally, with complexity measured by the number of oracle calls, giving us a model of *quantum query complexity*
+Queries are syntactic data used to denote unitaries. The actual unitaries come from the `Model`, which interprets each query denotationally. Complexity is the number of oracle calls, giving us a model of *quantum query complexity*.
 
 ```lean
 noncomputable def quantumModel (n : ℕ) (f : (Fin n → Fin 2) → Bool) :
@@ -110,9 +109,9 @@ noncomputable def quantumModel (n : ℕ) (f : (Fin n → Fin 2) → Bool) :
 
 Where `unitaryOf` maps each gate to its `n`-qubit unitary.
 
-Algorithms are written in `Prog (QuantumQuery n) (MState (Fin n → Fin 2))`, which is the free monad whose primitive operations are `QuantumQuery n`'s, returning as values a density matrix over the `n`-qubit basis (`MState` is Physlib's type of density matrices).
+Algorithms are written in `Prog (QuantumQuery n) (MState (Fin n → Fin 2))`, the free monad over `QuantumQuery n` returning a density matrix over the `n`-qubit basis. `MState` is Physlib's type of density matrices.
 
-A query returns the unitary it denotes, but what an algorithm is actually updating at each step is the current quantum state of the register, a density matrix `ρ`. A small wrapper applies unitaries to sequentially update the state:
+A query returns the unitary it denotes, but what an algorithm is actually updating at each step is the current quantum state of the register, a density matrix `ρ`. The following applies unitaries to sequentially update the state:
 
 ```lean
 /-- Apply a gate to a density matrix, threading the result through `Prog`. -/
@@ -139,13 +138,13 @@ After evaluation, we measure the final density matrix `P.eval M`, either a singl
 
 The first algorithm we will implement is Deutsch-Jozsa, it's pretty simple but it's interesting in that it was one of the first examples of a quantum algorithm that is exponentially faster than any deterministic classical algorithm.
 
-The problem it solves is a bit contrived, but it gave an early proof of concept that quantum computers can outperform classical ones, and its main trick reappears in more advanced algorithms like [Shor's](https://en.wikipedia.org/wiki/Shor%27s_algorithm).
+The problem it solves is a bit contrived, but it showed early on that quantum computers can outperform classical ones, and its main trick reappears in more advanced algorithms like [Shor's](https://en.wikipedia.org/wiki/Shor%27s_algorithm).
 
 #### Problem
 
 We are given oracle access to a function $f : \{0,1\}^n \to \{0,1\}$, and are promised that $f$ is either *constant* (same value on every input) or *balanced* (true on exactly half of the inputs), and we must decide which.
 
-Classically, a deterministic algorithm $2^{n-1}+1$ queries in the worst case, since after $2^{n-1}$ identical answers both cases are still possible. Quantumly we only need one.
+Classically, a deterministic algorithm needs $2^{n-1}+1$ queries in the worst case, since after $2^{n-1}$ identical answers both cases are still possible. Quantumly we only need one.
 
 #### Algorithm
 
@@ -169,7 +168,7 @@ noncomputable def deutschJozsa (n : ℕ) :
 
 #### Correctness and Complexity
 
-First we prove a Hoare triple which describes the state the program produces. This state is the conjugation of $\lvert0\cdots 0\rangle\langle 0\cdots 0\rvert$ by $H^{\otimes n} O_f H^{\otimes n}$, which we write as `deutschJozsaResult n f`:
+First we prove the Hoare triple for the final state. The output is the conjugation of $\lvert0\cdots 0\rangle\langle 0\cdots 0\rvert$ by $H^{\otimes n} O_f H^{\otimes n}$, which we write as `deutschJozsaResult n f`.
 
 ```lean
 theorem deutschJozsa_spec (n : ℕ) (f : (Fin n → Fin 2) → Bool) :
@@ -221,9 +220,7 @@ inductive QuantumCircuit : ℕ → Type → Type where
 
 A leaf is just a `QuantumQuery`, the same gates we used in the query model. The index type of a circuit is a `CPTPMap`, a completely positive trace-preserving map, which is the general type of a quantum channel from Physlib.
 
-Channels are more general than unitaries, since they also describe measurement and noise, and taking a channel as the denotation is what lets the two composition operators fit together cleanly.
-
-This is a real difference from the query model, where a program evaluated to an `MState`. Here a circuit denotes a channel, a map on states, and we apply it to the initial state afterward.
+Channels are more general than unitaries, since they also describe measurement and noise, and taking a channel as the denotation lets the two composition operators work together.
 
 Each tree is interpreted into its channel by `toCPTP`:
 
@@ -241,7 +238,7 @@ noncomputable def toCPTP (oracle : OracleFamily) :
 
 A gate becomes the channel that conjugates by its unitary, sequential composition is channel composition, and parallel composition tensors the two channels and reindexes the combined register through `finFunSplitEquiv`, which splits an `(m + k)`-qubit register into an `m`-qubit part and a `k`-qubit part.
 
-The cose of a circuit is its depth, size, and number of oracle queries:
+The cost of a circuit is its depth, size, and number of oracle queries:
 
 ```lean
 structure CircuitCost where
@@ -287,7 +284,9 @@ def ghzCircuit (n : ℕ) (hn : 1 < n) :
     (ghzCNOTChainAux n 1 (n - 2) (by omega) (by omega))
 ```
 
-where `ghzCNOTChainAux` builds the linear chain `CNOT(0→1); CNOT(0→2); ...` by recursion on its length. We then package this as a program family over all register sizes, handling the degenerate small sizes separately: `n = 1` is just the one-qubit Hadamard, and `n = 0` returns the identity channel, since the circuit type has no empty-register leaf:
+where `ghzCNOTChainAux` builds the linear chain `CNOT(0→1); CNOT(0→2); ...` by recursion on its length.
+
+We then package this as a program family over all register sizes. The base cases are handled separately, with `n = 1` just the one-qubit Hadamard and `n = 0` returning the identity channel, since the circuit type has no empty-register leaf.
 
 ```lean
 def ghzProgram : (n : ℕ) → Prog (QuantumCircuit n) (RegisterChannel n)
@@ -324,7 +323,7 @@ theorem ghzCircuit_toCPTP_apply (n : ℕ) (oracle : OracleFamily)
       ghzUnitary (n + 2) (by omega) ◃ ρ
 ```
 
-When we apply this to the zero-everywhere input and computing entries, the resulting density matrix has support exactly on the `00...0`/`11...1` block, with all four entries there equal to `1/2`:
+Applying this to the zero-everywhere input and computing matrix entries shows that the resulting density matrix has support exactly on the `00...0`/`11...1` block, with all four entries there equal to `1/2`.
 
 ```lean
 def IsGHZState (n : ℕ) (ρ : MState (Fin n → Fin 2)) : Prop :=
@@ -341,7 +340,7 @@ theorem ghz_state_correctness {n : ℕ} (hn : 1 < n) (oracle : OracleFamily) :
     IsGHZState n (ghzOutput n oracle)
 ```
 
-The two off-diagonal entries are the important part. A classical coin that outputs `00...0` or `11...1` each with probability `1/2` would have the same two diagonal entries, but its off-diagonal entries would be zero. Those coherence terms are what make this an entangled state rather than a classical mixture.
+A classical mixture returning `00...0` or `11...1` with probability `1/2` would have the same diagonal entries, but its cross terms would be zero. In the GHZ state the cross terms are also `1/2`, which is the coherence lost by the classical mixture.
 
 Measuring the register in the computational basis then gives `00...0` and `11...1` each with probability `1/2` and nothing else:
 
@@ -360,7 +359,7 @@ theorem ghz_correctness {n : ℕ} (hn : 1 < n) (oracle : OracleFamily) :
 
 GHZ never queries the oracle, so every statement is universally quantified over `oracle`.
 
-The cost is computed by folding over the circuit tree, with no oracle queries, depth `n`, and `n` gates:
+Folding over the circuit tree gives the cost.
 
 ```lean
 theorem ghzCircuit_complexity (n : ℕ) (hn : 1 < n) :
@@ -370,13 +369,6 @@ theorem ghzCircuit_complexity (n : ℕ) (hn : 1 < n) :
 ```
 
 One Hadamard plus the `n - 1` CNOTs is `n` gates, and since they run one after another the depth is `n` as well. Lifting this to the program gives the same triple for `P.time`.
-
-## <a name='Conclusion'></a>Conclusion
-
-We built two quantum computation models on top of the query-combinator framework and verified one algorithm in each. The query model counts oracle calls, and Deutsch-Jozsa decides a promise problem in a single query, while deterministic classical algorithms need exponentially many.
-
-In each case the algorithm is a short program in the free monad `Prog`, the `Model` supplies the semantics and the cost, with `mvcgen` helping with the proof of correctness. This generalizes to other models and algorithms, following the theme "most models are query models".
-
 
 ## <a name='Acknowledgements'></a>Acknowledgements
 
