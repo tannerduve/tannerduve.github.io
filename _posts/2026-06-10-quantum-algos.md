@@ -50,9 +50,9 @@ This post explains two computation models and gives an example algorithm for eac
 <details markdown="1">
 <summary>Skip if you already know the basics of quantum computing.</summary>
 
-A quantum system is modeled by a complex [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space); in finite dimensions, this is a complex vector space with an inner product. A qubit is the particular two-dimensional system $\mathbb{C}^2$, whose computational basis vectors are $|0\rangle$ and $|1\rangle$.
+A quantum system is modeled by a complex [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space); in finite dimensions, this is a complex vector space with an inner product. A qubit is the particular two-dimensional system $\mathbb{C}^2$, whose computational basis vectors are $\lvert0\rangle$ and $\lvert1\rangle$.
 
-For an `n`-qubit system, the computational basis is indexed by functions `x : Fin n → Fin 2`, assigning a bit value to each qubit. The basis vectors are themselves indexed by these functions, and in Dirac notation $|x\rangle$ denotes the one which is `1` at the entry indexed by `x` and `0` everywhere else.
+For an `n`-qubit system, the computational basis is indexed by functions `x : Fin n → Fin 2`, assigning a bit value to each qubit. The basis vectors are themselves indexed by these functions, and in Dirac notation $\lvert x\rangle$ denotes the one which is `1` at the entry indexed by `x` and `0` everywhere else.
 
 A pure state of an `n`-qubit system is a unit vector
 
@@ -64,11 +64,11 @@ whose complex coefficients $\alpha_x$ are called *amplitudes*.
 
 Gates are *unitary* maps on this space, meaning linear maps that preserve length and so send unit vectors to unit vectors, keeping a state a valid state. A gate on a single qubit acts as the identity on the rest of the register. The basic operations of our quantum computation model are these gates.
 
-One gate worth mentioning here is the Hadamard gate, $H|b\rangle = \tfrac{1}{\sqrt{2}}\sum_{b'}(-1)^{b\cdot b'}|b'\rangle$, which applied to every qubit of $|0\cdots 0\rangle$ produces the uniform *superposition* $\tfrac{1}{\sqrt{2^n}}\sum_x |x\rangle$, an equal-weighted combination of all $2^n$ basis states.
+One gate worth mentioning here is the Hadamard gate, $H\lvert b\rangle = \tfrac{1}{\sqrt{2}}\sum_{b'}(-1)^{b\cdot b'}\lvert b'\rangle$, which applied to every qubit of $\lvert0\cdots 0\rangle$ produces the uniform *superposition* $\tfrac{1}{\sqrt{2^n}}\sum_x \lvert x\rangle$, an equal-weighted combination of all $2^n$ basis states.
 
-To extract classical information we *measure*, and the Born rule says measuring qubit `q` returns bit $b$ with probability $\sum_{x : x_q = b} |\alpha_x|^2$.
+To extract classical information we *measure*, and the Born rule says measuring qubit `q` returns bit $b$ with probability $\sum_{x : x_q = b} \lvert\alpha_x\rvert^2$.
 
-[Physlib](https://github.com/leanprover-community/physlib), the library we use for our semantic foundation, represents states as *density matrices*. A pure state $|\psi\rangle$ becomes $\rho = |\psi\rangle\langle\psi|$, a gate $U$ acts by conjugation $\rho \mapsto U\rho U^\dagger$, and the Born rule reads $\Pr[b] = \mathrm{tr}(P_b\,\rho)$.
+[Physlib](https://github.com/leanprover-community/physlib), the library we use for our semantic foundation, represents states as *density matrices*. A pure state $\lvert\psi\rangle$ becomes $\rho = \lvert\psi\rangle\langle\psi\rvert$, a gate $U$ acts by conjugation $\rho \mapsto U\rho U^\dagger$, and the Born rule reads $\Pr[b] = \mathrm{tr}(P_b\,\rho)$.
 
 </details>
 
@@ -147,7 +147,7 @@ Classically, a deterministic algorithm $2^{n-1}+1$ queries in the worst case, si
 
 #### Algorithm
 
-Essentially what we do is make use of [superposition](https://en.wikipedia.org/wiki/Quantum_superposition). Applying Hadamards to $|0\cdots 0\rangle$ spreads the register into an equal-weighted combination of all $2^n$ inputs, one oracle call changes the signs according to $f$, $|x\rangle \mapsto (-1)^{f(x)}|x\rangle$, and a second layer of Hadamards makes the signs interfere. The final amplitude on $|0\cdots 0\rangle$ is their average
+Essentially what we do is make use of [superposition](https://en.wikipedia.org/wiki/Quantum_superposition). Applying Hadamards to $\lvert0\cdots 0\rangle$ spreads the register into an equal-weighted combination of all $2^n$ inputs, one oracle call changes the signs according to $f$, $\lvert x\rangle \mapsto (-1)^{f(x)}\lvert x\rangle$, and a second layer of Hadamards makes the signs interfere. The final amplitude on $\lvert0\cdots 0\rangle$ is their average
 
 $$
 \frac{1}{2^n}\sum_{x}(-1)^{f(x)},
@@ -167,7 +167,7 @@ noncomputable def deutschJozsa (n : ℕ) :
 
 #### Correctness and Complexity
 
-First we prove a Hoare triple which describes the state the program produces. This state is the conjugation of $|0\cdots 0\rangle\langle 0\cdots 0|$ by $H^{\otimes n} O_f H^{\otimes n}$, which we write as `deutschJozsaResult n f`:
+First we prove a Hoare triple which describes the state the program produces. This state is the conjugation of $\lvert0\cdots 0\rangle\langle 0\cdots 0\rvert$ by $H^{\otimes n} O_f H^{\otimes n}$, which we write as `deutschJozsaResult n f`:
 
 ```lean
 theorem deutschJozsa_spec (n : ℕ) (f : (Fin n → Fin 2) → Bool) :
@@ -275,7 +275,7 @@ the standard first example of [entanglement](https://en.wikipedia.org/wiki/Quant
 
 #### Algorithm
 
-A Hadamard on qubit `0` puts it into $\tfrac{1}{\sqrt2}(|0\rangle + |1\rangle)$, and then a CNOT from qubit `0` into each later qubit copies that bit outward, so qubit `0` being `1` flips all the others to `1` as well. After these CNOTs the register is all zeros or all ones, entangled. In Lean the circuit is the tree
+A Hadamard on qubit `0` puts it into $\tfrac{1}{\sqrt2}(\lvert0\rangle + \lvert1\rangle)$, and then a CNOT from qubit `0` into each later qubit copies that bit outward, so qubit `0` being `1` flips all the others to `1` as well. After these CNOTs the register is all zeros or all ones, entangled. In Lean the circuit is the tree
 
 ```lean
 def ghzCircuit (n : ℕ) (hn : 1 < n) :
