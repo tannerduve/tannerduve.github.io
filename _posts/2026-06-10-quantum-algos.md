@@ -75,24 +75,24 @@ To extract classical information we *measure*, and the Born rule says measuring 
 
 ## <a name='Part1'></a>Part 1: The Quantum Query Model
 
-To write algorithms we first need to define this computation model. Our first model counts a single resource, the number of times an algorithm calls an abstract oracle.
+To write algorithms we first need to define our computation model. The first model counts a single resource, the number of times an algorithm calls an abstract oracle.
 
 The primitive operations here are the basic quantum gates, as well as calls to the oracle. Each query denotes an element of `𝐔[Fin n → Fin 2]`, the unitaries on the `n`-qubit state space:
 
 ```lean
 inductive QuantumQuery (n : ℕ) : Type → Type where
-  /-- Hadamard gate on qubit `q`. -/
+  -- Hadamard gate on qubit `q`
   | hadamard (q : Fin n) : QuantumQuery n (𝐔[Fin n → Fin 2])
-  /-- Pauli-X (NOT) gate on qubit `q`. -/
+  -- Pauli-X (NOT) gate on qubit `q`
   | pauliX (q : Fin n) : QuantumQuery n (𝐔[Fin n → Fin 2])
-  /-- Pauli-Z gate on qubit `q`. -/
+  -- Pauli-Z gate on qubit `q`
   | pauliZ (q : Fin n) : QuantumQuery n (𝐔[Fin n → Fin 2])
-  /-- Controlled-NOT with distinct control and target. -/
+  -- Controlled-NOT with distinct control and target
   | cnot (control target : Fin n) (h : control ≠ target) :
       QuantumQuery n (𝐔[Fin n → Fin 2])
-  /-- Phase gate `R(θ)` with rational parameter; semantics uses `exp(2πi·θ)`. -/
+  -- Phase gate `R(θ)` with rational parameter; semantics uses `exp(2πi·θ)`
   | phase (q : Fin n) (θ : ℚ) : QuantumQuery n (𝐔[Fin n → Fin 2])
-  /-- Oracle query: applies the phase oracle `|x⟩ ↦ (-1)^{f(x)}|x⟩`. -/
+  -- Oracle query: applies the phase oracle `|x⟩ ↦ (-1)^{f(x)}|x⟩`
   | oracle : QuantumQuery n (𝐔[Fin n → Fin 2])
 ```
 
