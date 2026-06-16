@@ -111,24 +111,7 @@ Where `unitaryOf` maps each gate to its `n`-qubit unitary.
 
 Algorithms are written in `Prog (QuantumQuery n) (MState (Fin n → Fin 2))`, the free monad over `QuantumQuery n` returning a density matrix over the `n`-qubit basis. `MState` is Physlib's type of density matrices.
 
-A query returns the unitary it denotes, but what an algorithm is actually updating at each step is the current quantum state of the register, a density matrix `ρ`. The following applies unitaries to sequentially update the state:
-
-```lean
-/-- Apply a gate to a density matrix, threading the result through `Prog`. -/
-noncomputable def applyGate {n : ℕ}
-    (q : QuantumQuery n (𝐔[Fin n → Fin 2]))
-    (ρ : MState (Fin n → Fin 2)) :
-    Prog (QuantumQuery n) (MState (Fin n → Fin 2)) :=
-  FreeM.liftBind q fun U => pure (U ◃ ρ)
-```
-
-where `U ◃ ρ` is conjugation `U ρ U†`. This is what lets us write algorithms in imperative style:
-
-```lean
-let ρ ← applyGate (.hadamard 0) ρ₀
-let ρ ← applyGate .oracle ρ
-...
-```
+The program threads a density matrix `ρ` through the queries. A gate query returns the unitary it denotes, and `applyGate q ρ` updates the state by conjugation `U ρ U†`.
 
 Given a program `P`, general free monad-ology extends the model compositionally, so that `P.eval M` is the final density matrix and `P.time M` is the total number of oracle queries.
 
@@ -284,37 +267,11 @@ def ghzCircuit (n : ℕ) (hn : 1 < n) :
     (ghzCNOTChainAux n 1 (n - 2) (by omega) (by omega))
 ```
 
-where `ghzCNOTChainAux` builds the linear chain `CNOT(0→1); CNOT(0→2); ...` by recursion on its length.
-
-We then package this as a program family over all register sizes. The base cases are handled separately, with `n = 1` just the one-qubit Hadamard and `n = 0` returning the identity channel, since the circuit type has no empty-register leaf.
-
-```lean
-def ghzProgram : (n : ℕ) → Prog (QuantumCircuit n) (RegisterChannel n)
-  | 0 => pure CPTPMap.id
-  | 1 => ghzHadamardGate (n := 1) (by decide)
-  | n + 2 => ghzCircuit (n + 2) (by omega)
-```
+where `ghzCNOTChainAux` builds the linear chain `CNOT(0→1); CNOT(0→2); ...` by recursion on its length. The implementation also handles `n = 0` and `n = 1`, but the rest of the section focuses on `n ≥ 2`, where the circuit above is the interesting case.
 
 #### Correctness and Complexity
 
-Like we did with Deutsch-Jozsa, we can state what the program computes as a Hoare triple and discharge it with a single `mvcgen`. For `n + 2` qubits the program evaluates to the circuit's channel:
-
-```lean
-theorem ghzProgram_spec_succ_succ (n : ℕ) (oracle : OracleFamily) :
-    letI : HasModel (QuantumCircuit (n + 2)) CircuitCost :=
-      ⟨quantumCircuitModel (n + 2) oracle⟩
-    ⦃⌜True⌝⦄ ghzProgram (n + 2)
-      ⦃⇓ channel =>
-        ⌜channel =
-          QuantumCircuit.toCPTP oracle (ghzCircuit (n + 2) (by omega))⌝⦄ := by
-  letI : HasModel (QuantumCircuit (n + 2)) CircuitCost :=
-    ⟨quantumCircuitModel (n + 2) oracle⟩
-  mvcgen [ghzProgram]
-```
-
-The triple says that evaluating `ghzProgram (n + 2)` returns a `channel` equal to `QuantumCircuit.toCPTP oracle (ghzCircuit (n + 2) ...)`, the denotation of the GHZ circuit tree.
-
-We prove correctness for every register size `n ≥ 2`. First we identify the channel as conjugation by the GHZ unitary `ghzUnitary`, the Hadamard on qubit `0` followed by the CNOT chain:
+We prove correctness for every register size `n ≥ 2`. First we identify the circuit's channel as conjugation by the GHZ unitary `ghzUnitary`, the Hadamard on qubit `0` followed by the CNOT chain:
 
 ```lean
 theorem ghzCircuit_toCPTP_apply (n : ℕ) (oracle : OracleFamily)
@@ -368,7 +325,7 @@ theorem ghzCircuit_complexity (n : ℕ) (hn : 1 < n) :
     (ghzCircuit n hn).oracleCount = 0
 ```
 
-One Hadamard plus the `n - 1` CNOTs is `n` gates, and since they run one after another the depth is `n` as well. Lifting this to the program gives the same triple for `P.time`.
+One Hadamard plus the `n - 1` CNOTs is `n` gates, and since they run one after another the depth is `n` as well.
 
 ## <a name='Acknowledgements'></a>Acknowledgements
 
