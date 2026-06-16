@@ -384,6 +384,7 @@ Thanks to [Shreyas Srinivas](https://cispa.de/en/people/c01shsr) for developing 
 
 ## <a name='References'></a>References
 
-1. D. Deutsch and R. Jozsa, "Rapid solution of problems by quantum computation," *Proceedings of the Royal Society of London A*, vol. 439, no. 1907, pp. 553-558, 1992.
-2. D. M. Greenberger, M. A. Horne, and A. Zeilinger, "Going beyond Bell's theorem," in *Bell's Theorem, Quantum Theory, and Conceptions of the Universe*, 1989.
-3. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, Cambridge University Press, 2010.
+1. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, Cambridge University Press, 2010.
+2. A. Meiburg and contributors, [Physlib](https://github.com/leanprover-community/physlib).
+3. S. Srinivas, [Algolean](https://github.com/Shreyas4991/Algolean).
+4. T. Duve, [The Free Monad](https://tannerduve.github.io/blog/2025/freer-monad/).
