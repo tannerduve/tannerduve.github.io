@@ -44,7 +44,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/talks/";
           },
-        },{id: "post-currying-in-categories",
+        },{id: "post-quantum-algorithms-in-lean",
+        
+          title: "Quantum Algorithms in Lean",
+        
+        description: "Formalizing and verifying textbook quantum algorithms in the query-combinator model",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/quantum-algos/";
+          
+        },
+      },{id: "post-currying-in-categories",
         
           title: "Currying in Categories",
         
