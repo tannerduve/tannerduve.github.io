@@ -19,7 +19,7 @@ pagination:
 
 <div class="post">
 
-<p>I like to write about things I spend time thinking about or working on, and lately that tends to land on the algebraic and categorical foundations of functional programming, as well as logic and formal methods more broadly.</p>
+<p class="blog-intro">I like to write about things I spend time thinking about or working on, and lately that tends to land on the algebraic and categorical foundations of functional programming, as well as logic and formal methods more broadly.</p>
 
 {% assign blog_name_size = site.blog_name | size %}
 {% assign blog_description_size = site.blog_description | size %}
@@ -124,76 +124,71 @@ pagination:
     {% assign tags = post.tags | join: "" %}
     {% assign categories = post.categories | join: "" %}
 
-    <li>
-
-{% if post.thumbnail %}
-
-<div class="row">
-          <div class="col-sm-9">
-{% endif %}
-        <h3>
-        {% if post.redirect == blank %}
-          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        {% elsif post.redirect contains '://' %}
-          <a class="post-title" href="{{ post.redirect }}" target="_blank">{{ post.title }}</a>
-          <svg width="2rem" height="2rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        {% else %}
-          <a class="post-title" href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
+      <li class="post-preview">
+        {% if post.thumbnail %}
+          <div class="post-preview-grid">
         {% endif %}
-        {% if post.series_intro %}
-          {% assign intro_series = site.data.series[post.series_intro] %}
-          {% if intro_series %}
-            <span class="series-badge">▸ {{ intro_series.parts.size }} parts</span>
-          {% endif %}
-        {% endif %}
-      </h3>
-      <p>{{ post.description }}</p>
-      <p class="post-meta">
-        {{ read_time }} min read &nbsp; &middot; &nbsp;
-        {{ post.date | date: '%B %d, %Y' }}
-        {% if post.external_source %}
-        &nbsp; &middot; &nbsp; {{ post.external_source }}
-        {% endif %}
-      </p>
-      <p class="post-tags">
-        <a href="{{ year | prepend: '/blog/' | relative_url }}">
-          <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
 
-          {% if tags != "" %}
-          &nbsp; &middot; &nbsp;
-            {% for tag in post.tags %}
-            <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">
-              <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
-              {% unless forloop.last %}
-                &nbsp;
-              {% endunless %}
+        <div class="post-preview-main">
+          <p class="post-meta">
+            {{ post.date | date: '%B %d, %Y' }} &middot; {{ read_time }} min read
+            {% if post.external_source %}
+              &middot; {{ post.external_source }}
+            {% endif %}
+          </p>
+
+          <h3>
+            {% if post.redirect == blank %}
+              <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% elsif post.redirect contains '://' %}
+              <a class="post-title" href="{{ post.redirect }}" target="_blank">{{ post.title }}</a>
+              <svg width="2rem" height="2rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            {% else %}
+              <a class="post-title" href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
+            {% endif %}
+            {% if post.series_intro %}
+              {% assign intro_series = site.data.series[post.series_intro] %}
+              {% if intro_series %}
+                <span class="series-badge">▸ {{ intro_series.parts.size }} parts</span>
+              {% endif %}
+            {% endif %}
+          </h3>
+
+          <p>{{ post.description }}</p>
+
+          <p class="post-tags">
+            <a href="{{ year | prepend: '/blog/' | relative_url }}">{{ year }}</a>
+            {% if tags != "" %}
+              &nbsp; / &nbsp;
+              {% for tag in post.tags %}
+                <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">{{ tag }}</a>
+                {% unless forloop.last %}
+                  &nbsp;
+                {% endunless %}
               {% endfor %}
-          {% endif %}
+            {% endif %}
 
-          {% if categories != "" %}
-          &nbsp; &middot; &nbsp;
-            {% for category in post.categories %}
-            <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">
-              <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a>
-              {% unless forloop.last %}
-                &nbsp;
-              {% endunless %}
+            {% if categories != "" %}
+              &nbsp; / &nbsp;
+              {% for category in post.categories %}
+                <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">{{ category }}</a>
+                {% unless forloop.last %}
+                  &nbsp;
+                {% endunless %}
               {% endfor %}
-          {% endif %}
-    </p>
+            {% endif %}
+          </p>
+        </div>
 
-{% if post.thumbnail %}
-
-</div>
-
-  <div class="col-sm-3">
-    <img class="card-img" src="{{ post.thumbnail | relative_url }}" style="object-fit: contain; max-height: 12rem; width: 100%" alt="image">
-  </div>
-</div>
-{% endif %}
-    </li>
+        {% if post.thumbnail %}
+          <div class="post-preview-thumb">
+            <img class="card-img" src="{{ post.thumbnail | relative_url }}" alt="">
+          </div>
+          </div>
+        {% endif %}
+      </li>
 
     {% endunless %}
     {% endfor %}

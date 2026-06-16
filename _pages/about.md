@@ -7,7 +7,7 @@ subtitle: Proof Engineer, Logician
 profile:
   align: right
   image: pfp1.png
-  image_circular: true
+  image_circular: false
   more_info:
 
 selected_papers: false

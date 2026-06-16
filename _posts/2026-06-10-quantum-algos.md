@@ -30,7 +30,9 @@ thumbnail: assets/img/DJ.png
 
 ## <a name='Introduction'></a>Introduction
 
-I'm new to quantum computing, but in [how I've approached it](https://academic.oup.com/book/43710), I think that its compositional and algebraic nature is well suited for typed functional programming, and in particular I've become interested in using Lean to implement and prove things about quantum computation.
+I'm new to quantum computing, but in [how I've approached it](https://academic.oup.com/book/43710), I think that its compositional and algebraic nature is well suited for typed functional programming,[^quipper] and in particular I've become interested in using Lean to implement and prove things about quantum computation.
+
+[^quipper]: See [Quipper](https://www.mathstat.dal.ca/~selinger/quipper/), a Haskell DSL for quantum programming.
 
 In this post I will show how to formalize basic textbook quantum algorithms in Lean. Our underlying computation framework is the query-combinator model from [Algolean](https://github.com/Shreyas4991/Algolean), by [Shreyas Srinivas](https://cispa.de/en/people/c01shsr). This model uses [free monads](https://tannerduve.github.io/blog/2025/freer-monad/) to allow users to write imperative programs in arbitrary computation models, verify their correctness using Lean's [mvcgen tactic](https://lean-lang.org/doc/reference/latest/The--mvcgen--tactic/), and analyze their complexity.
 
@@ -311,7 +313,7 @@ theorem ghzProgram_spec_succ_succ (n : ℕ) (oracle : OracleFamily) :
   mvcgen [ghzProgram]
 ```
 
-The triple says that evaluating `ghzProgram (n + 2)` returns a `channel` equal to `QuantumCircuit.toCPTP oracle (ghzCircuit (n + 2) ...)`, the denotation of the GHZ circuit tree. The `⇓ channel =>` binds that returned value so the postcondition can constrain it, and the `letI` lines just register which cost model the triple is taken over. With the program pinned down to the circuit's channel, correctness comes down to understanding what that channel does.
+The triple says that evaluating `ghzProgram (n + 2)` returns a `channel` equal to `QuantumCircuit.toCPTP oracle (ghzCircuit (n + 2) ...)`, the denotation of the GHZ circuit tree.
 
 We prove correctness for every register size `n ≥ 2`. First we identify the channel as conjugation by the GHZ unitary `ghzUnitary`, the Hadamard on qubit `0` followed by the CNOT chain:
 
@@ -322,7 +324,7 @@ theorem ghzCircuit_toCPTP_apply (n : ℕ) (oracle : OracleFamily)
       ghzUnitary (n + 2) (by omega) ◃ ρ
 ```
 
-Applying this to the all-zeros input and computing entries, the output density matrix has support exactly on the `00...0`/`11...1` block, with all four entries there equal to `1/2`:
+When we apply this to the zero-everywhere input and computing entries, the resulting density matrix has support exactly on the `00...0`/`11...1` block, with all four entries there equal to `1/2`:
 
 ```lean
 def IsGHZState (n : ℕ) (ρ : MState (Fin n → Fin 2)) : Prop :=
@@ -356,9 +358,9 @@ theorem ghz_correctness {n : ℕ} (hn : 1 < n) (oracle : OracleFamily) :
       IsGHZDistribution n (ghzDistribution n oracle)
 ```
 
-Because GHZ never touches the oracle, the oracle parameter is irrelevant throughout, which is why every statement is universally quantified over `oracle`.
+GHZ never queries the oracle, so every statement is universally quantified over `oracle`.
 
-Finally, the cost. It is read straight off the circuit tree, with no oracle queries, depth `n`, and `n` gates:
+The cost is computed by folding over the circuit tree, with no oracle queries, depth `n`, and `n` gates:
 
 ```lean
 theorem ghzCircuit_complexity (n : ℕ) (hn : 1 < n) :
@@ -373,9 +375,7 @@ One Hadamard plus the `n - 1` CNOTs is `n` gates, and since they run one after a
 
 We built two quantum computation models on top of the query-combinator framework and verified one algorithm in each. The query model counts oracle calls, and Deutsch-Jozsa decides a promise problem in a single query, while deterministic classical algorithms need exponentially many.
 
-The circuit model gives circuits structure and a richer cost of depth, size, and oracle count, which we use to verify the GHZ preparation circuit, both its linear cost and the entanglement in the state it produces.
-
-In each case the algorithm is a short program in the free monad `Prog`, the `Model` supplies the semantics and the cost, and correctness follows from the general machinery, with `mvcgen` discharging the query-model proof and structural recursion handling the circuit cost. The same recipe should carry over to other models and algorithms, where the queries change but the framework around them stays the same.
+In each case the algorithm is a short program in the free monad `Prog`, the `Model` supplies the semantics and the cost, with `mvcgen` helping with the proof of correctness. This generalizes to other models and algorithms, following the theme "most models are query models".
 
 
 ## <a name='Acknowledgements'></a>Acknowledgements
