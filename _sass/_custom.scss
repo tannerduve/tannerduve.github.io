@@ -837,16 +837,19 @@ article p {
 }
 
 .post-preview-thumb {
+  display: flex;
+  justify-content: flex-end;
   padding-top: 0.15rem;
 
   .card-img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
+    width: auto;
+    max-width: 150px;
+    max-height: 8.5rem;
     object-fit: contain;
-    padding: 0.6rem;
-    background: var(--global-card-bg-color);
-    border: 1px solid var(--global-divider-color);
-    border-radius: 7px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 3px;
     box-shadow: none;
   }
 }
@@ -1009,7 +1012,13 @@ html[data-theme="dark"] :not(pre) > code {
   }
 
   .post-preview-thumb {
+    justify-content: flex-start;
     max-width: 220px;
+
+    .card-img {
+      max-width: min(220px, 100%);
+      max-height: 10rem;
+    }
   }
 
   .post-list .post-preview {
