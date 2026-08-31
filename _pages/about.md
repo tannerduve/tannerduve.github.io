@@ -22,10 +22,10 @@ latest_posts:
 
 Hi! I'm Tanner. I am a Member of Technical Staff at [Logical Intelligence](https://logicalintelligence.com), working on formal verification and compilers. I graduated from the University of Pennsylvania with an MSE in computer science and a BA in mathematical logic. My academic interests include formal verification, programming languages, category theory, type theory, and all things logic.
 
-Previously I worked as a software engineer writing Rust at [Nexus](https://nexus.xyz). I have done research in applied category theory with [Georgios Bakirtzis](https://bakirtzis.net) and [Michail Savvas](https://michailsavvas.github.io), and in programming languages and formal verification with Amazon's [Automated Reasoning Group](https://aws.amazon.com/what-is/automated-reasoning/).
+Previously I worked on programming languages and formal verification with Amazon's [Automated Reasoning Group](https://aws.amazon.com/what-is/automated-reasoning/), and I have done research in applied category theory with [Georgios Bakirtzis](https://bakirtzis.net) and [Michail Savvas](https://michailsavvas.github.io).
 
 My primary working language is [Lean](https://leanprover-community.github.io/index.html), for both formalization work and verified software development. I have contributed to [Mathlib](https://github.com/leanprover-community/mathlib4) and [CSLib](https://github.com/leanprover/cslib), and I am an author of [Algolean](https://github.com/Shreyas4991/Algolean), a Lean library for formalizing algorithms and their complexity.
 
-Outside of work I enjoy reading philosophy, in particular analytic philosophy, philosophy of mind and consciousness, metaphysics, and Eastern philosophy and mysticism. I played 2 years of D1 football at Penn and I enjoy lifting weights, yoga, and running. I am also learning guitar, and am passionate about veganism and total liberation for all beings.
+Outside of work I enjoy reading philosophy, in particular analytic philosophy, philosophy of mind and consciousness, metaphysics, and Eastern philosophy and mysticism. I played 2 years of D1 football at Penn and I enjoy lifting weights, yoga, and running, and am passionate about veganism and total liberation for all beings.
 
 ---
